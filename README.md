@@ -3,6 +3,13 @@
 Upload `trader.py` to the Prosperity simulator. The local `datamodel.py` mirrors the
 competition interface closely enough for syntax checks and lightweight local tests.
 
+Research notebooks:
+
+- `algorithmic_model_trading.ipynb`: algorithmic model process, findings,
+  backtests, overfit controls, and profitability thesis.
+- `manual_auction_strategy.ipynb`: manual auction mechanism, exact optimum, and
+  auction backtest.
+
 ## Round 1 Strategy
 
 - Trades `ASH_COATED_OSMIUM` and `INTARIAN_PEPPER_ROOT` with the 80-unit position
