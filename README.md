@@ -26,9 +26,9 @@ python scripts\manual_auction_backtest.py
 
 The latest run is saved to `logs/round1_diagnostics.json` and includes:
 
-- Conservative crossing-fill replay: 235,753 XIRECs across the three historical
+- Conservative crossing-fill replay: 236,444 XIRECs across the three historical
   days, with flat end-of-day inventory.
-- Parameter sensitivity grid: 27/27 tested parameter combinations remained above
+- Parameter sensitivity grid: 48/48 tested parameter combinations remained above
   the 200,000 XIREC target.
 - Monte Carlo execution stress: 4 chains x 40 draws with 97% crossing-fill
   probability, up to 1 XIREC adverse slippage, and 3 XIREC mark noise.

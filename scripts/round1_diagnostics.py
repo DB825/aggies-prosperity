@@ -228,9 +228,9 @@ def summarize(values: List[float]) -> Dict[str, float]:
 
 def parameter_grid(by_day_ts: Dict[int, Dict[int, List[Dict]]]) -> Dict:
     rows = []
-    for pepper_buy_edge in (4.0, 8.0, 12.0):
-        for pepper_exit_edge in (6.0, 8.0, 10.0):
-            for ash_take_edge in (3.0, 4.0, 5.0):
+    for pepper_buy_edge in (6.0, 8.0, 10.0, 12.0):
+        for pepper_exit_edge in (4.0, 5.0, 6.0, 7.0, 8.0, 10.0):
+            for ash_take_edge in (4.0, 5.0):
                 overrides = {
                     "params": {
                         "INTARIAN_PEPPER_ROOT": {
@@ -254,16 +254,23 @@ def parameter_grid(by_day_ts: Dict[int, Dict[int, List[Dict]]]) -> Dict:
     selected = next(
         row
         for row in rows
-        if row["pepper_buy_edge"] == 8.0 and row["pepper_exit_edge"] == 8.0 and row["ash_take_edge"] == 4.0
+        if row["pepper_buy_edge"] == 8.0 and row["pepper_exit_edge"] == 5.0 and row["ash_take_edge"] == 4.0
     )
     sorted_rows = sorted(rows, key=lambda row: row["combined_pnl"], reverse=True)
     selected_rank = 1 + sorted_rows.index(selected)
+    selected_neighborhood = [
+        row
+        for row in rows
+        if abs(row["pepper_buy_edge"] - selected["pepper_buy_edge"]) <= 2.0
+        and abs(row["pepper_exit_edge"] - selected["pepper_exit_edge"]) <= 1.0
+    ]
     return {
         "rows": rows,
         "summary": summarize(pnls),
         "target_pass_rate": sum(pnl >= 200_000 for pnl in pnls) / len(pnls),
         "selected": selected,
         "selected_rank": selected_rank,
+        "selected_neighborhood_summary": summarize([row["combined_pnl"] for row in selected_neighborhood]),
         "top_5": sorted_rows[:5],
         "bottom_5": sorted_rows[-5:],
     }

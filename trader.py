@@ -15,6 +15,8 @@ class Trader:
     PEPPER_SLOPE = 0.001
     PEPPER_TARGET = 80
     PEPPER_EXIT_TIMESTAMP = 995_000
+    PEPPER_FORCE_EXIT_TIMESTAMP = 998_000
+    PEPPER_FORCE_EXIT_EDGE = 8.0
 
     PARAMS = {
         "ASH_COATED_OSMIUM": {
@@ -30,7 +32,7 @@ class Trader:
             "intercept_alpha": 0.18,
             "trend_buy_edge": 8.0,
             "rich_sell_edge": 14.0,
-            "exit_sell_edge": 8.0,
+            "exit_sell_edge": 5.0,
             "make_edge": 2.0,
             "max_take": 28,
             "max_make": 18,
@@ -255,10 +257,13 @@ class Trader:
                 )
         else:
             sellable = max(0, position_after)
+            exit_edge = params["exit_sell_edge"]
+            if timestamp >= self.PEPPER_FORCE_EXIT_TIMESTAMP:
+                exit_edge = self.PEPPER_FORCE_EXIT_EDGE
             position_after = self.hit_expensive_bids(
                 product,
                 order_depth,
-                fair - params["exit_sell_edge"],
+                fair - exit_edge,
                 params["max_take"],
                 position_after,
                 orders,

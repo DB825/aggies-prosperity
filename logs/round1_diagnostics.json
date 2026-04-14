@@ -7,122 +7,164 @@
         "day": -2,
         "pnl_by_product": {
           "ASH_COATED_OSMIUM": 0.0,
-          "INTARIAN_PEPPER_ROOT": 78608.0
+          "INTARIAN_PEPPER_ROOT": 78813.0
         },
         "position": {
           "ASH_COATED_OSMIUM": 0,
           "INTARIAN_PEPPER_ROOT": 0
         },
-        "total_pnl": 78608.0
+        "total_pnl": 78813.0
       },
       {
         "day": -1,
         "pnl_by_product": {
           "ASH_COATED_OSMIUM": 0.0,
-          "INTARIAN_PEPPER_ROOT": 78618.0
+          "INTARIAN_PEPPER_ROOT": 78857.0
         },
         "position": {
           "ASH_COATED_OSMIUM": 0,
           "INTARIAN_PEPPER_ROOT": 0
         },
-        "total_pnl": 78618.0
+        "total_pnl": 78857.0
       },
       {
         "day": 0,
         "pnl_by_product": {
           "ASH_COATED_OSMIUM": 0.0,
-          "INTARIAN_PEPPER_ROOT": 78527.0
+          "INTARIAN_PEPPER_ROOT": 78774.0
         },
         "position": {
           "ASH_COATED_OSMIUM": 0,
           "INTARIAN_PEPPER_ROOT": 0
         },
-        "total_pnl": 78527.0
+        "total_pnl": 78774.0
       }
     ],
-    "combined_pnl": 235753.0,
-    "filled_orders": 49,
+    "combined_pnl": 236444.0,
+    "filled_orders": 50,
     "filled_quantity": 480
   },
   "parameter_grid": {
     "rows": [
       {
-        "pepper_buy_edge": 4.0,
-        "pepper_exit_edge": 6.0,
-        "ash_take_edge": 3.0,
-        "combined_pnl": 233698.0
+        "pepper_buy_edge": 6.0,
+        "pepper_exit_edge": 4.0,
+        "ash_take_edge": 4.0,
+        "combined_pnl": 236550.0
       },
       {
-        "pepper_buy_edge": 4.0,
+        "pepper_buy_edge": 6.0,
+        "pepper_exit_edge": 4.0,
+        "ash_take_edge": 5.0,
+        "combined_pnl": 236550.0
+      },
+      {
+        "pepper_buy_edge": 6.0,
+        "pepper_exit_edge": 5.0,
+        "ash_take_edge": 4.0,
+        "combined_pnl": 236550.0
+      },
+      {
+        "pepper_buy_edge": 6.0,
+        "pepper_exit_edge": 5.0,
+        "ash_take_edge": 5.0,
+        "combined_pnl": 236550.0
+      },
+      {
+        "pepper_buy_edge": 6.0,
         "pepper_exit_edge": 6.0,
         "ash_take_edge": 4.0,
-        "combined_pnl": 233926.0
+        "combined_pnl": 236368.0
       },
       {
-        "pepper_buy_edge": 4.0,
+        "pepper_buy_edge": 6.0,
         "pepper_exit_edge": 6.0,
         "ash_take_edge": 5.0,
-        "combined_pnl": 233926.0
+        "combined_pnl": 236368.0
       },
       {
-        "pepper_buy_edge": 4.0,
-        "pepper_exit_edge": 8.0,
-        "ash_take_edge": 3.0,
-        "combined_pnl": 232163.0
+        "pepper_buy_edge": 6.0,
+        "pepper_exit_edge": 7.0,
+        "ash_take_edge": 4.0,
+        "combined_pnl": 235880.0
       },
       {
-        "pepper_buy_edge": 4.0,
+        "pepper_buy_edge": 6.0,
+        "pepper_exit_edge": 7.0,
+        "ash_take_edge": 5.0,
+        "combined_pnl": 235880.0
+      },
+      {
+        "pepper_buy_edge": 6.0,
         "pepper_exit_edge": 8.0,
         "ash_take_edge": 4.0,
-        "combined_pnl": 232391.0
+        "combined_pnl": 235859.0
       },
       {
-        "pepper_buy_edge": 4.0,
+        "pepper_buy_edge": 6.0,
         "pepper_exit_edge": 8.0,
         "ash_take_edge": 5.0,
-        "combined_pnl": 232391.0
+        "combined_pnl": 235859.0
       },
       {
-        "pepper_buy_edge": 4.0,
+        "pepper_buy_edge": 6.0,
         "pepper_exit_edge": 10.0,
-        "ash_take_edge": 3.0,
-        "combined_pnl": 231739.0
-      },
-      {
-        "pepper_buy_edge": 4.0,
-        "pepper_exit_edge": 10.0,
         "ash_take_edge": 4.0,
-        "combined_pnl": 231967.0
+        "combined_pnl": 235435.0
       },
       {
-        "pepper_buy_edge": 4.0,
+        "pepper_buy_edge": 6.0,
         "pepper_exit_edge": 10.0,
         "ash_take_edge": 5.0,
-        "combined_pnl": 231967.0
+        "combined_pnl": 235435.0
       },
       {
         "pepper_buy_edge": 8.0,
-        "pepper_exit_edge": 6.0,
-        "ash_take_edge": 3.0,
-        "combined_pnl": 237060.0
+        "pepper_exit_edge": 4.0,
+        "ash_take_edge": 4.0,
+        "combined_pnl": 236444.0
+      },
+      {
+        "pepper_buy_edge": 8.0,
+        "pepper_exit_edge": 4.0,
+        "ash_take_edge": 5.0,
+        "combined_pnl": 236444.0
+      },
+      {
+        "pepper_buy_edge": 8.0,
+        "pepper_exit_edge": 5.0,
+        "ash_take_edge": 4.0,
+        "combined_pnl": 236444.0
+      },
+      {
+        "pepper_buy_edge": 8.0,
+        "pepper_exit_edge": 5.0,
+        "ash_take_edge": 5.0,
+        "combined_pnl": 236444.0
       },
       {
         "pepper_buy_edge": 8.0,
         "pepper_exit_edge": 6.0,
         "ash_take_edge": 4.0,
-        "combined_pnl": 237288.0
+        "combined_pnl": 236262.0
       },
       {
         "pepper_buy_edge": 8.0,
         "pepper_exit_edge": 6.0,
         "ash_take_edge": 5.0,
-        "combined_pnl": 237288.0
+        "combined_pnl": 236262.0
       },
       {
         "pepper_buy_edge": 8.0,
-        "pepper_exit_edge": 8.0,
-        "ash_take_edge": 3.0,
-        "combined_pnl": 235525.0
+        "pepper_exit_edge": 7.0,
+        "ash_take_edge": 4.0,
+        "combined_pnl": 235774.0
+      },
+      {
+        "pepper_buy_edge": 8.0,
+        "pepper_exit_edge": 7.0,
+        "ash_take_edge": 5.0,
+        "combined_pnl": 235774.0
       },
       {
         "pepper_buy_edge": 8.0,
@@ -139,12 +181,6 @@
       {
         "pepper_buy_edge": 8.0,
         "pepper_exit_edge": 10.0,
-        "ash_take_edge": 3.0,
-        "combined_pnl": 235101.0
-      },
-      {
-        "pepper_buy_edge": 8.0,
-        "pepper_exit_edge": 10.0,
         "ash_take_edge": 4.0,
         "combined_pnl": 235329.0
       },
@@ -155,28 +191,124 @@
         "combined_pnl": 235329.0
       },
       {
-        "pepper_buy_edge": 12.0,
-        "pepper_exit_edge": 6.0,
-        "ash_take_edge": 3.0,
-        "combined_pnl": 236794.0
+        "pepper_buy_edge": 10.0,
+        "pepper_exit_edge": 4.0,
+        "ash_take_edge": 4.0,
+        "combined_pnl": 236178.0
       },
       {
-        "pepper_buy_edge": 12.0,
+        "pepper_buy_edge": 10.0,
+        "pepper_exit_edge": 4.0,
+        "ash_take_edge": 5.0,
+        "combined_pnl": 236178.0
+      },
+      {
+        "pepper_buy_edge": 10.0,
+        "pepper_exit_edge": 5.0,
+        "ash_take_edge": 4.0,
+        "combined_pnl": 236178.0
+      },
+      {
+        "pepper_buy_edge": 10.0,
+        "pepper_exit_edge": 5.0,
+        "ash_take_edge": 5.0,
+        "combined_pnl": 236178.0
+      },
+      {
+        "pepper_buy_edge": 10.0,
         "pepper_exit_edge": 6.0,
         "ash_take_edge": 4.0,
-        "combined_pnl": 237022.0
+        "combined_pnl": 235996.0
       },
       {
-        "pepper_buy_edge": 12.0,
+        "pepper_buy_edge": 10.0,
         "pepper_exit_edge": 6.0,
         "ash_take_edge": 5.0,
-        "combined_pnl": 237022.0
+        "combined_pnl": 235996.0
       },
       {
-        "pepper_buy_edge": 12.0,
+        "pepper_buy_edge": 10.0,
+        "pepper_exit_edge": 7.0,
+        "ash_take_edge": 4.0,
+        "combined_pnl": 235508.0
+      },
+      {
+        "pepper_buy_edge": 10.0,
+        "pepper_exit_edge": 7.0,
+        "ash_take_edge": 5.0,
+        "combined_pnl": 235508.0
+      },
+      {
+        "pepper_buy_edge": 10.0,
         "pepper_exit_edge": 8.0,
-        "ash_take_edge": 3.0,
-        "combined_pnl": 235259.0
+        "ash_take_edge": 4.0,
+        "combined_pnl": 235487.0
+      },
+      {
+        "pepper_buy_edge": 10.0,
+        "pepper_exit_edge": 8.0,
+        "ash_take_edge": 5.0,
+        "combined_pnl": 235487.0
+      },
+      {
+        "pepper_buy_edge": 10.0,
+        "pepper_exit_edge": 10.0,
+        "ash_take_edge": 4.0,
+        "combined_pnl": 235063.0
+      },
+      {
+        "pepper_buy_edge": 10.0,
+        "pepper_exit_edge": 10.0,
+        "ash_take_edge": 5.0,
+        "combined_pnl": 235063.0
+      },
+      {
+        "pepper_buy_edge": 12.0,
+        "pepper_exit_edge": 4.0,
+        "ash_take_edge": 4.0,
+        "combined_pnl": 236178.0
+      },
+      {
+        "pepper_buy_edge": 12.0,
+        "pepper_exit_edge": 4.0,
+        "ash_take_edge": 5.0,
+        "combined_pnl": 236178.0
+      },
+      {
+        "pepper_buy_edge": 12.0,
+        "pepper_exit_edge": 5.0,
+        "ash_take_edge": 4.0,
+        "combined_pnl": 236178.0
+      },
+      {
+        "pepper_buy_edge": 12.0,
+        "pepper_exit_edge": 5.0,
+        "ash_take_edge": 5.0,
+        "combined_pnl": 236178.0
+      },
+      {
+        "pepper_buy_edge": 12.0,
+        "pepper_exit_edge": 6.0,
+        "ash_take_edge": 4.0,
+        "combined_pnl": 235996.0
+      },
+      {
+        "pepper_buy_edge": 12.0,
+        "pepper_exit_edge": 6.0,
+        "ash_take_edge": 5.0,
+        "combined_pnl": 235996.0
+      },
+      {
+        "pepper_buy_edge": 12.0,
+        "pepper_exit_edge": 7.0,
+        "ash_take_edge": 4.0,
+        "combined_pnl": 235508.0
+      },
+      {
+        "pepper_buy_edge": 12.0,
+        "pepper_exit_edge": 7.0,
+        "ash_take_edge": 5.0,
+        "combined_pnl": 235508.0
       },
       {
         "pepper_buy_edge": 12.0,
@@ -189,12 +321,6 @@
         "pepper_exit_edge": 8.0,
         "ash_take_edge": 5.0,
         "combined_pnl": 235487.0
-      },
-      {
-        "pepper_buy_edge": 12.0,
-        "pepper_exit_edge": 10.0,
-        "ash_take_edge": 3.0,
-        "combined_pnl": 234835.0
       },
       {
         "pepper_buy_edge": 12.0,
@@ -210,87 +336,99 @@
       }
     ],
     "summary": {
-      "count": 27,
-      "min": 231739.0,
-      "p05": 231967.0,
-      "p10": 232084.59999999998,
-      "median": 235259.0,
-      "mean": 234838.0,
-      "p90": 237037.2,
-      "p95": 237219.6,
-      "max": 237288.0,
-      "stdev": 1746.0007000125872
+      "count": 48,
+      "min": 235063.0,
+      "p05": 235063.0,
+      "p10": 235329.0,
+      "median": 235938.0,
+      "mean": 235894.5,
+      "p90": 236444.0,
+      "p95": 236550.0,
+      "max": 236550.0,
+      "stdev": 444.65426644379187
     },
     "target_pass_rate": 1.0,
     "selected": {
       "pepper_buy_edge": 8.0,
-      "pepper_exit_edge": 8.0,
+      "pepper_exit_edge": 5.0,
       "ash_take_edge": 4.0,
-      "combined_pnl": 235753.0
+      "combined_pnl": 236444.0
     },
     "selected_rank": 7,
+    "selected_neighborhood_summary": {
+      "count": 18,
+      "min": 235996.0,
+      "p05": 235996.0,
+      "p10": 236123.4,
+      "median": 236368.0,
+      "mean": 236330.0,
+      "p90": 236550.0,
+      "p95": 236550.0,
+      "max": 236550.0,
+      "stdev": 178.45758911044135
+    },
     "top_5": [
       {
-        "pepper_buy_edge": 8.0,
-        "pepper_exit_edge": 6.0,
+        "pepper_buy_edge": 6.0,
+        "pepper_exit_edge": 4.0,
         "ash_take_edge": 4.0,
-        "combined_pnl": 237288.0
+        "combined_pnl": 236550.0
       },
       {
-        "pepper_buy_edge": 8.0,
-        "pepper_exit_edge": 6.0,
+        "pepper_buy_edge": 6.0,
+        "pepper_exit_edge": 4.0,
         "ash_take_edge": 5.0,
-        "combined_pnl": 237288.0
+        "combined_pnl": 236550.0
       },
       {
-        "pepper_buy_edge": 8.0,
-        "pepper_exit_edge": 6.0,
-        "ash_take_edge": 3.0,
-        "combined_pnl": 237060.0
-      },
-      {
-        "pepper_buy_edge": 12.0,
-        "pepper_exit_edge": 6.0,
+        "pepper_buy_edge": 6.0,
+        "pepper_exit_edge": 5.0,
         "ash_take_edge": 4.0,
-        "combined_pnl": 237022.0
+        "combined_pnl": 236550.0
       },
       {
-        "pepper_buy_edge": 12.0,
-        "pepper_exit_edge": 6.0,
+        "pepper_buy_edge": 6.0,
+        "pepper_exit_edge": 5.0,
         "ash_take_edge": 5.0,
-        "combined_pnl": 237022.0
+        "combined_pnl": 236550.0
+      },
+      {
+        "pepper_buy_edge": 8.0,
+        "pepper_exit_edge": 4.0,
+        "ash_take_edge": 4.0,
+        "combined_pnl": 236444.0
       }
     ],
     "bottom_5": [
       {
-        "pepper_buy_edge": 4.0,
-        "pepper_exit_edge": 8.0,
+        "pepper_buy_edge": 8.0,
+        "pepper_exit_edge": 10.0,
         "ash_take_edge": 5.0,
-        "combined_pnl": 232391.0
+        "combined_pnl": 235329.0
       },
       {
-        "pepper_buy_edge": 4.0,
-        "pepper_exit_edge": 8.0,
-        "ash_take_edge": 3.0,
-        "combined_pnl": 232163.0
-      },
-      {
-        "pepper_buy_edge": 4.0,
+        "pepper_buy_edge": 10.0,
         "pepper_exit_edge": 10.0,
         "ash_take_edge": 4.0,
-        "combined_pnl": 231967.0
+        "combined_pnl": 235063.0
       },
       {
-        "pepper_buy_edge": 4.0,
+        "pepper_buy_edge": 10.0,
         "pepper_exit_edge": 10.0,
         "ash_take_edge": 5.0,
-        "combined_pnl": 231967.0
+        "combined_pnl": 235063.0
       },
       {
-        "pepper_buy_edge": 4.0,
+        "pepper_buy_edge": 12.0,
         "pepper_exit_edge": 10.0,
-        "ash_take_edge": 3.0,
-        "combined_pnl": 231739.0
+        "ash_take_edge": 4.0,
+        "combined_pnl": 235063.0
+      },
+      {
+        "pepper_buy_edge": 12.0,
+        "pepper_exit_edge": 10.0,
+        "ash_take_edge": 5.0,
+        "combined_pnl": 235063.0
       }
     ]
   },
@@ -302,185 +440,185 @@
     },
     "chains": [
       [
-        235458.0,
-        235490.0,
-        235574.0,
-        235496.0,
-        235533.0,
-        235525.0,
-        235528.0,
-        235507.0,
-        235509.0,
-        235528.0,
-        235536.0,
-        235534.0,
-        235495.0,
-        235465.0,
-        235490.0,
-        235489.0,
-        235531.0,
-        235508.0,
-        235524.0,
-        235541.0,
-        235533.0,
-        235518.0,
-        235536.0,
-        235498.0,
-        235482.0,
-        235510.0,
-        235500.0,
-        235513.0,
-        235544.0,
-        235515.0,
-        235515.0,
-        235522.0,
-        235534.0,
-        235497.0,
-        235509.0,
-        235470.0,
-        235486.0,
-        235543.0,
-        235497.0,
-        235513.0
+        236152.0,
+        236174.0,
+        236260.0,
+        236178.0,
+        236224.0,
+        236205.0,
+        236218.0,
+        236215.0,
+        236206.0,
+        236239.0,
+        236227.0,
+        236233.0,
+        236176.0,
+        236161.0,
+        236184.0,
+        236188.0,
+        236215.0,
+        236197.0,
+        236223.0,
+        236233.0,
+        236213.0,
+        236223.0,
+        236236.0,
+        236192.0,
+        236181.0,
+        236204.0,
+        236186.0,
+        236199.0,
+        236246.0,
+        236202.0,
+        236219.0,
+        236193.0,
+        236228.0,
+        236194.0,
+        236198.0,
+        236171.0,
+        236183.0,
+        236225.0,
+        236209.0,
+        236221.0
       ],
       [
-        235497.0,
-        235570.0,
-        235542.0,
-        235504.0,
-        235517.0,
-        235502.0,
-        235494.0,
-        235474.0,
-        235473.0,
-        235486.0,
-        235537.0,
-        235512.0,
-        235461.0,
-        235464.0,
-        235504.0,
-        235600.0,
-        235472.0,
-        235507.0,
-        235460.0,
-        235472.0,
-        235548.0,
-        235498.0,
-        235554.0,
-        235553.0,
-        235510.0,
-        235475.0,
-        235536.0,
-        235435.0,
-        235508.0,
-        235524.0,
-        235500.0,
-        235505.0,
-        235505.0,
-        235519.0,
-        235522.0,
-        235526.0,
-        235497.0,
-        235549.0,
-        235503.0,
-        235578.0
+        236203.0,
+        236249.0,
+        236228.0,
+        236215.0,
+        236201.0,
+        236185.0,
+        236196.0,
+        236163.0,
+        236171.0,
+        236169.0,
+        236237.0,
+        236199.0,
+        236163.0,
+        236158.0,
+        236208.0,
+        236297.0,
+        236154.0,
+        236194.0,
+        236153.0,
+        236172.0,
+        236244.0,
+        236196.0,
+        236239.0,
+        236246.0,
+        236213.0,
+        236169.0,
+        236225.0,
+        236129.0,
+        236195.0,
+        236218.0,
+        236187.0,
+        236197.0,
+        236177.0,
+        236207.0,
+        236221.0,
+        236221.0,
+        236190.0,
+        236236.0,
+        236193.0,
+        236279.0
       ],
       [
-        235543.0,
-        235542.0,
-        235547.0,
-        235474.0,
-        235505.0,
-        235558.0,
-        235522.0,
-        235505.0,
-        235475.0,
-        235465.0,
-        235439.0,
-        235525.0,
-        235657.0,
-        235550.0,
-        235555.0,
-        235494.0,
-        235505.0,
-        235474.0,
-        235556.0,
-        235440.0,
-        235464.0,
-        235455.0,
-        235524.0,
-        235519.0,
-        235515.0,
-        235552.0,
-        235471.0,
-        235558.0,
-        235467.0,
-        235577.0,
-        235467.0,
-        235552.0,
-        235598.0,
-        235547.0,
-        235536.0,
-        235530.0,
-        235546.0,
-        235574.0,
-        235537.0,
-        235461.0
+        236224.0,
+        236228.0,
+        236227.0,
+        236154.0,
+        236190.0,
+        236244.0,
+        236209.0,
+        236199.0,
+        236176.0,
+        236151.0,
+        236137.0,
+        236218.0,
+        236348.0,
+        236194.0,
+        236248.0,
+        236178.0,
+        236196.0,
+        236166.0,
+        236251.0,
+        236125.0,
+        236156.0,
+        236135.0,
+        236222.0,
+        236209.0,
+        236201.0,
+        236227.0,
+        236170.0,
+        236220.0,
+        236152.0,
+        236275.0,
+        236163.0,
+        236239.0,
+        236281.0,
+        236235.0,
+        236220.0,
+        236227.0,
+        236242.0,
+        236271.0,
+        236228.0,
+        236162.0
       ],
       [
-        235506.0,
-        235566.0,
-        235559.0,
-        235465.0,
-        235534.0,
-        235470.0,
-        235558.0,
-        235535.0,
-        235494.0,
-        235549.0,
-        235486.0,
-        235528.0,
-        235545.0,
-        235529.0,
-        235507.0,
-        235519.0,
-        235481.0,
-        235530.0,
-        235497.0,
-        235510.0,
-        235481.0,
-        235527.0,
-        235588.0,
-        235526.0,
-        235531.0,
-        235516.0,
-        235556.0,
-        235536.0,
-        235447.0,
-        235560.0,
-        235533.0,
-        235493.0,
-        235484.0,
-        235531.0,
-        235536.0,
-        235552.0,
-        235491.0,
-        235499.0,
-        235542.0,
-        235547.0
+        236195.0,
+        236256.0,
+        236253.0,
+        236165.0,
+        236228.0,
+        236177.0,
+        236250.0,
+        236220.0,
+        236191.0,
+        236236.0,
+        236182.0,
+        236228.0,
+        236223.0,
+        236212.0,
+        236204.0,
+        236212.0,
+        236172.0,
+        236227.0,
+        236187.0,
+        236190.0,
+        236196.0,
+        236225.0,
+        236280.0,
+        236216.0,
+        236224.0,
+        236213.0,
+        236250.0,
+        236236.0,
+        236137.0,
+        236246.0,
+        236216.0,
+        236177.0,
+        236165.0,
+        236223.0,
+        236222.0,
+        236245.0,
+        236189.0,
+        236200.0,
+        236228.0,
+        236239.0
       ]
     ],
     "summary": {
       "count": 160,
-      "min": 235435.0,
-      "p05": 235461.0,
-      "p10": 235469.7,
-      "median": 235515.5,
-      "mean": 235515.7125,
-      "p90": 235556.0,
-      "p95": 235570.2,
-      "max": 235657.0,
-      "stdev": 35.08104678811623
+      "min": 236125.0,
+      "p05": 236152.94999999998,
+      "p10": 236163.0,
+      "median": 236209.0,
+      "mean": 236207.25625,
+      "p90": 236246.0,
+      "p95": 236256.2,
+      "max": 236348.0,
+      "stdev": 34.54476206225048
     },
     "probability_above_200k": 1.0,
     "gelman_rubin_rhat": 1.0,
@@ -488,31 +626,31 @@
       {
         "first_count": 4,
         "last_count": 20,
-        "z_score": -0.28959865050931777,
+        "z_score": -0.6283004503020156,
         "passes_abs_z_lt_2": true
       },
       {
         "first_count": 4,
         "last_count": 20,
-        "z_score": 0.5952421897014344,
+        "z_score": 1.193842634295252,
         "passes_abs_z_lt_2": true
       },
       {
         "first_count": 4,
         "last_count": 20,
-        "z_score": 0.19909348148039266,
+        "z_score": -0.17094387525682544,
         "passes_abs_z_lt_2": true
       },
       {
         "first_count": 4,
         "last_count": 20,
-        "z_score": 0.008028913328202911,
+        "z_score": 0.03826634240993378,
         "passes_abs_z_lt_2": true
       }
     ],
     "anderson_darling_normality": {
-      "statistic": 0.347770150185454,
-      "corrected_statistic": 0.3494308885003044,
+      "statistic": 0.46311731749261753,
+      "corrected_statistic": 0.4653288835888469,
       "critical_values_normal": {
         "15%": 0.576,
         "10%": 0.656,
@@ -523,8 +661,8 @@
       "reject_normal_at_5pct": false
     },
     "kolmogorov_smirnov_normality": {
-      "d_statistic": 0.04583283476336608,
-      "approx_p_value": 0.8899133763735665,
+      "d_statistic": 0.06159019122114995,
+      "approx_p_value": 0.5785544392442032,
       "reject_normal_at_5pct": false
     }
   }
