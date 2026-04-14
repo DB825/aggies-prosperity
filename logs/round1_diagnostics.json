@@ -50,289 +50,1249 @@
         "pepper_buy_edge": 6.0,
         "pepper_exit_edge": 4.0,
         "ash_take_edge": 4.0,
-        "combined_pnl": 236550.0
+        "combined_pnl": 236550.0,
+        "train_total_pnl": 157776.0,
+        "train_min_day_pnl": 78857.0,
+        "train_stdev_day_pnl": 31.0,
+        "holdout_day0_pnl": 78774.0,
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 216545.75
       },
       {
         "pepper_buy_edge": 6.0,
         "pepper_exit_edge": 4.0,
         "ash_take_edge": 5.0,
-        "combined_pnl": 236550.0
+        "combined_pnl": 236550.0,
+        "train_total_pnl": 157776.0,
+        "train_min_day_pnl": 78857.0,
+        "train_stdev_day_pnl": 31.0,
+        "holdout_day0_pnl": 78774.0,
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 216525.75
       },
       {
         "pepper_buy_edge": 6.0,
         "pepper_exit_edge": 5.0,
         "ash_take_edge": 4.0,
-        "combined_pnl": 236550.0
+        "combined_pnl": 236550.0,
+        "train_total_pnl": 157776.0,
+        "train_min_day_pnl": 78857.0,
+        "train_stdev_day_pnl": 31.0,
+        "holdout_day0_pnl": 78774.0,
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 216625.75
       },
       {
         "pepper_buy_edge": 6.0,
         "pepper_exit_edge": 5.0,
         "ash_take_edge": 5.0,
-        "combined_pnl": 236550.0
+        "combined_pnl": 236550.0,
+        "train_total_pnl": 157776.0,
+        "train_min_day_pnl": 78857.0,
+        "train_stdev_day_pnl": 31.0,
+        "holdout_day0_pnl": 78774.0,
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 216605.75
       },
       {
         "pepper_buy_edge": 6.0,
         "pepper_exit_edge": 6.0,
         "ash_take_edge": 4.0,
-        "combined_pnl": 236368.0
+        "combined_pnl": 236368.0,
+        "train_total_pnl": 157594.0,
+        "train_min_day_pnl": 78780.0,
+        "train_stdev_day_pnl": 17.0,
+        "holdout_day0_pnl": 78774.0,
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 216348.0
       },
       {
         "pepper_buy_edge": 6.0,
         "pepper_exit_edge": 6.0,
         "ash_take_edge": 5.0,
-        "combined_pnl": 236368.0
+        "combined_pnl": 236368.0,
+        "train_total_pnl": 157594.0,
+        "train_min_day_pnl": 78780.0,
+        "train_stdev_day_pnl": 17.0,
+        "holdout_day0_pnl": 78774.0,
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 216328.0
       },
       {
         "pepper_buy_edge": 6.0,
         "pepper_exit_edge": 7.0,
         "ash_take_edge": 4.0,
-        "combined_pnl": 235880.0
+        "combined_pnl": 235880.0,
+        "train_total_pnl": 157332.0,
+        "train_min_day_pnl": 78618.0,
+        "train_stdev_day_pnl": 48.0,
+        "holdout_day0_pnl": 78548.0,
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 215791.5
       },
       {
         "pepper_buy_edge": 6.0,
         "pepper_exit_edge": 7.0,
         "ash_take_edge": 5.0,
-        "combined_pnl": 235880.0
+        "combined_pnl": 235880.0,
+        "train_total_pnl": 157332.0,
+        "train_min_day_pnl": 78618.0,
+        "train_stdev_day_pnl": 48.0,
+        "holdout_day0_pnl": 78548.0,
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 215771.5
       },
       {
         "pepper_buy_edge": 6.0,
         "pepper_exit_edge": 8.0,
         "ash_take_edge": 4.0,
-        "combined_pnl": 235859.0
+        "combined_pnl": 235859.0,
+        "train_total_pnl": 157332.0,
+        "train_min_day_pnl": 78618.0,
+        "train_stdev_day_pnl": 48.0,
+        "holdout_day0_pnl": 78527.0,
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 215711.5
       },
       {
         "pepper_buy_edge": 6.0,
         "pepper_exit_edge": 8.0,
         "ash_take_edge": 5.0,
-        "combined_pnl": 235859.0
+        "combined_pnl": 235859.0,
+        "train_total_pnl": 157332.0,
+        "train_min_day_pnl": 78618.0,
+        "train_stdev_day_pnl": 48.0,
+        "holdout_day0_pnl": 78527.0,
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 215691.5
       },
       {
         "pepper_buy_edge": 6.0,
         "pepper_exit_edge": 10.0,
         "ash_take_edge": 4.0,
-        "combined_pnl": 235435.0
+        "combined_pnl": 235435.0,
+        "train_total_pnl": 156976.0,
+        "train_min_day_pnl": 78430.0,
+        "train_stdev_day_pnl": 58.0,
+        "holdout_day0_pnl": 78459.0,
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 215024.5
       },
       {
         "pepper_buy_edge": 6.0,
         "pepper_exit_edge": 10.0,
         "ash_take_edge": 5.0,
-        "combined_pnl": 235435.0
+        "combined_pnl": 235435.0,
+        "train_total_pnl": 156976.0,
+        "train_min_day_pnl": 78430.0,
+        "train_stdev_day_pnl": 58.0,
+        "holdout_day0_pnl": 78459.0,
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 215004.5
       },
       {
         "pepper_buy_edge": 8.0,
         "pepper_exit_edge": 4.0,
         "ash_take_edge": 4.0,
-        "combined_pnl": 236444.0
+        "combined_pnl": 236444.0,
+        "train_total_pnl": 157670.0,
+        "train_min_day_pnl": 78813.0,
+        "train_stdev_day_pnl": 22.0,
+        "holdout_day0_pnl": 78774.0,
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 216633.75
       },
       {
         "pepper_buy_edge": 8.0,
         "pepper_exit_edge": 4.0,
         "ash_take_edge": 5.0,
-        "combined_pnl": 236444.0
+        "combined_pnl": 236444.0,
+        "train_total_pnl": 157670.0,
+        "train_min_day_pnl": 78813.0,
+        "train_stdev_day_pnl": 22.0,
+        "holdout_day0_pnl": 78774.0,
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 216613.75
       },
       {
         "pepper_buy_edge": 8.0,
         "pepper_exit_edge": 5.0,
         "ash_take_edge": 4.0,
-        "combined_pnl": 236444.0
+        "combined_pnl": 236444.0,
+        "train_total_pnl": 157670.0,
+        "train_min_day_pnl": 78813.0,
+        "train_stdev_day_pnl": 22.0,
+        "holdout_day0_pnl": 78774.0,
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 216713.75
       },
       {
         "pepper_buy_edge": 8.0,
         "pepper_exit_edge": 5.0,
         "ash_take_edge": 5.0,
-        "combined_pnl": 236444.0
+        "combined_pnl": 236444.0,
+        "train_total_pnl": 157670.0,
+        "train_min_day_pnl": 78813.0,
+        "train_stdev_day_pnl": 22.0,
+        "holdout_day0_pnl": 78774.0,
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 216693.75
       },
       {
         "pepper_buy_edge": 8.0,
         "pepper_exit_edge": 6.0,
         "ash_take_edge": 4.0,
-        "combined_pnl": 236262.0
+        "combined_pnl": 236262.0,
+        "train_total_pnl": 157488.0,
+        "train_min_day_pnl": 78674.0,
+        "train_stdev_day_pnl": 70.0,
+        "holdout_day0_pnl": 78774.0,
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 216203.5
       },
       {
         "pepper_buy_edge": 8.0,
         "pepper_exit_edge": 6.0,
         "ash_take_edge": 5.0,
-        "combined_pnl": 236262.0
+        "combined_pnl": 236262.0,
+        "train_total_pnl": 157488.0,
+        "train_min_day_pnl": 78674.0,
+        "train_stdev_day_pnl": 70.0,
+        "holdout_day0_pnl": 78774.0,
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 216183.5
       },
       {
         "pepper_buy_edge": 8.0,
         "pepper_exit_edge": 7.0,
         "ash_take_edge": 4.0,
-        "combined_pnl": 235774.0
+        "combined_pnl": 235774.0,
+        "train_total_pnl": 157226.0,
+        "train_min_day_pnl": 78608.0,
+        "train_stdev_day_pnl": 5.0,
+        "holdout_day0_pnl": 78548.0,
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 216007.0
       },
       {
         "pepper_buy_edge": 8.0,
         "pepper_exit_edge": 7.0,
         "ash_take_edge": 5.0,
-        "combined_pnl": 235774.0
+        "combined_pnl": 235774.0,
+        "train_total_pnl": 157226.0,
+        "train_min_day_pnl": 78608.0,
+        "train_stdev_day_pnl": 5.0,
+        "holdout_day0_pnl": 78548.0,
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 215987.0
       },
       {
         "pepper_buy_edge": 8.0,
         "pepper_exit_edge": 8.0,
         "ash_take_edge": 4.0,
-        "combined_pnl": 235753.0
+        "combined_pnl": 235753.0,
+        "train_total_pnl": 157226.0,
+        "train_min_day_pnl": 78608.0,
+        "train_stdev_day_pnl": 5.0,
+        "holdout_day0_pnl": 78527.0,
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 215927.0
       },
       {
         "pepper_buy_edge": 8.0,
         "pepper_exit_edge": 8.0,
         "ash_take_edge": 5.0,
-        "combined_pnl": 235753.0
+        "combined_pnl": 235753.0,
+        "train_total_pnl": 157226.0,
+        "train_min_day_pnl": 78608.0,
+        "train_stdev_day_pnl": 5.0,
+        "holdout_day0_pnl": 78527.0,
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 215907.0
       },
       {
         "pepper_buy_edge": 8.0,
         "pepper_exit_edge": 10.0,
         "ash_take_edge": 4.0,
-        "combined_pnl": 235329.0
+        "combined_pnl": 235329.0,
+        "train_total_pnl": 156870.0,
+        "train_min_day_pnl": 78430.0,
+        "train_stdev_day_pnl": 5.0,
+        "holdout_day0_pnl": 78459.0,
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 215277.5
       },
       {
         "pepper_buy_edge": 8.0,
         "pepper_exit_edge": 10.0,
         "ash_take_edge": 5.0,
-        "combined_pnl": 235329.0
+        "combined_pnl": 235329.0,
+        "train_total_pnl": 156870.0,
+        "train_min_day_pnl": 78430.0,
+        "train_stdev_day_pnl": 5.0,
+        "holdout_day0_pnl": 78459.0,
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 215257.5
       },
       {
         "pepper_buy_edge": 10.0,
         "pepper_exit_edge": 4.0,
         "ash_take_edge": 4.0,
-        "combined_pnl": 236178.0
+        "combined_pnl": 236178.0,
+        "train_total_pnl": 157535.0,
+        "train_min_day_pnl": 78722.0,
+        "train_stdev_day_pnl": 45.5,
+        "holdout_day0_pnl": 78643.0,
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 216160.0
       },
       {
         "pepper_buy_edge": 10.0,
         "pepper_exit_edge": 4.0,
         "ash_take_edge": 5.0,
-        "combined_pnl": 236178.0
+        "combined_pnl": 236178.0,
+        "train_total_pnl": 157535.0,
+        "train_min_day_pnl": 78722.0,
+        "train_stdev_day_pnl": 45.5,
+        "holdout_day0_pnl": 78643.0,
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 216140.0
       },
       {
         "pepper_buy_edge": 10.0,
         "pepper_exit_edge": 5.0,
         "ash_take_edge": 4.0,
-        "combined_pnl": 236178.0
+        "combined_pnl": 236178.0,
+        "train_total_pnl": 157535.0,
+        "train_min_day_pnl": 78722.0,
+        "train_stdev_day_pnl": 45.5,
+        "holdout_day0_pnl": 78643.0,
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 216240.0
       },
       {
         "pepper_buy_edge": 10.0,
         "pepper_exit_edge": 5.0,
         "ash_take_edge": 5.0,
-        "combined_pnl": 236178.0
+        "combined_pnl": 236178.0,
+        "train_total_pnl": 157535.0,
+        "train_min_day_pnl": 78722.0,
+        "train_stdev_day_pnl": 45.5,
+        "holdout_day0_pnl": 78643.0,
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 216220.0
       },
       {
         "pepper_buy_edge": 10.0,
         "pepper_exit_edge": 6.0,
         "ash_take_edge": 4.0,
-        "combined_pnl": 235996.0
+        "combined_pnl": 235996.0,
+        "train_total_pnl": 157353.0,
+        "train_min_day_pnl": 78674.0,
+        "train_stdev_day_pnl": 2.5,
+        "holdout_day0_pnl": 78643.0,
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 216071.0
       },
       {
         "pepper_buy_edge": 10.0,
         "pepper_exit_edge": 6.0,
         "ash_take_edge": 5.0,
-        "combined_pnl": 235996.0
+        "combined_pnl": 235996.0,
+        "train_total_pnl": 157353.0,
+        "train_min_day_pnl": 78674.0,
+        "train_stdev_day_pnl": 2.5,
+        "holdout_day0_pnl": 78643.0,
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 216051.0
       },
       {
         "pepper_buy_edge": 10.0,
         "pepper_exit_edge": 7.0,
         "ash_take_edge": 4.0,
-        "combined_pnl": 235508.0
+        "combined_pnl": 235508.0,
+        "train_total_pnl": 157091.0,
+        "train_min_day_pnl": 78483.0,
+        "train_stdev_day_pnl": 62.5,
+        "holdout_day0_pnl": 78417.0,
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 215405.75
       },
       {
         "pepper_buy_edge": 10.0,
         "pepper_exit_edge": 7.0,
         "ash_take_edge": 5.0,
-        "combined_pnl": 235508.0
+        "combined_pnl": 235508.0,
+        "train_total_pnl": 157091.0,
+        "train_min_day_pnl": 78483.0,
+        "train_stdev_day_pnl": 62.5,
+        "holdout_day0_pnl": 78417.0,
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 215385.75
       },
       {
         "pepper_buy_edge": 10.0,
         "pepper_exit_edge": 8.0,
         "ash_take_edge": 4.0,
-        "combined_pnl": 235487.0
+        "combined_pnl": 235487.0,
+        "train_total_pnl": 157091.0,
+        "train_min_day_pnl": 78483.0,
+        "train_stdev_day_pnl": 62.5,
+        "holdout_day0_pnl": 78396.0,
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 215325.75
       },
       {
         "pepper_buy_edge": 10.0,
         "pepper_exit_edge": 8.0,
         "ash_take_edge": 5.0,
-        "combined_pnl": 235487.0
+        "combined_pnl": 235487.0,
+        "train_total_pnl": 157091.0,
+        "train_min_day_pnl": 78483.0,
+        "train_stdev_day_pnl": 62.5,
+        "holdout_day0_pnl": 78396.0,
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 215305.75
       },
       {
         "pepper_buy_edge": 10.0,
         "pepper_exit_edge": 10.0,
         "ash_take_edge": 4.0,
-        "combined_pnl": 235063.0
+        "combined_pnl": 235063.0,
+        "train_total_pnl": 156735.0,
+        "train_min_day_pnl": 78295.0,
+        "train_stdev_day_pnl": 72.5,
+        "holdout_day0_pnl": 78328.0,
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 214638.75
       },
       {
         "pepper_buy_edge": 10.0,
         "pepper_exit_edge": 10.0,
         "ash_take_edge": 5.0,
-        "combined_pnl": 235063.0
+        "combined_pnl": 235063.0,
+        "train_total_pnl": 156735.0,
+        "train_min_day_pnl": 78295.0,
+        "train_stdev_day_pnl": 72.5,
+        "holdout_day0_pnl": 78328.0,
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 214618.75
       },
       {
         "pepper_buy_edge": 12.0,
         "pepper_exit_edge": 4.0,
         "ash_take_edge": 4.0,
-        "combined_pnl": 236178.0
+        "combined_pnl": 236178.0,
+        "train_total_pnl": 157535.0,
+        "train_min_day_pnl": 78722.0,
+        "train_stdev_day_pnl": 45.5,
+        "holdout_day0_pnl": 78643.0,
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 215960.0
       },
       {
         "pepper_buy_edge": 12.0,
         "pepper_exit_edge": 4.0,
         "ash_take_edge": 5.0,
-        "combined_pnl": 236178.0
+        "combined_pnl": 236178.0,
+        "train_total_pnl": 157535.0,
+        "train_min_day_pnl": 78722.0,
+        "train_stdev_day_pnl": 45.5,
+        "holdout_day0_pnl": 78643.0,
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 215940.0
       },
       {
         "pepper_buy_edge": 12.0,
         "pepper_exit_edge": 5.0,
         "ash_take_edge": 4.0,
-        "combined_pnl": 236178.0
+        "combined_pnl": 236178.0,
+        "train_total_pnl": 157535.0,
+        "train_min_day_pnl": 78722.0,
+        "train_stdev_day_pnl": 45.5,
+        "holdout_day0_pnl": 78643.0,
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 216040.0
       },
       {
         "pepper_buy_edge": 12.0,
         "pepper_exit_edge": 5.0,
         "ash_take_edge": 5.0,
-        "combined_pnl": 236178.0
+        "combined_pnl": 236178.0,
+        "train_total_pnl": 157535.0,
+        "train_min_day_pnl": 78722.0,
+        "train_stdev_day_pnl": 45.5,
+        "holdout_day0_pnl": 78643.0,
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 216020.0
       },
       {
         "pepper_buy_edge": 12.0,
         "pepper_exit_edge": 6.0,
         "ash_take_edge": 4.0,
-        "combined_pnl": 235996.0
+        "combined_pnl": 235996.0,
+        "train_total_pnl": 157353.0,
+        "train_min_day_pnl": 78674.0,
+        "train_stdev_day_pnl": 2.5,
+        "holdout_day0_pnl": 78643.0,
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 215871.0
       },
       {
         "pepper_buy_edge": 12.0,
         "pepper_exit_edge": 6.0,
         "ash_take_edge": 5.0,
-        "combined_pnl": 235996.0
+        "combined_pnl": 235996.0,
+        "train_total_pnl": 157353.0,
+        "train_min_day_pnl": 78674.0,
+        "train_stdev_day_pnl": 2.5,
+        "holdout_day0_pnl": 78643.0,
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 215851.0
       },
       {
         "pepper_buy_edge": 12.0,
         "pepper_exit_edge": 7.0,
         "ash_take_edge": 4.0,
-        "combined_pnl": 235508.0
+        "combined_pnl": 235508.0,
+        "train_total_pnl": 157091.0,
+        "train_min_day_pnl": 78483.0,
+        "train_stdev_day_pnl": 62.5,
+        "holdout_day0_pnl": 78417.0,
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 215205.75
       },
       {
         "pepper_buy_edge": 12.0,
         "pepper_exit_edge": 7.0,
         "ash_take_edge": 5.0,
-        "combined_pnl": 235508.0
+        "combined_pnl": 235508.0,
+        "train_total_pnl": 157091.0,
+        "train_min_day_pnl": 78483.0,
+        "train_stdev_day_pnl": 62.5,
+        "holdout_day0_pnl": 78417.0,
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 215185.75
       },
       {
         "pepper_buy_edge": 12.0,
         "pepper_exit_edge": 8.0,
         "ash_take_edge": 4.0,
-        "combined_pnl": 235487.0
+        "combined_pnl": 235487.0,
+        "train_total_pnl": 157091.0,
+        "train_min_day_pnl": 78483.0,
+        "train_stdev_day_pnl": 62.5,
+        "holdout_day0_pnl": 78396.0,
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 215125.75
       },
       {
         "pepper_buy_edge": 12.0,
         "pepper_exit_edge": 8.0,
         "ash_take_edge": 5.0,
-        "combined_pnl": 235487.0
+        "combined_pnl": 235487.0,
+        "train_total_pnl": 157091.0,
+        "train_min_day_pnl": 78483.0,
+        "train_stdev_day_pnl": 62.5,
+        "holdout_day0_pnl": 78396.0,
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 215105.75
       },
       {
         "pepper_buy_edge": 12.0,
         "pepper_exit_edge": 10.0,
         "ash_take_edge": 4.0,
-        "combined_pnl": 235063.0
+        "combined_pnl": 235063.0,
+        "train_total_pnl": 156735.0,
+        "train_min_day_pnl": 78295.0,
+        "train_stdev_day_pnl": 72.5,
+        "holdout_day0_pnl": 78328.0,
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 214438.75
       },
       {
         "pepper_buy_edge": 12.0,
         "pepper_exit_edge": 10.0,
         "ash_take_edge": 5.0,
-        "combined_pnl": 235063.0
+        "combined_pnl": 235063.0,
+        "train_total_pnl": 156735.0,
+        "train_min_day_pnl": 78295.0,
+        "train_stdev_day_pnl": 72.5,
+        "holdout_day0_pnl": 78328.0,
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 214418.75
       }
     ],
     "summary": {
@@ -347,14 +1307,49 @@
       "max": 236550.0,
       "stdev": 444.65426644379187
     },
+    "train_summary": {
+      "count": 48,
+      "min": 156735.0,
+      "p05": 156735.0,
+      "p10": 156870.0,
+      "median": 157342.5,
+      "mean": 157317.33333333334,
+      "p90": 157670.0,
+      "p95": 157776.0,
+      "max": 157776.0,
+      "stdev": 301.66823204013747
+    },
+    "selection_protocol": "Select parameters using only days -2 and -1. Day 0 is treated as a holdout test run, because live submission is expected to be evaluated on day 1.",
     "target_pass_rate": 1.0,
+    "train_target_pass_rate": 1.0,
     "selected": {
       "pepper_buy_edge": 8.0,
       "pepper_exit_edge": 5.0,
       "ash_take_edge": 4.0,
-      "combined_pnl": 236444.0
+      "combined_pnl": 236444.0,
+      "train_total_pnl": 157670.0,
+      "train_min_day_pnl": 78813.0,
+      "train_stdev_day_pnl": 22.0,
+      "holdout_day0_pnl": 78774.0,
+      "end_positions": {
+        "-2": {
+          "ASH_COATED_OSMIUM": 0,
+          "INTARIAN_PEPPER_ROOT": 0
+        },
+        "-1": {
+          "ASH_COATED_OSMIUM": 0,
+          "INTARIAN_PEPPER_ROOT": 0
+        },
+        "0": {
+          "ASH_COATED_OSMIUM": 0,
+          "INTARIAN_PEPPER_ROOT": 0
+        }
+      },
+      "flat_all_days": true,
+      "selection_robust_score": 216713.75
     },
-    "selected_rank": 7,
+    "selected_combined_rank": 7,
+    "selected_train_rank": 1,
     "selected_neighborhood_summary": {
       "count": 18,
       "min": 235996.0,
@@ -367,36 +1362,280 @@
       "max": 236550.0,
       "stdev": 178.45758911044135
     },
-    "top_5": [
+    "selected_neighborhood_train_summary": {
+      "count": 18,
+      "min": 157353.0,
+      "p05": 157353.0,
+      "p10": 157447.5,
+      "median": 157594.0,
+      "mean": 157599.66666666666,
+      "p90": 157776.0,
+      "p95": 157776.0,
+      "max": 157776.0,
+      "stdev": 130.72022711798576
+    },
+    "top_5_by_train_score": [
       {
-        "pepper_buy_edge": 6.0,
-        "pepper_exit_edge": 4.0,
-        "ash_take_edge": 4.0,
-        "combined_pnl": 236550.0
-      },
-      {
-        "pepper_buy_edge": 6.0,
-        "pepper_exit_edge": 4.0,
-        "ash_take_edge": 5.0,
-        "combined_pnl": 236550.0
-      },
-      {
-        "pepper_buy_edge": 6.0,
+        "pepper_buy_edge": 8.0,
         "pepper_exit_edge": 5.0,
         "ash_take_edge": 4.0,
-        "combined_pnl": 236550.0
+        "combined_pnl": 236444.0,
+        "train_total_pnl": 157670.0,
+        "train_min_day_pnl": 78813.0,
+        "train_stdev_day_pnl": 22.0,
+        "holdout_day0_pnl": 78774.0,
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 216713.75
       },
       {
-        "pepper_buy_edge": 6.0,
+        "pepper_buy_edge": 8.0,
         "pepper_exit_edge": 5.0,
         "ash_take_edge": 5.0,
-        "combined_pnl": 236550.0
+        "combined_pnl": 236444.0,
+        "train_total_pnl": 157670.0,
+        "train_min_day_pnl": 78813.0,
+        "train_stdev_day_pnl": 22.0,
+        "holdout_day0_pnl": 78774.0,
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 216693.75
       },
       {
         "pepper_buy_edge": 8.0,
         "pepper_exit_edge": 4.0,
         "ash_take_edge": 4.0,
-        "combined_pnl": 236444.0
+        "combined_pnl": 236444.0,
+        "train_total_pnl": 157670.0,
+        "train_min_day_pnl": 78813.0,
+        "train_stdev_day_pnl": 22.0,
+        "holdout_day0_pnl": 78774.0,
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 216633.75
+      },
+      {
+        "pepper_buy_edge": 6.0,
+        "pepper_exit_edge": 5.0,
+        "ash_take_edge": 4.0,
+        "combined_pnl": 236550.0,
+        "train_total_pnl": 157776.0,
+        "train_min_day_pnl": 78857.0,
+        "train_stdev_day_pnl": 31.0,
+        "holdout_day0_pnl": 78774.0,
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 216625.75
+      },
+      {
+        "pepper_buy_edge": 8.0,
+        "pepper_exit_edge": 4.0,
+        "ash_take_edge": 5.0,
+        "combined_pnl": 236444.0,
+        "train_total_pnl": 157670.0,
+        "train_min_day_pnl": 78813.0,
+        "train_stdev_day_pnl": 22.0,
+        "holdout_day0_pnl": 78774.0,
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 216613.75
+      }
+    ],
+    "top_5": [
+      {
+        "pepper_buy_edge": 6.0,
+        "pepper_exit_edge": 4.0,
+        "ash_take_edge": 4.0,
+        "combined_pnl": 236550.0,
+        "train_total_pnl": 157776.0,
+        "train_min_day_pnl": 78857.0,
+        "train_stdev_day_pnl": 31.0,
+        "holdout_day0_pnl": 78774.0,
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 216545.75
+      },
+      {
+        "pepper_buy_edge": 6.0,
+        "pepper_exit_edge": 4.0,
+        "ash_take_edge": 5.0,
+        "combined_pnl": 236550.0,
+        "train_total_pnl": 157776.0,
+        "train_min_day_pnl": 78857.0,
+        "train_stdev_day_pnl": 31.0,
+        "holdout_day0_pnl": 78774.0,
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 216525.75
+      },
+      {
+        "pepper_buy_edge": 6.0,
+        "pepper_exit_edge": 5.0,
+        "ash_take_edge": 4.0,
+        "combined_pnl": 236550.0,
+        "train_total_pnl": 157776.0,
+        "train_min_day_pnl": 78857.0,
+        "train_stdev_day_pnl": 31.0,
+        "holdout_day0_pnl": 78774.0,
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 216625.75
+      },
+      {
+        "pepper_buy_edge": 6.0,
+        "pepper_exit_edge": 5.0,
+        "ash_take_edge": 5.0,
+        "combined_pnl": 236550.0,
+        "train_total_pnl": 157776.0,
+        "train_min_day_pnl": 78857.0,
+        "train_stdev_day_pnl": 31.0,
+        "holdout_day0_pnl": 78774.0,
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 216605.75
+      },
+      {
+        "pepper_buy_edge": 8.0,
+        "pepper_exit_edge": 4.0,
+        "ash_take_edge": 4.0,
+        "combined_pnl": 236444.0,
+        "train_total_pnl": 157670.0,
+        "train_min_day_pnl": 78813.0,
+        "train_stdev_day_pnl": 22.0,
+        "holdout_day0_pnl": 78774.0,
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 216633.75
       }
     ],
     "bottom_5": [
@@ -404,31 +1643,131 @@
         "pepper_buy_edge": 8.0,
         "pepper_exit_edge": 10.0,
         "ash_take_edge": 5.0,
-        "combined_pnl": 235329.0
+        "combined_pnl": 235329.0,
+        "train_total_pnl": 156870.0,
+        "train_min_day_pnl": 78430.0,
+        "train_stdev_day_pnl": 5.0,
+        "holdout_day0_pnl": 78459.0,
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 215257.5
       },
       {
         "pepper_buy_edge": 10.0,
         "pepper_exit_edge": 10.0,
         "ash_take_edge": 4.0,
-        "combined_pnl": 235063.0
+        "combined_pnl": 235063.0,
+        "train_total_pnl": 156735.0,
+        "train_min_day_pnl": 78295.0,
+        "train_stdev_day_pnl": 72.5,
+        "holdout_day0_pnl": 78328.0,
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 214638.75
       },
       {
         "pepper_buy_edge": 10.0,
         "pepper_exit_edge": 10.0,
         "ash_take_edge": 5.0,
-        "combined_pnl": 235063.0
+        "combined_pnl": 235063.0,
+        "train_total_pnl": 156735.0,
+        "train_min_day_pnl": 78295.0,
+        "train_stdev_day_pnl": 72.5,
+        "holdout_day0_pnl": 78328.0,
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 214618.75
       },
       {
         "pepper_buy_edge": 12.0,
         "pepper_exit_edge": 10.0,
         "ash_take_edge": 4.0,
-        "combined_pnl": 235063.0
+        "combined_pnl": 235063.0,
+        "train_total_pnl": 156735.0,
+        "train_min_day_pnl": 78295.0,
+        "train_stdev_day_pnl": 72.5,
+        "holdout_day0_pnl": 78328.0,
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 214438.75
       },
       {
         "pepper_buy_edge": 12.0,
         "pepper_exit_edge": 10.0,
         "ash_take_edge": 5.0,
-        "combined_pnl": 235063.0
+        "combined_pnl": 235063.0,
+        "train_total_pnl": 156735.0,
+        "train_min_day_pnl": 78295.0,
+        "train_stdev_day_pnl": 72.5,
+        "holdout_day0_pnl": 78328.0,
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 214418.75
       }
     ]
   },

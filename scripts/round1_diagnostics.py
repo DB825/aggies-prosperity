@@ -241,23 +241,49 @@ def parameter_grid(by_day_ts: Dict[int, Dict[int, List[Dict]]]) -> Dict:
                     }
                 }
                 result = run_backtest(by_day_ts, overrides=overrides)
+                day_results = {day["day"]: day for day in result["day_results"]}
+                train_pnls = [day_results[-2]["total_pnl"], day_results[-1]["total_pnl"]]
+                train_stdev = statistics.pstdev(train_pnls) if len(train_pnls) > 1 else 0.0
+                centrality_penalty = (
+                    abs(pepper_buy_edge - 8.0) * 100
+                    + abs(pepper_exit_edge - 5.0) * 80
+                    + abs(ash_take_edge - 4.0) * 20
+                )
+                robust_score = (
+                    sum(train_pnls)
+                    + 0.75 * min(train_pnls)
+                    - 3.0 * train_stdev
+                    - centrality_penalty
+                )
                 rows.append(
                     {
                         "pepper_buy_edge": pepper_buy_edge,
                         "pepper_exit_edge": pepper_exit_edge,
                         "ash_take_edge": ash_take_edge,
                         "combined_pnl": result["combined_pnl"],
+                        "train_total_pnl": sum(train_pnls),
+                        "train_min_day_pnl": min(train_pnls),
+                        "train_stdev_day_pnl": train_stdev,
+                        "holdout_day0_pnl": day_results[0]["total_pnl"],
+                        "end_positions": {
+                            str(day["day"]): day["position"] for day in result["day_results"]
+                        },
+                        "flat_all_days": all(
+                            day["position"].get("INTARIAN_PEPPER_ROOT", 0) == 0
+                            and day["position"].get("ASH_COATED_OSMIUM", 0) == 0
+                            for day in result["day_results"]
+                        ),
+                        "selection_robust_score": robust_score,
                     }
                 )
 
     pnls = [row["combined_pnl"] for row in rows]
-    selected = next(
-        row
-        for row in rows
-        if row["pepper_buy_edge"] == 8.0 and row["pepper_exit_edge"] == 5.0 and row["ash_take_edge"] == 4.0
-    )
+    train_pnls = [row["train_total_pnl"] for row in rows]
     sorted_rows = sorted(rows, key=lambda row: row["combined_pnl"], reverse=True)
-    selected_rank = 1 + sorted_rows.index(selected)
+    sorted_train_rows = sorted(rows, key=lambda row: row["selection_robust_score"], reverse=True)
+    selected = sorted_train_rows[0]
+    selected_combined_rank = 1 + sorted_rows.index(selected)
+    selected_train_rank = 1 + sorted_train_rows.index(selected)
     selected_neighborhood = [
         row
         for row in rows
@@ -267,10 +293,21 @@ def parameter_grid(by_day_ts: Dict[int, Dict[int, List[Dict]]]) -> Dict:
     return {
         "rows": rows,
         "summary": summarize(pnls),
+        "train_summary": summarize(train_pnls),
+        "selection_protocol": (
+            "Select parameters using only days -2 and -1. Day 0 is treated as a holdout test run, "
+            "because live submission is expected to be evaluated on day 1."
+        ),
         "target_pass_rate": sum(pnl >= 200_000 for pnl in pnls) / len(pnls),
+        "train_target_pass_rate": sum(pnl >= 133_334 for pnl in train_pnls) / len(train_pnls),
         "selected": selected,
-        "selected_rank": selected_rank,
+        "selected_combined_rank": selected_combined_rank,
+        "selected_train_rank": selected_train_rank,
         "selected_neighborhood_summary": summarize([row["combined_pnl"] for row in selected_neighborhood]),
+        "selected_neighborhood_train_summary": summarize(
+            [row["train_total_pnl"] for row in selected_neighborhood]
+        ),
+        "top_5_by_train_score": sorted_train_rows[:5],
         "top_5": sorted_rows[:5],
         "bottom_5": sorted_rows[-5:],
     }

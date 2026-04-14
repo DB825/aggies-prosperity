@@ -30,6 +30,10 @@ The latest run is saved to `logs/round1_diagnostics.json` and includes:
   days, with flat end-of-day inventory.
 - Parameter sensitivity grid: 48/48 tested parameter combinations remained above
   the 200,000 XIREC target.
+- Train/test split: parameters are selected using days -2 and -1 only; day 0 is
+  reported as the local holdout test run.
+- Selected parameter set: rank 1/48 by train-only robust score, rank 7/48 by
+  all-days combined PnL, with 78,774 XIRECs on holdout day 0.
 - Monte Carlo execution stress: 4 chains x 40 draws with 97% crossing-fill
   probability, up to 1 XIREC adverse slippage, and 3 XIREC mark noise.
 - Gelman-Rubin R-hat: 1.0000.
