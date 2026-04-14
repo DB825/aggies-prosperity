@@ -21,6 +21,7 @@ Run the dependency-free diagnostics harness with:
 
 ```powershell
 python scripts\round1_diagnostics.py
+python scripts\manual_auction_backtest.py
 ```
 
 The latest run is saved to `logs/round1_diagnostics.json` and includes:
@@ -35,3 +36,8 @@ The latest run is saved to `logs/round1_diagnostics.json` and includes:
 - Geweke checks: all chains passed `abs(z) < 2`.
 - Anderson-Darling and K-S normality checks: neither rejects the Monte Carlo PnL
   sample at the 5% level.
+
+The manual auction backtest is saved to `logs/manual_auction_backtest.json`. It
+exhaustively scans integer bid prices and quantities, confirms the recommended
+orders are exact optima under the screenshot order books, and records threshold
+checks around the one-unit quantities.
