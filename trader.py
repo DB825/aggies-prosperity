@@ -17,6 +17,11 @@ class Trader:
     PEPPER_EXIT_TIMESTAMP = 10_000_000
     PEPPER_FORCE_EXIT_TIMESTAMP = 10_000_000
     PEPPER_FORCE_EXIT_EDGE = 8.0
+    PEPPER_TREND_STOP_LOSS = 35.0
+    PEPPER_STOP_LOSS_EXIT_EDGE = 60.0
+    RISK_COOLDOWN = 50_000
+    ASH_STOP_LOSS_DEVIATION = 35.0
+    ASH_STOP_LOSS_EXIT_EDGE = 10.0
 
     PARAMS = {
         "ASH_COATED_OSMIUM": {
@@ -58,10 +63,11 @@ class Trader:
                 continue
 
             position = state.position.get(product, 0)
+            risk_active = self.is_risk_active(product, state.timestamp, memory)
             if product == "INTARIAN_PEPPER_ROOT":
-                orders = self.trade_pepper_root(product, order_depth, state.timestamp, fair, position)
+                orders = self.trade_pepper_root(product, order_depth, state.timestamp, fair, position, risk_active)
             else:
-                orders = self.trade_osmium(product, order_depth, state.timestamp, fair, position)
+                orders = self.trade_osmium(product, order_depth, state.timestamp, fair, position, risk_active)
 
             result[product] = orders
 
@@ -71,7 +77,7 @@ class Trader:
         return result, conversions, traderData
 
     def load_memory(self, trader_data: str) -> Dict:
-        baseline = {"fair": {}, "intercept": {}, "last_timestamp": 0}
+        baseline = {"fair": {}, "intercept": {}, "open_intercept": {}, "risk": {}, "last_timestamp": 0}
         if not trader_data:
             return baseline
         try:
@@ -80,6 +86,8 @@ class Trader:
                 return baseline
             memory.setdefault("fair", {})
             memory.setdefault("intercept", {})
+            memory.setdefault("open_intercept", {})
+            memory.setdefault("risk", {})
             memory.setdefault("last_timestamp", 0)
             return memory
         except Exception:
@@ -120,6 +128,8 @@ class Trader:
         fair_alpha = params["fair_alpha"]
         smoothed = (1 - fair_alpha) * previous + fair_alpha * base_fair
         memory["fair"][product] = smoothed
+        if abs(base_fair - self.ASH_ANCHOR) > self.ASH_STOP_LOSS_DEVIATION:
+            self.activate_risk_mode(product, state.timestamp, memory, "anchor_break")
 
         imbalance = self.book_imbalance(order_depth)
         return smoothed + params["imbalance_weight"] * imbalance
@@ -138,6 +148,9 @@ class Trader:
 
         if book_estimate is not None:
             observed_intercept = float(book_estimate) - self.PEPPER_SLOPE * state.timestamp
+            memory["open_intercept"].setdefault(product, observed_intercept)
+            if observed_intercept < float(memory["open_intercept"][product]) - self.PEPPER_TREND_STOP_LOSS:
+                self.activate_risk_mode(product, state.timestamp, memory, "trend_break")
             if previous_intercept is None:
                 intercept = observed_intercept
             else:
@@ -155,6 +168,15 @@ class Trader:
         memory["fair"][product] = fair
         return fair
 
+    def activate_risk_mode(self, product: str, timestamp: int, memory: Dict, reason: str) -> None:
+        risk = memory.setdefault("risk", {}).setdefault(product, {})
+        risk["active_until"] = max(int(risk.get("active_until", 0)), timestamp + self.RISK_COOLDOWN)
+        risk["reason"] = reason
+
+    def is_risk_active(self, product: str, timestamp: int, memory: Dict) -> bool:
+        risk = memory.get("risk", {}).get(product, {})
+        return timestamp <= int(risk.get("active_until", -1))
+
     def trade_osmium(
         self,
         product: str,
@@ -162,11 +184,24 @@ class Trader:
         timestamp: int,
         fair: float,
         position: int,
+        risk_active: bool,
     ) -> List[Order]:
         params = self.PARAMS[product]
         orders: List[Order] = []
         position_after = position
         exit_window = timestamp >= self.PEPPER_EXIT_TIMESTAMP
+
+        if risk_active:
+            self.flatten_inventory(
+                product,
+                order_depth,
+                fair,
+                position_after,
+                params["max_take"],
+                self.ASH_STOP_LOSS_EXIT_EDGE,
+                orders,
+            )
+            return orders
 
         position_after = self.take_cheap_asks(
             product,
@@ -228,11 +263,24 @@ class Trader:
         timestamp: int,
         fair: float,
         position: int,
+        risk_active: bool,
     ) -> List[Order]:
         params = self.PARAMS[product]
         orders: List[Order] = []
         position_after = position
         exit_window = timestamp >= self.PEPPER_EXIT_TIMESTAMP
+
+        if risk_active:
+            self.flatten_inventory(
+                product,
+                order_depth,
+                fair,
+                position_after,
+                max(params["max_take"], 20),
+                self.PEPPER_STOP_LOSS_EXIT_EDGE,
+                orders,
+            )
+            return orders
 
         if not exit_window:
             position_after = self.take_cheap_asks(
@@ -332,6 +380,37 @@ class Trader:
                 orders.append(Order(product, price, quantity))
                 buy_capacity -= quantity
                 position += quantity
+        return position
+
+    def flatten_inventory(
+        self,
+        product: str,
+        order_depth: OrderDepth,
+        fair: float,
+        position: int,
+        max_clip: int,
+        exit_edge: float,
+        orders: List[Order],
+    ) -> int:
+        if position > 0:
+            return self.hit_expensive_bids(
+                product,
+                order_depth,
+                fair - exit_edge,
+                max_clip,
+                position,
+                orders,
+                max_inventory_to_sell=position,
+            )
+        if position < 0:
+            return self.buy_inventory_to_cover(
+                product,
+                order_depth,
+                fair + exit_edge,
+                max_clip,
+                position,
+                orders,
+            )
         return position
 
     def hit_expensive_bids(

@@ -88,6 +88,24 @@
       }
     }
   },
+  "risk_controls": {
+    "INTARIAN_PEPPER_ROOT": {
+      "guard": "If observed live intercept falls more than PEPPER_TREND_STOP_LOSS below the day-open intercept, stop adding trend inventory and start flattening.",
+      "threshold": 35.0,
+      "exit_edge": 60.0,
+      "cooldown_timestamps": 50000,
+      "historical_trigger_count": 0,
+      "historical_min_open_intercept_diff": -6.94187192118261
+    },
+    "ASH_COATED_OSMIUM": {
+      "guard": "If book fair moves too far from the 10000 stationary anchor, stop crossing fresh mean-reversion trades and flatten existing inventory.",
+      "threshold": 35.0,
+      "exit_edge": 10.0,
+      "cooldown_timestamps": 50000,
+      "historical_trigger_count": 0,
+      "historical_max_anchor_deviation": 18.12820512820508
+    }
+  },
   "parameter_grid": {
     "rows": [
       {

@@ -20,6 +20,9 @@ Research notebooks:
   marked-to-market drift capture.
 - Treats osmium as a stationary mean-reversion market around 10,000, with an
   EMA/imbalance microstructure signal and a looser crossing edge.
+- Includes model-based stop-loss gates: pepper de-risks if the live drift
+  intercept breaks below the day-open intercept, and osmium de-risks if it leaves
+  the stationary anchor regime.
 - Keeps the research notes in `logs/round1_strategy_findings.ipynb`.
 
 ## Diagnostics
@@ -44,6 +47,9 @@ The latest run is saved to `logs/round1_diagnostics.json` and includes:
   all-days combined PnL, with 83,273 XIRECs on holdout day 0.
 - Lightweight linear signal screen: osmium day-0 holdout MSE improves from 8.772
   to 7.301, with 70.54% next-tick directional accuracy.
+- Risk-control checks: the pepper trend-break and osmium anchor-break guards had
+  zero historical triggers, so they protect live regime breaks without reducing
+  the normal-path backtest.
 - Monte Carlo execution stress: 4 chains x 40 draws with 97% crossing-fill
   probability, up to 1 XIREC adverse slippage, and 3 XIREC mark noise.
 - Gelman-Rubin R-hat: 1.0000.

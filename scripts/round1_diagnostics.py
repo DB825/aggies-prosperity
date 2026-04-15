@@ -348,6 +348,71 @@ def linear_signal_screen(by_day_ts: Dict[int, Dict[int, List[Dict]]]) -> Dict:
     return output
 
 
+def row_book_fair(row: Dict) -> Optional[float]:
+    bid = row["bid_price_1"]
+    ask = row["ask_price_1"]
+    bid_volume = row["bid_volume_1"]
+    ask_volume = row["ask_volume_1"]
+    if bid is None or ask is None:
+        return None
+    if not bid_volume or not ask_volume:
+        return (bid + ask) / 2
+    return (bid * abs(ask_volume) + ask * abs(bid_volume)) / (abs(bid_volume) + abs(ask_volume))
+
+
+def risk_control_summary(by_day_ts: Dict[int, Dict[int, List[Dict]]]) -> Dict:
+    pepper_triggers = 0
+    ash_triggers = 0
+    pepper_min_open_intercept_diff = 0.0
+    ash_max_anchor_deviation = 0.0
+
+    for day in sorted(by_day_ts):
+        pepper_open_intercept = None
+        for timestamp in sorted(by_day_ts[day]):
+            for row in by_day_ts[day][timestamp]:
+                fair = row_book_fair(row)
+                if fair is None:
+                    continue
+                if row["product"] == "INTARIAN_PEPPER_ROOT":
+                    observed_intercept = fair - Trader.PEPPER_SLOPE * timestamp
+                    if pepper_open_intercept is None:
+                        pepper_open_intercept = observed_intercept
+                    intercept_diff = observed_intercept - pepper_open_intercept
+                    pepper_min_open_intercept_diff = min(pepper_min_open_intercept_diff, intercept_diff)
+                    if intercept_diff < -Trader.PEPPER_TREND_STOP_LOSS:
+                        pepper_triggers += 1
+                elif row["product"] == "ASH_COATED_OSMIUM":
+                    anchor_deviation = abs(fair - Trader.ASH_ANCHOR)
+                    ash_max_anchor_deviation = max(ash_max_anchor_deviation, anchor_deviation)
+                    if anchor_deviation > Trader.ASH_STOP_LOSS_DEVIATION:
+                        ash_triggers += 1
+
+    return {
+        "INTARIAN_PEPPER_ROOT": {
+            "guard": (
+                "If observed live intercept falls more than PEPPER_TREND_STOP_LOSS below the "
+                "day-open intercept, stop adding trend inventory and start flattening."
+            ),
+            "threshold": Trader.PEPPER_TREND_STOP_LOSS,
+            "exit_edge": Trader.PEPPER_STOP_LOSS_EXIT_EDGE,
+            "cooldown_timestamps": Trader.RISK_COOLDOWN,
+            "historical_trigger_count": pepper_triggers,
+            "historical_min_open_intercept_diff": pepper_min_open_intercept_diff,
+        },
+        "ASH_COATED_OSMIUM": {
+            "guard": (
+                "If book fair moves too far from the 10000 stationary anchor, stop crossing "
+                "fresh mean-reversion trades and flatten existing inventory."
+            ),
+            "threshold": Trader.ASH_STOP_LOSS_DEVIATION,
+            "exit_edge": Trader.ASH_STOP_LOSS_EXIT_EDGE,
+            "cooldown_timestamps": Trader.RISK_COOLDOWN,
+            "historical_trigger_count": ash_triggers,
+            "historical_max_anchor_deviation": ash_max_anchor_deviation,
+        },
+    }
+
+
 def parameter_grid(by_day_ts: Dict[int, Dict[int, List[Dict]]]) -> Dict:
     rows = []
     exit_policies = {
@@ -595,6 +660,7 @@ def main() -> None:
     by_day_ts = load_price_rows()
     deterministic = run_backtest(by_day_ts)
     signal_screen = linear_signal_screen(by_day_ts)
+    risk_controls = risk_control_summary(by_day_ts)
     grid = parameter_grid(by_day_ts)
     mc = monte_carlo(by_day_ts, args.mc_chains, args.mc_draws, args.seed)
 
@@ -606,6 +672,7 @@ def main() -> None:
         ),
         "deterministic_backtest": deterministic,
         "linear_signal_screen": signal_screen,
+        "risk_controls": risk_controls,
         "parameter_grid": grid,
         "monte_carlo": mc,
     }
@@ -617,6 +684,11 @@ def main() -> None:
     print(f"grid target pass rate: {grid['target_pass_rate']:.2%}")
     print(f"selected train-rank: {grid['selected_train_rank']} / {grid['summary']['count']}")
     print(f"selected combined-rank: {grid['selected_combined_rank']} / {grid['summary']['count']}")
+    print(
+        "risk guard historical triggers: "
+        f"pepper={risk_controls['INTARIAN_PEPPER_ROOT']['historical_trigger_count']}, "
+        f"osmium={risk_controls['ASH_COATED_OSMIUM']['historical_trigger_count']}"
+    )
     print(f"mc mean pnl: {mc['summary']['mean']:.1f}")
     print(f"mc p05 pnl: {mc['summary']['p05']:.1f}")
     print(f"mc probability >= 200k: {mc['probability_above_200k']:.2%}")
