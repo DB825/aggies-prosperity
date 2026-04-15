@@ -14,15 +14,15 @@ class Trader:
     ASH_ANCHOR = 10000.0
     PEPPER_SLOPE = 0.001
     PEPPER_TARGET = 80
-    PEPPER_EXIT_TIMESTAMP = 995_000
-    PEPPER_FORCE_EXIT_TIMESTAMP = 998_000
+    PEPPER_EXIT_TIMESTAMP = 10_000_000
+    PEPPER_FORCE_EXIT_TIMESTAMP = 10_000_000
     PEPPER_FORCE_EXIT_EDGE = 8.0
 
     PARAMS = {
         "ASH_COATED_OSMIUM": {
-            "fair_alpha": 0.22,
-            "imbalance_weight": 1.8,
-            "take_edge": 4.0,
+            "fair_alpha": 0.10,
+            "imbalance_weight": 1.0,
+            "take_edge": 0.5,
             "make_edge": 3.0,
             "max_take": 24,
             "max_make": 14,
@@ -30,11 +30,11 @@ class Trader:
         },
         "INTARIAN_PEPPER_ROOT": {
             "intercept_alpha": 0.18,
-            "trend_buy_edge": 8.0,
+            "trend_buy_edge": 6.0,
             "rich_sell_edge": 14.0,
             "exit_sell_edge": 5.0,
             "make_edge": 2.0,
-            "max_take": 28,
+            "max_take": 10,
             "max_make": 18,
             "inventory_skew": 0.08,
         },
