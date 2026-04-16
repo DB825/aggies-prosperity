@@ -1,0 +1,5874 @@
+{
+  "data_dir": "C:\\Users\\dylan\\OneDrive\\Desktop\\aggies-prosperity\\data\\round1",
+  "diagnostic_note": "Geweke and Gelman-Rubin are used here to check Monte Carlo simulation stability, not as proof that a deterministic trading edge is stationary.",
+  "deterministic_backtest": {
+    "day_results": [
+      {
+        "day": -2,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 3258.5,
+          "INTARIAN_PEPPER_ROOT": 79649.0
+        },
+        "position": {
+          "ASH_COATED_OSMIUM": 7,
+          "INTARIAN_PEPPER_ROOT": 80
+        },
+        "total_pnl": 82907.5
+      },
+      {
+        "day": -1,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 3878.0,
+          "INTARIAN_PEPPER_ROOT": 79326.0
+        },
+        "position": {
+          "ASH_COATED_OSMIUM": 62,
+          "INTARIAN_PEPPER_ROOT": 80
+        },
+        "total_pnl": 83204.0
+      },
+      {
+        "day": 0,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 3820.0,
+          "INTARIAN_PEPPER_ROOT": 79453.0
+        },
+        "position": {
+          "ASH_COATED_OSMIUM": 70,
+          "INTARIAN_PEPPER_ROOT": 80
+        },
+        "total_pnl": 83273.0
+      }
+    ],
+    "combined_pnl": 249384.5,
+    "filled_orders": 717,
+    "filled_quantity": 4939
+  },
+  "linear_signal_screen": {
+    "feature_names": [
+      "intercept",
+      "ema_deviation",
+      "imbalance",
+      "spread",
+      "timestamp"
+    ],
+    "note": "Dependency-free ridge-linear next-tick screen. KNN and random forests were considered but not deployed because there are only three historical days; Poisson regression is not appropriate for signed continuous price deltas.",
+    "products": {
+      "ASH_COATED_OSMIUM": {
+        "train_samples": 18410,
+        "holdout_samples": 9231,
+        "coefficients": {
+          "intercept": 0.1045749923118326,
+          "ema_deviation": -3.321135613836585,
+          "imbalance": 3.2484990206492435,
+          "spread": -0.04385607220807703,
+          "timestamp": -0.037364404941486525
+        },
+        "holdout_mse": 7.300774365559227,
+        "holdout_baseline_mse": 8.772125739092546,
+        "mse_improvement_vs_baseline": 1.4713513735333192,
+        "directional_accuracy": 0.7053986968662737,
+        "mean_abs_prediction": 0.8113637918695157
+      },
+      "INTARIAN_PEPPER_ROOT": {
+        "train_samples": 18433,
+        "holdout_samples": 9252,
+        "coefficients": {
+          "intercept": 0.4445981419373941,
+          "ema_deviation": -4.746668243943467,
+          "imbalance": 2.437934392980555,
+          "spread": -0.0774111180976706,
+          "timestamp": 0.0049153049010113485
+        },
+        "holdout_mse": 5.916120445254441,
+        "holdout_baseline_mse": 7.344854630118064,
+        "mse_improvement_vs_baseline": 1.4287341848636235,
+        "directional_accuracy": 0.7267441860465116,
+        "mean_abs_prediction": 0.7578718112255829
+      }
+    }
+  },
+  "risk_controls": {
+    "INTARIAN_PEPPER_ROOT": {
+      "guard": "If observed live intercept falls more than PEPPER_TREND_STOP_LOSS below the day-open intercept, stop adding trend inventory and start flattening.",
+      "threshold": 35.0,
+      "exit_edge": 60.0,
+      "cooldown_timestamps": 50000,
+      "historical_trigger_count": 0,
+      "historical_min_open_intercept_diff": -6.94187192118261
+    },
+    "ASH_COATED_OSMIUM": {
+      "guard": "If book fair moves too far from the 10000 stationary anchor, stop crossing fresh mean-reversion trades and flatten existing inventory.",
+      "threshold": 35.0,
+      "exit_edge": 10.0,
+      "cooldown_timestamps": 50000,
+      "historical_trigger_count": 0,
+      "historical_max_anchor_deviation": 18.12820512820508
+    }
+  },
+  "parameter_grid": {
+    "rows": [
+      {
+        "pepper_exit_policy": "hold_to_close",
+        "pepper_buy_edge": 6.0,
+        "pepper_max_take": 10,
+        "ash_fair_alpha": 0.1,
+        "ash_imbalance_weight": 0.0,
+        "ash_take_edge": 0.0,
+        "combined_pnl": 249294.0,
+        "profit_above_200k": 49294.0,
+        "train_total_pnl": 166063.0,
+        "train_min_day_pnl": 82972.0,
+        "train_stdev_day_pnl": 59.5,
+        "holdout_day0_pnl": 83231.0,
+        "holdout_profit_above_daily_target": 16564.33333333333,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 10866.0,
+          "INTARIAN_PEPPER_ROOT": 238428.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": -22,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 32,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 70,
+            "INTARIAN_PEPPER_ROOT": 80
+          }
+        },
+        "flat_all_days": false,
+        "selection_robust_score": 174345.325
+      },
+      {
+        "pepper_exit_policy": "hold_to_close",
+        "pepper_buy_edge": 6.0,
+        "pepper_max_take": 10,
+        "ash_fair_alpha": 0.1,
+        "ash_imbalance_weight": 0.0,
+        "ash_take_edge": 0.5,
+        "combined_pnl": 249144.0,
+        "profit_above_200k": 49144.0,
+        "train_total_pnl": 165906.0,
+        "train_min_day_pnl": 82926.0,
+        "train_stdev_day_pnl": 27.0,
+        "holdout_day0_pnl": 83238.0,
+        "holdout_profit_above_daily_target": 16571.33333333333,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 10716.0,
+          "INTARIAN_PEPPER_ROOT": 238428.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": -4,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 76,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 70,
+            "INTARIAN_PEPPER_ROOT": 80
+          }
+        },
+        "flat_all_days": false,
+        "selection_robust_score": 174191.85
+      },
+      {
+        "pepper_exit_policy": "hold_to_close",
+        "pepper_buy_edge": 6.0,
+        "pepper_max_take": 10,
+        "ash_fair_alpha": 0.1,
+        "ash_imbalance_weight": 0.0,
+        "ash_take_edge": 1.0,
+        "combined_pnl": 246426.0,
+        "profit_above_200k": 46426.0,
+        "train_total_pnl": 164235.0,
+        "train_min_day_pnl": 81933.0,
+        "train_stdev_day_pnl": 184.5,
+        "holdout_day0_pnl": 82191.0,
+        "holdout_profit_above_daily_target": 15524.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 7998.0,
+          "INTARIAN_PEPPER_ROOT": 238428.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 80,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 76,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 71,
+            "INTARIAN_PEPPER_ROOT": 80
+          }
+        },
+        "flat_all_days": false,
+        "selection_robust_score": 172382.175
+      },
+      {
+        "pepper_exit_policy": "hold_to_close",
+        "pepper_buy_edge": 6.0,
+        "pepper_max_take": 10,
+        "ash_fair_alpha": 0.1,
+        "ash_imbalance_weight": 1.0,
+        "ash_take_edge": 0.0,
+        "combined_pnl": 249123.0,
+        "profit_above_200k": 49123.0,
+        "train_total_pnl": 165877.0,
+        "train_min_day_pnl": 82830.0,
+        "train_stdev_day_pnl": 108.5,
+        "holdout_day0_pnl": 83246.0,
+        "holdout_profit_above_daily_target": 16579.33333333333,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 10695.0,
+          "INTARIAN_PEPPER_ROOT": 238428.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": -2,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 37,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 70,
+            "INTARIAN_PEPPER_ROOT": 80
+          }
+        },
+        "flat_all_days": false,
+        "selection_robust_score": 174132.875
+      },
+      {
+        "pepper_exit_policy": "hold_to_close",
+        "pepper_buy_edge": 6.0,
+        "pepper_max_take": 10,
+        "ash_fair_alpha": 0.1,
+        "ash_imbalance_weight": 1.0,
+        "ash_take_edge": 0.5,
+        "combined_pnl": 249384.5,
+        "profit_above_200k": 49384.5,
+        "train_total_pnl": 166111.5,
+        "train_min_day_pnl": 82907.5,
+        "train_stdev_day_pnl": 148.25,
+        "holdout_day0_pnl": 83273.0,
+        "holdout_profit_above_daily_target": 16606.33333333333,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 10956.5,
+          "INTARIAN_PEPPER_ROOT": 238428.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 7,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 62,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 70,
+            "INTARIAN_PEPPER_ROOT": 80
+          }
+        },
+        "flat_all_days": false,
+        "selection_robust_score": 174365.1875
+      },
+      {
+        "pepper_exit_policy": "hold_to_close",
+        "pepper_buy_edge": 6.0,
+        "pepper_max_take": 10,
+        "ash_fair_alpha": 0.1,
+        "ash_imbalance_weight": 1.0,
+        "ash_take_edge": 1.0,
+        "combined_pnl": 246558.0,
+        "profit_above_200k": 46558.0,
+        "train_total_pnl": 164115.0,
+        "train_min_day_pnl": 81835.0,
+        "train_stdev_day_pnl": 222.5,
+        "holdout_day0_pnl": 82443.0,
+        "holdout_profit_above_daily_target": 15776.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 8130.0,
+          "INTARIAN_PEPPER_ROOT": 238428.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 80,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 76,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 71,
+            "INTARIAN_PEPPER_ROOT": 80
+          }
+        },
+        "flat_all_days": false,
+        "selection_robust_score": 172242.875
+      },
+      {
+        "pepper_exit_policy": "hold_to_close",
+        "pepper_buy_edge": 6.0,
+        "pepper_max_take": 10,
+        "ash_fair_alpha": 0.1,
+        "ash_imbalance_weight": 1.8,
+        "ash_take_edge": 0.0,
+        "combined_pnl": 249041.5,
+        "profit_above_200k": 49041.5,
+        "train_total_pnl": 165794.5,
+        "train_min_day_pnl": 82659.5,
+        "train_stdev_day_pnl": 237.75,
+        "holdout_day0_pnl": 83247.0,
+        "holdout_profit_above_daily_target": 16580.33333333333,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 10613.5,
+          "INTARIAN_PEPPER_ROOT": 238428.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 7,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 76,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 70,
+            "INTARIAN_PEPPER_ROOT": 80
+          }
+        },
+        "flat_all_days": false,
+        "selection_robust_score": 174001.0125
+      },
+      {
+        "pepper_exit_policy": "hold_to_close",
+        "pepper_buy_edge": 6.0,
+        "pepper_max_take": 10,
+        "ash_fair_alpha": 0.1,
+        "ash_imbalance_weight": 1.8,
+        "ash_take_edge": 0.5,
+        "combined_pnl": 249035.5,
+        "profit_above_200k": 49035.5,
+        "train_total_pnl": 165830.5,
+        "train_min_day_pnl": 82773.5,
+        "train_stdev_day_pnl": 141.75,
+        "holdout_day0_pnl": 83205.0,
+        "holdout_profit_above_daily_target": 16538.33333333333,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 10607.5,
+          "INTARIAN_PEPPER_ROOT": 238428.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 23,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 73,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 70,
+            "INTARIAN_PEPPER_ROOT": 80
+          }
+        },
+        "flat_all_days": false,
+        "selection_robust_score": 174072.4125
+      },
+      {
+        "pepper_exit_policy": "hold_to_close",
+        "pepper_buy_edge": 6.0,
+        "pepper_max_take": 10,
+        "ash_fair_alpha": 0.1,
+        "ash_imbalance_weight": 1.8,
+        "ash_take_edge": 1.0,
+        "combined_pnl": 247023.0,
+        "profit_above_200k": 47023.0,
+        "train_total_pnl": 164513.0,
+        "train_min_day_pnl": 82239.0,
+        "train_stdev_day_pnl": 17.5,
+        "holdout_day0_pnl": 82510.0,
+        "holdout_profit_above_daily_target": 15843.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 8595.0,
+          "INTARIAN_PEPPER_ROOT": 238428.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 70,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 76,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 70,
+            "INTARIAN_PEPPER_ROOT": 80
+          }
+        },
+        "flat_all_days": false,
+        "selection_robust_score": 172732.525
+      },
+      {
+        "pepper_exit_policy": "hold_to_close",
+        "pepper_buy_edge": 6.0,
+        "pepper_max_take": 10,
+        "ash_fair_alpha": 0.22,
+        "ash_imbalance_weight": 0.0,
+        "ash_take_edge": 0.0,
+        "combined_pnl": 248760.5,
+        "profit_above_200k": 48760.5,
+        "train_total_pnl": 165680.5,
+        "train_min_day_pnl": 82547.5,
+        "train_stdev_day_pnl": 292.75,
+        "holdout_day0_pnl": 83080.0,
+        "holdout_profit_above_daily_target": 16413.33333333333,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 10332.5,
+          "INTARIAN_PEPPER_ROOT": 238428.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": -15,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 33,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 70,
+            "INTARIAN_PEPPER_ROOT": 80
+          }
+        },
+        "flat_all_days": false,
+        "selection_robust_score": 173862.0625
+      },
+      {
+        "pepper_exit_policy": "hold_to_close",
+        "pepper_buy_edge": 6.0,
+        "pepper_max_take": 10,
+        "ash_fair_alpha": 0.22,
+        "ash_imbalance_weight": 0.0,
+        "ash_take_edge": 0.5,
+        "combined_pnl": 246731.0,
+        "profit_above_200k": 46731.0,
+        "train_total_pnl": 164283.0,
+        "train_min_day_pnl": 81953.0,
+        "train_stdev_day_pnl": 188.5,
+        "holdout_day0_pnl": 82448.0,
+        "holdout_profit_above_daily_target": 15781.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 8303.0,
+          "INTARIAN_PEPPER_ROOT": 238428.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 80,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 76,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 70,
+            "INTARIAN_PEPPER_ROOT": 80
+          }
+        },
+        "flat_all_days": false,
+        "selection_robust_score": 172431.175
+      },
+      {
+        "pepper_exit_policy": "hold_to_close",
+        "pepper_buy_edge": 6.0,
+        "pepper_max_take": 10,
+        "ash_fair_alpha": 0.22,
+        "ash_imbalance_weight": 0.0,
+        "ash_take_edge": 1.0,
+        "combined_pnl": 242903.0,
+        "profit_above_200k": 42903.0,
+        "train_total_pnl": 161517.0,
+        "train_min_day_pnl": 80545.0,
+        "train_stdev_day_pnl": 213.5,
+        "holdout_day0_pnl": 81386.0,
+        "holdout_profit_above_daily_target": 14719.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 4475.0,
+          "INTARIAN_PEPPER_ROOT": 238428.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 80,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 76,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 71,
+            "INTARIAN_PEPPER_ROOT": 80
+          }
+        },
+        "flat_all_days": false,
+        "selection_robust_score": 169518.125
+      },
+      {
+        "pepper_exit_policy": "hold_to_close",
+        "pepper_buy_edge": 6.0,
+        "pepper_max_take": 10,
+        "ash_fair_alpha": 0.22,
+        "ash_imbalance_weight": 1.0,
+        "ash_take_edge": 0.0,
+        "combined_pnl": 248944.5,
+        "profit_above_200k": 48944.5,
+        "train_total_pnl": 165771.5,
+        "train_min_day_pnl": 82661.5,
+        "train_stdev_day_pnl": 224.25,
+        "holdout_day0_pnl": 83173.0,
+        "holdout_profit_above_daily_target": 16506.33333333333,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 10516.5,
+          "INTARIAN_PEPPER_ROOT": 238428.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": -9,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 19,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 70,
+            "INTARIAN_PEPPER_ROOT": 80
+          }
+        },
+        "flat_all_days": false,
+        "selection_robust_score": 173981.5875
+      },
+      {
+        "pepper_exit_policy": "hold_to_close",
+        "pepper_buy_edge": 6.0,
+        "pepper_max_take": 10,
+        "ash_fair_alpha": 0.22,
+        "ash_imbalance_weight": 1.0,
+        "ash_take_edge": 0.5,
+        "combined_pnl": 247469.0,
+        "profit_above_200k": 47469.0,
+        "train_total_pnl": 164741.0,
+        "train_min_day_pnl": 82229.0,
+        "train_stdev_day_pnl": 141.5,
+        "holdout_day0_pnl": 82728.0,
+        "holdout_profit_above_daily_target": 16061.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 9041.0,
+          "INTARIAN_PEPPER_ROOT": 238428.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 66,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 73,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 70,
+            "INTARIAN_PEPPER_ROOT": 80
+          }
+        },
+        "flat_all_days": false,
+        "selection_robust_score": 172928.525
+      },
+      {
+        "pepper_exit_policy": "hold_to_close",
+        "pepper_buy_edge": 6.0,
+        "pepper_max_take": 10,
+        "ash_fair_alpha": 0.22,
+        "ash_imbalance_weight": 1.0,
+        "ash_take_edge": 1.0,
+        "combined_pnl": 243979.0,
+        "profit_above_200k": 43979.0,
+        "train_total_pnl": 162288.0,
+        "train_min_day_pnl": 80853.0,
+        "train_stdev_day_pnl": 291.0,
+        "holdout_day0_pnl": 81691.0,
+        "holdout_profit_above_daily_target": 15024.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 5551.0,
+          "INTARIAN_PEPPER_ROOT": 238428.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 80,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 80,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 71,
+            "INTARIAN_PEPPER_ROOT": 80
+          }
+        },
+        "flat_all_days": false,
+        "selection_robust_score": 170300.55
+      },
+      {
+        "pepper_exit_policy": "hold_to_close",
+        "pepper_buy_edge": 6.0,
+        "pepper_max_take": 10,
+        "ash_fair_alpha": 0.22,
+        "ash_imbalance_weight": 1.8,
+        "ash_take_edge": 0.0,
+        "combined_pnl": 248527.0,
+        "profit_above_200k": 48527.0,
+        "train_total_pnl": 165433.0,
+        "train_min_day_pnl": 82573.0,
+        "train_stdev_day_pnl": 143.5,
+        "holdout_day0_pnl": 83094.0,
+        "holdout_profit_above_daily_target": 16427.33333333333,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 10099.0,
+          "INTARIAN_PEPPER_ROOT": 238428.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": -16,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 66,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 70,
+            "INTARIAN_PEPPER_ROOT": 80
+          }
+        },
+        "flat_all_days": false,
+        "selection_robust_score": 173654.425
+      },
+      {
+        "pepper_exit_policy": "hold_to_close",
+        "pepper_buy_edge": 6.0,
+        "pepper_max_take": 10,
+        "ash_fair_alpha": 0.22,
+        "ash_imbalance_weight": 1.8,
+        "ash_take_edge": 0.5,
+        "combined_pnl": 247705.5,
+        "profit_above_200k": 47705.5,
+        "train_total_pnl": 164955.5,
+        "train_min_day_pnl": 82411.5,
+        "train_stdev_day_pnl": 66.25,
+        "holdout_day0_pnl": 82750.0,
+        "holdout_profit_above_daily_target": 16083.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 9277.5,
+          "INTARIAN_PEPPER_ROOT": 238428.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 17,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 80,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 70,
+            "INTARIAN_PEPPER_ROOT": 80
+          }
+        },
+        "flat_all_days": false,
+        "selection_robust_score": 173180.0875
+      },
+      {
+        "pepper_exit_policy": "hold_to_close",
+        "pepper_buy_edge": 6.0,
+        "pepper_max_take": 10,
+        "ash_fair_alpha": 0.22,
+        "ash_imbalance_weight": 1.8,
+        "ash_take_edge": 1.0,
+        "combined_pnl": 244823.0,
+        "profit_above_200k": 44823.0,
+        "train_total_pnl": 163122.0,
+        "train_min_day_pnl": 81290.0,
+        "train_stdev_day_pnl": 271.0,
+        "holdout_day0_pnl": 81701.0,
+        "holdout_profit_above_daily_target": 15034.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 6395.0,
+          "INTARIAN_PEPPER_ROOT": 238428.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 80,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 80,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 70,
+            "INTARIAN_PEPPER_ROOT": 80
+          }
+        },
+        "flat_all_days": false,
+        "selection_robust_score": 171183.25
+      },
+      {
+        "pepper_exit_policy": "hold_to_close",
+        "pepper_buy_edge": 6.0,
+        "pepper_max_take": 28,
+        "ash_fair_alpha": 0.1,
+        "ash_imbalance_weight": 0.0,
+        "ash_take_edge": 0.0,
+        "combined_pnl": 249292.0,
+        "profit_above_200k": 49292.0,
+        "train_total_pnl": 166064.0,
+        "train_min_day_pnl": 82972.0,
+        "train_stdev_day_pnl": 60.0,
+        "holdout_day0_pnl": 83228.0,
+        "holdout_profit_above_daily_target": 16561.33333333333,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 10866.0,
+          "INTARIAN_PEPPER_ROOT": 238426.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": -22,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 32,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 70,
+            "INTARIAN_PEPPER_ROOT": 80
+          }
+        },
+        "flat_all_days": false,
+        "selection_robust_score": 174346.2
+      },
+      {
+        "pepper_exit_policy": "hold_to_close",
+        "pepper_buy_edge": 6.0,
+        "pepper_max_take": 28,
+        "ash_fair_alpha": 0.1,
+        "ash_imbalance_weight": 0.0,
+        "ash_take_edge": 0.5,
+        "combined_pnl": 249142.0,
+        "profit_above_200k": 49142.0,
+        "train_total_pnl": 165907.0,
+        "train_min_day_pnl": 82926.0,
+        "train_stdev_day_pnl": 27.5,
+        "holdout_day0_pnl": 83235.0,
+        "holdout_profit_above_daily_target": 16568.33333333333,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 10716.0,
+          "INTARIAN_PEPPER_ROOT": 238426.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": -4,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 76,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 70,
+            "INTARIAN_PEPPER_ROOT": 80
+          }
+        },
+        "flat_all_days": false,
+        "selection_robust_score": 174192.725
+      },
+      {
+        "pepper_exit_policy": "hold_to_close",
+        "pepper_buy_edge": 6.0,
+        "pepper_max_take": 28,
+        "ash_fair_alpha": 0.1,
+        "ash_imbalance_weight": 0.0,
+        "ash_take_edge": 1.0,
+        "combined_pnl": 246424.0,
+        "profit_above_200k": 46424.0,
+        "train_total_pnl": 164236.0,
+        "train_min_day_pnl": 81933.0,
+        "train_stdev_day_pnl": 185.0,
+        "holdout_day0_pnl": 82188.0,
+        "holdout_profit_above_daily_target": 15521.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 7998.0,
+          "INTARIAN_PEPPER_ROOT": 238426.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 80,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 76,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 71,
+            "INTARIAN_PEPPER_ROOT": 80
+          }
+        },
+        "flat_all_days": false,
+        "selection_robust_score": 172383.05
+      },
+      {
+        "pepper_exit_policy": "hold_to_close",
+        "pepper_buy_edge": 6.0,
+        "pepper_max_take": 28,
+        "ash_fair_alpha": 0.1,
+        "ash_imbalance_weight": 1.0,
+        "ash_take_edge": 0.0,
+        "combined_pnl": 249121.0,
+        "profit_above_200k": 49121.0,
+        "train_total_pnl": 165878.0,
+        "train_min_day_pnl": 82830.0,
+        "train_stdev_day_pnl": 109.0,
+        "holdout_day0_pnl": 83243.0,
+        "holdout_profit_above_daily_target": 16576.33333333333,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 10695.0,
+          "INTARIAN_PEPPER_ROOT": 238426.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": -2,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 37,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 70,
+            "INTARIAN_PEPPER_ROOT": 80
+          }
+        },
+        "flat_all_days": false,
+        "selection_robust_score": 174133.75
+      },
+      {
+        "pepper_exit_policy": "hold_to_close",
+        "pepper_buy_edge": 6.0,
+        "pepper_max_take": 28,
+        "ash_fair_alpha": 0.1,
+        "ash_imbalance_weight": 1.0,
+        "ash_take_edge": 0.5,
+        "combined_pnl": 249382.5,
+        "profit_above_200k": 49382.5,
+        "train_total_pnl": 166112.5,
+        "train_min_day_pnl": 82907.5,
+        "train_stdev_day_pnl": 148.75,
+        "holdout_day0_pnl": 83270.0,
+        "holdout_profit_above_daily_target": 16603.33333333333,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 10956.5,
+          "INTARIAN_PEPPER_ROOT": 238426.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 7,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 62,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 70,
+            "INTARIAN_PEPPER_ROOT": 80
+          }
+        },
+        "flat_all_days": false,
+        "selection_robust_score": 174366.0625
+      },
+      {
+        "pepper_exit_policy": "hold_to_close",
+        "pepper_buy_edge": 6.0,
+        "pepper_max_take": 28,
+        "ash_fair_alpha": 0.1,
+        "ash_imbalance_weight": 1.0,
+        "ash_take_edge": 1.0,
+        "combined_pnl": 246556.0,
+        "profit_above_200k": 46556.0,
+        "train_total_pnl": 164116.0,
+        "train_min_day_pnl": 81835.0,
+        "train_stdev_day_pnl": 223.0,
+        "holdout_day0_pnl": 82440.0,
+        "holdout_profit_above_daily_target": 15773.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 8130.0,
+          "INTARIAN_PEPPER_ROOT": 238426.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 80,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 76,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 71,
+            "INTARIAN_PEPPER_ROOT": 80
+          }
+        },
+        "flat_all_days": false,
+        "selection_robust_score": 172243.75
+      },
+      {
+        "pepper_exit_policy": "hold_to_close",
+        "pepper_buy_edge": 6.0,
+        "pepper_max_take": 28,
+        "ash_fair_alpha": 0.1,
+        "ash_imbalance_weight": 1.8,
+        "ash_take_edge": 0.0,
+        "combined_pnl": 249039.5,
+        "profit_above_200k": 49039.5,
+        "train_total_pnl": 165795.5,
+        "train_min_day_pnl": 82659.5,
+        "train_stdev_day_pnl": 238.25,
+        "holdout_day0_pnl": 83244.0,
+        "holdout_profit_above_daily_target": 16577.33333333333,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 10613.5,
+          "INTARIAN_PEPPER_ROOT": 238426.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 7,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 76,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 70,
+            "INTARIAN_PEPPER_ROOT": 80
+          }
+        },
+        "flat_all_days": false,
+        "selection_robust_score": 174001.8875
+      },
+      {
+        "pepper_exit_policy": "hold_to_close",
+        "pepper_buy_edge": 6.0,
+        "pepper_max_take": 28,
+        "ash_fair_alpha": 0.1,
+        "ash_imbalance_weight": 1.8,
+        "ash_take_edge": 0.5,
+        "combined_pnl": 249033.5,
+        "profit_above_200k": 49033.5,
+        "train_total_pnl": 165831.5,
+        "train_min_day_pnl": 82773.5,
+        "train_stdev_day_pnl": 142.25,
+        "holdout_day0_pnl": 83202.0,
+        "holdout_profit_above_daily_target": 16535.33333333333,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 10607.5,
+          "INTARIAN_PEPPER_ROOT": 238426.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 23,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 73,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 70,
+            "INTARIAN_PEPPER_ROOT": 80
+          }
+        },
+        "flat_all_days": false,
+        "selection_robust_score": 174073.2875
+      },
+      {
+        "pepper_exit_policy": "hold_to_close",
+        "pepper_buy_edge": 6.0,
+        "pepper_max_take": 28,
+        "ash_fair_alpha": 0.1,
+        "ash_imbalance_weight": 1.8,
+        "ash_take_edge": 1.0,
+        "combined_pnl": 247021.0,
+        "profit_above_200k": 47021.0,
+        "train_total_pnl": 164514.0,
+        "train_min_day_pnl": 82239.0,
+        "train_stdev_day_pnl": 18.0,
+        "holdout_day0_pnl": 82507.0,
+        "holdout_profit_above_daily_target": 15840.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 8595.0,
+          "INTARIAN_PEPPER_ROOT": 238426.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 70,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 76,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 70,
+            "INTARIAN_PEPPER_ROOT": 80
+          }
+        },
+        "flat_all_days": false,
+        "selection_robust_score": 172733.4
+      },
+      {
+        "pepper_exit_policy": "hold_to_close",
+        "pepper_buy_edge": 6.0,
+        "pepper_max_take": 28,
+        "ash_fair_alpha": 0.22,
+        "ash_imbalance_weight": 0.0,
+        "ash_take_edge": 0.0,
+        "combined_pnl": 248758.5,
+        "profit_above_200k": 48758.5,
+        "train_total_pnl": 165681.5,
+        "train_min_day_pnl": 82547.5,
+        "train_stdev_day_pnl": 293.25,
+        "holdout_day0_pnl": 83077.0,
+        "holdout_profit_above_daily_target": 16410.33333333333,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 10332.5,
+          "INTARIAN_PEPPER_ROOT": 238426.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": -15,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 33,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 70,
+            "INTARIAN_PEPPER_ROOT": 80
+          }
+        },
+        "flat_all_days": false,
+        "selection_robust_score": 173862.9375
+      },
+      {
+        "pepper_exit_policy": "hold_to_close",
+        "pepper_buy_edge": 6.0,
+        "pepper_max_take": 28,
+        "ash_fair_alpha": 0.22,
+        "ash_imbalance_weight": 0.0,
+        "ash_take_edge": 0.5,
+        "combined_pnl": 246729.0,
+        "profit_above_200k": 46729.0,
+        "train_total_pnl": 164284.0,
+        "train_min_day_pnl": 81953.0,
+        "train_stdev_day_pnl": 189.0,
+        "holdout_day0_pnl": 82445.0,
+        "holdout_profit_above_daily_target": 15778.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 8303.0,
+          "INTARIAN_PEPPER_ROOT": 238426.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 80,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 76,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 70,
+            "INTARIAN_PEPPER_ROOT": 80
+          }
+        },
+        "flat_all_days": false,
+        "selection_robust_score": 172432.05
+      },
+      {
+        "pepper_exit_policy": "hold_to_close",
+        "pepper_buy_edge": 6.0,
+        "pepper_max_take": 28,
+        "ash_fair_alpha": 0.22,
+        "ash_imbalance_weight": 0.0,
+        "ash_take_edge": 1.0,
+        "combined_pnl": 242901.0,
+        "profit_above_200k": 42901.0,
+        "train_total_pnl": 161518.0,
+        "train_min_day_pnl": 80545.0,
+        "train_stdev_day_pnl": 214.0,
+        "holdout_day0_pnl": 81383.0,
+        "holdout_profit_above_daily_target": 14716.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 4475.0,
+          "INTARIAN_PEPPER_ROOT": 238426.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 80,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 76,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 71,
+            "INTARIAN_PEPPER_ROOT": 80
+          }
+        },
+        "flat_all_days": false,
+        "selection_robust_score": 169519.0
+      },
+      {
+        "pepper_exit_policy": "hold_to_close",
+        "pepper_buy_edge": 6.0,
+        "pepper_max_take": 28,
+        "ash_fair_alpha": 0.22,
+        "ash_imbalance_weight": 1.0,
+        "ash_take_edge": 0.0,
+        "combined_pnl": 248942.5,
+        "profit_above_200k": 48942.5,
+        "train_total_pnl": 165772.5,
+        "train_min_day_pnl": 82661.5,
+        "train_stdev_day_pnl": 224.75,
+        "holdout_day0_pnl": 83170.0,
+        "holdout_profit_above_daily_target": 16503.33333333333,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 10516.5,
+          "INTARIAN_PEPPER_ROOT": 238426.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": -9,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 19,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 70,
+            "INTARIAN_PEPPER_ROOT": 80
+          }
+        },
+        "flat_all_days": false,
+        "selection_robust_score": 173982.4625
+      },
+      {
+        "pepper_exit_policy": "hold_to_close",
+        "pepper_buy_edge": 6.0,
+        "pepper_max_take": 28,
+        "ash_fair_alpha": 0.22,
+        "ash_imbalance_weight": 1.0,
+        "ash_take_edge": 0.5,
+        "combined_pnl": 247467.0,
+        "profit_above_200k": 47467.0,
+        "train_total_pnl": 164742.0,
+        "train_min_day_pnl": 82229.0,
+        "train_stdev_day_pnl": 142.0,
+        "holdout_day0_pnl": 82725.0,
+        "holdout_profit_above_daily_target": 16058.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 9041.0,
+          "INTARIAN_PEPPER_ROOT": 238426.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 66,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 73,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 70,
+            "INTARIAN_PEPPER_ROOT": 80
+          }
+        },
+        "flat_all_days": false,
+        "selection_robust_score": 172929.4
+      },
+      {
+        "pepper_exit_policy": "hold_to_close",
+        "pepper_buy_edge": 6.0,
+        "pepper_max_take": 28,
+        "ash_fair_alpha": 0.22,
+        "ash_imbalance_weight": 1.0,
+        "ash_take_edge": 1.0,
+        "combined_pnl": 243977.0,
+        "profit_above_200k": 43977.0,
+        "train_total_pnl": 162289.0,
+        "train_min_day_pnl": 80853.0,
+        "train_stdev_day_pnl": 291.5,
+        "holdout_day0_pnl": 81688.0,
+        "holdout_profit_above_daily_target": 15021.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 5551.0,
+          "INTARIAN_PEPPER_ROOT": 238426.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 80,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 80,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 71,
+            "INTARIAN_PEPPER_ROOT": 80
+          }
+        },
+        "flat_all_days": false,
+        "selection_robust_score": 170301.425
+      },
+      {
+        "pepper_exit_policy": "hold_to_close",
+        "pepper_buy_edge": 6.0,
+        "pepper_max_take": 28,
+        "ash_fair_alpha": 0.22,
+        "ash_imbalance_weight": 1.8,
+        "ash_take_edge": 0.0,
+        "combined_pnl": 248525.0,
+        "profit_above_200k": 48525.0,
+        "train_total_pnl": 165434.0,
+        "train_min_day_pnl": 82573.0,
+        "train_stdev_day_pnl": 144.0,
+        "holdout_day0_pnl": 83091.0,
+        "holdout_profit_above_daily_target": 16424.33333333333,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 10099.0,
+          "INTARIAN_PEPPER_ROOT": 238426.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": -16,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 66,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 70,
+            "INTARIAN_PEPPER_ROOT": 80
+          }
+        },
+        "flat_all_days": false,
+        "selection_robust_score": 173655.3
+      },
+      {
+        "pepper_exit_policy": "hold_to_close",
+        "pepper_buy_edge": 6.0,
+        "pepper_max_take": 28,
+        "ash_fair_alpha": 0.22,
+        "ash_imbalance_weight": 1.8,
+        "ash_take_edge": 0.5,
+        "combined_pnl": 247703.5,
+        "profit_above_200k": 47703.5,
+        "train_total_pnl": 164956.5,
+        "train_min_day_pnl": 82411.5,
+        "train_stdev_day_pnl": 66.75,
+        "holdout_day0_pnl": 82747.0,
+        "holdout_profit_above_daily_target": 16080.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 9277.5,
+          "INTARIAN_PEPPER_ROOT": 238426.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 17,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 80,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 70,
+            "INTARIAN_PEPPER_ROOT": 80
+          }
+        },
+        "flat_all_days": false,
+        "selection_robust_score": 173180.9625
+      },
+      {
+        "pepper_exit_policy": "hold_to_close",
+        "pepper_buy_edge": 6.0,
+        "pepper_max_take": 28,
+        "ash_fair_alpha": 0.22,
+        "ash_imbalance_weight": 1.8,
+        "ash_take_edge": 1.0,
+        "combined_pnl": 244821.0,
+        "profit_above_200k": 44821.0,
+        "train_total_pnl": 163123.0,
+        "train_min_day_pnl": 81290.0,
+        "train_stdev_day_pnl": 271.5,
+        "holdout_day0_pnl": 81698.0,
+        "holdout_profit_above_daily_target": 15031.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 6395.0,
+          "INTARIAN_PEPPER_ROOT": 238426.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 80,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 80,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 70,
+            "INTARIAN_PEPPER_ROOT": 80
+          }
+        },
+        "flat_all_days": false,
+        "selection_robust_score": 171184.125
+      },
+      {
+        "pepper_exit_policy": "hold_to_close",
+        "pepper_buy_edge": 8.0,
+        "pepper_max_take": 10,
+        "ash_fair_alpha": 0.1,
+        "ash_imbalance_weight": 0.0,
+        "ash_take_edge": 0.0,
+        "combined_pnl": 249213.0,
+        "profit_above_200k": 49213.0,
+        "train_total_pnl": 165985.0,
+        "train_min_day_pnl": 82894.0,
+        "train_stdev_day_pnl": 98.5,
+        "holdout_day0_pnl": 83228.0,
+        "holdout_profit_above_daily_target": 16561.33333333333,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 10866.0,
+          "INTARIAN_PEPPER_ROOT": 238347.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": -22,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 32,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 70,
+            "INTARIAN_PEPPER_ROOT": 80
+          }
+        },
+        "flat_all_days": false,
+        "selection_robust_score": 174249.775
+      },
+      {
+        "pepper_exit_policy": "hold_to_close",
+        "pepper_buy_edge": 8.0,
+        "pepper_max_take": 10,
+        "ash_fair_alpha": 0.1,
+        "ash_imbalance_weight": 0.0,
+        "ash_take_edge": 0.5,
+        "combined_pnl": 249063.0,
+        "profit_above_200k": 49063.0,
+        "train_total_pnl": 165828.0,
+        "train_min_day_pnl": 82848.0,
+        "train_stdev_day_pnl": 66.0,
+        "holdout_day0_pnl": 83235.0,
+        "holdout_profit_above_daily_target": 16568.33333333333,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 10716.0,
+          "INTARIAN_PEPPER_ROOT": 238347.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": -4,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 76,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 70,
+            "INTARIAN_PEPPER_ROOT": 80
+          }
+        },
+        "flat_all_days": false,
+        "selection_robust_score": 174096.3
+      },
+      {
+        "pepper_exit_policy": "hold_to_close",
+        "pepper_buy_edge": 8.0,
+        "pepper_max_take": 10,
+        "ash_fair_alpha": 0.1,
+        "ash_imbalance_weight": 0.0,
+        "ash_take_edge": 1.0,
+        "combined_pnl": 246345.0,
+        "profit_above_200k": 46345.0,
+        "train_total_pnl": 164157.0,
+        "train_min_day_pnl": 81855.0,
+        "train_stdev_day_pnl": 223.5,
+        "holdout_day0_pnl": 82188.0,
+        "holdout_profit_above_daily_target": 15521.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 7998.0,
+          "INTARIAN_PEPPER_ROOT": 238347.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 80,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 76,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 71,
+            "INTARIAN_PEPPER_ROOT": 80
+          }
+        },
+        "flat_all_days": false,
+        "selection_robust_score": 172286.625
+      },
+      {
+        "pepper_exit_policy": "hold_to_close",
+        "pepper_buy_edge": 8.0,
+        "pepper_max_take": 10,
+        "ash_fair_alpha": 0.1,
+        "ash_imbalance_weight": 1.0,
+        "ash_take_edge": 0.0,
+        "combined_pnl": 249042.0,
+        "profit_above_200k": 49042.0,
+        "train_total_pnl": 165799.0,
+        "train_min_day_pnl": 82752.0,
+        "train_stdev_day_pnl": 147.5,
+        "holdout_day0_pnl": 83243.0,
+        "holdout_profit_above_daily_target": 16576.33333333333,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 10695.0,
+          "INTARIAN_PEPPER_ROOT": 238347.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": -2,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 37,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 70,
+            "INTARIAN_PEPPER_ROOT": 80
+          }
+        },
+        "flat_all_days": false,
+        "selection_robust_score": 174037.325
+      },
+      {
+        "pepper_exit_policy": "hold_to_close",
+        "pepper_buy_edge": 8.0,
+        "pepper_max_take": 10,
+        "ash_fair_alpha": 0.1,
+        "ash_imbalance_weight": 1.0,
+        "ash_take_edge": 0.5,
+        "combined_pnl": 249303.5,
+        "profit_above_200k": 49303.5,
+        "train_total_pnl": 166033.5,
+        "train_min_day_pnl": 82829.5,
+        "train_stdev_day_pnl": 187.25,
+        "holdout_day0_pnl": 83270.0,
+        "holdout_profit_above_daily_target": 16603.33333333333,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 10956.5,
+          "INTARIAN_PEPPER_ROOT": 238347.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 7,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 62,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 70,
+            "INTARIAN_PEPPER_ROOT": 80
+          }
+        },
+        "flat_all_days": false,
+        "selection_robust_score": 174269.6375
+      },
+      {
+        "pepper_exit_policy": "hold_to_close",
+        "pepper_buy_edge": 8.0,
+        "pepper_max_take": 10,
+        "ash_fair_alpha": 0.1,
+        "ash_imbalance_weight": 1.0,
+        "ash_take_edge": 1.0,
+        "combined_pnl": 246477.0,
+        "profit_above_200k": 46477.0,
+        "train_total_pnl": 164037.0,
+        "train_min_day_pnl": 81757.0,
+        "train_stdev_day_pnl": 261.5,
+        "holdout_day0_pnl": 82440.0,
+        "holdout_profit_above_daily_target": 15773.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 8130.0,
+          "INTARIAN_PEPPER_ROOT": 238347.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 80,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 76,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 71,
+            "INTARIAN_PEPPER_ROOT": 80
+          }
+        },
+        "flat_all_days": false,
+        "selection_robust_score": 172147.325
+      },
+      {
+        "pepper_exit_policy": "hold_to_close",
+        "pepper_buy_edge": 8.0,
+        "pepper_max_take": 10,
+        "ash_fair_alpha": 0.1,
+        "ash_imbalance_weight": 1.8,
+        "ash_take_edge": 0.0,
+        "combined_pnl": 248960.5,
+        "profit_above_200k": 48960.5,
+        "train_total_pnl": 165716.5,
+        "train_min_day_pnl": 82581.5,
+        "train_stdev_day_pnl": 276.75,
+        "holdout_day0_pnl": 83244.0,
+        "holdout_profit_above_daily_target": 16577.33333333333,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 10613.5,
+          "INTARIAN_PEPPER_ROOT": 238347.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 7,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 76,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 70,
+            "INTARIAN_PEPPER_ROOT": 80
+          }
+        },
+        "flat_all_days": false,
+        "selection_robust_score": 173905.4625
+      },
+      {
+        "pepper_exit_policy": "hold_to_close",
+        "pepper_buy_edge": 8.0,
+        "pepper_max_take": 10,
+        "ash_fair_alpha": 0.1,
+        "ash_imbalance_weight": 1.8,
+        "ash_take_edge": 0.5,
+        "combined_pnl": 248954.5,
+        "profit_above_200k": 48954.5,
+        "train_total_pnl": 165752.5,
+        "train_min_day_pnl": 82695.5,
+        "train_stdev_day_pnl": 180.75,
+        "holdout_day0_pnl": 83202.0,
+        "holdout_profit_above_daily_target": 16535.33333333333,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 10607.5,
+          "INTARIAN_PEPPER_ROOT": 238347.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 23,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 73,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 70,
+            "INTARIAN_PEPPER_ROOT": 80
+          }
+        },
+        "flat_all_days": false,
+        "selection_robust_score": 173976.8625
+      },
+      {
+        "pepper_exit_policy": "hold_to_close",
+        "pepper_buy_edge": 8.0,
+        "pepper_max_take": 10,
+        "ash_fair_alpha": 0.1,
+        "ash_imbalance_weight": 1.8,
+        "ash_take_edge": 1.0,
+        "combined_pnl": 246942.0,
+        "profit_above_200k": 46942.0,
+        "train_total_pnl": 164435.0,
+        "train_min_day_pnl": 82161.0,
+        "train_stdev_day_pnl": 56.5,
+        "holdout_day0_pnl": 82507.0,
+        "holdout_profit_above_daily_target": 15840.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 8595.0,
+          "INTARIAN_PEPPER_ROOT": 238347.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 70,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 76,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 70,
+            "INTARIAN_PEPPER_ROOT": 80
+          }
+        },
+        "flat_all_days": false,
+        "selection_robust_score": 172636.975
+      },
+      {
+        "pepper_exit_policy": "hold_to_close",
+        "pepper_buy_edge": 8.0,
+        "pepper_max_take": 10,
+        "ash_fair_alpha": 0.22,
+        "ash_imbalance_weight": 0.0,
+        "ash_take_edge": 0.0,
+        "combined_pnl": 248679.5,
+        "profit_above_200k": 48679.5,
+        "train_total_pnl": 165602.5,
+        "train_min_day_pnl": 82469.5,
+        "train_stdev_day_pnl": 331.75,
+        "holdout_day0_pnl": 83077.0,
+        "holdout_profit_above_daily_target": 16410.33333333333,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 10332.5,
+          "INTARIAN_PEPPER_ROOT": 238347.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": -15,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 33,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 70,
+            "INTARIAN_PEPPER_ROOT": 80
+          }
+        },
+        "flat_all_days": false,
+        "selection_robust_score": 173766.5125
+      },
+      {
+        "pepper_exit_policy": "hold_to_close",
+        "pepper_buy_edge": 8.0,
+        "pepper_max_take": 10,
+        "ash_fair_alpha": 0.22,
+        "ash_imbalance_weight": 0.0,
+        "ash_take_edge": 0.5,
+        "combined_pnl": 246650.0,
+        "profit_above_200k": 46650.0,
+        "train_total_pnl": 164205.0,
+        "train_min_day_pnl": 81875.0,
+        "train_stdev_day_pnl": 227.5,
+        "holdout_day0_pnl": 82445.0,
+        "holdout_profit_above_daily_target": 15778.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 8303.0,
+          "INTARIAN_PEPPER_ROOT": 238347.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 80,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 76,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 70,
+            "INTARIAN_PEPPER_ROOT": 80
+          }
+        },
+        "flat_all_days": false,
+        "selection_robust_score": 172335.625
+      },
+      {
+        "pepper_exit_policy": "hold_to_close",
+        "pepper_buy_edge": 8.0,
+        "pepper_max_take": 10,
+        "ash_fair_alpha": 0.22,
+        "ash_imbalance_weight": 0.0,
+        "ash_take_edge": 1.0,
+        "combined_pnl": 242822.0,
+        "profit_above_200k": 42822.0,
+        "train_total_pnl": 161439.0,
+        "train_min_day_pnl": 80467.0,
+        "train_stdev_day_pnl": 252.5,
+        "holdout_day0_pnl": 81383.0,
+        "holdout_profit_above_daily_target": 14716.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 4475.0,
+          "INTARIAN_PEPPER_ROOT": 238347.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 80,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 76,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 71,
+            "INTARIAN_PEPPER_ROOT": 80
+          }
+        },
+        "flat_all_days": false,
+        "selection_robust_score": 169422.575
+      },
+      {
+        "pepper_exit_policy": "hold_to_close",
+        "pepper_buy_edge": 8.0,
+        "pepper_max_take": 10,
+        "ash_fair_alpha": 0.22,
+        "ash_imbalance_weight": 1.0,
+        "ash_take_edge": 0.0,
+        "combined_pnl": 248863.5,
+        "profit_above_200k": 48863.5,
+        "train_total_pnl": 165693.5,
+        "train_min_day_pnl": 82583.5,
+        "train_stdev_day_pnl": 263.25,
+        "holdout_day0_pnl": 83170.0,
+        "holdout_profit_above_daily_target": 16503.33333333333,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 10516.5,
+          "INTARIAN_PEPPER_ROOT": 238347.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": -9,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 19,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 70,
+            "INTARIAN_PEPPER_ROOT": 80
+          }
+        },
+        "flat_all_days": false,
+        "selection_robust_score": 173886.0375
+      },
+      {
+        "pepper_exit_policy": "hold_to_close",
+        "pepper_buy_edge": 8.0,
+        "pepper_max_take": 10,
+        "ash_fair_alpha": 0.22,
+        "ash_imbalance_weight": 1.0,
+        "ash_take_edge": 0.5,
+        "combined_pnl": 247388.0,
+        "profit_above_200k": 47388.0,
+        "train_total_pnl": 164663.0,
+        "train_min_day_pnl": 82151.0,
+        "train_stdev_day_pnl": 180.5,
+        "holdout_day0_pnl": 82725.0,
+        "holdout_profit_above_daily_target": 16058.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 9041.0,
+          "INTARIAN_PEPPER_ROOT": 238347.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 66,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 73,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 70,
+            "INTARIAN_PEPPER_ROOT": 80
+          }
+        },
+        "flat_all_days": false,
+        "selection_robust_score": 172832.975
+      },
+      {
+        "pepper_exit_policy": "hold_to_close",
+        "pepper_buy_edge": 8.0,
+        "pepper_max_take": 10,
+        "ash_fair_alpha": 0.22,
+        "ash_imbalance_weight": 1.0,
+        "ash_take_edge": 1.0,
+        "combined_pnl": 243898.0,
+        "profit_above_200k": 43898.0,
+        "train_total_pnl": 162210.0,
+        "train_min_day_pnl": 80775.0,
+        "train_stdev_day_pnl": 330.0,
+        "holdout_day0_pnl": 81688.0,
+        "holdout_profit_above_daily_target": 15021.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 5551.0,
+          "INTARIAN_PEPPER_ROOT": 238347.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 80,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 80,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 71,
+            "INTARIAN_PEPPER_ROOT": 80
+          }
+        },
+        "flat_all_days": false,
+        "selection_robust_score": 170205.0
+      },
+      {
+        "pepper_exit_policy": "hold_to_close",
+        "pepper_buy_edge": 8.0,
+        "pepper_max_take": 10,
+        "ash_fair_alpha": 0.22,
+        "ash_imbalance_weight": 1.8,
+        "ash_take_edge": 0.0,
+        "combined_pnl": 248446.0,
+        "profit_above_200k": 48446.0,
+        "train_total_pnl": 165355.0,
+        "train_min_day_pnl": 82495.0,
+        "train_stdev_day_pnl": 182.5,
+        "holdout_day0_pnl": 83091.0,
+        "holdout_profit_above_daily_target": 16424.33333333333,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 10099.0,
+          "INTARIAN_PEPPER_ROOT": 238347.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": -16,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 66,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 70,
+            "INTARIAN_PEPPER_ROOT": 80
+          }
+        },
+        "flat_all_days": false,
+        "selection_robust_score": 173558.875
+      },
+      {
+        "pepper_exit_policy": "hold_to_close",
+        "pepper_buy_edge": 8.0,
+        "pepper_max_take": 10,
+        "ash_fair_alpha": 0.22,
+        "ash_imbalance_weight": 1.8,
+        "ash_take_edge": 0.5,
+        "combined_pnl": 247624.5,
+        "profit_above_200k": 47624.5,
+        "train_total_pnl": 164877.5,
+        "train_min_day_pnl": 82333.5,
+        "train_stdev_day_pnl": 105.25,
+        "holdout_day0_pnl": 82747.0,
+        "holdout_profit_above_daily_target": 16080.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 9277.5,
+          "INTARIAN_PEPPER_ROOT": 238347.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 17,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 80,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 70,
+            "INTARIAN_PEPPER_ROOT": 80
+          }
+        },
+        "flat_all_days": false,
+        "selection_robust_score": 173084.5375
+      },
+      {
+        "pepper_exit_policy": "hold_to_close",
+        "pepper_buy_edge": 8.0,
+        "pepper_max_take": 10,
+        "ash_fair_alpha": 0.22,
+        "ash_imbalance_weight": 1.8,
+        "ash_take_edge": 1.0,
+        "combined_pnl": 244742.0,
+        "profit_above_200k": 44742.0,
+        "train_total_pnl": 163044.0,
+        "train_min_day_pnl": 81212.0,
+        "train_stdev_day_pnl": 310.0,
+        "holdout_day0_pnl": 81698.0,
+        "holdout_profit_above_daily_target": 15031.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 6395.0,
+          "INTARIAN_PEPPER_ROOT": 238347.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 80,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 80,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 70,
+            "INTARIAN_PEPPER_ROOT": 80
+          }
+        },
+        "flat_all_days": false,
+        "selection_robust_score": 171087.7
+      },
+      {
+        "pepper_exit_policy": "hold_to_close",
+        "pepper_buy_edge": 8.0,
+        "pepper_max_take": 28,
+        "ash_fair_alpha": 0.1,
+        "ash_imbalance_weight": 0.0,
+        "ash_take_edge": 0.0,
+        "combined_pnl": 249186.0,
+        "profit_above_200k": 49186.0,
+        "train_total_pnl": 165958.0,
+        "train_min_day_pnl": 82866.0,
+        "train_stdev_day_pnl": 113.0,
+        "holdout_day0_pnl": 83228.0,
+        "holdout_profit_above_daily_target": 16561.33333333333,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 10866.0,
+          "INTARIAN_PEPPER_ROOT": 238320.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": -22,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 32,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 70,
+            "INTARIAN_PEPPER_ROOT": 80
+          }
+        },
+        "flat_all_days": false,
+        "selection_robust_score": 174216.35
+      },
+      {
+        "pepper_exit_policy": "hold_to_close",
+        "pepper_buy_edge": 8.0,
+        "pepper_max_take": 28,
+        "ash_fair_alpha": 0.1,
+        "ash_imbalance_weight": 0.0,
+        "ash_take_edge": 0.5,
+        "combined_pnl": 249036.0,
+        "profit_above_200k": 49036.0,
+        "train_total_pnl": 165801.0,
+        "train_min_day_pnl": 82820.0,
+        "train_stdev_day_pnl": 80.5,
+        "holdout_day0_pnl": 83235.0,
+        "holdout_profit_above_daily_target": 16568.33333333333,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 10716.0,
+          "INTARIAN_PEPPER_ROOT": 238320.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": -4,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 76,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 70,
+            "INTARIAN_PEPPER_ROOT": 80
+          }
+        },
+        "flat_all_days": false,
+        "selection_robust_score": 174062.875
+      },
+      {
+        "pepper_exit_policy": "hold_to_close",
+        "pepper_buy_edge": 8.0,
+        "pepper_max_take": 28,
+        "ash_fair_alpha": 0.1,
+        "ash_imbalance_weight": 0.0,
+        "ash_take_edge": 1.0,
+        "combined_pnl": 246318.0,
+        "profit_above_200k": 46318.0,
+        "train_total_pnl": 164130.0,
+        "train_min_day_pnl": 81827.0,
+        "train_stdev_day_pnl": 238.0,
+        "holdout_day0_pnl": 82188.0,
+        "holdout_profit_above_daily_target": 15521.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 7998.0,
+          "INTARIAN_PEPPER_ROOT": 238320.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 80,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 76,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 71,
+            "INTARIAN_PEPPER_ROOT": 80
+          }
+        },
+        "flat_all_days": false,
+        "selection_robust_score": 172253.2
+      },
+      {
+        "pepper_exit_policy": "hold_to_close",
+        "pepper_buy_edge": 8.0,
+        "pepper_max_take": 28,
+        "ash_fair_alpha": 0.1,
+        "ash_imbalance_weight": 1.0,
+        "ash_take_edge": 0.0,
+        "combined_pnl": 249015.0,
+        "profit_above_200k": 49015.0,
+        "train_total_pnl": 165772.0,
+        "train_min_day_pnl": 82724.0,
+        "train_stdev_day_pnl": 162.0,
+        "holdout_day0_pnl": 83243.0,
+        "holdout_profit_above_daily_target": 16576.33333333333,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 10695.0,
+          "INTARIAN_PEPPER_ROOT": 238320.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": -2,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 37,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 70,
+            "INTARIAN_PEPPER_ROOT": 80
+          }
+        },
+        "flat_all_days": false,
+        "selection_robust_score": 174003.9
+      },
+      {
+        "pepper_exit_policy": "hold_to_close",
+        "pepper_buy_edge": 8.0,
+        "pepper_max_take": 28,
+        "ash_fair_alpha": 0.1,
+        "ash_imbalance_weight": 1.0,
+        "ash_take_edge": 0.5,
+        "combined_pnl": 249276.5,
+        "profit_above_200k": 49276.5,
+        "train_total_pnl": 166006.5,
+        "train_min_day_pnl": 82801.5,
+        "train_stdev_day_pnl": 201.75,
+        "holdout_day0_pnl": 83270.0,
+        "holdout_profit_above_daily_target": 16603.33333333333,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 10956.5,
+          "INTARIAN_PEPPER_ROOT": 238320.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 7,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 62,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 70,
+            "INTARIAN_PEPPER_ROOT": 80
+          }
+        },
+        "flat_all_days": false,
+        "selection_robust_score": 174236.2125
+      },
+      {
+        "pepper_exit_policy": "hold_to_close",
+        "pepper_buy_edge": 8.0,
+        "pepper_max_take": 28,
+        "ash_fair_alpha": 0.1,
+        "ash_imbalance_weight": 1.0,
+        "ash_take_edge": 1.0,
+        "combined_pnl": 246450.0,
+        "profit_above_200k": 46450.0,
+        "train_total_pnl": 164010.0,
+        "train_min_day_pnl": 81729.0,
+        "train_stdev_day_pnl": 276.0,
+        "holdout_day0_pnl": 82440.0,
+        "holdout_profit_above_daily_target": 15773.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 8130.0,
+          "INTARIAN_PEPPER_ROOT": 238320.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 80,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 76,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 71,
+            "INTARIAN_PEPPER_ROOT": 80
+          }
+        },
+        "flat_all_days": false,
+        "selection_robust_score": 172113.9
+      },
+      {
+        "pepper_exit_policy": "hold_to_close",
+        "pepper_buy_edge": 8.0,
+        "pepper_max_take": 28,
+        "ash_fair_alpha": 0.1,
+        "ash_imbalance_weight": 1.8,
+        "ash_take_edge": 0.0,
+        "combined_pnl": 248933.5,
+        "profit_above_200k": 48933.5,
+        "train_total_pnl": 165689.5,
+        "train_min_day_pnl": 82553.5,
+        "train_stdev_day_pnl": 291.25,
+        "holdout_day0_pnl": 83244.0,
+        "holdout_profit_above_daily_target": 16577.33333333333,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 10613.5,
+          "INTARIAN_PEPPER_ROOT": 238320.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 7,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 76,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 70,
+            "INTARIAN_PEPPER_ROOT": 80
+          }
+        },
+        "flat_all_days": false,
+        "selection_robust_score": 173872.0375
+      },
+      {
+        "pepper_exit_policy": "hold_to_close",
+        "pepper_buy_edge": 8.0,
+        "pepper_max_take": 28,
+        "ash_fair_alpha": 0.1,
+        "ash_imbalance_weight": 1.8,
+        "ash_take_edge": 0.5,
+        "combined_pnl": 248927.5,
+        "profit_above_200k": 48927.5,
+        "train_total_pnl": 165725.5,
+        "train_min_day_pnl": 82667.5,
+        "train_stdev_day_pnl": 195.25,
+        "holdout_day0_pnl": 83202.0,
+        "holdout_profit_above_daily_target": 16535.33333333333,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 10607.5,
+          "INTARIAN_PEPPER_ROOT": 238320.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 23,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 73,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 70,
+            "INTARIAN_PEPPER_ROOT": 80
+          }
+        },
+        "flat_all_days": false,
+        "selection_robust_score": 173943.4375
+      },
+      {
+        "pepper_exit_policy": "hold_to_close",
+        "pepper_buy_edge": 8.0,
+        "pepper_max_take": 28,
+        "ash_fair_alpha": 0.1,
+        "ash_imbalance_weight": 1.8,
+        "ash_take_edge": 1.0,
+        "combined_pnl": 246915.0,
+        "profit_above_200k": 46915.0,
+        "train_total_pnl": 164408.0,
+        "train_min_day_pnl": 82133.0,
+        "train_stdev_day_pnl": 71.0,
+        "holdout_day0_pnl": 82507.0,
+        "holdout_profit_above_daily_target": 15840.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 8595.0,
+          "INTARIAN_PEPPER_ROOT": 238320.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 70,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 76,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 70,
+            "INTARIAN_PEPPER_ROOT": 80
+          }
+        },
+        "flat_all_days": false,
+        "selection_robust_score": 172603.55
+      },
+      {
+        "pepper_exit_policy": "hold_to_close",
+        "pepper_buy_edge": 8.0,
+        "pepper_max_take": 28,
+        "ash_fair_alpha": 0.22,
+        "ash_imbalance_weight": 0.0,
+        "ash_take_edge": 0.0,
+        "combined_pnl": 248652.5,
+        "profit_above_200k": 48652.5,
+        "train_total_pnl": 165575.5,
+        "train_min_day_pnl": 82441.5,
+        "train_stdev_day_pnl": 346.25,
+        "holdout_day0_pnl": 83077.0,
+        "holdout_profit_above_daily_target": 16410.33333333333,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 10332.5,
+          "INTARIAN_PEPPER_ROOT": 238320.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": -15,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 33,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 70,
+            "INTARIAN_PEPPER_ROOT": 80
+          }
+        },
+        "flat_all_days": false,
+        "selection_robust_score": 173733.0875
+      },
+      {
+        "pepper_exit_policy": "hold_to_close",
+        "pepper_buy_edge": 8.0,
+        "pepper_max_take": 28,
+        "ash_fair_alpha": 0.22,
+        "ash_imbalance_weight": 0.0,
+        "ash_take_edge": 0.5,
+        "combined_pnl": 246623.0,
+        "profit_above_200k": 46623.0,
+        "train_total_pnl": 164178.0,
+        "train_min_day_pnl": 81847.0,
+        "train_stdev_day_pnl": 242.0,
+        "holdout_day0_pnl": 82445.0,
+        "holdout_profit_above_daily_target": 15778.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 8303.0,
+          "INTARIAN_PEPPER_ROOT": 238320.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 80,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 76,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 70,
+            "INTARIAN_PEPPER_ROOT": 80
+          }
+        },
+        "flat_all_days": false,
+        "selection_robust_score": 172302.2
+      },
+      {
+        "pepper_exit_policy": "hold_to_close",
+        "pepper_buy_edge": 8.0,
+        "pepper_max_take": 28,
+        "ash_fair_alpha": 0.22,
+        "ash_imbalance_weight": 0.0,
+        "ash_take_edge": 1.0,
+        "combined_pnl": 242795.0,
+        "profit_above_200k": 42795.0,
+        "train_total_pnl": 161412.0,
+        "train_min_day_pnl": 80439.0,
+        "train_stdev_day_pnl": 267.0,
+        "holdout_day0_pnl": 81383.0,
+        "holdout_profit_above_daily_target": 14716.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 4475.0,
+          "INTARIAN_PEPPER_ROOT": 238320.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 80,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 76,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 71,
+            "INTARIAN_PEPPER_ROOT": 80
+          }
+        },
+        "flat_all_days": false,
+        "selection_robust_score": 169389.15
+      },
+      {
+        "pepper_exit_policy": "hold_to_close",
+        "pepper_buy_edge": 8.0,
+        "pepper_max_take": 28,
+        "ash_fair_alpha": 0.22,
+        "ash_imbalance_weight": 1.0,
+        "ash_take_edge": 0.0,
+        "combined_pnl": 248836.5,
+        "profit_above_200k": 48836.5,
+        "train_total_pnl": 165666.5,
+        "train_min_day_pnl": 82555.5,
+        "train_stdev_day_pnl": 277.75,
+        "holdout_day0_pnl": 83170.0,
+        "holdout_profit_above_daily_target": 16503.33333333333,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 10516.5,
+          "INTARIAN_PEPPER_ROOT": 238320.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": -9,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 19,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 70,
+            "INTARIAN_PEPPER_ROOT": 80
+          }
+        },
+        "flat_all_days": false,
+        "selection_robust_score": 173852.6125
+      },
+      {
+        "pepper_exit_policy": "hold_to_close",
+        "pepper_buy_edge": 8.0,
+        "pepper_max_take": 28,
+        "ash_fair_alpha": 0.22,
+        "ash_imbalance_weight": 1.0,
+        "ash_take_edge": 0.5,
+        "combined_pnl": 247361.0,
+        "profit_above_200k": 47361.0,
+        "train_total_pnl": 164636.0,
+        "train_min_day_pnl": 82123.0,
+        "train_stdev_day_pnl": 195.0,
+        "holdout_day0_pnl": 82725.0,
+        "holdout_profit_above_daily_target": 16058.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 9041.0,
+          "INTARIAN_PEPPER_ROOT": 238320.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 66,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 73,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 70,
+            "INTARIAN_PEPPER_ROOT": 80
+          }
+        },
+        "flat_all_days": false,
+        "selection_robust_score": 172799.55
+      },
+      {
+        "pepper_exit_policy": "hold_to_close",
+        "pepper_buy_edge": 8.0,
+        "pepper_max_take": 28,
+        "ash_fair_alpha": 0.22,
+        "ash_imbalance_weight": 1.0,
+        "ash_take_edge": 1.0,
+        "combined_pnl": 243871.0,
+        "profit_above_200k": 43871.0,
+        "train_total_pnl": 162183.0,
+        "train_min_day_pnl": 80747.0,
+        "train_stdev_day_pnl": 344.5,
+        "holdout_day0_pnl": 81688.0,
+        "holdout_profit_above_daily_target": 15021.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 5551.0,
+          "INTARIAN_PEPPER_ROOT": 238320.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 80,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 80,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 71,
+            "INTARIAN_PEPPER_ROOT": 80
+          }
+        },
+        "flat_all_days": false,
+        "selection_robust_score": 170171.575
+      },
+      {
+        "pepper_exit_policy": "hold_to_close",
+        "pepper_buy_edge": 8.0,
+        "pepper_max_take": 28,
+        "ash_fair_alpha": 0.22,
+        "ash_imbalance_weight": 1.8,
+        "ash_take_edge": 0.0,
+        "combined_pnl": 248419.0,
+        "profit_above_200k": 48419.0,
+        "train_total_pnl": 165328.0,
+        "train_min_day_pnl": 82467.0,
+        "train_stdev_day_pnl": 197.0,
+        "holdout_day0_pnl": 83091.0,
+        "holdout_profit_above_daily_target": 16424.33333333333,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 10099.0,
+          "INTARIAN_PEPPER_ROOT": 238320.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": -16,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 66,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 70,
+            "INTARIAN_PEPPER_ROOT": 80
+          }
+        },
+        "flat_all_days": false,
+        "selection_robust_score": 173525.45
+      },
+      {
+        "pepper_exit_policy": "hold_to_close",
+        "pepper_buy_edge": 8.0,
+        "pepper_max_take": 28,
+        "ash_fair_alpha": 0.22,
+        "ash_imbalance_weight": 1.8,
+        "ash_take_edge": 0.5,
+        "combined_pnl": 247597.5,
+        "profit_above_200k": 47597.5,
+        "train_total_pnl": 164850.5,
+        "train_min_day_pnl": 82305.5,
+        "train_stdev_day_pnl": 119.75,
+        "holdout_day0_pnl": 82747.0,
+        "holdout_profit_above_daily_target": 16080.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 9277.5,
+          "INTARIAN_PEPPER_ROOT": 238320.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 17,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 80,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 70,
+            "INTARIAN_PEPPER_ROOT": 80
+          }
+        },
+        "flat_all_days": false,
+        "selection_robust_score": 173051.1125
+      },
+      {
+        "pepper_exit_policy": "hold_to_close",
+        "pepper_buy_edge": 8.0,
+        "pepper_max_take": 28,
+        "ash_fair_alpha": 0.22,
+        "ash_imbalance_weight": 1.8,
+        "ash_take_edge": 1.0,
+        "combined_pnl": 244715.0,
+        "profit_above_200k": 44715.0,
+        "train_total_pnl": 163017.0,
+        "train_min_day_pnl": 81184.0,
+        "train_stdev_day_pnl": 324.5,
+        "holdout_day0_pnl": 81698.0,
+        "holdout_profit_above_daily_target": 15031.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 6395.0,
+          "INTARIAN_PEPPER_ROOT": 238320.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 80,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 80,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 70,
+            "INTARIAN_PEPPER_ROOT": 80
+          }
+        },
+        "flat_all_days": false,
+        "selection_robust_score": 171054.275
+      },
+      {
+        "pepper_exit_policy": "flat_late",
+        "pepper_buy_edge": 6.0,
+        "pepper_max_take": 10,
+        "ash_fair_alpha": 0.1,
+        "ash_imbalance_weight": 0.0,
+        "ash_take_edge": 0.0,
+        "combined_pnl": 246397.0,
+        "profit_above_200k": 46397.0,
+        "train_total_pnl": 164392.0,
+        "train_min_day_pnl": 82102.0,
+        "train_stdev_day_pnl": 94.0,
+        "holdout_day0_pnl": 82005.0,
+        "holdout_profit_above_daily_target": 15338.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 9841.0,
+          "INTARIAN_PEPPER_ROOT": 236556.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 172578.7
+      },
+      {
+        "pepper_exit_policy": "flat_late",
+        "pepper_buy_edge": 6.0,
+        "pepper_max_take": 10,
+        "ash_fair_alpha": 0.1,
+        "ash_imbalance_weight": 0.0,
+        "ash_take_edge": 0.5,
+        "combined_pnl": 245972.0,
+        "profit_above_200k": 45972.0,
+        "train_total_pnl": 163960.0,
+        "train_min_day_pnl": 81877.0,
+        "train_stdev_day_pnl": 103.0,
+        "holdout_day0_pnl": 82012.0,
+        "holdout_profit_above_daily_target": 15345.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 9416.0,
+          "INTARIAN_PEPPER_ROOT": 236556.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 172121.95
+      },
+      {
+        "pepper_exit_policy": "flat_late",
+        "pepper_buy_edge": 6.0,
+        "pepper_max_take": 10,
+        "ash_fair_alpha": 0.1,
+        "ash_imbalance_weight": 0.0,
+        "ash_take_edge": 1.0,
+        "combined_pnl": 242813.0,
+        "profit_above_200k": 42813.0,
+        "train_total_pnl": 161815.0,
+        "train_min_day_pnl": 80616.0,
+        "train_stdev_day_pnl": 291.5,
+        "holdout_day0_pnl": 80998.0,
+        "holdout_profit_above_daily_target": 14331.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 6257.0,
+          "INTARIAN_PEPPER_ROOT": 236556.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 169803.725
+      },
+      {
+        "pepper_exit_policy": "flat_late",
+        "pepper_buy_edge": 6.0,
+        "pepper_max_take": 10,
+        "ash_fair_alpha": 0.1,
+        "ash_imbalance_weight": 1.0,
+        "ash_take_edge": 0.0,
+        "combined_pnl": 246298.0,
+        "profit_above_200k": 46298.0,
+        "train_total_pnl": 164229.0,
+        "train_min_day_pnl": 81970.0,
+        "train_stdev_day_pnl": 144.5,
+        "holdout_day0_pnl": 82069.0,
+        "holdout_profit_above_daily_target": 15402.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 9742.0,
+          "INTARIAN_PEPPER_ROOT": 236556.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 172389.875
+      },
+      {
+        "pepper_exit_policy": "flat_late",
+        "pepper_buy_edge": 6.0,
+        "pepper_max_take": 10,
+        "ash_fair_alpha": 0.1,
+        "ash_imbalance_weight": 1.0,
+        "ash_take_edge": 0.5,
+        "combined_pnl": 246293.0,
+        "profit_above_200k": 46293.0,
+        "train_total_pnl": 164197.0,
+        "train_min_day_pnl": 81971.0,
+        "train_stdev_day_pnl": 127.5,
+        "holdout_day0_pnl": 82096.0,
+        "holdout_profit_above_daily_target": 15429.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 9737.0,
+          "INTARIAN_PEPPER_ROOT": 236556.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 172362.225
+      },
+      {
+        "pepper_exit_policy": "flat_late",
+        "pepper_buy_edge": 6.0,
+        "pepper_max_take": 10,
+        "ash_fair_alpha": 0.1,
+        "ash_imbalance_weight": 1.0,
+        "ash_take_edge": 1.0,
+        "combined_pnl": 242925.0,
+        "profit_above_200k": 42925.0,
+        "train_total_pnl": 161686.0,
+        "train_min_day_pnl": 80509.0,
+        "train_stdev_day_pnl": 334.0,
+        "holdout_day0_pnl": 81239.0,
+        "holdout_profit_above_daily_target": 14572.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 6369.0,
+          "INTARIAN_PEPPER_ROOT": 236556.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 169653.4
+      },
+      {
+        "pepper_exit_policy": "flat_late",
+        "pepper_buy_edge": 6.0,
+        "pepper_max_take": 10,
+        "ash_fair_alpha": 0.1,
+        "ash_imbalance_weight": 1.8,
+        "ash_take_edge": 0.0,
+        "combined_pnl": 245815.0,
+        "profit_above_200k": 45815.0,
+        "train_total_pnl": 163755.0,
+        "train_min_day_pnl": 81723.0,
+        "train_stdev_day_pnl": 154.5,
+        "holdout_day0_pnl": 82060.0,
+        "holdout_profit_above_daily_target": 15393.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 9259.0,
+          "INTARIAN_PEPPER_ROOT": 236556.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 171888.675
+      },
+      {
+        "pepper_exit_policy": "flat_late",
+        "pepper_buy_edge": 6.0,
+        "pepper_max_take": 10,
+        "ash_fair_alpha": 0.1,
+        "ash_imbalance_weight": 1.8,
+        "ash_take_edge": 0.5,
+        "combined_pnl": 245694.0,
+        "profit_above_200k": 45694.0,
+        "train_total_pnl": 163676.0,
+        "train_min_day_pnl": 81696.0,
+        "train_stdev_day_pnl": 142.0,
+        "holdout_day0_pnl": 82018.0,
+        "holdout_profit_above_daily_target": 15351.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 9138.0,
+          "INTARIAN_PEPPER_ROOT": 236556.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 171810.1
+      },
+      {
+        "pepper_exit_policy": "flat_late",
+        "pepper_buy_edge": 6.0,
+        "pepper_max_take": 10,
+        "ash_fair_alpha": 0.1,
+        "ash_imbalance_weight": 1.8,
+        "ash_take_edge": 1.0,
+        "combined_pnl": 243381.0,
+        "profit_above_200k": 43381.0,
+        "train_total_pnl": 162058.0,
+        "train_min_day_pnl": 80887.0,
+        "train_stdev_day_pnl": 142.0,
+        "holdout_day0_pnl": 81323.0,
+        "holdout_profit_above_daily_target": 14656.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 6825.0,
+          "INTARIAN_PEPPER_ROOT": 236556.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 170111.2
+      },
+      {
+        "pepper_exit_policy": "flat_late",
+        "pepper_buy_edge": 6.0,
+        "pepper_max_take": 10,
+        "ash_fair_alpha": 0.22,
+        "ash_imbalance_weight": 0.0,
+        "ash_take_edge": 0.0,
+        "combined_pnl": 245894.0,
+        "profit_above_200k": 45894.0,
+        "train_total_pnl": 164040.0,
+        "train_min_day_pnl": 81718.0,
+        "train_stdev_day_pnl": 302.0,
+        "holdout_day0_pnl": 81854.0,
+        "holdout_profit_above_daily_target": 15187.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 9338.0,
+          "INTARIAN_PEPPER_ROOT": 236556.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 172136.3
+      },
+      {
+        "pepper_exit_policy": "flat_late",
+        "pepper_buy_edge": 6.0,
+        "pepper_max_take": 10,
+        "ash_fair_alpha": 0.22,
+        "ash_imbalance_weight": 0.0,
+        "ash_take_edge": 0.5,
+        "combined_pnl": 243084.0,
+        "profit_above_200k": 43084.0,
+        "train_total_pnl": 161862.0,
+        "train_min_day_pnl": 80636.0,
+        "train_stdev_day_pnl": 295.0,
+        "holdout_day0_pnl": 81222.0,
+        "holdout_profit_above_daily_target": 14555.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 6528.0,
+          "INTARIAN_PEPPER_ROOT": 236556.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 169851.85
+      },
+      {
+        "pepper_exit_policy": "flat_late",
+        "pepper_buy_edge": 6.0,
+        "pepper_max_take": 10,
+        "ash_fair_alpha": 0.22,
+        "ash_imbalance_weight": 0.0,
+        "ash_take_edge": 1.0,
+        "combined_pnl": 239289.0,
+        "profit_above_200k": 39289.0,
+        "train_total_pnl": 159096.0,
+        "train_min_day_pnl": 79228.0,
+        "train_stdev_day_pnl": 320.0,
+        "holdout_day0_pnl": 80193.0,
+        "holdout_profit_above_daily_target": 13526.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 2733.0,
+          "INTARIAN_PEPPER_ROOT": 236556.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 166938.8
+      },
+      {
+        "pepper_exit_policy": "flat_late",
+        "pepper_buy_edge": 6.0,
+        "pepper_max_take": 10,
+        "ash_fair_alpha": 0.22,
+        "ash_imbalance_weight": 1.0,
+        "ash_take_edge": 0.0,
+        "combined_pnl": 246184.0,
+        "profit_above_200k": 46184.0,
+        "train_total_pnl": 164263.0,
+        "train_min_day_pnl": 81861.0,
+        "train_stdev_day_pnl": 270.5,
+        "holdout_day0_pnl": 81921.0,
+        "holdout_profit_above_daily_target": 15254.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 9628.0,
+          "INTARIAN_PEPPER_ROOT": 236556.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 172381.475
+      },
+      {
+        "pepper_exit_policy": "flat_late",
+        "pepper_buy_edge": 6.0,
+        "pepper_max_take": 10,
+        "ash_fair_alpha": 0.22,
+        "ash_imbalance_weight": 1.0,
+        "ash_take_edge": 0.5,
+        "combined_pnl": 243933.0,
+        "profit_above_200k": 43933.0,
+        "train_total_pnl": 162457.0,
+        "train_min_day_pnl": 81024.0,
+        "train_stdev_day_pnl": 204.5,
+        "holdout_day0_pnl": 81476.0,
+        "holdout_profit_above_daily_target": 14809.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 7377.0,
+          "INTARIAN_PEPPER_ROOT": 236556.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 170508.275
+      },
+      {
+        "pepper_exit_policy": "flat_late",
+        "pepper_buy_edge": 6.0,
+        "pepper_max_take": 10,
+        "ash_fair_alpha": 0.22,
+        "ash_imbalance_weight": 1.0,
+        "ash_take_edge": 1.0,
+        "combined_pnl": 240337.0,
+        "profit_above_200k": 40337.0,
+        "train_total_pnl": 159850.0,
+        "train_min_day_pnl": 79515.0,
+        "train_stdev_day_pnl": 410.0,
+        "holdout_day0_pnl": 80487.0,
+        "holdout_profit_above_daily_target": 13820.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 3781.0,
+          "INTARIAN_PEPPER_ROOT": 236556.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 167699.0
+      },
+      {
+        "pepper_exit_policy": "flat_late",
+        "pepper_buy_edge": 6.0,
+        "pepper_max_take": 10,
+        "ash_fair_alpha": 0.22,
+        "ash_imbalance_weight": 1.8,
+        "ash_take_edge": 0.0,
+        "combined_pnl": 245489.0,
+        "profit_above_200k": 45489.0,
+        "train_total_pnl": 163582.0,
+        "train_min_day_pnl": 81736.0,
+        "train_stdev_day_pnl": 55.0,
+        "holdout_day0_pnl": 81907.0,
+        "holdout_profit_above_daily_target": 15240.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 8933.0,
+          "INTARIAN_PEPPER_ROOT": 236556.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 171741.85
+      },
+      {
+        "pepper_exit_policy": "flat_late",
+        "pepper_buy_edge": 6.0,
+        "pepper_max_take": 10,
+        "ash_fair_alpha": 0.22,
+        "ash_imbalance_weight": 1.8,
+        "ash_take_edge": 0.5,
+        "combined_pnl": 244397.0,
+        "profit_above_200k": 44397.0,
+        "train_total_pnl": 162834.0,
+        "train_min_day_pnl": 81390.0,
+        "train_stdev_day_pnl": 27.0,
+        "holdout_day0_pnl": 81563.0,
+        "holdout_profit_above_daily_target": 14896.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 7841.0,
+          "INTARIAN_PEPPER_ROOT": 236556.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 170966.25
+      },
+      {
+        "pepper_exit_policy": "flat_late",
+        "pepper_buy_edge": 6.0,
+        "pepper_max_take": 10,
+        "ash_fair_alpha": 0.22,
+        "ash_imbalance_weight": 1.8,
+        "ash_take_edge": 1.0,
+        "combined_pnl": 241198.0,
+        "profit_above_200k": 41198.0,
+        "train_total_pnl": 160684.0,
+        "train_min_day_pnl": 79952.0,
+        "train_stdev_day_pnl": 390.0,
+        "holdout_day0_pnl": 80514.0,
+        "holdout_profit_above_daily_target": 13847.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 4642.0,
+          "INTARIAN_PEPPER_ROOT": 236556.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 168581.7
+      },
+      {
+        "pepper_exit_policy": "flat_late",
+        "pepper_buy_edge": 6.0,
+        "pepper_max_take": 28,
+        "ash_fair_alpha": 0.1,
+        "ash_imbalance_weight": 0.0,
+        "ash_take_edge": 0.0,
+        "combined_pnl": 246391.0,
+        "profit_above_200k": 46391.0,
+        "train_total_pnl": 164389.0,
+        "train_min_day_pnl": 82099.0,
+        "train_stdev_day_pnl": 95.5,
+        "holdout_day0_pnl": 82002.0,
+        "holdout_profit_above_daily_target": 15335.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 9841.0,
+          "INTARIAN_PEPPER_ROOT": 236550.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 172575.025
+      },
+      {
+        "pepper_exit_policy": "flat_late",
+        "pepper_buy_edge": 6.0,
+        "pepper_max_take": 28,
+        "ash_fair_alpha": 0.1,
+        "ash_imbalance_weight": 0.0,
+        "ash_take_edge": 0.5,
+        "combined_pnl": 245966.0,
+        "profit_above_200k": 45966.0,
+        "train_total_pnl": 163957.0,
+        "train_min_day_pnl": 81877.0,
+        "train_stdev_day_pnl": 101.5,
+        "holdout_day0_pnl": 82009.0,
+        "holdout_profit_above_daily_target": 15342.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 9416.0,
+          "INTARIAN_PEPPER_ROOT": 236550.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 172119.325
+      },
+      {
+        "pepper_exit_policy": "flat_late",
+        "pepper_buy_edge": 6.0,
+        "pepper_max_take": 28,
+        "ash_fair_alpha": 0.1,
+        "ash_imbalance_weight": 0.0,
+        "ash_take_edge": 1.0,
+        "combined_pnl": 242807.0,
+        "profit_above_200k": 42807.0,
+        "train_total_pnl": 161812.0,
+        "train_min_day_pnl": 80613.0,
+        "train_stdev_day_pnl": 293.0,
+        "holdout_day0_pnl": 80995.0,
+        "holdout_profit_above_daily_target": 14328.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 6257.0,
+          "INTARIAN_PEPPER_ROOT": 236550.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 169800.05
+      },
+      {
+        "pepper_exit_policy": "flat_late",
+        "pepper_buy_edge": 6.0,
+        "pepper_max_take": 28,
+        "ash_fair_alpha": 0.1,
+        "ash_imbalance_weight": 1.0,
+        "ash_take_edge": 0.0,
+        "combined_pnl": 246292.0,
+        "profit_above_200k": 46292.0,
+        "train_total_pnl": 164226.0,
+        "train_min_day_pnl": 81967.0,
+        "train_stdev_day_pnl": 146.0,
+        "holdout_day0_pnl": 82066.0,
+        "holdout_profit_above_daily_target": 15399.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 9742.0,
+          "INTARIAN_PEPPER_ROOT": 236550.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 172386.2
+      },
+      {
+        "pepper_exit_policy": "flat_late",
+        "pepper_buy_edge": 6.0,
+        "pepper_max_take": 28,
+        "ash_fair_alpha": 0.1,
+        "ash_imbalance_weight": 1.0,
+        "ash_take_edge": 0.5,
+        "combined_pnl": 246287.0,
+        "profit_above_200k": 46287.0,
+        "train_total_pnl": 164194.0,
+        "train_min_day_pnl": 81968.0,
+        "train_stdev_day_pnl": 129.0,
+        "holdout_day0_pnl": 82093.0,
+        "holdout_profit_above_daily_target": 15426.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 9737.0,
+          "INTARIAN_PEPPER_ROOT": 236550.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 172358.55
+      },
+      {
+        "pepper_exit_policy": "flat_late",
+        "pepper_buy_edge": 6.0,
+        "pepper_max_take": 28,
+        "ash_fair_alpha": 0.1,
+        "ash_imbalance_weight": 1.0,
+        "ash_take_edge": 1.0,
+        "combined_pnl": 242919.0,
+        "profit_above_200k": 42919.0,
+        "train_total_pnl": 161683.0,
+        "train_min_day_pnl": 80506.0,
+        "train_stdev_day_pnl": 335.5,
+        "holdout_day0_pnl": 81236.0,
+        "holdout_profit_above_daily_target": 14569.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 6369.0,
+          "INTARIAN_PEPPER_ROOT": 236550.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 169649.725
+      },
+      {
+        "pepper_exit_policy": "flat_late",
+        "pepper_buy_edge": 6.0,
+        "pepper_max_take": 28,
+        "ash_fair_alpha": 0.1,
+        "ash_imbalance_weight": 1.8,
+        "ash_take_edge": 0.0,
+        "combined_pnl": 245809.0,
+        "profit_above_200k": 45809.0,
+        "train_total_pnl": 163752.0,
+        "train_min_day_pnl": 81720.0,
+        "train_stdev_day_pnl": 156.0,
+        "holdout_day0_pnl": 82057.0,
+        "holdout_profit_above_daily_target": 15390.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 9259.0,
+          "INTARIAN_PEPPER_ROOT": 236550.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 171885.0
+      },
+      {
+        "pepper_exit_policy": "flat_late",
+        "pepper_buy_edge": 6.0,
+        "pepper_max_take": 28,
+        "ash_fair_alpha": 0.1,
+        "ash_imbalance_weight": 1.8,
+        "ash_take_edge": 0.5,
+        "combined_pnl": 245688.0,
+        "profit_above_200k": 45688.0,
+        "train_total_pnl": 163673.0,
+        "train_min_day_pnl": 81693.0,
+        "train_stdev_day_pnl": 143.5,
+        "holdout_day0_pnl": 82015.0,
+        "holdout_profit_above_daily_target": 15348.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 9138.0,
+          "INTARIAN_PEPPER_ROOT": 236550.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 171806.425
+      },
+      {
+        "pepper_exit_policy": "flat_late",
+        "pepper_buy_edge": 6.0,
+        "pepper_max_take": 28,
+        "ash_fair_alpha": 0.1,
+        "ash_imbalance_weight": 1.8,
+        "ash_take_edge": 1.0,
+        "combined_pnl": 243375.0,
+        "profit_above_200k": 43375.0,
+        "train_total_pnl": 162055.0,
+        "train_min_day_pnl": 80884.0,
+        "train_stdev_day_pnl": 143.5,
+        "holdout_day0_pnl": 81320.0,
+        "holdout_profit_above_daily_target": 14653.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 6825.0,
+          "INTARIAN_PEPPER_ROOT": 236550.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 170107.525
+      },
+      {
+        "pepper_exit_policy": "flat_late",
+        "pepper_buy_edge": 6.0,
+        "pepper_max_take": 28,
+        "ash_fair_alpha": 0.22,
+        "ash_imbalance_weight": 0.0,
+        "ash_take_edge": 0.0,
+        "combined_pnl": 245888.0,
+        "profit_above_200k": 45888.0,
+        "train_total_pnl": 164037.0,
+        "train_min_day_pnl": 81715.0,
+        "train_stdev_day_pnl": 303.5,
+        "holdout_day0_pnl": 81851.0,
+        "holdout_profit_above_daily_target": 15184.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 9338.0,
+          "INTARIAN_PEPPER_ROOT": 236550.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 172132.625
+      },
+      {
+        "pepper_exit_policy": "flat_late",
+        "pepper_buy_edge": 6.0,
+        "pepper_max_take": 28,
+        "ash_fair_alpha": 0.22,
+        "ash_imbalance_weight": 0.0,
+        "ash_take_edge": 0.5,
+        "combined_pnl": 243078.0,
+        "profit_above_200k": 43078.0,
+        "train_total_pnl": 161859.0,
+        "train_min_day_pnl": 80633.0,
+        "train_stdev_day_pnl": 296.5,
+        "holdout_day0_pnl": 81219.0,
+        "holdout_profit_above_daily_target": 14552.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 6528.0,
+          "INTARIAN_PEPPER_ROOT": 236550.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 169848.175
+      },
+      {
+        "pepper_exit_policy": "flat_late",
+        "pepper_buy_edge": 6.0,
+        "pepper_max_take": 28,
+        "ash_fair_alpha": 0.22,
+        "ash_imbalance_weight": 0.0,
+        "ash_take_edge": 1.0,
+        "combined_pnl": 239283.0,
+        "profit_above_200k": 39283.0,
+        "train_total_pnl": 159093.0,
+        "train_min_day_pnl": 79225.0,
+        "train_stdev_day_pnl": 321.5,
+        "holdout_day0_pnl": 80190.0,
+        "holdout_profit_above_daily_target": 13523.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 2733.0,
+          "INTARIAN_PEPPER_ROOT": 236550.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 166935.125
+      },
+      {
+        "pepper_exit_policy": "flat_late",
+        "pepper_buy_edge": 6.0,
+        "pepper_max_take": 28,
+        "ash_fair_alpha": 0.22,
+        "ash_imbalance_weight": 1.0,
+        "ash_take_edge": 0.0,
+        "combined_pnl": 246178.0,
+        "profit_above_200k": 46178.0,
+        "train_total_pnl": 164260.0,
+        "train_min_day_pnl": 81858.0,
+        "train_stdev_day_pnl": 272.0,
+        "holdout_day0_pnl": 81918.0,
+        "holdout_profit_above_daily_target": 15251.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 9628.0,
+          "INTARIAN_PEPPER_ROOT": 236550.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 172377.8
+      },
+      {
+        "pepper_exit_policy": "flat_late",
+        "pepper_buy_edge": 6.0,
+        "pepper_max_take": 28,
+        "ash_fair_alpha": 0.22,
+        "ash_imbalance_weight": 1.0,
+        "ash_take_edge": 0.5,
+        "combined_pnl": 243927.0,
+        "profit_above_200k": 43927.0,
+        "train_total_pnl": 162454.0,
+        "train_min_day_pnl": 81021.0,
+        "train_stdev_day_pnl": 206.0,
+        "holdout_day0_pnl": 81473.0,
+        "holdout_profit_above_daily_target": 14806.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 7377.0,
+          "INTARIAN_PEPPER_ROOT": 236550.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 170504.6
+      },
+      {
+        "pepper_exit_policy": "flat_late",
+        "pepper_buy_edge": 6.0,
+        "pepper_max_take": 28,
+        "ash_fair_alpha": 0.22,
+        "ash_imbalance_weight": 1.0,
+        "ash_take_edge": 1.0,
+        "combined_pnl": 240331.0,
+        "profit_above_200k": 40331.0,
+        "train_total_pnl": 159847.0,
+        "train_min_day_pnl": 79512.0,
+        "train_stdev_day_pnl": 411.5,
+        "holdout_day0_pnl": 80484.0,
+        "holdout_profit_above_daily_target": 13817.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 3781.0,
+          "INTARIAN_PEPPER_ROOT": 236550.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 167695.325
+      },
+      {
+        "pepper_exit_policy": "flat_late",
+        "pepper_buy_edge": 6.0,
+        "pepper_max_take": 28,
+        "ash_fair_alpha": 0.22,
+        "ash_imbalance_weight": 1.8,
+        "ash_take_edge": 0.0,
+        "combined_pnl": 245483.0,
+        "profit_above_200k": 45483.0,
+        "train_total_pnl": 163579.0,
+        "train_min_day_pnl": 81733.0,
+        "train_stdev_day_pnl": 56.5,
+        "holdout_day0_pnl": 81904.0,
+        "holdout_profit_above_daily_target": 15237.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 8933.0,
+          "INTARIAN_PEPPER_ROOT": 236550.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 171738.175
+      },
+      {
+        "pepper_exit_policy": "flat_late",
+        "pepper_buy_edge": 6.0,
+        "pepper_max_take": 28,
+        "ash_fair_alpha": 0.22,
+        "ash_imbalance_weight": 1.8,
+        "ash_take_edge": 0.5,
+        "combined_pnl": 244391.0,
+        "profit_above_200k": 44391.0,
+        "train_total_pnl": 162831.0,
+        "train_min_day_pnl": 81387.0,
+        "train_stdev_day_pnl": 28.5,
+        "holdout_day0_pnl": 81560.0,
+        "holdout_profit_above_daily_target": 14893.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 7841.0,
+          "INTARIAN_PEPPER_ROOT": 236550.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 170962.575
+      },
+      {
+        "pepper_exit_policy": "flat_late",
+        "pepper_buy_edge": 6.0,
+        "pepper_max_take": 28,
+        "ash_fair_alpha": 0.22,
+        "ash_imbalance_weight": 1.8,
+        "ash_take_edge": 1.0,
+        "combined_pnl": 241192.0,
+        "profit_above_200k": 41192.0,
+        "train_total_pnl": 160681.0,
+        "train_min_day_pnl": 79949.0,
+        "train_stdev_day_pnl": 391.5,
+        "holdout_day0_pnl": 80511.0,
+        "holdout_profit_above_daily_target": 13844.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 4642.0,
+          "INTARIAN_PEPPER_ROOT": 236550.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 168578.025
+      },
+      {
+        "pepper_exit_policy": "flat_late",
+        "pepper_buy_edge": 8.0,
+        "pepper_max_take": 10,
+        "ash_fair_alpha": 0.1,
+        "ash_imbalance_weight": 0.0,
+        "ash_take_edge": 0.0,
+        "combined_pnl": 246316.0,
+        "profit_above_200k": 46316.0,
+        "train_total_pnl": 164314.0,
+        "train_min_day_pnl": 82024.0,
+        "train_stdev_day_pnl": 133.0,
+        "holdout_day0_pnl": 82002.0,
+        "holdout_profit_above_daily_target": 15335.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 9841.0,
+          "INTARIAN_PEPPER_ROOT": 236475.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 172483.15
+      },
+      {
+        "pepper_exit_policy": "flat_late",
+        "pepper_buy_edge": 8.0,
+        "pepper_max_take": 10,
+        "ash_fair_alpha": 0.1,
+        "ash_imbalance_weight": 0.0,
+        "ash_take_edge": 0.5,
+        "combined_pnl": 245891.0,
+        "profit_above_200k": 45891.0,
+        "train_total_pnl": 163882.0,
+        "train_min_day_pnl": 81877.0,
+        "train_stdev_day_pnl": 64.0,
+        "holdout_day0_pnl": 82009.0,
+        "holdout_profit_above_daily_target": 15342.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 9416.0,
+          "INTARIAN_PEPPER_ROOT": 236475.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 172053.7
+      },
+      {
+        "pepper_exit_policy": "flat_late",
+        "pepper_buy_edge": 8.0,
+        "pepper_max_take": 10,
+        "ash_fair_alpha": 0.1,
+        "ash_imbalance_weight": 0.0,
+        "ash_take_edge": 1.0,
+        "combined_pnl": 242732.0,
+        "profit_above_200k": 42732.0,
+        "train_total_pnl": 161737.0,
+        "train_min_day_pnl": 80538.0,
+        "train_stdev_day_pnl": 330.5,
+        "holdout_day0_pnl": 80995.0,
+        "holdout_profit_above_daily_target": 14328.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 6257.0,
+          "INTARIAN_PEPPER_ROOT": 236475.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 169708.175
+      },
+      {
+        "pepper_exit_policy": "flat_late",
+        "pepper_buy_edge": 8.0,
+        "pepper_max_take": 10,
+        "ash_fair_alpha": 0.1,
+        "ash_imbalance_weight": 1.0,
+        "ash_take_edge": 0.0,
+        "combined_pnl": 246217.0,
+        "profit_above_200k": 46217.0,
+        "train_total_pnl": 164151.0,
+        "train_min_day_pnl": 81892.0,
+        "train_stdev_day_pnl": 183.5,
+        "holdout_day0_pnl": 82066.0,
+        "holdout_profit_above_daily_target": 15399.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 9742.0,
+          "INTARIAN_PEPPER_ROOT": 236475.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 172294.325
+      },
+      {
+        "pepper_exit_policy": "flat_late",
+        "pepper_buy_edge": 8.0,
+        "pepper_max_take": 10,
+        "ash_fair_alpha": 0.1,
+        "ash_imbalance_weight": 1.0,
+        "ash_take_edge": 0.5,
+        "combined_pnl": 246212.0,
+        "profit_above_200k": 46212.0,
+        "train_total_pnl": 164119.0,
+        "train_min_day_pnl": 81893.0,
+        "train_stdev_day_pnl": 166.5,
+        "holdout_day0_pnl": 82093.0,
+        "holdout_profit_above_daily_target": 15426.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 9737.0,
+          "INTARIAN_PEPPER_ROOT": 236475.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 172266.675
+      },
+      {
+        "pepper_exit_policy": "flat_late",
+        "pepper_buy_edge": 8.0,
+        "pepper_max_take": 10,
+        "ash_fair_alpha": 0.1,
+        "ash_imbalance_weight": 1.0,
+        "ash_take_edge": 1.0,
+        "combined_pnl": 242844.0,
+        "profit_above_200k": 42844.0,
+        "train_total_pnl": 161608.0,
+        "train_min_day_pnl": 80431.0,
+        "train_stdev_day_pnl": 373.0,
+        "holdout_day0_pnl": 81236.0,
+        "holdout_profit_above_daily_target": 14569.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 6369.0,
+          "INTARIAN_PEPPER_ROOT": 236475.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 169557.85
+      },
+      {
+        "pepper_exit_policy": "flat_late",
+        "pepper_buy_edge": 8.0,
+        "pepper_max_take": 10,
+        "ash_fair_alpha": 0.1,
+        "ash_imbalance_weight": 1.8,
+        "ash_take_edge": 0.0,
+        "combined_pnl": 245734.0,
+        "profit_above_200k": 45734.0,
+        "train_total_pnl": 163677.0,
+        "train_min_day_pnl": 81645.0,
+        "train_stdev_day_pnl": 193.5,
+        "holdout_day0_pnl": 82057.0,
+        "holdout_profit_above_daily_target": 15390.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 9259.0,
+          "INTARIAN_PEPPER_ROOT": 236475.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 171793.125
+      },
+      {
+        "pepper_exit_policy": "flat_late",
+        "pepper_buy_edge": 8.0,
+        "pepper_max_take": 10,
+        "ash_fair_alpha": 0.1,
+        "ash_imbalance_weight": 1.8,
+        "ash_take_edge": 0.5,
+        "combined_pnl": 245613.0,
+        "profit_above_200k": 45613.0,
+        "train_total_pnl": 163598.0,
+        "train_min_day_pnl": 81618.0,
+        "train_stdev_day_pnl": 181.0,
+        "holdout_day0_pnl": 82015.0,
+        "holdout_profit_above_daily_target": 15348.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 9138.0,
+          "INTARIAN_PEPPER_ROOT": 236475.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 171714.55
+      },
+      {
+        "pepper_exit_policy": "flat_late",
+        "pepper_buy_edge": 8.0,
+        "pepper_max_take": 10,
+        "ash_fair_alpha": 0.1,
+        "ash_imbalance_weight": 1.8,
+        "ash_take_edge": 1.0,
+        "combined_pnl": 243300.0,
+        "profit_above_200k": 43300.0,
+        "train_total_pnl": 161980.0,
+        "train_min_day_pnl": 80809.0,
+        "train_stdev_day_pnl": 181.0,
+        "holdout_day0_pnl": 81320.0,
+        "holdout_profit_above_daily_target": 14653.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 6825.0,
+          "INTARIAN_PEPPER_ROOT": 236475.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 170015.65
+      },
+      {
+        "pepper_exit_policy": "flat_late",
+        "pepper_buy_edge": 8.0,
+        "pepper_max_take": 10,
+        "ash_fair_alpha": 0.22,
+        "ash_imbalance_weight": 0.0,
+        "ash_take_edge": 0.0,
+        "combined_pnl": 245813.0,
+        "profit_above_200k": 45813.0,
+        "train_total_pnl": 163962.0,
+        "train_min_day_pnl": 81640.0,
+        "train_stdev_day_pnl": 341.0,
+        "holdout_day0_pnl": 81851.0,
+        "holdout_profit_above_daily_target": 15184.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 9338.0,
+          "INTARIAN_PEPPER_ROOT": 236475.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 172040.75
+      },
+      {
+        "pepper_exit_policy": "flat_late",
+        "pepper_buy_edge": 8.0,
+        "pepper_max_take": 10,
+        "ash_fair_alpha": 0.22,
+        "ash_imbalance_weight": 0.0,
+        "ash_take_edge": 0.5,
+        "combined_pnl": 243003.0,
+        "profit_above_200k": 43003.0,
+        "train_total_pnl": 161784.0,
+        "train_min_day_pnl": 80558.0,
+        "train_stdev_day_pnl": 334.0,
+        "holdout_day0_pnl": 81219.0,
+        "holdout_profit_above_daily_target": 14552.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 6528.0,
+          "INTARIAN_PEPPER_ROOT": 236475.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 169756.3
+      },
+      {
+        "pepper_exit_policy": "flat_late",
+        "pepper_buy_edge": 8.0,
+        "pepper_max_take": 10,
+        "ash_fair_alpha": 0.22,
+        "ash_imbalance_weight": 0.0,
+        "ash_take_edge": 1.0,
+        "combined_pnl": 239208.0,
+        "profit_above_200k": 39208.0,
+        "train_total_pnl": 159018.0,
+        "train_min_day_pnl": 79150.0,
+        "train_stdev_day_pnl": 359.0,
+        "holdout_day0_pnl": 80190.0,
+        "holdout_profit_above_daily_target": 13523.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 2733.0,
+          "INTARIAN_PEPPER_ROOT": 236475.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 166843.25
+      },
+      {
+        "pepper_exit_policy": "flat_late",
+        "pepper_buy_edge": 8.0,
+        "pepper_max_take": 10,
+        "ash_fair_alpha": 0.22,
+        "ash_imbalance_weight": 1.0,
+        "ash_take_edge": 0.0,
+        "combined_pnl": 246103.0,
+        "profit_above_200k": 46103.0,
+        "train_total_pnl": 164185.0,
+        "train_min_day_pnl": 81783.0,
+        "train_stdev_day_pnl": 309.5,
+        "holdout_day0_pnl": 81918.0,
+        "holdout_profit_above_daily_target": 15251.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 9628.0,
+          "INTARIAN_PEPPER_ROOT": 236475.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 172285.925
+      },
+      {
+        "pepper_exit_policy": "flat_late",
+        "pepper_buy_edge": 8.0,
+        "pepper_max_take": 10,
+        "ash_fair_alpha": 0.22,
+        "ash_imbalance_weight": 1.0,
+        "ash_take_edge": 0.5,
+        "combined_pnl": 243852.0,
+        "profit_above_200k": 43852.0,
+        "train_total_pnl": 162379.0,
+        "train_min_day_pnl": 80946.0,
+        "train_stdev_day_pnl": 243.5,
+        "holdout_day0_pnl": 81473.0,
+        "holdout_profit_above_daily_target": 14806.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 7377.0,
+          "INTARIAN_PEPPER_ROOT": 236475.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 170412.725
+      },
+      {
+        "pepper_exit_policy": "flat_late",
+        "pepper_buy_edge": 8.0,
+        "pepper_max_take": 10,
+        "ash_fair_alpha": 0.22,
+        "ash_imbalance_weight": 1.0,
+        "ash_take_edge": 1.0,
+        "combined_pnl": 240256.0,
+        "profit_above_200k": 40256.0,
+        "train_total_pnl": 159772.0,
+        "train_min_day_pnl": 79437.0,
+        "train_stdev_day_pnl": 449.0,
+        "holdout_day0_pnl": 80484.0,
+        "holdout_profit_above_daily_target": 13817.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 3781.0,
+          "INTARIAN_PEPPER_ROOT": 236475.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 167603.45
+      },
+      {
+        "pepper_exit_policy": "flat_late",
+        "pepper_buy_edge": 8.0,
+        "pepper_max_take": 10,
+        "ash_fair_alpha": 0.22,
+        "ash_imbalance_weight": 1.8,
+        "ash_take_edge": 0.0,
+        "combined_pnl": 245408.0,
+        "profit_above_200k": 45408.0,
+        "train_total_pnl": 163504.0,
+        "train_min_day_pnl": 81658.0,
+        "train_stdev_day_pnl": 94.0,
+        "holdout_day0_pnl": 81904.0,
+        "holdout_profit_above_daily_target": 15237.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 8933.0,
+          "INTARIAN_PEPPER_ROOT": 236475.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 171646.3
+      },
+      {
+        "pepper_exit_policy": "flat_late",
+        "pepper_buy_edge": 8.0,
+        "pepper_max_take": 10,
+        "ash_fair_alpha": 0.22,
+        "ash_imbalance_weight": 1.8,
+        "ash_take_edge": 0.5,
+        "combined_pnl": 244316.0,
+        "profit_above_200k": 44316.0,
+        "train_total_pnl": 162756.0,
+        "train_min_day_pnl": 81312.0,
+        "train_stdev_day_pnl": 66.0,
+        "holdout_day0_pnl": 81560.0,
+        "holdout_profit_above_daily_target": 14893.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 7841.0,
+          "INTARIAN_PEPPER_ROOT": 236475.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 170870.7
+      },
+      {
+        "pepper_exit_policy": "flat_late",
+        "pepper_buy_edge": 8.0,
+        "pepper_max_take": 10,
+        "ash_fair_alpha": 0.22,
+        "ash_imbalance_weight": 1.8,
+        "ash_take_edge": 1.0,
+        "combined_pnl": 241117.0,
+        "profit_above_200k": 41117.0,
+        "train_total_pnl": 160606.0,
+        "train_min_day_pnl": 79874.0,
+        "train_stdev_day_pnl": 429.0,
+        "holdout_day0_pnl": 80511.0,
+        "holdout_profit_above_daily_target": 13844.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 4642.0,
+          "INTARIAN_PEPPER_ROOT": 236475.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 168486.15
+      },
+      {
+        "pepper_exit_policy": "flat_late",
+        "pepper_buy_edge": 8.0,
+        "pepper_max_take": 28,
+        "ash_fair_alpha": 0.1,
+        "ash_imbalance_weight": 0.0,
+        "ash_take_edge": 0.0,
+        "combined_pnl": 246285.0,
+        "profit_above_200k": 46285.0,
+        "train_total_pnl": 164283.0,
+        "train_min_day_pnl": 81993.0,
+        "train_stdev_day_pnl": 148.5,
+        "holdout_day0_pnl": 82002.0,
+        "holdout_profit_above_daily_target": 15335.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 9841.0,
+          "INTARIAN_PEPPER_ROOT": 236444.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 172445.175
+      },
+      {
+        "pepper_exit_policy": "flat_late",
+        "pepper_buy_edge": 8.0,
+        "pepper_max_take": 28,
+        "ash_fair_alpha": 0.1,
+        "ash_imbalance_weight": 0.0,
+        "ash_take_edge": 0.5,
+        "combined_pnl": 245860.0,
+        "profit_above_200k": 45860.0,
+        "train_total_pnl": 163851.0,
+        "train_min_day_pnl": 81877.0,
+        "train_stdev_day_pnl": 48.5,
+        "holdout_day0_pnl": 82009.0,
+        "holdout_profit_above_daily_target": 15342.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 9416.0,
+          "INTARIAN_PEPPER_ROOT": 236444.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 172026.575
+      },
+      {
+        "pepper_exit_policy": "flat_late",
+        "pepper_buy_edge": 8.0,
+        "pepper_max_take": 28,
+        "ash_fair_alpha": 0.1,
+        "ash_imbalance_weight": 0.0,
+        "ash_take_edge": 1.0,
+        "combined_pnl": 242701.0,
+        "profit_above_200k": 42701.0,
+        "train_total_pnl": 161706.0,
+        "train_min_day_pnl": 80507.0,
+        "train_stdev_day_pnl": 346.0,
+        "holdout_day0_pnl": 80995.0,
+        "holdout_profit_above_daily_target": 14328.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 6257.0,
+          "INTARIAN_PEPPER_ROOT": 236444.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 169670.2
+      },
+      {
+        "pepper_exit_policy": "flat_late",
+        "pepper_buy_edge": 8.0,
+        "pepper_max_take": 28,
+        "ash_fair_alpha": 0.1,
+        "ash_imbalance_weight": 1.0,
+        "ash_take_edge": 0.0,
+        "combined_pnl": 246186.0,
+        "profit_above_200k": 46186.0,
+        "train_total_pnl": 164120.0,
+        "train_min_day_pnl": 81861.0,
+        "train_stdev_day_pnl": 199.0,
+        "holdout_day0_pnl": 82066.0,
+        "holdout_profit_above_daily_target": 15399.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 9742.0,
+          "INTARIAN_PEPPER_ROOT": 236444.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 172256.35
+      },
+      {
+        "pepper_exit_policy": "flat_late",
+        "pepper_buy_edge": 8.0,
+        "pepper_max_take": 28,
+        "ash_fair_alpha": 0.1,
+        "ash_imbalance_weight": 1.0,
+        "ash_take_edge": 0.5,
+        "combined_pnl": 246181.0,
+        "profit_above_200k": 46181.0,
+        "train_total_pnl": 164088.0,
+        "train_min_day_pnl": 81862.0,
+        "train_stdev_day_pnl": 182.0,
+        "holdout_day0_pnl": 82093.0,
+        "holdout_profit_above_daily_target": 15426.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 9737.0,
+          "INTARIAN_PEPPER_ROOT": 236444.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 172228.7
+      },
+      {
+        "pepper_exit_policy": "flat_late",
+        "pepper_buy_edge": 8.0,
+        "pepper_max_take": 28,
+        "ash_fair_alpha": 0.1,
+        "ash_imbalance_weight": 1.0,
+        "ash_take_edge": 1.0,
+        "combined_pnl": 242813.0,
+        "profit_above_200k": 42813.0,
+        "train_total_pnl": 161577.0,
+        "train_min_day_pnl": 80400.0,
+        "train_stdev_day_pnl": 388.5,
+        "holdout_day0_pnl": 81236.0,
+        "holdout_profit_above_daily_target": 14569.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 6369.0,
+          "INTARIAN_PEPPER_ROOT": 236444.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 169519.875
+      },
+      {
+        "pepper_exit_policy": "flat_late",
+        "pepper_buy_edge": 8.0,
+        "pepper_max_take": 28,
+        "ash_fair_alpha": 0.1,
+        "ash_imbalance_weight": 1.8,
+        "ash_take_edge": 0.0,
+        "combined_pnl": 245703.0,
+        "profit_above_200k": 45703.0,
+        "train_total_pnl": 163646.0,
+        "train_min_day_pnl": 81614.0,
+        "train_stdev_day_pnl": 209.0,
+        "holdout_day0_pnl": 82057.0,
+        "holdout_profit_above_daily_target": 15390.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 9259.0,
+          "INTARIAN_PEPPER_ROOT": 236444.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 171755.15
+      },
+      {
+        "pepper_exit_policy": "flat_late",
+        "pepper_buy_edge": 8.0,
+        "pepper_max_take": 28,
+        "ash_fair_alpha": 0.1,
+        "ash_imbalance_weight": 1.8,
+        "ash_take_edge": 0.5,
+        "combined_pnl": 245582.0,
+        "profit_above_200k": 45582.0,
+        "train_total_pnl": 163567.0,
+        "train_min_day_pnl": 81587.0,
+        "train_stdev_day_pnl": 196.5,
+        "holdout_day0_pnl": 82015.0,
+        "holdout_profit_above_daily_target": 15348.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 9138.0,
+          "INTARIAN_PEPPER_ROOT": 236444.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 171676.575
+      },
+      {
+        "pepper_exit_policy": "flat_late",
+        "pepper_buy_edge": 8.0,
+        "pepper_max_take": 28,
+        "ash_fair_alpha": 0.1,
+        "ash_imbalance_weight": 1.8,
+        "ash_take_edge": 1.0,
+        "combined_pnl": 243269.0,
+        "profit_above_200k": 43269.0,
+        "train_total_pnl": 161949.0,
+        "train_min_day_pnl": 80778.0,
+        "train_stdev_day_pnl": 196.5,
+        "holdout_day0_pnl": 81320.0,
+        "holdout_profit_above_daily_target": 14653.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 6825.0,
+          "INTARIAN_PEPPER_ROOT": 236444.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 169977.675
+      },
+      {
+        "pepper_exit_policy": "flat_late",
+        "pepper_buy_edge": 8.0,
+        "pepper_max_take": 28,
+        "ash_fair_alpha": 0.22,
+        "ash_imbalance_weight": 0.0,
+        "ash_take_edge": 0.0,
+        "combined_pnl": 245782.0,
+        "profit_above_200k": 45782.0,
+        "train_total_pnl": 163931.0,
+        "train_min_day_pnl": 81609.0,
+        "train_stdev_day_pnl": 356.5,
+        "holdout_day0_pnl": 81851.0,
+        "holdout_profit_above_daily_target": 15184.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 9338.0,
+          "INTARIAN_PEPPER_ROOT": 236444.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 172002.775
+      },
+      {
+        "pepper_exit_policy": "flat_late",
+        "pepper_buy_edge": 8.0,
+        "pepper_max_take": 28,
+        "ash_fair_alpha": 0.22,
+        "ash_imbalance_weight": 0.0,
+        "ash_take_edge": 0.5,
+        "combined_pnl": 242972.0,
+        "profit_above_200k": 42972.0,
+        "train_total_pnl": 161753.0,
+        "train_min_day_pnl": 80527.0,
+        "train_stdev_day_pnl": 349.5,
+        "holdout_day0_pnl": 81219.0,
+        "holdout_profit_above_daily_target": 14552.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 6528.0,
+          "INTARIAN_PEPPER_ROOT": 236444.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 169718.325
+      },
+      {
+        "pepper_exit_policy": "flat_late",
+        "pepper_buy_edge": 8.0,
+        "pepper_max_take": 28,
+        "ash_fair_alpha": 0.22,
+        "ash_imbalance_weight": 0.0,
+        "ash_take_edge": 1.0,
+        "combined_pnl": 239177.0,
+        "profit_above_200k": 39177.0,
+        "train_total_pnl": 158987.0,
+        "train_min_day_pnl": 79119.0,
+        "train_stdev_day_pnl": 374.5,
+        "holdout_day0_pnl": 80190.0,
+        "holdout_profit_above_daily_target": 13523.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 2733.0,
+          "INTARIAN_PEPPER_ROOT": 236444.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 166805.275
+      },
+      {
+        "pepper_exit_policy": "flat_late",
+        "pepper_buy_edge": 8.0,
+        "pepper_max_take": 28,
+        "ash_fair_alpha": 0.22,
+        "ash_imbalance_weight": 1.0,
+        "ash_take_edge": 0.0,
+        "combined_pnl": 246072.0,
+        "profit_above_200k": 46072.0,
+        "train_total_pnl": 164154.0,
+        "train_min_day_pnl": 81752.0,
+        "train_stdev_day_pnl": 325.0,
+        "holdout_day0_pnl": 81918.0,
+        "holdout_profit_above_daily_target": 15251.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 9628.0,
+          "INTARIAN_PEPPER_ROOT": 236444.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 172247.95
+      },
+      {
+        "pepper_exit_policy": "flat_late",
+        "pepper_buy_edge": 8.0,
+        "pepper_max_take": 28,
+        "ash_fair_alpha": 0.22,
+        "ash_imbalance_weight": 1.0,
+        "ash_take_edge": 0.5,
+        "combined_pnl": 243821.0,
+        "profit_above_200k": 43821.0,
+        "train_total_pnl": 162348.0,
+        "train_min_day_pnl": 80915.0,
+        "train_stdev_day_pnl": 259.0,
+        "holdout_day0_pnl": 81473.0,
+        "holdout_profit_above_daily_target": 14806.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 7377.0,
+          "INTARIAN_PEPPER_ROOT": 236444.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 170374.75
+      },
+      {
+        "pepper_exit_policy": "flat_late",
+        "pepper_buy_edge": 8.0,
+        "pepper_max_take": 28,
+        "ash_fair_alpha": 0.22,
+        "ash_imbalance_weight": 1.0,
+        "ash_take_edge": 1.0,
+        "combined_pnl": 240225.0,
+        "profit_above_200k": 40225.0,
+        "train_total_pnl": 159741.0,
+        "train_min_day_pnl": 79406.0,
+        "train_stdev_day_pnl": 464.5,
+        "holdout_day0_pnl": 80484.0,
+        "holdout_profit_above_daily_target": 13817.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 3781.0,
+          "INTARIAN_PEPPER_ROOT": 236444.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 167565.475
+      },
+      {
+        "pepper_exit_policy": "flat_late",
+        "pepper_buy_edge": 8.0,
+        "pepper_max_take": 28,
+        "ash_fair_alpha": 0.22,
+        "ash_imbalance_weight": 1.8,
+        "ash_take_edge": 0.0,
+        "combined_pnl": 245377.0,
+        "profit_above_200k": 45377.0,
+        "train_total_pnl": 163473.0,
+        "train_min_day_pnl": 81627.0,
+        "train_stdev_day_pnl": 109.5,
+        "holdout_day0_pnl": 81904.0,
+        "holdout_profit_above_daily_target": 15237.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 8933.0,
+          "INTARIAN_PEPPER_ROOT": 236444.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 171608.325
+      },
+      {
+        "pepper_exit_policy": "flat_late",
+        "pepper_buy_edge": 8.0,
+        "pepper_max_take": 28,
+        "ash_fair_alpha": 0.22,
+        "ash_imbalance_weight": 1.8,
+        "ash_take_edge": 0.5,
+        "combined_pnl": 244285.0,
+        "profit_above_200k": 44285.0,
+        "train_total_pnl": 162725.0,
+        "train_min_day_pnl": 81281.0,
+        "train_stdev_day_pnl": 81.5,
+        "holdout_day0_pnl": 81560.0,
+        "holdout_profit_above_daily_target": 14893.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 7841.0,
+          "INTARIAN_PEPPER_ROOT": 236444.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 170832.725
+      },
+      {
+        "pepper_exit_policy": "flat_late",
+        "pepper_buy_edge": 8.0,
+        "pepper_max_take": 28,
+        "ash_fair_alpha": 0.22,
+        "ash_imbalance_weight": 1.8,
+        "ash_take_edge": 1.0,
+        "combined_pnl": 241086.0,
+        "profit_above_200k": 41086.0,
+        "train_total_pnl": 160575.0,
+        "train_min_day_pnl": 79843.0,
+        "train_stdev_day_pnl": 444.5,
+        "holdout_day0_pnl": 80511.0,
+        "holdout_profit_above_daily_target": 13844.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 4642.0,
+          "INTARIAN_PEPPER_ROOT": 236444.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 168448.175
+      }
+    ],
+    "profit_target": 200000,
+    "summary": {
+      "count": 144,
+      "min": 239177.0,
+      "p05": 240449.35,
+      "p10": 242798.59999999998,
+      "median": 246182.5,
+      "mean": 245791.94444444444,
+      "p90": 249040.9,
+      "p95": 249179.7,
+      "max": 249384.5,
+      "stdev": 2621.090559125305
+    },
+    "train_summary": {
+      "count": 144,
+      "min": 158987.0,
+      "p05": 159958.75,
+      "p10": 161517.30000000002,
+      "median": 164115.5,
+      "mean": 163694.41666666666,
+      "p90": 165819.9,
+      "p95": 165950.35,
+      "max": 166112.5,
+      "stdev": 1787.8709968532094
+    },
+    "selection_protocol": "The 200k target is treated as a floor, not the objective. Gate candidates by a profit-first robust score on days -2 and -1, then select the highest-PnL row inside that train-validated plateau. Day 0 remains reported as the holdout stress check.",
+    "train_validated_profit_plateau_size": 12,
+    "target_pass_rate": 1.0,
+    "train_target_pass_rate": 1.0,
+    "selected": {
+      "pepper_exit_policy": "hold_to_close",
+      "pepper_buy_edge": 6.0,
+      "pepper_max_take": 10,
+      "ash_fair_alpha": 0.1,
+      "ash_imbalance_weight": 1.0,
+      "ash_take_edge": 0.5,
+      "combined_pnl": 249384.5,
+      "profit_above_200k": 49384.5,
+      "train_total_pnl": 166111.5,
+      "train_min_day_pnl": 82907.5,
+      "train_stdev_day_pnl": 148.25,
+      "holdout_day0_pnl": 83273.0,
+      "holdout_profit_above_daily_target": 16606.33333333333,
+      "pnl_by_product": {
+        "ASH_COATED_OSMIUM": 10956.5,
+        "INTARIAN_PEPPER_ROOT": 238428.0
+      },
+      "end_positions": {
+        "-2": {
+          "ASH_COATED_OSMIUM": 7,
+          "INTARIAN_PEPPER_ROOT": 80
+        },
+        "-1": {
+          "ASH_COATED_OSMIUM": 62,
+          "INTARIAN_PEPPER_ROOT": 80
+        },
+        "0": {
+          "ASH_COATED_OSMIUM": 70,
+          "INTARIAN_PEPPER_ROOT": 80
+        }
+      },
+      "flat_all_days": false,
+      "selection_robust_score": 174365.1875
+    },
+    "selected_combined_rank": 1,
+    "selected_train_rank": 2,
+    "selected_neighborhood_summary": {
+      "count": 36,
+      "min": 242822.0,
+      "p05": 243649.25,
+      "p10": 244360.5,
+      "median": 248075.75,
+      "mean": 247452.38888888888,
+      "p90": 249178.5,
+      "p95": 249296.375,
+      "max": 249384.5,
+      "stdev": 1903.1918770811455
+    },
+    "selected_neighborhood_train_summary": {
+      "count": 36,
+      "min": 161439.0,
+      "p05": 162036.75,
+      "p10": 162666.0,
+      "median": 165155.25,
+      "mean": 164751.94444444444,
+      "p90": 165945.5,
+      "p95": 166040.875,
+      "max": 166111.5,
+      "stdev": 1311.5871734582672
+    },
+    "top_5_by_train_score": [
+      {
+        "pepper_exit_policy": "hold_to_close",
+        "pepper_buy_edge": 6.0,
+        "pepper_max_take": 28,
+        "ash_fair_alpha": 0.1,
+        "ash_imbalance_weight": 1.0,
+        "ash_take_edge": 0.5,
+        "combined_pnl": 249382.5,
+        "profit_above_200k": 49382.5,
+        "train_total_pnl": 166112.5,
+        "train_min_day_pnl": 82907.5,
+        "train_stdev_day_pnl": 148.75,
+        "holdout_day0_pnl": 83270.0,
+        "holdout_profit_above_daily_target": 16603.33333333333,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 10956.5,
+          "INTARIAN_PEPPER_ROOT": 238426.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 7,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 62,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 70,
+            "INTARIAN_PEPPER_ROOT": 80
+          }
+        },
+        "flat_all_days": false,
+        "selection_robust_score": 174366.0625
+      },
+      {
+        "pepper_exit_policy": "hold_to_close",
+        "pepper_buy_edge": 6.0,
+        "pepper_max_take": 10,
+        "ash_fair_alpha": 0.1,
+        "ash_imbalance_weight": 1.0,
+        "ash_take_edge": 0.5,
+        "combined_pnl": 249384.5,
+        "profit_above_200k": 49384.5,
+        "train_total_pnl": 166111.5,
+        "train_min_day_pnl": 82907.5,
+        "train_stdev_day_pnl": 148.25,
+        "holdout_day0_pnl": 83273.0,
+        "holdout_profit_above_daily_target": 16606.33333333333,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 10956.5,
+          "INTARIAN_PEPPER_ROOT": 238428.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 7,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 62,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 70,
+            "INTARIAN_PEPPER_ROOT": 80
+          }
+        },
+        "flat_all_days": false,
+        "selection_robust_score": 174365.1875
+      },
+      {
+        "pepper_exit_policy": "hold_to_close",
+        "pepper_buy_edge": 6.0,
+        "pepper_max_take": 28,
+        "ash_fair_alpha": 0.1,
+        "ash_imbalance_weight": 0.0,
+        "ash_take_edge": 0.0,
+        "combined_pnl": 249292.0,
+        "profit_above_200k": 49292.0,
+        "train_total_pnl": 166064.0,
+        "train_min_day_pnl": 82972.0,
+        "train_stdev_day_pnl": 60.0,
+        "holdout_day0_pnl": 83228.0,
+        "holdout_profit_above_daily_target": 16561.33333333333,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 10866.0,
+          "INTARIAN_PEPPER_ROOT": 238426.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": -22,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 32,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 70,
+            "INTARIAN_PEPPER_ROOT": 80
+          }
+        },
+        "flat_all_days": false,
+        "selection_robust_score": 174346.2
+      },
+      {
+        "pepper_exit_policy": "hold_to_close",
+        "pepper_buy_edge": 6.0,
+        "pepper_max_take": 10,
+        "ash_fair_alpha": 0.1,
+        "ash_imbalance_weight": 0.0,
+        "ash_take_edge": 0.0,
+        "combined_pnl": 249294.0,
+        "profit_above_200k": 49294.0,
+        "train_total_pnl": 166063.0,
+        "train_min_day_pnl": 82972.0,
+        "train_stdev_day_pnl": 59.5,
+        "holdout_day0_pnl": 83231.0,
+        "holdout_profit_above_daily_target": 16564.33333333333,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 10866.0,
+          "INTARIAN_PEPPER_ROOT": 238428.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": -22,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 32,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 70,
+            "INTARIAN_PEPPER_ROOT": 80
+          }
+        },
+        "flat_all_days": false,
+        "selection_robust_score": 174345.325
+      },
+      {
+        "pepper_exit_policy": "hold_to_close",
+        "pepper_buy_edge": 8.0,
+        "pepper_max_take": 10,
+        "ash_fair_alpha": 0.1,
+        "ash_imbalance_weight": 1.0,
+        "ash_take_edge": 0.5,
+        "combined_pnl": 249303.5,
+        "profit_above_200k": 49303.5,
+        "train_total_pnl": 166033.5,
+        "train_min_day_pnl": 82829.5,
+        "train_stdev_day_pnl": 187.25,
+        "holdout_day0_pnl": 83270.0,
+        "holdout_profit_above_daily_target": 16603.33333333333,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 10956.5,
+          "INTARIAN_PEPPER_ROOT": 238347.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 7,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 62,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 70,
+            "INTARIAN_PEPPER_ROOT": 80
+          }
+        },
+        "flat_all_days": false,
+        "selection_robust_score": 174269.6375
+      }
+    ],
+    "top_5": [
+      {
+        "pepper_exit_policy": "hold_to_close",
+        "pepper_buy_edge": 6.0,
+        "pepper_max_take": 10,
+        "ash_fair_alpha": 0.1,
+        "ash_imbalance_weight": 1.0,
+        "ash_take_edge": 0.5,
+        "combined_pnl": 249384.5,
+        "profit_above_200k": 49384.5,
+        "train_total_pnl": 166111.5,
+        "train_min_day_pnl": 82907.5,
+        "train_stdev_day_pnl": 148.25,
+        "holdout_day0_pnl": 83273.0,
+        "holdout_profit_above_daily_target": 16606.33333333333,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 10956.5,
+          "INTARIAN_PEPPER_ROOT": 238428.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 7,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 62,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 70,
+            "INTARIAN_PEPPER_ROOT": 80
+          }
+        },
+        "flat_all_days": false,
+        "selection_robust_score": 174365.1875
+      },
+      {
+        "pepper_exit_policy": "hold_to_close",
+        "pepper_buy_edge": 6.0,
+        "pepper_max_take": 28,
+        "ash_fair_alpha": 0.1,
+        "ash_imbalance_weight": 1.0,
+        "ash_take_edge": 0.5,
+        "combined_pnl": 249382.5,
+        "profit_above_200k": 49382.5,
+        "train_total_pnl": 166112.5,
+        "train_min_day_pnl": 82907.5,
+        "train_stdev_day_pnl": 148.75,
+        "holdout_day0_pnl": 83270.0,
+        "holdout_profit_above_daily_target": 16603.33333333333,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 10956.5,
+          "INTARIAN_PEPPER_ROOT": 238426.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 7,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 62,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 70,
+            "INTARIAN_PEPPER_ROOT": 80
+          }
+        },
+        "flat_all_days": false,
+        "selection_robust_score": 174366.0625
+      },
+      {
+        "pepper_exit_policy": "hold_to_close",
+        "pepper_buy_edge": 8.0,
+        "pepper_max_take": 10,
+        "ash_fair_alpha": 0.1,
+        "ash_imbalance_weight": 1.0,
+        "ash_take_edge": 0.5,
+        "combined_pnl": 249303.5,
+        "profit_above_200k": 49303.5,
+        "train_total_pnl": 166033.5,
+        "train_min_day_pnl": 82829.5,
+        "train_stdev_day_pnl": 187.25,
+        "holdout_day0_pnl": 83270.0,
+        "holdout_profit_above_daily_target": 16603.33333333333,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 10956.5,
+          "INTARIAN_PEPPER_ROOT": 238347.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 7,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 62,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 70,
+            "INTARIAN_PEPPER_ROOT": 80
+          }
+        },
+        "flat_all_days": false,
+        "selection_robust_score": 174269.6375
+      },
+      {
+        "pepper_exit_policy": "hold_to_close",
+        "pepper_buy_edge": 6.0,
+        "pepper_max_take": 10,
+        "ash_fair_alpha": 0.1,
+        "ash_imbalance_weight": 0.0,
+        "ash_take_edge": 0.0,
+        "combined_pnl": 249294.0,
+        "profit_above_200k": 49294.0,
+        "train_total_pnl": 166063.0,
+        "train_min_day_pnl": 82972.0,
+        "train_stdev_day_pnl": 59.5,
+        "holdout_day0_pnl": 83231.0,
+        "holdout_profit_above_daily_target": 16564.33333333333,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 10866.0,
+          "INTARIAN_PEPPER_ROOT": 238428.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": -22,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 32,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 70,
+            "INTARIAN_PEPPER_ROOT": 80
+          }
+        },
+        "flat_all_days": false,
+        "selection_robust_score": 174345.325
+      },
+      {
+        "pepper_exit_policy": "hold_to_close",
+        "pepper_buy_edge": 6.0,
+        "pepper_max_take": 28,
+        "ash_fair_alpha": 0.1,
+        "ash_imbalance_weight": 0.0,
+        "ash_take_edge": 0.0,
+        "combined_pnl": 249292.0,
+        "profit_above_200k": 49292.0,
+        "train_total_pnl": 166064.0,
+        "train_min_day_pnl": 82972.0,
+        "train_stdev_day_pnl": 60.0,
+        "holdout_day0_pnl": 83228.0,
+        "holdout_profit_above_daily_target": 16561.33333333333,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 10866.0,
+          "INTARIAN_PEPPER_ROOT": 238426.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": -22,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 32,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 70,
+            "INTARIAN_PEPPER_ROOT": 80
+          }
+        },
+        "flat_all_days": false,
+        "selection_robust_score": 174346.2
+      }
+    ],
+    "bottom_5": [
+      {
+        "pepper_exit_policy": "flat_late",
+        "pepper_buy_edge": 8.0,
+        "pepper_max_take": 28,
+        "ash_fair_alpha": 0.22,
+        "ash_imbalance_weight": 1.0,
+        "ash_take_edge": 1.0,
+        "combined_pnl": 240225.0,
+        "profit_above_200k": 40225.0,
+        "train_total_pnl": 159741.0,
+        "train_min_day_pnl": 79406.0,
+        "train_stdev_day_pnl": 464.5,
+        "holdout_day0_pnl": 80484.0,
+        "holdout_profit_above_daily_target": 13817.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 3781.0,
+          "INTARIAN_PEPPER_ROOT": 236444.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 167565.475
+      },
+      {
+        "pepper_exit_policy": "flat_late",
+        "pepper_buy_edge": 6.0,
+        "pepper_max_take": 10,
+        "ash_fair_alpha": 0.22,
+        "ash_imbalance_weight": 0.0,
+        "ash_take_edge": 1.0,
+        "combined_pnl": 239289.0,
+        "profit_above_200k": 39289.0,
+        "train_total_pnl": 159096.0,
+        "train_min_day_pnl": 79228.0,
+        "train_stdev_day_pnl": 320.0,
+        "holdout_day0_pnl": 80193.0,
+        "holdout_profit_above_daily_target": 13526.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 2733.0,
+          "INTARIAN_PEPPER_ROOT": 236556.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 166938.8
+      },
+      {
+        "pepper_exit_policy": "flat_late",
+        "pepper_buy_edge": 6.0,
+        "pepper_max_take": 28,
+        "ash_fair_alpha": 0.22,
+        "ash_imbalance_weight": 0.0,
+        "ash_take_edge": 1.0,
+        "combined_pnl": 239283.0,
+        "profit_above_200k": 39283.0,
+        "train_total_pnl": 159093.0,
+        "train_min_day_pnl": 79225.0,
+        "train_stdev_day_pnl": 321.5,
+        "holdout_day0_pnl": 80190.0,
+        "holdout_profit_above_daily_target": 13523.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 2733.0,
+          "INTARIAN_PEPPER_ROOT": 236550.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 166935.125
+      },
+      {
+        "pepper_exit_policy": "flat_late",
+        "pepper_buy_edge": 8.0,
+        "pepper_max_take": 10,
+        "ash_fair_alpha": 0.22,
+        "ash_imbalance_weight": 0.0,
+        "ash_take_edge": 1.0,
+        "combined_pnl": 239208.0,
+        "profit_above_200k": 39208.0,
+        "train_total_pnl": 159018.0,
+        "train_min_day_pnl": 79150.0,
+        "train_stdev_day_pnl": 359.0,
+        "holdout_day0_pnl": 80190.0,
+        "holdout_profit_above_daily_target": 13523.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 2733.0,
+          "INTARIAN_PEPPER_ROOT": 236475.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 166843.25
+      },
+      {
+        "pepper_exit_policy": "flat_late",
+        "pepper_buy_edge": 8.0,
+        "pepper_max_take": 28,
+        "ash_fair_alpha": 0.22,
+        "ash_imbalance_weight": 0.0,
+        "ash_take_edge": 1.0,
+        "combined_pnl": 239177.0,
+        "profit_above_200k": 39177.0,
+        "train_total_pnl": 158987.0,
+        "train_min_day_pnl": 79119.0,
+        "train_stdev_day_pnl": 374.5,
+        "holdout_day0_pnl": 80190.0,
+        "holdout_profit_above_daily_target": 13523.333333333328,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 2733.0,
+          "INTARIAN_PEPPER_ROOT": 236444.0
+        },
+        "end_positions": {
+          "-2": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "-1": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          },
+          "0": {
+            "ASH_COATED_OSMIUM": 0,
+            "INTARIAN_PEPPER_ROOT": 0
+          }
+        },
+        "flat_all_days": true,
+        "selection_robust_score": 166805.275
+      }
+    ]
+  },
+  "monte_carlo": {
+    "stress_assumptions": {
+      "cross_fill_probability": 0.97,
+      "max_adverse_slippage": 1,
+      "mark_noise": 3.0
+    },
+    "chains": [
+      [
+        246327.33978804483,
+        245874.45698436827,
+        247656.2969589724,
+        246715.83321367405,
+        245795.59979960736,
+        246207.44090229122,
+        245854.5559782989,
+        246165.41947469168,
+        246678.40954526936,
+        246476.92309090804,
+        246982.65986189694,
+        246648.78103830214,
+        246873.37146861956,
+        247011.74468914597,
+        247135.93493472165,
+        246758.67565397726,
+        247172.0809295014,
+        246340.72488030922,
+        247285.88292895802,
+        246060.51048548965
+      ],
+      [
+        246246.60122233554,
+        247239.4726818358,
+        246089.43561133894,
+        246432.77994841535,
+        247118.97915443836,
+        247099.45225568523,
+        246423.01852496393,
+        246869.83998058745,
+        246105.85529407102,
+        246337.44119894807,
+        246555.13849020674,
+        247540.5743572097,
+        245912.43250959454,
+        247317.9156574863,
+        246543.20257812226,
+        246316.2634731193,
+        246976.08303426288,
+        246742.16007759405,
+        246276.55650923285,
+        246842.06565382695
+      ]
+    ],
+    "summary": {
+      "count": 40,
+      "min": 245795.59979960736,
+      "p05": 245873.4619340648,
+      "p10": 246045.70268790016,
+      "median": 246601.95976425445,
+      "mean": 246625.19777050806,
+      "p90": 247244.11370654803,
+      "p95": 247329.04859247248,
+      "max": 247656.2969589724,
+      "stdev": 478.92960465841963
+    },
+    "probability_above_200k": 1.0,
+    "probability_above_240k": 1.0,
+    "probability_above_245k": 1.0,
+    "gelman_rubin_rhat": 1.0,
+    "geweke": [
+      {
+        "first_count": 5,
+        "last_count": 10,
+        "z_score": -0.9800493001900586,
+        "passes_abs_z_lt_2": true
+      },
+      {
+        "first_count": 5,
+        "last_count": 10,
+        "z_score": -0.2738189955662571,
+        "passes_abs_z_lt_2": true
+      }
+    ],
+    "anderson_darling_normality": {
+      "statistic": 0.29081240081585236,
+      "corrected_statistic": 0.2966740882697969,
+      "critical_values_normal": {
+        "15%": 0.576,
+        "10%": 0.656,
+        "5%": 0.787,
+        "2.5%": 0.918,
+        "1%": 1.092
+      },
+      "reject_normal_at_5pct": false
+    },
+    "kolmogorov_smirnov_normality": {
+      "d_statistic": 0.0987360565630655,
+      "approx_p_value": 0.8303329611641185,
+      "reject_normal_at_5pct": false
+    }
+  }
+}
