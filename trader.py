@@ -29,8 +29,8 @@ class Trader:
             "imbalance_weight": 1.0,
             "take_edge": 0.5,
             "make_edge": 3.0,
-            "max_take": 24,
-            "max_make": 14,
+            "max_take": 32,
+            "max_make": 22,
             "inventory_skew": 2.0,
         },
         "INTARIAN_PEPPER_ROOT": {
@@ -40,7 +40,7 @@ class Trader:
             "exit_sell_edge": 5.0,
             "make_edge": 2.0,
             "max_take": 10,
-            "max_make": 18,
+            "max_make": 30,
             "inventory_skew": 0.08,
         },
     }
