@@ -6,10 +6,37 @@ interface closely enough for syntax checks and lightweight local tests.
 
 Research notebooks:
 
+- `round2_algorithmic_trading_strategy.ipynb`: round 2 data regime,
+  contingent-claims framing, ridge/KNN signal screens, risk controls, and
+  strategy replay.
 - `round1_algorithmic_model_trading.ipynb`: algorithmic model process, findings,
   backtests, overfit controls, and profitability thesis.
 - `round1_manual_auction_strategy.ipynb`: manual auction mechanism, exact
   optimum, and auction backtest.
+
+## Round 2 Strategy
+
+- Active submission file: `trader.py`.
+- Uses `data/round2` for the reproducible local research set.
+- Trades `ASH_COATED_OSMIUM` and `INTARIAN_PEPPER_ROOT` with the 80-unit
+  position limits.
+- Models pepper root as a deterministic drift claim with slope
+  `0.001 * timestamp`, calibrated from the live day-open intercept, then builds
+  to the long 80-unit cap while the intercept remains stable.
+- Models osmium as stationary around the 10,000 anchor with short-horizon
+  mean-reversion, EMA fair-value smoothing, and best-level order-book imbalance.
+- Uses risk gates rather than unconditional averaging down: pepper flattens if
+  the live intercept falls more than 35 XIRECs below day-open intercept, and
+  osmium flattens if observed fair value moves more than 35 XIRECs from the
+  stationary anchor.
+- Deterministic local replay over days -1, 0, and 1: +248,673 XIRECs, with
+  +238,190 from pepper root and +10,483 from osmium.
+- Replay improvement versus archived round 1 parameters on the same round 2
+  data: +1,992 XIRECs.
+- Execution-stress Monte Carlo, with 97% crossing-fill probability, up to 1
+  XIREC adverse slippage, and 3 XIRECs closing mark noise: 5th percentile
+  +244,844.4 XIRECs, 85% of draws above +245,000 XIRECs.
+- Metrics snapshot: `logs/round2_diagnostics.json`.
 
 ## Round 1 Results
 

@@ -1,0 +1,372 @@
+{
+  "data_dir": "C:\\Users\\dylan\\OneDrive\\Desktop\\aggies-prosperity\\data\\round2",
+  "selected_parameters": {
+    "ASH_COATED_OSMIUM": {
+      "fair_alpha": 0.12,
+      "imbalance_weight": 0.8,
+      "take_edge": 0.0,
+      "make_edge": 3.0,
+      "max_take": 32,
+      "max_make": 22,
+      "inventory_skew": 2.0
+    },
+    "INTARIAN_PEPPER_ROOT": {
+      "intercept_alpha": 0.18,
+      "trend_buy_edge": 8.0,
+      "rich_sell_edge": 14.0,
+      "exit_sell_edge": 5.0,
+      "make_edge": 2.0,
+      "max_take": 10,
+      "max_make": 30,
+      "inventory_skew": 0.08
+    },
+    "position_limits": {
+      "ASH_COATED_OSMIUM": 80,
+      "INTARIAN_PEPPER_ROOT": 80
+    },
+    "pepper_slope": 0.001
+  },
+  "deterministic_backtest": {
+    "day_results": [
+      {
+        "day": -1,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 3066.0,
+          "INTARIAN_PEPPER_ROOT": 79427.0
+        },
+        "position": {
+          "ASH_COATED_OSMIUM": 75,
+          "INTARIAN_PEPPER_ROOT": 80
+        },
+        "total_pnl": 82493.0
+      },
+      {
+        "day": 0,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 4329.0,
+          "INTARIAN_PEPPER_ROOT": 79399.0
+        },
+        "position": {
+          "ASH_COATED_OSMIUM": 69,
+          "INTARIAN_PEPPER_ROOT": 80
+        },
+        "total_pnl": 83728.0
+      },
+      {
+        "day": 1,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 3088.0,
+          "INTARIAN_PEPPER_ROOT": 79364.0
+        },
+        "position": {
+          "ASH_COATED_OSMIUM": 80,
+          "INTARIAN_PEPPER_ROOT": 80
+        },
+        "total_pnl": 82452.0
+      }
+    ],
+    "combined_pnl": 248673.0,
+    "filled_orders": 744,
+    "filled_quantity": 5042
+  },
+  "baseline_round1_replay": {
+    "day_results": [
+      {
+        "day": -1,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 2952.0,
+          "INTARIAN_PEPPER_ROOT": 79370.0
+        },
+        "position": {
+          "ASH_COATED_OSMIUM": 80,
+          "INTARIAN_PEPPER_ROOT": 80
+        },
+        "total_pnl": 82322.0
+      },
+      {
+        "day": 0,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 3620.0,
+          "INTARIAN_PEPPER_ROOT": 79457.0
+        },
+        "position": {
+          "ASH_COATED_OSMIUM": 73,
+          "INTARIAN_PEPPER_ROOT": 80
+        },
+        "total_pnl": 83077.0
+      },
+      {
+        "day": 1,
+        "pnl_by_product": {
+          "ASH_COATED_OSMIUM": 2814.0,
+          "INTARIAN_PEPPER_ROOT": 78468.0
+        },
+        "position": {
+          "ASH_COATED_OSMIUM": 80,
+          "INTARIAN_PEPPER_ROOT": 80
+        },
+        "total_pnl": 81282.0
+      }
+    ],
+    "combined_pnl": 246681.0,
+    "filled_orders": 667,
+    "filled_quantity": 4525
+  },
+  "improvement_vs_round1_params": 1992.0,
+  "product_statistics": {
+    "price_stats": [
+      {
+        "day": -1,
+        "product": "ASH_COATED_OSMIUM",
+        "valid_rows": 9985,
+        "empty_mid_rows": 15,
+        "mean_mid": 10000.825087631447,
+        "first_mid": 9991.0,
+        "last_mid": 10002.0,
+        "ols_intercept": 10001.090119667297,
+        "slope_per_timestamp": -5.30144806647791e-07,
+        "slope_per_100_ticks": -5.30144806647791e-05,
+        "residual_std": 4.464082247668344,
+        "return_std": 3.695151609979497,
+        "return_autocorr_1": -0.5063073859116248,
+        "mid_p05": 9993.0,
+        "mid_p95": 10008.0
+      },
+      {
+        "day": -1,
+        "product": "INTARIAN_PEPPER_ROOT",
+        "valid_rows": 9987,
+        "empty_mid_rows": 13,
+        "mean_mid": 11500.124411735256,
+        "first_mid": 11001.5,
+        "last_mid": 11999.5,
+        "ols_intercept": 10999.976266622116,
+        "slope_per_timestamp": 0.0009999958408901314,
+        "slope_per_100_ticks": 0.09999958408901315,
+        "residual_std": 2.1944770528920956,
+        "return_std": 3.1077560075975748,
+        "return_autocorr_1": -0.4979098183735079,
+        "mid_p05": 11050.0,
+        "mid_p95": 11950.0
+      },
+      {
+        "day": 0,
+        "product": "ASH_COATED_OSMIUM",
+        "valid_rows": 9984,
+        "empty_mid_rows": 16,
+        "mean_mid": 10001.607371794871,
+        "first_mid": 10003.0,
+        "last_mid": 10008.0,
+        "ols_intercept": 10000.821671315412,
+        "slope_per_timestamp": 1.5712065724576608e-06,
+        "slope_per_100_ticks": 0.00015712065724576607,
+        "residual_std": 5.641124584281846,
+        "return_std": 3.685660416692845,
+        "return_autocorr_1": -0.5063730829048271,
+        "mid_p05": 9991.5,
+        "mid_p95": 10011.0
+      },
+      {
+        "day": 0,
+        "product": "INTARIAN_PEPPER_ROOT",
+        "valid_rows": 9982,
+        "empty_mid_rows": 18,
+        "mean_mid": 12499.866008815869,
+        "first_mid": 11998.5,
+        "last_mid": 13000.0,
+        "ols_intercept": 12000.012761893555,
+        "slope_per_timestamp": 0.0009999791389282036,
+        "slope_per_100_ticks": 0.09999791389282035,
+        "residual_std": 2.3640493003671774,
+        "return_std": 3.3160244750281946,
+        "return_autocorr_1": -0.4889487659031063,
+        "mid_p05": 12050.0,
+        "mid_p95": 12950.0
+      },
+      {
+        "day": 1,
+        "product": "ASH_COATED_OSMIUM",
+        "valid_rows": 9978,
+        "empty_mid_rows": 22,
+        "mean_mid": 10000.205401884145,
+        "first_mid": 10008.0,
+        "last_mid": 9993.0,
+        "ols_intercept": 10003.76953871294,
+        "slope_per_timestamp": -7.125760573672149e-06,
+        "slope_per_100_ticks": -0.000712576057367215,
+        "residual_std": 4.577740511685885,
+        "return_std": 3.685163868827998,
+        "return_autocorr_1": -0.49052777197675124,
+        "mid_p05": 9992.0,
+        "mid_p95": 10008.5
+      },
+      {
+        "day": 1,
+        "product": "INTARIAN_PEPPER_ROOT",
+        "valid_rows": 9984,
+        "empty_mid_rows": 16,
+        "mean_mid": 13500.057341746795,
+        "first_mid": 13000.0,
+        "last_mid": 13999.5,
+        "ols_intercept": 12999.922049655686,
+        "slope_per_timestamp": 0.0010000431304622035,
+        "slope_per_100_ticks": 0.10000431304622034,
+        "residual_std": 2.5426231420919048,
+        "return_std": 3.577964658635246,
+        "return_autocorr_1": -0.5083938938299636,
+        "mid_p05": 13050.0,
+        "mid_p95": 13950.5
+      }
+    ],
+    "trade_stats": {
+      "ASH_COATED_OSMIUM": {
+        "count": 1395,
+        "quantity": 7127,
+        "mean_price": 10000.650896,
+        "min_price": 9979.0,
+        "max_price": 10020.0
+      },
+      "INTARIAN_PEPPER_ROOT": {
+        "count": 996,
+        "quantity": 5033,
+        "mean_price": 12535.993976,
+        "min_price": 10996.0,
+        "max_price": 13999.0
+      }
+    }
+  },
+  "model_screens": {
+    "ASH_COATED_OSMIUM": {
+      "train_samples": 18492,
+      "holdout_samples": 9213,
+      "feature_names": [
+        "intercept",
+        "ema_deviation",
+        "imbalance",
+        "spread",
+        "timestamp"
+      ],
+      "ridge_coefficients": [
+        0.4630296273621792,
+        -3.3883975660645573,
+        3.205480895184345,
+        -0.30918363689270656,
+        0.0899510719843673
+      ],
+      "ridge_holdout_mse": 7.218909827341346,
+      "baseline_holdout_mse": 8.571110829972428,
+      "ridge_directional_accuracy": 0.6957470010905126,
+      "knn_k": 25,
+      "knn_stride": 5,
+      "knn_holdout_samples_scored": 1843,
+      "knn_holdout_mse": 7.641365599565926,
+      "knn_directional_accuracy": 0.676984126984127
+    },
+    "INTARIAN_PEPPER_ROOT": {
+      "train_samples": 18474,
+      "holdout_samples": 9247,
+      "feature_names": [
+        "intercept",
+        "ema_deviation",
+        "imbalance",
+        "spread",
+        "timestamp"
+      ],
+      "ridge_coefficients": [
+        0.45403090117629336,
+        -4.665431034210303,
+        2.7298919616651056,
+        -0.08610610699505566,
+        -0.01703822960060961
+      ],
+      "ridge_holdout_mse": 6.796972960588384,
+      "baseline_holdout_mse": 8.514745257685615,
+      "ridge_directional_accuracy": 0.7202928157984337,
+      "knn_k": 25,
+      "knn_stride": 5,
+      "knn_holdout_samples_scored": 1850,
+      "knn_holdout_mse": 7.294502270270271,
+      "knn_directional_accuracy": 0.7037671232876712
+    }
+  },
+  "contingent_claims": {
+    "ASH_COATED_OSMIUM": {
+      "by_day": [
+        {
+          "day": -1,
+          "long_from_first_ask_payoff": 2.0,
+          "short_from_first_bid_payoff": -20.0
+        },
+        {
+          "day": 0,
+          "long_from_first_ask_payoff": -3.0,
+          "short_from_first_bid_payoff": -13.0
+        },
+        {
+          "day": 1,
+          "long_from_first_ask_payoff": -23.0,
+          "short_from_first_bid_payoff": 7.0
+        }
+      ],
+      "long_payoff_summary": {
+        "count": 3,
+        "min": -23.0,
+        "p05": -21.0,
+        "median": -3.0,
+        "mean": -8.0,
+        "p95": 1.4999999999999996,
+        "max": 2.0,
+        "stdev": 10.801234497346433
+      }
+    },
+    "INTARIAN_PEPPER_ROOT": {
+      "by_day": [
+        {
+          "day": -1,
+          "long_from_first_ask_payoff": 990.5,
+          "short_from_first_bid_payoff": -1005.5
+        },
+        {
+          "day": 0,
+          "long_from_first_ask_payoff": 994.0,
+          "short_from_first_bid_payoff": -1009.0
+        },
+        {
+          "day": 1,
+          "long_from_first_ask_payoff": 992.5,
+          "short_from_first_bid_payoff": -1006.5
+        }
+      ],
+      "long_payoff_summary": {
+        "count": 3,
+        "min": 990.5,
+        "p05": 990.7,
+        "median": 992.5,
+        "mean": 992.3333333333334,
+        "p95": 993.85,
+        "max": 994.0,
+        "stdev": 1.4337208778404378
+      }
+    }
+  },
+  "monte_carlo": {
+    "stress_assumptions": {
+      "cross_fill_probability": 0.97,
+      "max_adverse_slippage": 1,
+      "mark_noise": 3.0
+    },
+    "draws": 40,
+    "summary": {
+      "count": 40,
+      "min": 243993.31714706006,
+      "p05": 244844.41462216774,
+      "median": 245902.85582806816,
+      "mean": 245900.1676738602,
+      "p95": 247099.1868500695,
+      "max": 247506.68397325487,
+      "stdev": 776.1829051848083
+    },
+    "probability_above_240k": 1.0,
+    "probability_above_245k": 0.85
+  }
+}
