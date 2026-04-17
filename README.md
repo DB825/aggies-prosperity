@@ -43,22 +43,19 @@ Research notebooks:
   `0.001 * timestamp`, calibrated from the live day-open intercept, then builds
   to the long 80-unit cap while the intercept remains stable.
 - Models osmium as stationary around the 10,000 anchor with short-horizon
-  mean-reversion, EMA fair-value smoothing, conditional imbalance alpha, and
-  active crossing inventory skew.
+  mean-reversion, EMA fair-value smoothing, capped best-level order-book
+  imbalance, and active crossing inventory skew.
 - Uses risk gates rather than unconditional averaging down: pepper flattens if
   the live intercept falls more than 35 XIRECs below day-open intercept, and
   osmium flattens if observed fair value moves more than 35 XIRECs from the
   stationary anchor.
-- Combines the two Round 2 osmium variants: keeps the profitable imbalance
-  signal while inventory is moderate, but suppresses it when it would push
-  further into an already crowded position.
-- Deterministic local replay over days -1, 0, and 1: +249,358 XIRECs, with
-  +238,190 from pepper root and +11,168 from osmium.
+- Deterministic local replay over days -1, 0, and 1: +249,284 XIRECs, with
+  +238,190 from pepper root and +11,094 from osmium.
 - Replay improvement versus archived round 1 parameters on the same round 2
-  data: +2,677 XIRECs.
+  data: +2,603 XIRECs.
 - Execution-stress Monte Carlo, with 97% crossing-fill probability, up to 1
   XIREC adverse slippage, and 3 XIRECs closing mark noise: 5th percentile
-  +245,585.5 XIRECs, 100% of draws above +245,000 XIRECs.
+  +245,755.6 XIRECs, 97.5% of draws above +245,000 XIRECs.
 - Metrics snapshot: `logs/round2_diagnostics.json`.
 
 ## Round 1 Results
