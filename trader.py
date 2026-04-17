@@ -25,8 +25,8 @@ class Trader:
 
     PARAMS = {
         "ASH_COATED_OSMIUM": {
-            "fair_alpha": 0.12,
-            "imbalance_weight": 0.4,
+            "fair_alpha": 0.10,
+            "imbalance_weight": 0.0,
             "take_edge": 0.0,
             "make_edge": 3.0,
             "max_take": 32,

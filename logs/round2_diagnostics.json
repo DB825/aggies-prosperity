@@ -2,8 +2,8 @@
   "data_dir": "C:\\Users\\dylan\\OneDrive\\Desktop\\aggies-prosperity\\data\\round2",
   "selected_parameters": {
     "ASH_COATED_OSMIUM": {
-      "fair_alpha": 0.12,
-      "imbalance_weight": 0.4,
+      "fair_alpha": 0.1,
+      "imbalance_weight": 0.0,
       "take_edge": 0.0,
       "make_edge": 3.0,
       "max_take": 32,
@@ -48,31 +48,31 @@
       {
         "day": 0,
         "pnl_by_product": {
-          "ASH_COATED_OSMIUM": 4388.0,
+          "ASH_COATED_OSMIUM": 4316.0,
           "INTARIAN_PEPPER_ROOT": 79399.0
         },
         "position": {
           "ASH_COATED_OSMIUM": 60,
           "INTARIAN_PEPPER_ROOT": 80
         },
-        "total_pnl": 83787.0
+        "total_pnl": 83715.0
       },
       {
         "day": 1,
         "pnl_by_product": {
-          "ASH_COATED_OSMIUM": 3277.0,
+          "ASH_COATED_OSMIUM": 3389.0,
           "INTARIAN_PEPPER_ROOT": 79364.0
         },
         "position": {
-          "ASH_COATED_OSMIUM": 63,
+          "ASH_COATED_OSMIUM": 57,
           "INTARIAN_PEPPER_ROOT": 80
         },
-        "total_pnl": 82641.0
+        "total_pnl": 82753.0
       }
     ],
-    "combined_pnl": 249284.0,
-    "filled_orders": 751,
-    "filled_quantity": 5228
+    "combined_pnl": 249324.0,
+    "filled_orders": 748,
+    "filled_quantity": 5214
   },
   "baseline_round1_replay": {
     "day_results": [
@@ -117,7 +117,7 @@
     "filled_orders": 667,
     "filled_quantity": 4525
   },
-  "improvement_vs_round1_params": 2603.0,
+  "improvement_vs_round1_params": 2643.0,
   "product_statistics": {
     "price_stats": [
       {
@@ -363,16 +363,16 @@
     "draws": 40,
     "summary": {
       "count": 40,
-      "min": 244731.76335041865,
-      "p05": 245755.59496354376,
-      "median": 246458.74333248747,
-      "mean": 246411.99816576467,
-      "p95": 247156.45108917454,
-      "max": 247514.12731156463,
-      "stdev": 537.9279346920105
+      "min": 245433.293563231,
+      "p05": 245688.9840084462,
+      "median": 246524.17746032783,
+      "mean": 246629.57414964182,
+      "p95": 247516.14325908566,
+      "max": 248247.36080154974,
+      "stdev": 596.29588437513
     },
     "probability_above_240k": 1.0,
-    "probability_above_245k": 0.975
+    "probability_above_245k": 1.0
   },
   "volume_sensitivity": {
     "0.8": {
@@ -380,43 +380,43 @@
         {
           "day": -1,
           "pnl_by_product": {
-            "ASH_COATED_OSMIUM": 2757.0,
+            "ASH_COATED_OSMIUM": 2735.0,
             "INTARIAN_PEPPER_ROOT": 79421.0
           },
           "position": {
             "ASH_COATED_OSMIUM": 69,
             "INTARIAN_PEPPER_ROOT": 80
           },
-          "total_pnl": 82178.0
+          "total_pnl": 82156.0
         },
         {
           "day": 0,
           "pnl_by_product": {
-            "ASH_COATED_OSMIUM": 3534.0,
+            "ASH_COATED_OSMIUM": 3487.0,
             "INTARIAN_PEPPER_ROOT": 79397.0
           },
           "position": {
-            "ASH_COATED_OSMIUM": 55,
+            "ASH_COATED_OSMIUM": 52,
             "INTARIAN_PEPPER_ROOT": 80
           },
-          "total_pnl": 82931.0
+          "total_pnl": 82884.0
         },
         {
           "day": 1,
           "pnl_by_product": {
-            "ASH_COATED_OSMIUM": 2560.0,
+            "ASH_COATED_OSMIUM": 2625.0,
             "INTARIAN_PEPPER_ROOT": 79354.0
           },
           "position": {
-            "ASH_COATED_OSMIUM": 59,
+            "ASH_COATED_OSMIUM": 52,
             "INTARIAN_PEPPER_ROOT": 80
           },
-          "total_pnl": 81914.0
+          "total_pnl": 81979.0
         }
       ],
-      "combined_pnl": 247023.0,
-      "filled_orders": 761,
-      "filled_quantity": 4247
+      "combined_pnl": 247019.0,
+      "filled_orders": 758,
+      "filled_quantity": 4225
     },
     "1.0": {
       "day_results": [
@@ -435,74 +435,74 @@
         {
           "day": 0,
           "pnl_by_product": {
-            "ASH_COATED_OSMIUM": 4388.0,
+            "ASH_COATED_OSMIUM": 4316.0,
             "INTARIAN_PEPPER_ROOT": 79399.0
           },
           "position": {
             "ASH_COATED_OSMIUM": 60,
             "INTARIAN_PEPPER_ROOT": 80
           },
-          "total_pnl": 83787.0
+          "total_pnl": 83715.0
         },
         {
           "day": 1,
           "pnl_by_product": {
-            "ASH_COATED_OSMIUM": 3277.0,
+            "ASH_COATED_OSMIUM": 3389.0,
             "INTARIAN_PEPPER_ROOT": 79364.0
           },
           "position": {
-            "ASH_COATED_OSMIUM": 63,
+            "ASH_COATED_OSMIUM": 57,
             "INTARIAN_PEPPER_ROOT": 80
           },
-          "total_pnl": 82641.0
+          "total_pnl": 82753.0
         }
       ],
-      "combined_pnl": 249284.0,
-      "filled_orders": 751,
-      "filled_quantity": 5228
+      "combined_pnl": 249324.0,
+      "filled_orders": 748,
+      "filled_quantity": 5214
     },
     "1.25": {
       "day_results": [
         {
           "day": -1,
           "pnl_by_product": {
-            "ASH_COATED_OSMIUM": 4223.0,
+            "ASH_COATED_OSMIUM": 4173.0,
             "INTARIAN_PEPPER_ROOT": 79430.0
           },
           "position": {
             "ASH_COATED_OSMIUM": 65,
             "INTARIAN_PEPPER_ROOT": 80
           },
-          "total_pnl": 83653.0
+          "total_pnl": 83603.0
         },
         {
           "day": 0,
           "pnl_by_product": {
-            "ASH_COATED_OSMIUM": 5187.0,
+            "ASH_COATED_OSMIUM": 5150.0,
             "INTARIAN_PEPPER_ROOT": 79403.0
+          },
+          "position": {
+            "ASH_COATED_OSMIUM": 54,
+            "INTARIAN_PEPPER_ROOT": 80
+          },
+          "total_pnl": 84553.0
+        },
+        {
+          "day": 1,
+          "pnl_by_product": {
+            "ASH_COATED_OSMIUM": 4268.0,
+            "INTARIAN_PEPPER_ROOT": 79370.0
           },
           "position": {
             "ASH_COATED_OSMIUM": 62,
             "INTARIAN_PEPPER_ROOT": 80
           },
-          "total_pnl": 84590.0
-        },
-        {
-          "day": 1,
-          "pnl_by_product": {
-            "ASH_COATED_OSMIUM": 4238.0,
-            "INTARIAN_PEPPER_ROOT": 79370.0
-          },
-          "position": {
-            "ASH_COATED_OSMIUM": 63,
-            "INTARIAN_PEPPER_ROOT": 80
-          },
-          "total_pnl": 83608.0
+          "total_pnl": 83638.0
         }
       ],
-      "combined_pnl": 251851.0,
-      "filled_orders": 750,
-      "filled_quantity": 6430
+      "combined_pnl": 251794.0,
+      "filled_orders": 745,
+      "filled_quantity": 6383
     }
   },
   "algorithm_iteration": {
@@ -511,5 +511,21 @@
     "new_combined_pnl": 249284.0,
     "normal_volume_improvement": 611.0,
     "risk_note": "Crossing thresholds become stricter for adding to existing osmium inventory and easier for reducing it, improving PnL while lowering terminal osmium concentration."
+  },
+  "round1_lessons_applied": {
+    "shortcomings": [
+      "Round 1 leaned on top-of-book imbalance as an alpha even though the selected robust grid preferred no osmium imbalance term.",
+      "Round 1 active crossing was not inventory-aware, so osmium could add risk while already carrying a large inventory.",
+      "Pepper aggressiveness was already near a plateau; further catch-up buying mainly paid more for inventory that the strategy already acquired."
+    ],
+    "applied_changes": [
+      "Kept the Round 2 crossing inventory skew from the prior iteration.",
+      "Restored the Round 1 robust lesson for osmium: fair_alpha=0.10 and imbalance_weight=0.0.",
+      "Left pepper parameters effectively unchanged because grid tests showed only de minimis gains with worse low-day behavior."
+    ],
+    "previous_round2_combined_pnl": 249284.0,
+    "new_combined_pnl": 249324.0,
+    "incremental_improvement": 40.0,
+    "risk_note": "The new osmium settings improve combined replay, worst-day PnL, and day-to-day variance while keeping terminal osmium inventory below the old non-skewed approach."
   }
 }
