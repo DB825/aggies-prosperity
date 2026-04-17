@@ -1,0 +1,691 @@
+{
+  "challenge": "Round 2 manual Invest & Expand",
+  "budget": 50000,
+  "recommended_submission": {
+    "research_percent": 16,
+    "scale_percent": 49,
+    "speed_percent": 35
+  },
+  "recommended_allocation": {
+    "research": 16,
+    "scale": 49,
+    "speed": 35,
+    "gross_base": 421134.0412303723,
+    "pnl_by_speed_percentile": [
+      {
+        "percentile_beaten": 0.5,
+        "speed_multiplier": 0.5,
+        "gross_pnl": 210567.02061518616,
+        "net_pnl": 160567.02061518616
+      },
+      {
+        "percentile_beaten": 0.6,
+        "speed_multiplier": 0.58,
+        "gross_pnl": 244257.74391361594,
+        "net_pnl": 194257.74391361594
+      },
+      {
+        "percentile_beaten": 0.7,
+        "speed_multiplier": 0.6599999999999999,
+        "gross_pnl": 277948.4672120457,
+        "net_pnl": 227948.46721204568
+      },
+      {
+        "percentile_beaten": 0.8,
+        "speed_multiplier": 0.7400000000000001,
+        "gross_pnl": 311639.19051047554,
+        "net_pnl": 261639.19051047554
+      },
+      {
+        "percentile_beaten": 0.9,
+        "speed_multiplier": 0.8200000000000001,
+        "gross_pnl": 345329.91380890534,
+        "net_pnl": 295329.91380890534
+      },
+      {
+        "percentile_beaten": 1.0,
+        "speed_multiplier": 0.9,
+        "gross_pnl": 379020.6371073351,
+        "net_pnl": 329020.6371073351
+      }
+    ],
+    "percentile_needed_for_200k": 0.6170440273291838,
+    "percentile_needed_for_300k": 0.9138616382608573,
+    "top_rank_net_pnl": 329020.6371073351
+  },
+  "continuous_optimum_given_35_speed": {
+    "research": 16.17265931460131,
+    "scale": 48.82734068539869,
+    "speed": 35,
+    "gross_base": 421146.8710973098
+  },
+  "candidate_allocations": [
+    {
+      "research": 19,
+      "scale": 61,
+      "speed": 20,
+      "gross_base": 554342.0485509078,
+      "pnl_by_speed_percentile": [
+        {
+          "percentile_beaten": 0.5,
+          "speed_multiplier": 0.5,
+          "gross_pnl": 277171.0242754539,
+          "net_pnl": 227171.02427545388
+        },
+        {
+          "percentile_beaten": 0.6,
+          "speed_multiplier": 0.58,
+          "gross_pnl": 321518.38815952645,
+          "net_pnl": 271518.38815952645
+        },
+        {
+          "percentile_beaten": 0.7,
+          "speed_multiplier": 0.6599999999999999,
+          "gross_pnl": 365865.7520435991,
+          "net_pnl": 315865.7520435991
+        },
+        {
+          "percentile_beaten": 0.8,
+          "speed_multiplier": 0.7400000000000001,
+          "gross_pnl": 410213.1159276718,
+          "net_pnl": 360213.1159276718
+        },
+        {
+          "percentile_beaten": 0.9,
+          "speed_multiplier": 0.8200000000000001,
+          "gross_pnl": 454560.4798117444,
+          "net_pnl": 404560.4798117444
+        },
+        {
+          "percentile_beaten": 1.0,
+          "speed_multiplier": 0.9,
+          "gross_pnl": 498907.843695817,
+          "net_pnl": 448907.843695817
+        }
+      ],
+      "percentile_needed_for_200k": 0.43873136552945735,
+      "percentile_needed_for_300k": 0.6642239117412403,
+      "top_rank_net_pnl": 448907.843695817,
+      "net_at_70pct": 315865.7520435991
+    },
+    {
+      "research": 18,
+      "scale": 57,
+      "speed": 25,
+      "gross_base": 509122.63218274654,
+      "pnl_by_speed_percentile": [
+        {
+          "percentile_beaten": 0.5,
+          "speed_multiplier": 0.5,
+          "gross_pnl": 254561.31609137327,
+          "net_pnl": 204561.31609137327
+        },
+        {
+          "percentile_beaten": 0.6,
+          "speed_multiplier": 0.58,
+          "gross_pnl": 295291.12666599295,
+          "net_pnl": 245291.12666599295
+        },
+        {
+          "percentile_beaten": 0.7,
+          "speed_multiplier": 0.6599999999999999,
+          "gross_pnl": 336020.9372406127,
+          "net_pnl": 286020.9372406127
+        },
+        {
+          "percentile_beaten": 0.8,
+          "speed_multiplier": 0.7400000000000001,
+          "gross_pnl": 376750.7478152325,
+          "net_pnl": 326750.7478152325
+        },
+        {
+          "percentile_beaten": 0.9,
+          "speed_multiplier": 0.8200000000000001,
+          "gross_pnl": 417480.5583898522,
+          "net_pnl": 367480.5583898522
+        },
+        {
+          "percentile_beaten": 1.0,
+          "speed_multiplier": 0.9,
+          "gross_pnl": 458210.3689644719,
+          "net_pnl": 408210.3689644719
+        }
+      ],
+      "percentile_needed_for_200k": 0.48880103779756934,
+      "percentile_needed_for_300k": 0.7343214529165971,
+      "top_rank_net_pnl": 408210.3689644719,
+      "net_at_70pct": 286020.9372406127
+    },
+    {
+      "research": 17,
+      "scale": 53,
+      "speed": 30,
+      "gross_base": 464702.02382208366,
+      "pnl_by_speed_percentile": [
+        {
+          "percentile_beaten": 0.5,
+          "speed_multiplier": 0.5,
+          "gross_pnl": 232351.01191104183,
+          "net_pnl": 182351.01191104183
+        },
+        {
+          "percentile_beaten": 0.6,
+          "speed_multiplier": 0.58,
+          "gross_pnl": 269527.1738168085,
+          "net_pnl": 219527.1738168085
+        },
+        {
+          "percentile_beaten": 0.7,
+          "speed_multiplier": 0.6599999999999999,
+          "gross_pnl": 306703.3357225752,
+          "net_pnl": 256703.3357225752
+        },
+        {
+          "percentile_beaten": 0.8,
+          "speed_multiplier": 0.7400000000000001,
+          "gross_pnl": 343879.49762834195,
+          "net_pnl": 293879.49762834195
+        },
+        {
+          "percentile_beaten": 0.9,
+          "speed_multiplier": 0.8200000000000001,
+          "gross_pnl": 381055.65953410865,
+          "net_pnl": 331055.65953410865
+        },
+        {
+          "percentile_beaten": 1.0,
+          "speed_multiplier": 0.9,
+          "gross_pnl": 418231.8214398753,
+          "net_pnl": 368231.8214398753
+        }
+      ],
+      "percentile_needed_for_200k": 0.5474739380942402,
+      "percentile_needed_for_300k": 0.8164635133319361,
+      "top_rank_net_pnl": 368231.8214398753,
+      "net_at_70pct": 256703.3357225752
+    },
+    {
+      "research": 16,
+      "scale": 49,
+      "speed": 35,
+      "gross_base": 421134.0412303723,
+      "pnl_by_speed_percentile": [
+        {
+          "percentile_beaten": 0.5,
+          "speed_multiplier": 0.5,
+          "gross_pnl": 210567.02061518616,
+          "net_pnl": 160567.02061518616
+        },
+        {
+          "percentile_beaten": 0.6,
+          "speed_multiplier": 0.58,
+          "gross_pnl": 244257.74391361594,
+          "net_pnl": 194257.74391361594
+        },
+        {
+          "percentile_beaten": 0.7,
+          "speed_multiplier": 0.6599999999999999,
+          "gross_pnl": 277948.4672120457,
+          "net_pnl": 227948.46721204568
+        },
+        {
+          "percentile_beaten": 0.8,
+          "speed_multiplier": 0.7400000000000001,
+          "gross_pnl": 311639.19051047554,
+          "net_pnl": 261639.19051047554
+        },
+        {
+          "percentile_beaten": 0.9,
+          "speed_multiplier": 0.8200000000000001,
+          "gross_pnl": 345329.91380890534,
+          "net_pnl": 295329.91380890534
+        },
+        {
+          "percentile_beaten": 1.0,
+          "speed_multiplier": 0.9,
+          "gross_pnl": 379020.6371073351,
+          "net_pnl": 329020.6371073351
+        }
+      ],
+      "percentile_needed_for_200k": 0.6170440273291838,
+      "percentile_needed_for_300k": 0.9138616382608573,
+      "top_rank_net_pnl": 329020.6371073351,
+      "net_at_70pct": 227948.46721204568
+    },
+    {
+      "research": 15,
+      "scale": 45,
+      "speed": 40,
+      "gross_base": 378480.0177236936,
+      "pnl_by_speed_percentile": [
+        {
+          "percentile_beaten": 0.5,
+          "speed_multiplier": 0.5,
+          "gross_pnl": 189240.0088618468,
+          "net_pnl": 139240.0088618468
+        },
+        {
+          "percentile_beaten": 0.6,
+          "speed_multiplier": 0.58,
+          "gross_pnl": 219518.4102797423,
+          "net_pnl": 169518.4102797423
+        },
+        {
+          "percentile_beaten": 0.7,
+          "speed_multiplier": 0.6599999999999999,
+          "gross_pnl": 249796.81169763778,
+          "net_pnl": 199796.81169763778
+        },
+        {
+          "percentile_beaten": 0.8,
+          "speed_multiplier": 0.7400000000000001,
+          "gross_pnl": 280075.21311553335,
+          "net_pnl": 230075.21311553335
+        },
+        {
+          "percentile_beaten": 0.9,
+          "speed_multiplier": 0.8200000000000001,
+          "gross_pnl": 310353.6145334288,
+          "net_pnl": 260353.6145334288
+        },
+        {
+          "percentile_beaten": 1.0,
+          "speed_multiplier": 0.9,
+          "gross_pnl": 340632.01595132425,
+          "net_pnl": 290632.01595132425
+        }
+      ],
+      "percentile_needed_for_200k": 0.7006710668094984,
+      "percentile_needed_for_300k": 1.0309394935332978,
+      "top_rank_net_pnl": 290632.01595132425,
+      "net_at_70pct": 199796.81169763778
+    }
+  ],
+  "scenario_scans": [
+    {
+      "scenario": "uniform speed field",
+      "top_10": [
+        {
+          "research": 16,
+          "scale": 48,
+          "speed": 36,
+          "gross_base": 412539.4689603647,
+          "percentile_beaten": 0.36,
+          "speed_multiplier": 0.388,
+          "net_pnl": 110065.31395662151
+        },
+        {
+          "research": 16,
+          "scale": 49,
+          "speed": 35,
+          "gross_base": 421134.0412303723,
+          "percentile_beaten": 0.35,
+          "speed_multiplier": 0.38,
+          "net_pnl": 110030.93566754149
+        },
+        {
+          "research": 16,
+          "scale": 47,
+          "speed": 37,
+          "gross_base": 403944.8966903571,
+          "percentile_beaten": 0.37,
+          "speed_multiplier": 0.396,
+          "net_pnl": 109962.17908938142
+        },
+        {
+          "research": 16,
+          "scale": 50,
+          "speed": 34,
+          "gross_base": 429728.61350037996,
+          "percentile_beaten": 0.34,
+          "speed_multiplier": 0.372,
+          "net_pnl": 109859.04422214135
+        },
+        {
+          "research": 16,
+          "scale": 46,
+          "speed": 38,
+          "gross_base": 395350.32442034956,
+          "percentile_beaten": 0.38,
+          "speed_multiplier": 0.404,
+          "net_pnl": 109721.53106582124
+        },
+        {
+          "research": 17,
+          "scale": 50,
+          "speed": 33,
+          "gross_base": 438398.135681211,
+          "percentile_beaten": 0.33,
+          "speed_multiplier": 0.364,
+          "net_pnl": 109576.92138796081
+        },
+        {
+          "research": 15,
+          "scale": 46,
+          "speed": 39,
+          "gross_base": 386890.6847842202,
+          "percentile_beaten": 0.39,
+          "speed_multiplier": 0.41200000000000003,
+          "net_pnl": 109398.96213109873
+        },
+        {
+          "research": 17,
+          "scale": 51,
+          "speed": 32,
+          "gross_base": 447166.09839483525,
+          "percentile_beaten": 0.32,
+          "speed_multiplier": 0.356,
+          "net_pnl": 109191.13102856133
+        },
+        {
+          "research": 15,
+          "scale": 45,
+          "speed": 40,
+          "gross_base": 378480.0177236936,
+          "percentile_beaten": 0.4,
+          "speed_multiplier": 0.42000000000000004,
+          "net_pnl": 108961.60744395133
+        },
+        {
+          "research": 17,
+          "scale": 52,
+          "speed": 31,
+          "gross_base": 455934.0611084595,
+          "percentile_beaten": 0.31,
+          "speed_multiplier": 0.348,
+          "net_pnl": 108665.05326574389
+        }
+      ]
+    },
+    {
+      "scenario": "balanced integer crowd",
+      "top_10": [
+        {
+          "research": 16,
+          "scale": 49,
+          "speed": 35,
+          "gross_base": 421134.0412303723,
+          "percentile_beaten": 0.7,
+          "speed_multiplier": 0.6599999999999999,
+          "net_pnl": 227948.46721204568
+        },
+        {
+          "research": 16,
+          "scale": 48,
+          "speed": 36,
+          "gross_base": 412539.4689603647,
+          "percentile_beaten": 0.7,
+          "speed_multiplier": 0.6599999999999999,
+          "net_pnl": 222276.04951384064
+        },
+        {
+          "research": 16,
+          "scale": 47,
+          "speed": 37,
+          "gross_base": 403944.8966903571,
+          "percentile_beaten": 0.7,
+          "speed_multiplier": 0.6599999999999999,
+          "net_pnl": 216603.63181563566
+        },
+        {
+          "research": 16,
+          "scale": 46,
+          "speed": 38,
+          "gross_base": 395350.32442034956,
+          "percentile_beaten": 0.7,
+          "speed_multiplier": 0.6599999999999999,
+          "net_pnl": 210931.21411743067
+        },
+        {
+          "research": 15,
+          "scale": 46,
+          "speed": 39,
+          "gross_base": 386890.6847842202,
+          "percentile_beaten": 0.7,
+          "speed_multiplier": 0.6599999999999999,
+          "net_pnl": 205347.85195758528
+        },
+        {
+          "research": 15,
+          "scale": 45,
+          "speed": 40,
+          "gross_base": 378480.0177236936,
+          "percentile_beaten": 0.7,
+          "speed_multiplier": 0.6599999999999999,
+          "net_pnl": 199796.81169763778
+        },
+        {
+          "research": 15,
+          "scale": 44,
+          "speed": 41,
+          "gross_base": 370069.35066316713,
+          "percentile_beaten": 0.7,
+          "speed_multiplier": 0.6599999999999999,
+          "net_pnl": 194245.77143769027
+        },
+        {
+          "research": 15,
+          "scale": 43,
+          "speed": 42,
+          "gross_base": 361658.6836026406,
+          "percentile_beaten": 0.7,
+          "speed_multiplier": 0.6599999999999999,
+          "net_pnl": 188694.73117774277
+        },
+        {
+          "research": 15,
+          "scale": 42,
+          "speed": 43,
+          "gross_base": 353248.0165421141,
+          "percentile_beaten": 0.7,
+          "speed_multiplier": 0.6599999999999999,
+          "net_pnl": 183143.69091779526
+        },
+        {
+          "research": 14,
+          "scale": 42,
+          "speed": 44,
+          "gross_base": 345025.33843643696,
+          "percentile_beaten": 0.7,
+          "speed_multiplier": 0.6599999999999999,
+          "net_pnl": 177716.72336804838
+        }
+      ]
+    },
+    {
+      "scenario": "normal field around 33% speed",
+      "top_10": [
+        {
+          "research": 15,
+          "scale": 42,
+          "speed": 43,
+          "gross_base": 353248.0165421141,
+          "percentile_beaten": 0.8413447460685428,
+          "speed_multiplier": 0.7730757968548343,
+          "net_pnl": 223087.49187568453
+        },
+        {
+          "research": 14,
+          "scale": 42,
+          "speed": 44,
+          "gross_base": 345025.33843643696,
+          "percentile_beaten": 0.8643339390536173,
+          "speed_multiplier": 0.7914671512428939,
+          "net_pnl": 223076.22171890212
+        },
+        {
+          "research": 15,
+          "scale": 43,
+          "speed": 42,
+          "gross_base": 361658.6836026406,
+          "percentile_beaten": 0.8159398746532405,
+          "speed_multiplier": 0.7527518997225924,
+          "net_pnl": 222239.26113305968
+        },
+        {
+          "research": 14,
+          "scale": 41,
+          "speed": 45,
+          "gross_base": 336810.4494260456,
+          "percentile_beaten": 0.8849303297782918,
+          "speed_multiplier": 0.8079442638226334,
+          "net_pnl": 222124.07060929667
+        },
+        {
+          "research": 15,
+          "scale": 44,
+          "speed": 41,
+          "gross_base": 370069.35066316713,
+          "percentile_beaten": 0.7881446014166033,
+          "speed_multiplier": 0.7305156811332826,
+          "net_pnl": 220341.46376625512
+        },
+        {
+          "research": 14,
+          "scale": 40,
+          "speed": 46,
+          "gross_base": 328595.5604156542,
+          "percentile_beaten": 0.9031995154143897,
+          "speed_multiplier": 0.8225596123315118,
+          "net_pnl": 220289.4367893564
+        },
+        {
+          "research": 14,
+          "scale": 39,
+          "speed": 47,
+          "gross_base": 320380.6714052629,
+          "percentile_beaten": 0.9192433407662289,
+          "speed_multiplier": 0.8353946726129832,
+          "net_pnl": 217644.30610012735
+        },
+        {
+          "research": 15,
+          "scale": 45,
+          "speed": 40,
+          "gross_base": 378480.0177236936,
+          "percentile_beaten": 0.758036347776927,
+          "speed_multiplier": 0.7064290782215416,
+          "net_pnl": 217369.29004582157
+        },
+        {
+          "research": 13,
+          "scale": 39,
+          "speed": 48,
+          "gross_base": 312218.3476491634,
+          "percentile_beaten": 0.9331927987311419,
+          "speed_multiplier": 0.8465542389849136,
+          "net_pnl": 214309.7656912647
+        },
+        {
+          "research": 15,
+          "scale": 46,
+          "speed": 39,
+          "gross_base": 386890.6847842202,
+          "percentile_beaten": 0.7257468822499263,
+          "speed_multiplier": 0.680597505799941,
+          "net_pnl": 213316.83508137148
+        }
+      ]
+    },
+    {
+      "scenario": "normal field around 40% speed",
+      "top_10": [
+        {
+          "research": 13,
+          "scale": 37,
+          "speed": 50,
+          "gross_base": 296207.1503338217,
+          "percentile_beaten": 0.797671619036357,
+          "speed_multiplier": 0.7381372952290856,
+          "net_pnl": 168641.54477492228
+        },
+        {
+          "research": 13,
+          "scale": 38,
+          "speed": 49,
+          "gross_base": 304212.74899149255,
+          "percentile_beaten": 0.7733726476231317,
+          "speed_multiplier": 0.7186981180985054,
+          "net_pnl": 168637.13020175867
+        },
+        {
+          "research": 13,
+          "scale": 36,
+          "speed": 51,
+          "gross_base": 288201.5516761509,
+          "percentile_beaten": 0.8203413308352145,
+          "speed_multiplier": 0.7562730646681717,
+          "net_pnl": 167959.07072824507
+        },
+        {
+          "research": 13,
+          "scale": 39,
+          "speed": 48,
+          "gross_base": 312218.3476491634,
+          "percentile_beaten": 0.7475074624530771,
+          "speed_multiplier": 0.6980059699624617,
+          "net_pnl": 167930.27059093135
+        },
+        {
+          "research": 14,
+          "scale": 39,
+          "speed": 47,
+          "gross_base": 320380.6714052629,
+          "percentile_beaten": 0.7201655364002941,
+          "speed_multiplier": 0.6761324291202353,
+          "net_pnl": 166619.7616004123
+        },
+        {
+          "research": 13,
+          "scale": 35,
+          "speed": 52,
+          "gross_base": 280195.95301848004,
+          "percentile_beaten": 0.8413447460685428,
+          "speed_multiplier": 0.7730757968548343,
+          "net_pnl": 166612.70965526116
+        },
+        {
+          "research": 12,
+          "scale": 35,
+          "speed": 53,
+          "gross_base": 272327.7064097918,
+          "percentile_beaten": 0.8606697525503779,
+          "speed_multiplier": 0.7885358020403024,
+          "net_pnl": 164740.14639164114
+        },
+        {
+          "research": 14,
+          "scale": 40,
+          "speed": 46,
+          "gross_base": 328595.5604156542,
+          "percentile_beaten": 0.691462461274013,
+          "speed_multiplier": 0.6531699690192104,
+          "net_pnl": 164628.75201654295
+        },
+        {
+          "research": 12,
+          "scale": 34,
+          "speed": 54,
+          "gross_base": 264546.9147980834,
+          "percentile_beaten": 0.8783274954256187,
+          "speed_multiplier": 0.802661996340495,
+          "net_pnl": 162341.75475754848
+        },
+        {
+          "research": 14,
+          "scale": 41,
+          "speed": 45,
+          "gross_base": 336810.4494260456,
+          "percentile_beaten": 0.6615388804893103,
+          "speed_multiplier": 0.6292311043914482,
+          "net_pnl": 161931.6110629307
+        }
+      ]
+    }
+  ],
+  "notes": [
+    "Final recommendation uses integer percentages because the manual UI is easiest to submit that way.",
+    "Speed percentile means the fraction of participants whose Speed investment is lower than ours.",
+    "If many players over-invest in Speed, the rank tournament dissipates value; the recommendation is targeted at beating balanced and moderately optimized allocations without starving Research/Scale."
+  ]
+}

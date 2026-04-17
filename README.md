@@ -9,10 +9,26 @@ Research notebooks:
 - `round2_algorithmic_trading_strategy.ipynb`: round 2 data regime,
   contingent-claims framing, ridge/KNN signal screens, risk controls, and
   strategy replay.
+- `round2_manual_invest_expand_strategy.ipynb`: 50,000 XIREC Research/Scale/Speed
+  allocation optimizer, Speed-rank game theory, and submission recommendation.
 - `round1_algorithmic_model_trading.ipynb`: algorithmic model process, findings,
   backtests, overfit controls, and profitability thesis.
 - `round1_manual_auction_strategy.ipynb`: manual auction mechanism, exact
   optimum, and auction backtest.
+
+## Round 2 Manual Challenge
+
+- Recommended submission: Research 16%, Scale 49%, Speed 35%.
+- Uses the full 50,000 XIREC budget.
+- Continuous optimum conditional on 35% Speed: Research 16.17%, Scale 48.83%,
+  Speed 35.00%; the integer submission is easier and nearly identical.
+- The 35% Speed allocation is chosen to sit above common integer-balanced
+  `33/33/34` submissions while preserving enough budget for the deterministic
+  Research/Scale engine.
+- The allocation clears 200,000 XIRECs if it beats at least 61.7% of Speed
+  investments; at the 70th Speed percentile it scores about 227,948 XIRECs, and
+  at top rank it scores about 329,021 XIRECs.
+- Metrics snapshot: `logs/round2_manual_invest_expand.json`.
 
 ## Round 2 Strategy
 
