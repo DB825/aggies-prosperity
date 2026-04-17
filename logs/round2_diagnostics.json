@@ -26,6 +26,10 @@
     },
     "pepper_slope": 0.001
   },
+  "market_access_fee": {
+    "bid": 825,
+    "rationale": "Volume-sensitivity replay puts the extra 25% access around 700-800 XIRECs per final-day equivalent before passive-fill upside; 825 is intended to beat placeholder bids without making the blind auction the core risk."
+  },
   "deterministic_backtest": {
     "day_results": [
       {

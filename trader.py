@@ -46,7 +46,7 @@ class Trader:
     }
 
     def bid(self):
-        return 15
+        return 825
 
     def run(self, state: TradingState):
         memory = self.load_memory(state.traderData)

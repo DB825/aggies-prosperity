@@ -18,6 +18,9 @@ Research notebooks:
 
 - Active submission file: `trader.py`.
 - Uses `data/round2` for the reproducible local research set.
+- Bids 825 XIRECs for Market Access Fee coverage. The bid is above the common
+  placeholder/example range while staying close to the measured one-day marginal
+  value of the extra 25% book access in local volume-sensitivity checks.
 - Trades `ASH_COATED_OSMIUM` and `INTARIAN_PEPPER_ROOT` with the 80-unit
   position limits.
 - Models pepper root as a deterministic drift claim with slope
