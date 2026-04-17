@@ -14,7 +14,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from datamodel import Listing, Observation, Order, OrderDepth, TradingState
-from trader import Trader
+from trader_round1 import Trader
 
 
 PRODUCTS = ("ASH_COATED_OSMIUM", "INTARIAN_PEPPER_ROOT")

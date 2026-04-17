@@ -1,14 +1,31 @@
 # Aggies Prosperity
 
-Upload `trader.py` to the Prosperity simulator. The local `datamodel.py` mirrors the
-competition interface closely enough for syntax checks and lightweight local tests.
+Use `trader.py` for the active Prosperity simulator submission. Round 1 is
+archived in `trader_round1.py`. The local `datamodel.py` mirrors the competition
+interface closely enough for syntax checks and lightweight local tests.
 
 Research notebooks:
 
-- `algorithmic_model_trading.ipynb`: algorithmic model process, findings,
+- `round1_algorithmic_model_trading.ipynb`: algorithmic model process, findings,
   backtests, overfit controls, and profitability thesis.
-- `manual_auction_strategy.ipynb`: manual auction mechanism, exact optimum, and
-  auction backtest.
+- `round1_manual_auction_strategy.ipynb`: manual auction mechanism, exact
+  optimum, and auction backtest.
+
+## Round 1 Results
+
+- Overall position: 1359.
+- Previous total: 0 XIRECs.
+- Algorithmic trading: +94,022.5625 XIRECs, displayed as +94,023, with round
+  ranking 2046th.
+- Manual trading: +87,995.10 XIRECs, displayed as +87,995, with round ranking
+  1st.
+- Round 1 total: +182,017.6625 XIRECs, displayed as 182,018.
+- New total PnL: 182,018 XIRECs.
+- Mission progress: 91%.
+- Badges unlocked: 5.
+- Manual orders: buy 9,999 `DRYLAND_FLAX` at +30 for +9,999 PnL; buy 19,999
+  `EMBER_MUSHROOM` at +17 for +77,996.10 PnL.
+- Metrics snapshot: `logs/round1_metrics.md`.
 
 ## Round 1 Strategy
 
