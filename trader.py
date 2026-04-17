@@ -25,14 +25,15 @@ class Trader:
 
     PARAMS = {
         "ASH_COATED_OSMIUM": {
-            "fair_alpha": 0.10,
-            "imbalance_weight": 0.0,
+            "fair_alpha": 0.12,
+            "imbalance_weight": 0.4,
             "take_edge": 0.0,
             "make_edge": 3.0,
             "max_take": 32,
             "max_make": 22,
             "inventory_skew": 2.0,
-            "cross_inventory_skew": 1.0,
+            "cross_inventory_skew": 1.25,
+            "inventory_imbalance_threshold": 40,
         },
         "INTARIAN_PEPPER_ROOT": {
             "intercept_alpha": 0.18,
@@ -133,6 +134,10 @@ class Trader:
             self.activate_risk_mode(product, state.timestamp, memory, "anchor_break")
 
         imbalance = self.book_imbalance(order_depth)
+        position = state.position.get(product, 0)
+        threshold = params["inventory_imbalance_threshold"]
+        if abs(position) > threshold and position * imbalance > 0:
+            imbalance = 0.0
         return smoothed + params["imbalance_weight"] * imbalance
 
     def estimate_pepper_fair(
