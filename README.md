@@ -44,18 +44,21 @@ Research notebooks:
   to the long 80-unit cap while the intercept remains stable.
 - Models osmium as stationary around the 10,000 anchor with short-horizon
   mean-reversion, EMA fair-value smoothing, capped best-level order-book
-  imbalance, and active crossing inventory skew.
+  imbalance, active crossing inventory skew, and a crowded-inventory gate that
+  suppresses imbalance when it would add to an already large position.
 - Uses risk gates rather than unconditional averaging down: pepper flattens if
   the live intercept falls more than 35 XIRECs below day-open intercept, and
   osmium flattens if observed fair value moves more than 35 XIRECs from the
   stationary anchor.
-- Deterministic local replay over days -1, 0, and 1: +249,284 XIRECs, with
-  +238,190 from pepper root and +11,094 from osmium.
+- Deterministic local replay over days -1, 0, and 1: +249,317 XIRECs, with
+  +238,195 from pepper root and +11,122 from osmium. A trade-print-aware replay
+  reaches +249,352 XIRECs.
 - Replay improvement versus archived round 1 parameters on the same round 2
-  data: +2,603 XIRECs.
+  data: +2,636 XIRECs, and +33 XIRECs versus the restored second Round 2
+  iteration in the quote-only replay.
 - Execution-stress Monte Carlo, with 97% crossing-fill probability, up to 1
   XIREC adverse slippage, and 3 XIRECs closing mark noise: 5th percentile
-  +245,755.6 XIRECs, 97.5% of draws above +245,000 XIRECs.
+  +245,406.2 XIRECs, 100% of draws above +245,000 XIRECs.
 - Metrics snapshot: `logs/round2_diagnostics.json`.
 
 ## Round 1 Results
@@ -95,6 +98,7 @@ Run the dependency-free diagnostics harness with:
 
 ```powershell
 python scripts\round1_diagnostics.py
+python scripts\round2_diagnostics.py --mc-chains 1 --mc-draws 40
 python scripts\manual_auction_backtest.py
 ```
 
