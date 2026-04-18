@@ -1,0 +1,850 @@
+{
+  "data_dir": "C:\\Users\\dylan\\OneDrive\\Desktop\\aggies-prosperity\\data\\round2",
+  "per_day": {
+    "-1": {
+      "ASH_COATED_OSMIUM": {
+        "rows": 9237,
+        "first_mid": 9991.0,
+        "last_mid": 10002.0,
+        "mean_mid": 10000.828136840966,
+        "stdev_mid": 3.857774021378809,
+        "mean_spread": 16.223990473097327,
+        "return_stdev": 1.8946937283593825,
+        "return_ac1": -0.4885320936795283,
+        "return_ac2": 0.019128951889364754,
+        "return_ac3": -0.027785670246554588,
+        "ou": {
+          "beta": 0.12094206128370899,
+          "half_life_ticks": 5.377216052416721,
+          "mu": 10000.837857583585,
+          "ar1_r_squared": 0.06064471315501084
+        },
+        "imbalance_predictive": {
+          "l1": {
+            "lag_1": {
+              "beta": 4.821334983417891,
+              "intercept": 0.005370361473095262,
+              "r_squared": 0.3508720506976747,
+              "directional_accuracy": 0.6992493211946973
+            },
+            "lag_2": {
+              "beta": 4.765213682655346,
+              "intercept": 0.006330472842289152,
+              "r_squared": 0.3349574281963147,
+              "directional_accuracy": 0.6869081617315497
+            },
+            "lag_3": {
+              "beta": 4.972077314156182,
+              "intercept": 0.007474882668478649,
+              "r_squared": 0.344122984934031,
+              "directional_accuracy": 0.6781041000290782
+            },
+            "lag_5": {
+              "beta": 4.966200144893121,
+              "intercept": 0.008934002706222254,
+              "r_squared": 0.32535184616295193,
+              "directional_accuracy": 0.6708420320111343
+            },
+            "lag_10": {
+              "beta": 4.79870632403254,
+              "intercept": 0.013375437596387416,
+              "r_squared": 0.27470168505240006,
+              "directional_accuracy": 0.6393312101910829
+            }
+          },
+          "l3": {
+            "lag_1": {
+              "beta": -0.6446591738683151,
+              "intercept": 0.001856840562608926,
+              "r_squared": 0.00845356638592788,
+              "directional_accuracy": 0.39019325986264175
+            },
+            "lag_2": {
+              "beta": -0.5213985147668877,
+              "intercept": 0.002966156543564903,
+              "r_squared": 0.005406260227896862,
+              "directional_accuracy": 0.401923944085375
+            },
+            "lag_3": {
+              "beta": -0.6890891181857381,
+              "intercept": 0.004111539136360323,
+              "r_squared": 0.00891089307274014,
+              "directional_accuracy": 0.39938935737132886
+            },
+            "lag_5": {
+              "beta": -0.5831478038428923,
+              "intercept": 0.00546705695373396,
+              "r_squared": 0.006047761296097764,
+              "directional_accuracy": 0.4154488517745303
+            },
+            "lag_10": {
+              "beta": -0.5744437719838109,
+              "intercept": 0.010191184603118547,
+              "r_squared": 0.005306633192594191,
+              "directional_accuracy": 0.42462845010615713
+            }
+          }
+        },
+        "fair_value_mse_1tick": {
+          "mid": 3.5898657427457774,
+          "vwap_micro": 3.3264155940494065,
+          "stoikov_micro": 3.3264155940493705,
+          "depth_micro_l3": 6.420153198683045
+        },
+        "edge_curve_anchor10000": {
+          "edge_0": {
+            "buys": 4078,
+            "buy_expected_payoff_per_unit": 4.564615007356547,
+            "sells": 5159,
+            "sell_expected_payoff_per_unit": 1.5099825547586743,
+            "total_opportunities": 9237,
+            "total_payoff_proxy": 26404.5
+          },
+          "edge_1": {
+            "buys": 3105,
+            "buy_expected_payoff_per_unit": 5.3420289855072465,
+            "sells": 4950,
+            "sell_expected_payoff_per_unit": 1.6370707070707071,
+            "total_opportunities": 8055,
+            "total_payoff_proxy": 24690.5
+          },
+          "edge_2": {
+            "buys": 2325,
+            "buy_expected_payoff_per_unit": 6.095698924731183,
+            "sells": 3870,
+            "sell_expected_payoff_per_unit": 2.3512919896640825,
+            "total_opportunities": 6195,
+            "total_payoff_proxy": 23272.0
+          },
+          "edge_3": {
+            "buys": 1698,
+            "buy_expected_payoff_per_unit": 6.8342167255594815,
+            "sells": 2835,
+            "sell_expected_payoff_per_unit": 3.179541446208113,
+            "total_opportunities": 4533,
+            "total_payoff_proxy": 20618.5
+          },
+          "edge_4": {
+            "buys": 1127,
+            "buy_expected_payoff_per_unit": 7.726264418811002,
+            "sells": 2020,
+            "sell_expected_payoff_per_unit": 4.021782178217822,
+            "total_opportunities": 3147,
+            "total_payoff_proxy": 16831.5
+          },
+          "edge_5": {
+            "buys": 731,
+            "buy_expected_payoff_per_unit": 8.606019151846786,
+            "sells": 1418,
+            "sell_expected_payoff_per_unit": 4.845204513399154,
+            "total_opportunities": 2149,
+            "total_payoff_proxy": 13161.5
+          },
+          "edge_6": {
+            "buys": 497,
+            "buy_expected_payoff_per_unit": 9.319919517102615,
+            "sells": 1009,
+            "sell_expected_payoff_per_unit": 5.55203171456888,
+            "total_opportunities": 1506,
+            "total_payoff_proxy": 10234.0
+          },
+          "edge_8": {
+            "buys": 173,
+            "buy_expected_payoff_per_unit": 10.92485549132948,
+            "sells": 406,
+            "sell_expected_payoff_per_unit": 7.035714285714286,
+            "total_opportunities": 579,
+            "total_payoff_proxy": 4746.5
+          },
+          "edge_10": {
+            "buys": 34,
+            "buy_expected_payoff_per_unit": 12.632352941176471,
+            "sells": 91,
+            "sell_expected_payoff_per_unit": 9.038461538461538,
+            "total_opportunities": 125,
+            "total_payoff_proxy": 1252.0
+          },
+          "edge_12": {
+            "buys": 4,
+            "buy_expected_payoff_per_unit": 14.375,
+            "sells": 21,
+            "sell_expected_payoff_per_unit": 10.571428571428571,
+            "total_opportunities": 25,
+            "total_payoff_proxy": 279.5
+          },
+          "edge_15": {
+            "buys": 0,
+            "buy_expected_payoff_per_unit": 0.0,
+            "sells": 0,
+            "sell_expected_payoff_per_unit": 0.0,
+            "total_opportunities": 0,
+            "total_payoff_proxy": 0.0
+          }
+        }
+      },
+      "INTARIAN_PEPPER_ROOT": {
+        "rows": 9246,
+        "first_mid": 11001.5,
+        "last_mid": 11999.5,
+        "mean_mid": 11501.158609128272,
+        "stdev_mid": 288.25506790254815,
+        "mean_spread": 13.066731559593338,
+        "return_stdev": 1.745929846343132,
+        "return_ac1": -0.492194285745463,
+        "return_ac2": -0.004143094594073022,
+        "return_ac3": -0.005320244656236073,
+        "ou": {
+          "beta": 1.9202847821151853e-05,
+          "half_life_ticks": 36095.71516645425,
+          "mu": 17122.679399802084,
+          "ar1_r_squared": 1.004935417534196e-05
+        },
+        "imbalance_predictive": {
+          "l1": {
+            "lag_1": {
+              "beta": 5.01678733901503,
+              "intercept": 0.10558808634837874,
+              "r_squared": 0.3053484451264999,
+              "directional_accuracy": 0.6275491949910554
+            },
+            "lag_2": {
+              "beta": 5.153426054566852,
+              "intercept": 0.21365935397586122,
+              "r_squared": 0.31728406646899987,
+              "directional_accuracy": 0.5526274509803921
+            },
+            "lag_3": {
+              "beta": 5.207928996765928,
+              "intercept": 0.32163040312927044,
+              "r_squared": 0.32171123813596636,
+              "directional_accuracy": 0.498667040830644
+            },
+            "lag_5": {
+              "beta": 5.292231170447111,
+              "intercept": 0.5378706685040199,
+              "r_squared": 0.32688105971143333,
+              "directional_accuracy": 0.4354858177429089
+            },
+            "lag_10": {
+              "beta": 5.2526253426762155,
+              "intercept": 1.078802504061657,
+              "r_squared": 0.32780064484533444,
+              "directional_accuracy": 0.3674644389252653
+            }
+          },
+          "l3": {
+            "lag_1": {
+              "beta": -0.716534329131521,
+              "intercept": 0.11032373445675743,
+              "r_squared": 0.012320294458551873,
+              "directional_accuracy": 0.32647584973166366
+            },
+            "lag_2": {
+              "beta": -0.7040177138330265,
+              "intercept": 0.21837487281171994,
+              "r_squared": 0.011706275582091783,
+              "directional_accuracy": 0.30258823529411766
+            },
+            "lag_3": {
+              "beta": -0.7130591225338893,
+              "intercept": 0.3264409273491756,
+              "r_squared": 0.011918252116020185,
+              "directional_accuracy": 0.29226883681773536
+            },
+            "lag_5": {
+              "beta": -0.8160191389652092,
+              "intercept": 0.5431056839438718,
+              "r_squared": 0.015352607002116131,
+              "directional_accuracy": 0.27060953530476767
+            },
+            "lag_10": {
+              "beta": -0.673473074193292,
+              "intercept": 1.0833499501587154,
+              "r_squared": 0.010640012448865178,
+              "directional_accuracy": 0.2592007225107248
+            }
+          }
+        },
+        "fair_value_mse_1tick": {
+          "mid": 3.0599242833964304,
+          "vwap_micro": 2.824372175220117,
+          "stoikov_micro": 2.8243721752202346,
+          "depth_micro_l3": 4.475920448901525
+        }
+      }
+    },
+    "0": {
+      "ASH_COATED_OSMIUM": {
+        "rows": 9257,
+        "first_mid": 10003.0,
+        "last_mid": 10008.0,
+        "mean_mid": 10001.578589175759,
+        "stdev_mid": 5.218273130052587,
+        "mean_spread": 16.249540887976668,
+        "return_stdev": 1.8630307188221522,
+        "return_ac1": -0.4686008113833892,
+        "return_ac2": -0.018870791477700474,
+        "return_ac3": 0.005260429958057408,
+        "ou": {
+          "beta": 0.06365757250666315,
+          "half_life_ticks": 10.538311259139734,
+          "mu": 10001.586381293306,
+          "ar1_r_squared": 0.03178993133852045
+        },
+        "imbalance_predictive": {
+          "l1": {
+            "lag_1": {
+              "beta": 4.699317287597336,
+              "intercept": -0.01616727718886684,
+              "r_squared": 0.34173659545214036,
+              "directional_accuracy": 0.7093409198672357
+            },
+            "lag_2": {
+              "beta": 4.866460536554497,
+              "intercept": -0.016223083596597035,
+              "r_squared": 0.3448239872717319,
+              "directional_accuracy": 0.6872939766257117
+            },
+            "lag_3": {
+              "beta": 4.843919534145164,
+              "intercept": -0.01565840320851126,
+              "r_squared": 0.3337703716833892,
+              "directional_accuracy": 0.6823990705779843
+            },
+            "lag_5": {
+              "beta": 4.723212733395361,
+              "intercept": -0.0144465477808064,
+              "r_squared": 0.30320688406173296,
+              "directional_accuracy": 0.6605325526279102
+            },
+            "lag_10": {
+              "beta": 4.622566964056167,
+              "intercept": -0.010587657466779005,
+              "r_squared": 0.2577993727109305,
+              "directional_accuracy": 0.6448322147651007
+            }
+          },
+          "l3": {
+            "lag_1": {
+              "beta": -0.5805269973713589,
+              "intercept": -0.0015782893860432747,
+              "r_squared": 0.0070649727651678615,
+              "directional_accuracy": 0.3861229650703335
+            },
+            "lag_2": {
+              "beta": -0.6985750534103587,
+              "intercept": -0.0014690430688741065,
+              "r_squared": 0.009625890196091209,
+              "directional_accuracy": 0.386574767755469
+            },
+            "lag_3": {
+              "beta": -0.6371862218812798,
+              "intercept": -0.0007957416376747773,
+              "r_squared": 0.007820648220224548,
+              "directional_accuracy": 0.3989253557943654
+            },
+            "lag_5": {
+              "beta": -0.5846164254102062,
+              "intercept": -3.0176719605726383e-05,
+              "r_squared": 0.006290572074028825,
+              "directional_accuracy": 0.41014917050048794
+            },
+            "lag_10": {
+              "beta": -0.5985276083221007,
+              "intercept": 0.003223834994254125,
+              "r_squared": 0.0058507792744661126,
+              "directional_accuracy": 0.4218791946308725
+            }
+          }
+        },
+        "fair_value_mse_1tick": {
+          "mid": 3.4708837510803803,
+          "vwap_micro": 3.3148069470175243,
+          "stoikov_micro": 3.314806947017501,
+          "depth_micro_l3": 6.325059754312361
+        },
+        "edge_curve_anchor10000": {
+          "edge_0": {
+            "buys": 3372,
+            "buy_expected_payoff_per_unit": 11.660290628707,
+            "sells": 5885,
+            "sell_expected_payoff_per_unit": -3.419626168224299,
+            "total_opportunities": 9257,
+            "total_payoff_proxy": 19194.0
+          },
+          "edge_1": {
+            "buys": 2707,
+            "buy_expected_payoff_per_unit": 12.53546361285556,
+            "sells": 5716,
+            "sell_expected_payoff_per_unit": -3.2989853044086774,
+            "total_opportunities": 8423,
+            "total_payoff_proxy": 15076.5
+          },
+          "edge_2": {
+            "buys": 2205,
+            "buy_expected_payoff_per_unit": 13.318140589569161,
+            "sells": 4766,
+            "sell_expected_payoff_per_unit": -2.57920688208141,
+            "total_opportunities": 6971,
+            "total_payoff_proxy": 17074.0
+          },
+          "edge_3": {
+            "buys": 1727,
+            "buy_expected_payoff_per_unit": 14.21598147075854,
+            "sells": 3766,
+            "sell_expected_payoff_per_unit": -1.691449814126394,
+            "total_opportunities": 5493,
+            "total_payoff_proxy": 18181.0
+          },
+          "edge_4": {
+            "buys": 1280,
+            "buy_expected_payoff_per_unit": 15.310546875,
+            "sells": 2980,
+            "sell_expected_payoff_per_unit": -0.8422818791946308,
+            "total_opportunities": 4260,
+            "total_payoff_proxy": 17087.5
+          },
+          "edge_5": {
+            "buys": 1017,
+            "buy_expected_payoff_per_unit": 16.14306784660767,
+            "sells": 2394,
+            "sell_expected_payoff_per_unit": -0.09690893901420217,
+            "total_opportunities": 3411,
+            "total_payoff_proxy": 16185.5
+          },
+          "edge_6": {
+            "buys": 833,
+            "buy_expected_payoff_per_unit": 16.809723889555823,
+            "sells": 1854,
+            "sell_expected_payoff_per_unit": 0.7243797195253506,
+            "total_opportunities": 2687,
+            "total_payoff_proxy": 15345.5
+          },
+          "edge_8": {
+            "buys": 515,
+            "buy_expected_payoff_per_unit": 18.151456310679613,
+            "sells": 1081,
+            "sell_expected_payoff_per_unit": 2.295559666975023,
+            "total_opportunities": 1596,
+            "total_payoff_proxy": 11829.5
+          },
+          "edge_10": {
+            "buys": 270,
+            "buy_expected_payoff_per_unit": 19.675925925925927,
+            "sells": 576,
+            "sell_expected_payoff_per_unit": 3.8706597222222223,
+            "total_opportunities": 846,
+            "total_payoff_proxy": 7542.0
+          },
+          "edge_12": {
+            "buys": 123,
+            "buy_expected_payoff_per_unit": 21.04471544715447,
+            "sells": 265,
+            "sell_expected_payoff_per_unit": 5.416981132075471,
+            "total_opportunities": 388,
+            "total_payoff_proxy": 4024.0
+          },
+          "edge_15": {
+            "buys": 9,
+            "buy_expected_payoff_per_unit": 24.833333333333332,
+            "sells": 45,
+            "sell_expected_payoff_per_unit": 7.666666666666667,
+            "total_opportunities": 54,
+            "total_payoff_proxy": 568.5
+          }
+        }
+      },
+      "INTARIAN_PEPPER_ROOT": {
+        "rows": 9230,
+        "first_mid": 11998.5,
+        "last_mid": 13000.0,
+        "mean_mid": 12501.42908992416,
+        "stdev_mid": 288.448408713998,
+        "mean_spread": 14.121018418201517,
+        "return_stdev": 1.8747794493812866,
+        "return_ac1": -0.49557931871776745,
+        "return_ac2": -0.006260333833003886,
+        "return_ac3": 0.009495086876483422,
+        "ou": {
+          "beta": 2.3969496771107476e-05,
+          "half_life_ticks": 28917.539652666517,
+          "mu": 17028.655443725667,
+          "ar1_r_squared": 1.3597535566960452e-05
+        },
+        "imbalance_predictive": {
+          "l1": {
+            "lag_1": {
+              "beta": 5.678269729229248,
+              "intercept": 0.10771283710859686,
+              "r_squared": 0.3386145792793189,
+              "directional_accuracy": 0.6330777656078861
+            },
+            "lag_2": {
+              "beta": 5.608992513214689,
+              "intercept": 0.21620852612421465,
+              "r_squared": 0.32750855345750346,
+              "directional_accuracy": 0.5524034672970843
+            },
+            "lag_3": {
+              "beta": 5.5374522564476285,
+              "intercept": 0.32440291979661956,
+              "r_squared": 0.3204822219010809,
+              "directional_accuracy": 0.4951415293620617
+            },
+            "lag_5": {
+              "beta": 5.477219840342538,
+              "intercept": 0.5411213474277701,
+              "r_squared": 0.31135088518397847,
+              "directional_accuracy": 0.43373493975903615
+            },
+            "lag_10": {
+              "beta": 5.437152194438822,
+              "intercept": 1.0830053519420544,
+              "r_squared": 0.3166565846419275,
+              "directional_accuracy": 0.37908568904593637
+            }
+          },
+          "l3": {
+            "lag_1": {
+              "beta": -0.7962285288317679,
+              "intercept": 0.1093736636621091,
+              "r_squared": 0.013190770574699903,
+              "directional_accuracy": 0.31562614092734576
+            },
+            "lag_2": {
+              "beta": -0.70702920635914,
+              "intercept": 0.21776370366356773,
+              "r_squared": 0.010309763816211534,
+              "directional_accuracy": 0.30181245074862095
+            },
+            "lag_3": {
+              "beta": -0.71327532963132,
+              "intercept": 0.32599437171713164,
+              "r_squared": 0.01053053854775557,
+              "directional_accuracy": 0.29136741304041686
+            },
+            "lag_5": {
+              "beta": -0.9019237718658075,
+              "intercept": 0.5428703641483282,
+              "r_squared": 0.016713529042365026,
+              "directional_accuracy": 0.26749421930144823
+            },
+            "lag_10": {
+              "beta": -0.6977173440146057,
+              "intercept": 1.0846381867584531,
+              "r_squared": 0.010315569843480466,
+              "directional_accuracy": 0.25938604240282687
+            }
+          }
+        },
+        "fair_value_mse_1tick": {
+          "mid": 3.52657384331997,
+          "vwap_micro": 3.0814846953994146,
+          "stoikov_micro": 3.08148469539949,
+          "depth_micro_l3": 5.2274832835740375
+        }
+      }
+    },
+    "1": {
+      "ASH_COATED_OSMIUM": {
+        "rows": 9214,
+        "first_mid": 10008.0,
+        "last_mid": 9993.0,
+        "mean_mid": 10000.150260473192,
+        "stdev_mid": 4.477783403939556,
+        "mean_spread": 16.228890818319947,
+        "return_stdev": 1.8871469830955814,
+        "return_ac1": -0.48800807013012776,
+        "return_ac2": 0.004563272182046732,
+        "return_ac3": 6.793032603815768e-05,
+        "ou": {
+          "beta": 0.08885200756970035,
+          "half_life_ticks": 7.449195000752299,
+          "mu": 10000.13271246652,
+          "ar1_r_squared": 0.04444021194466556
+        },
+        "imbalance_predictive": {
+          "l1": {
+            "lag_1": {
+              "beta": 4.746222757622547,
+              "intercept": -0.009916363652510102,
+              "r_squared": 0.33667369318952556,
+              "directional_accuracy": 0.7045491078604726
+            },
+            "lag_2": {
+              "beta": 4.676461006909654,
+              "intercept": -0.011586745392707628,
+              "r_squared": 0.31921524281265,
+              "directional_accuracy": 0.6846874056176382
+            },
+            "lag_3": {
+              "beta": 4.77168913512043,
+              "intercept": -0.013545670758751419,
+              "r_squared": 0.32195862107503365,
+              "directional_accuracy": 0.6760790051207023
+            },
+            "lag_5": {
+              "beta": 4.79968443108007,
+              "intercept": -0.017072382974671833,
+              "r_squared": 0.3053874449705087,
+              "directional_accuracy": 0.6649354295339697
+            },
+            "lag_10": {
+              "beta": 4.824439032361451,
+              "intercept": -0.025769823465939083,
+              "r_squared": 0.27542109429560657,
+              "directional_accuracy": 0.6441932445162158
+            }
+          },
+          "l3": {
+            "lag_1": {
+              "beta": -0.6981764019091388,
+              "intercept": -0.0022748212401933294,
+              "r_squared": 0.00980954021513888,
+              "directional_accuracy": 0.38434335315865614
+            },
+            "lag_2": {
+              "beta": -0.6468585814079608,
+              "intercept": -0.00401867179137791,
+              "r_squared": 0.008223809630741432,
+              "directional_accuracy": 0.3979160374509212
+            },
+            "lag_3": {
+              "beta": -0.5900843892511751,
+              "intercept": -0.005757845916859113,
+              "r_squared": 0.006629631676165021,
+              "directional_accuracy": 0.40395025603511336
+            },
+            "lag_5": {
+              "beta": -0.7442099468039235,
+              "intercept": -0.009376779016484897,
+              "r_squared": 0.009886034712948277,
+              "directional_accuracy": 0.4084783829309377
+            },
+            "lag_10": {
+              "beta": -0.635626205400687,
+              "intercept": -0.01774749057208246,
+              "r_squared": 0.006437140517992264,
+              "directional_accuracy": 0.4182478805006056
+            }
+          }
+        },
+        "fair_value_mse_1tick": {
+          "mid": 3.5613263866275915,
+          "vwap_micro": 3.402665816544407,
+          "stoikov_micro": 3.4026658165443724,
+          "depth_micro_l3": 6.351158864096243
+        },
+        "edge_curve_anchor10000": {
+          "edge_0": {
+            "buys": 4738,
+            "buy_expected_payoff_per_unit": -3.622942169691853,
+            "sells": 4476,
+            "sell_expected_payoff_per_unit": 10.884048257372655,
+            "total_opportunities": 9214,
+            "total_payoff_proxy": 31551.5
+          },
+          "edge_1": {
+            "buys": 3949,
+            "buy_expected_payoff_per_unit": -2.9670802734869586,
+            "sells": 4328,
+            "sell_expected_payoff_per_unit": 10.999768946395564,
+            "total_opportunities": 8277,
+            "total_payoff_proxy": 35890.0
+          },
+          "edge_2": {
+            "buys": 3161,
+            "buy_expected_payoff_per_unit": -2.2344194875039545,
+            "sells": 3561,
+            "sell_expected_payoff_per_unit": 11.626088177478236,
+            "total_opportunities": 6722,
+            "total_payoff_proxy": 34337.5
+          },
+          "edge_3": {
+            "buys": 2550,
+            "buy_expected_payoff_per_unit": -1.5933333333333333,
+            "sells": 2829,
+            "sell_expected_payoff_per_unit": 12.28243195475433,
+            "total_opportunities": 5379,
+            "total_payoff_proxy": 30684.0
+          },
+          "edge_4": {
+            "buys": 1979,
+            "buy_expected_payoff_per_unit": -0.9214249621020717,
+            "sells": 2161,
+            "sell_expected_payoff_per_unit": 12.964136973623322,
+            "total_opportunities": 4140,
+            "total_payoff_proxy": 26192.0
+          },
+          "edge_5": {
+            "buys": 1435,
+            "buy_expected_payoff_per_unit": -0.16236933797909409,
+            "sells": 1508,
+            "sell_expected_payoff_per_unit": 13.778514588859416,
+            "total_opportunities": 2943,
+            "total_payoff_proxy": 20545.0
+          },
+          "edge_6": {
+            "buys": 995,
+            "buy_expected_payoff_per_unit": 0.6095477386934673,
+            "sells": 1015,
+            "sell_expected_payoff_per_unit": 14.596059113300493,
+            "total_opportunities": 2010,
+            "total_payoff_proxy": 15421.5
+          },
+          "edge_8": {
+            "buys": 425,
+            "buy_expected_payoff_per_unit": 2.0152941176470587,
+            "sells": 395,
+            "sell_expected_payoff_per_unit": 16.277215189873417,
+            "total_opportunities": 820,
+            "total_payoff_proxy": 7286.0
+          },
+          "edge_10": {
+            "buys": 85,
+            "buy_expected_payoff_per_unit": 4.023529411764706,
+            "sells": 131,
+            "sell_expected_payoff_per_unit": 17.6793893129771,
+            "total_opportunities": 216,
+            "total_payoff_proxy": 2658.0
+          },
+          "edge_12": {
+            "buys": 18,
+            "buy_expected_payoff_per_unit": 6.416666666666667,
+            "sells": 15,
+            "sell_expected_payoff_per_unit": 19.566666666666666,
+            "total_opportunities": 33,
+            "total_payoff_proxy": 409.0
+          },
+          "edge_15": {
+            "buys": 3,
+            "buy_expected_payoff_per_unit": 8.0,
+            "sells": 0,
+            "sell_expected_payoff_per_unit": 0.0,
+            "total_opportunities": 3,
+            "total_payoff_proxy": 24.0
+          }
+        }
+      },
+      "INTARIAN_PEPPER_ROOT": {
+        "rows": 9248,
+        "first_mid": 13000.0,
+        "last_mid": 13999.5,
+        "mean_mid": 13500.109266868512,
+        "stdev_mid": 289.1473087897324,
+        "mean_spread": 15.177011245674741,
+        "return_stdev": 2.0301532228393966,
+        "return_ac1": -0.49576086463493535,
+        "return_ac2": -0.0010533847228329834,
+        "return_ac3": -0.005958013581481954,
+        "ou": {
+          "beta": 2.5118344655502267e-05,
+          "half_life_ticks": 27594.910599250128,
+          "mu": 17803.249259976463,
+          "ar1_r_squared": 1.2795862079554502e-05
+        },
+        "imbalance_predictive": {
+          "l1": {
+            "lag_1": {
+              "beta": 6.098974393714468,
+              "intercept": 0.10617344361708603,
+              "r_squared": 0.33117163844251163,
+              "directional_accuracy": 0.6210861489474615
+            },
+            "lag_2": {
+              "beta": 6.054418237384731,
+              "intercept": 0.2142997235843093,
+              "r_squared": 0.3236071232635072,
+              "directional_accuracy": 0.55119825708061
+            },
+            "lag_3": {
+              "beta": 6.1173679027644114,
+              "intercept": 0.32225337048109665,
+              "r_squared": 0.3283116194900322,
+              "directional_accuracy": 0.4990955892583832
+            },
+            "lag_5": {
+              "beta": 6.134299898720345,
+              "intercept": 0.5387289354209605,
+              "r_squared": 0.3314433622659547,
+              "directional_accuracy": 0.43274218844251416
+            },
+            "lag_10": {
+              "beta": 6.200786860785234,
+              "intercept": 1.0795419639941313,
+              "r_squared": 0.33688055636507874,
+              "directional_accuracy": 0.39114229335672
+            }
+          },
+          "l3": {
+            "lag_1": {
+              "beta": -0.9545125034551349,
+              "intercept": 0.1088593153217529,
+              "r_squared": 0.0158624950577784,
+              "directional_accuracy": 0.31416946753935965
+            },
+            "lag_2": {
+              "beta": -0.8533798869381034,
+              "intercept": 0.21683753436903982,
+              "r_squared": 0.012566478447302734,
+              "directional_accuracy": 0.3028322440087146
+            },
+            "lag_3": {
+              "beta": -0.945870851790331,
+              "intercept": 0.3248278708946939,
+              "r_squared": 0.01533577290692428,
+              "directional_accuracy": 0.2848198135522471
+            },
+            "lag_5": {
+              "beta": -0.968173942921647,
+              "intercept": 0.5410395765853395,
+              "r_squared": 0.016140565361259657,
+              "directional_accuracy": 0.2679454698998673
+            },
+            "lag_10": {
+              "beta": -1.0396832309184434,
+              "intercept": 1.082044456635047,
+              "r_squared": 0.018498144267787755,
+              "directional_accuracy": 0.2583863187897391
+            }
+          }
+        },
+        "fair_value_mse_1tick": {
+          "mid": 4.133205363901806,
+          "vwap_micro": 3.6246086984230055,
+          "stoikov_micro": 3.624608698422919,
+          "depth_micro_l3": 6.04238377619835
+        }
+      }
+    }
+  },
+  "pepper_drift": {
+    "-1": {
+      "slope": 0.0010000033092823907,
+      "intercept": 10999.982972665646,
+      "r_squared": 0.9999812446672454,
+      "residual_stdev": 1.248358544967079,
+      "first_mid": 11001.5,
+      "last_mid": 11999.5,
+      "intercept_to_expected_10000": 11001.5
+    },
+    "0": {
+      "slope": 0.0009999919296293442,
+      "intercept": 11999.99931219561,
+      "r_squared": 0.9999787996044993,
+      "residual_stdev": 1.3281285998316212,
+      "first_mid": 11998.5,
+      "last_mid": 13000.0,
+      "intercept_to_expected_10000": 11998.5
+    },
+    "1": {
+      "slope": 0.0010000291777593918,
+      "intercept": 12999.975189208386,
+      "r_squared": 0.9999752258170631,
+      "residual_stdev": 1.439192292758875,
+      "first_mid": 13000.0,
+      "last_mid": 13999.5,
+      "intercept_to_expected_10000": 13000.0
+    }
+  }
+}

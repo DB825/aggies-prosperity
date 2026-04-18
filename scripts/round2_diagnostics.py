@@ -467,6 +467,7 @@ def parameter_grid(
                 "imbalance_weight": 0.4,
                 "cross_inventory_skew": 1.0,
                 "inventory_imbalance_threshold": 10_000,
+                "anchor_pull": 0.0,
             },
         }
     }
@@ -562,24 +563,23 @@ def parameter_grid(
                     pepper_candidates.append(rows[-1])
 
     ash_candidates = []
-    for fair_alpha in (0.10, 0.12, 0.14):
+    for fair_alpha in (0.08, 0.10, 0.12):
         for imbalance_weight in (0.3, 0.4, 0.5):
-            for cross_inventory_skew in (1.0, 1.1, 1.25):
-                for threshold in (None, 40):
+            for cross_inventory_skew in (1.1, 1.25, 1.4):
+                for anchor_pull in (0.0, 0.02, 0.04, 0.06):
                     overrides = {
                         "params": {
                             "ASH_COATED_OSMIUM": {
                                 "fair_alpha": fair_alpha,
                                 "imbalance_weight": imbalance_weight,
                                 "cross_inventory_skew": cross_inventory_skew,
+                                "anchor_pull": anchor_pull,
                                 "inventory_imbalance_threshold": 10_000,
                             }
                         }
                     }
-                    if threshold is not None:
-                        overrides["params"]["ASH_COATED_OSMIUM"]["inventory_imbalance_threshold"] = threshold
                     result = run_backtest(by_day_ts, trade_by_day_ts=trade_by_day_ts, overrides=overrides)
-                    name = f"ash_a{fair_alpha}_imb{imbalance_weight}_x{cross_inventory_skew}_thr{threshold}"
+                    name = f"ash_a{fair_alpha}_imb{imbalance_weight}_x{cross_inventory_skew}_ap{anchor_pull}"
                     score_result(name, "osmium_only", overrides, result)
                     ash_candidates.append(rows[-1])
 
@@ -616,6 +616,8 @@ def parameter_grid(
         and row["quote_only_holdout_day1_pnl"] >= reference_quote["day_results"][2]["total_pnl"] - 150.0
     ]
     selected = max(risk_validated, key=lambda row: row["selection_robust_score"])
+    risk_capped = [row for row in rows if row["max_abs_end_osmium_inventory"] <= 74]
+    risk_capped_sorted = sorted(risk_capped, key=lambda r: r["combined_pnl"], reverse=True)
     return {
         "rows_evaluated": len(rows),
         "profit_target": 200_000,
@@ -640,6 +642,8 @@ def parameter_grid(
         "selected_robust_rank": 1 + sorted_robust_rows.index(selected),
         "top_10_by_robust_score": sorted_robust_rows[:10],
         "top_10_by_pnl": sorted_rows[:10],
+        "top_10_risk_capped": risk_capped_sorted[:10],
+        "risk_capped_size": len(risk_capped),
         "bottom_5_by_pnl": sorted_rows[-5:],
     }
 

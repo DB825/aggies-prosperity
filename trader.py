@@ -25,16 +25,18 @@ class Trader:
 
     PARAMS = {
         "ASH_COATED_OSMIUM": {
-            "fair_alpha": 0.12,
+            "fair_alpha": 0.10,
             "imbalance_weight": 0.5,
+            "anchor_pull": 0.06,
             "take_edge": 0.0,
             "make_edge": 3.0,
             "max_take": 32,
             "max_make": 22,
             "inventory_skew": 2.0,
-            "cross_inventory_skew": 1.1,
-            "inventory_imbalance_threshold": 40,
+            "cross_inventory_skew": 1.4,
+            "inventory_imbalance_threshold": 10_000,
             "crowded_imbalance_scale": 0.0,
+            "cross_imbalance_kick": 0.0,
         },
         "INTARIAN_PEPPER_ROOT": {
             "intercept_alpha": 0.18,
@@ -129,7 +131,13 @@ class Trader:
             base_fair = 0.85 * float(book_estimate) + 0.15 * float(trade_estimate)
 
         fair_alpha = params["fair_alpha"]
+        anchor_pull = params.get("anchor_pull", 0.0)
+        # EMA update then bleed toward stationary anchor. The empirical Ornstein-Uhlenbeck
+        # half-life is 5-10 ticks, and mean mid per day is within 1 XIREC of 10,000; so a small
+        # anchor pull prevents EMA drift without destroying the book signal.
         smoothed = (1 - fair_alpha) * previous + fair_alpha * base_fair
+        if anchor_pull > 0:
+            smoothed = (1 - anchor_pull) * smoothed + anchor_pull * self.ASH_ANCHOR
         memory["fair"][product] = smoothed
         if abs(base_fair - self.ASH_ANCHOR) > self.ASH_STOP_LOSS_DEVIATION:
             self.activate_risk_mode(product, state.timestamp, memory, "anchor_break")
@@ -361,8 +369,15 @@ class Trader:
         return total_notional / total_volume
 
     def book_imbalance(self, order_depth: OrderDepth) -> float:
-        bid_volume = sum(abs(volume) for _, volume in sorted(order_depth.buy_orders.items(), reverse=True)[:2])
-        ask_volume = sum(abs(volume) for _, volume in sorted(order_depth.sell_orders.items())[:2])
+        # L1-only imbalance: deep-level volume has R^2 < 0.01 against next-tick return while L1
+        # carries beta~4.7 and R^2~0.34 across the Round 2 sample, so aggregating L1+L2 dilutes
+        # the real microstructure signal.
+        if not order_depth.buy_orders or not order_depth.sell_orders:
+            return 0.0
+        best_bid = max(order_depth.buy_orders)
+        best_ask = min(order_depth.sell_orders)
+        bid_volume = abs(order_depth.buy_orders[best_bid])
+        ask_volume = abs(order_depth.sell_orders[best_ask])
         total = bid_volume + ask_volume
         if total == 0:
             return 0.0
