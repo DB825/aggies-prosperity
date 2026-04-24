@@ -22,16 +22,16 @@ class Trader:
     }
 
     INTERNAL_LIMITS = {
-        "VEV_4000": 80,
-        "VEV_4500": 80,
-        "VEV_5000": 200,
-        "VEV_5100": 200,
-        "VEV_5200": 200,
-        "VEV_5300": 200,
-        "VEV_5400": 200,
-        "VEV_5500": 200,
-        "VEV_6000": 20,
-        "VEV_6500": 20,
+        "VEV_4000": 60,
+        "VEV_4500": 60,
+        "VEV_5000": 150,
+        "VEV_5100": 150,
+        "VEV_5200": 150,
+        "VEV_5300": 150,
+        "VEV_5400": 150,
+        "VEV_5500": 150,
+        "VEV_6000": 10,
+        "VEV_6500": 10,
     }
 
     OPTION_STRIKES = {
@@ -146,7 +146,18 @@ class Trader:
     VELVET_MAX_MAKE = 28
     VELVET_INVENTORY_SKEW = 10.0
 
-    OPTION_DELTA_BUDGET = 550.0
+    OPTION_DELTA_BUDGET = 300.0
+    OPTION_DELTA_SOFT_LIMIT = 220.0
+    OPTION_DELTA_HARD_LIMIT = 280.0
+    OPTION_GROSS_POSITION_LIMIT = 700
+    OPTION_REENTRY_DELTA = 150.0
+    INVENTORY_DRAWDOWN_LIMIT = 18_000.0
+    GLOBAL_DRAWDOWN_LIMIT = 26_000.0
+    RISK_REENTRY_DRAWDOWN = 12_000.0
+    OPTION_RISK_EXIT_EDGE = 0.75
+    UNDERLYING_RISK_EXIT_EDGE = 4.0
+    HEDGE_RATIO = 0.25
+    RISK_HEDGE_RATIO = 0.50
     OPTION_REDUCTION_START = 995_000
     UNDERLYING_REDUCTION_START = 996_000
     LIVE_TTE_DAYS = 5.0
@@ -160,16 +171,11 @@ class Trader:
 
         hydro_depth = state.order_depths.get("HYDROGEL_PACK")
         velvet_depth = state.order_depths.get("VELVETFRUIT_EXTRACT")
+        tte = self.time_to_expiry(state)
 
         hydro_fair = None
         if hydro_depth is not None:
             hydro_fair = self.estimate_hydrogel_fair(hydro_depth, memory)
-            result["HYDROGEL_PACK"] = self.trade_hydrogel(
-                hydro_depth,
-                hydro_fair,
-                state.position.get("HYDROGEL_PACK", 0),
-                state.timestamp,
-            )
 
         velvet_fair = None
         spot_for_options = None
@@ -178,23 +184,34 @@ class Trader:
             book_spot = self.book_fair_value(velvet_depth)
             spot_for_options = book_spot if book_spot is not None else velvet_fair
 
-        if spot_for_options is not None:
-            option_delta = self.portfolio_delta(state.position, spot_for_options, self.time_to_expiry(state))
-        else:
-            option_delta = 0.0
+        mark_prices = self.build_mark_prices(state, hydro_fair, velvet_fair, spot_for_options, tte)
+        risk_state = self.update_risk_state(state, memory, mark_prices, spot_for_options, tte)
+        option_delta = risk_state["option_delta"]
+
+        if hydro_depth is not None and hydro_fair is not None:
+            result["HYDROGEL_PACK"] = self.trade_hydrogel(
+                hydro_depth,
+                hydro_fair,
+                state.position.get("HYDROGEL_PACK", 0),
+                state.timestamp,
+                risk_state["reduce_all"],
+            )
 
         if velvet_depth is not None and velvet_fair is not None:
-            hedge_target = self.clamp_int(int(round(-0.25 * option_delta)), -80, 80)
+            hedge_ratio = self.RISK_HEDGE_RATIO if risk_state["reduce_options"] else self.HEDGE_RATIO
+            hedge_limit = 120 if risk_state["reduce_options"] else 80
+            hedge_target = self.clamp_int(int(round(-hedge_ratio * option_delta)), -hedge_limit, hedge_limit)
             result["VELVETFRUIT_EXTRACT"] = self.trade_velvet(
                 velvet_depth,
                 velvet_fair,
                 state.position.get("VELVETFRUIT_EXTRACT", 0),
                 state.timestamp,
                 hedge_target,
+                risk_state["reduce_all"],
             )
 
         if spot_for_options is not None:
-            option_orders = self.trade_options(state, spot_for_options)
+            option_orders = self.trade_options(state, spot_for_options, tte, risk_state["reduce_options"])
             result.update(option_orders)
 
         memory["last_timestamp"] = state.timestamp
@@ -202,7 +219,7 @@ class Trader:
         return result, 0, trader_data
 
     def load_memory(self, trader_data: str) -> Dict:
-        baseline = {"ema": {}, "last_timestamp": 0}
+        baseline = {"ema": {}, "risk": {}, "last_timestamp": 0}
         if not trader_data:
             return baseline
         try:
@@ -210,10 +227,94 @@ class Trader:
             if not isinstance(memory, dict):
                 return baseline
             memory.setdefault("ema", {})
+            memory.setdefault("risk", {})
             memory.setdefault("last_timestamp", 0)
             return memory
         except Exception:
             return baseline
+
+    def build_mark_prices(
+        self,
+        state: TradingState,
+        hydro_fair: Optional[float],
+        velvet_fair: Optional[float],
+        spot_for_options: Optional[float],
+        tte: float,
+    ) -> Dict[str, float]:
+        marks: Dict[str, float] = {}
+        if hydro_fair is not None:
+            marks["HYDROGEL_PACK"] = hydro_fair
+        if velvet_fair is not None:
+            marks["VELVETFRUIT_EXTRACT"] = velvet_fair
+        if spot_for_options is not None:
+            for symbol, strike in self.OPTION_STRIKES.items():
+                if symbol in state.order_depths:
+                    marks[symbol] = self.option_fair_value(spot_for_options, strike, tte)
+        return marks
+
+    def update_risk_state(
+        self,
+        state: TradingState,
+        memory: Dict,
+        mark_prices: Dict[str, float],
+        spot_for_options: Optional[float],
+        tte: float,
+    ) -> Dict[str, float]:
+        risk = memory.setdefault("risk", {})
+        inventory_mtm = float(risk.get("inventory_mtm", 0.0))
+        peak_inventory_mtm = float(risk.get("peak_inventory_mtm", inventory_mtm))
+        last_marks = risk.get("last_marks", {})
+        last_positions = risk.get("last_positions", {})
+
+        for product, previous_position in last_positions.items():
+            if product not in mark_prices or product not in last_marks:
+                continue
+            inventory_mtm += float(previous_position) * (mark_prices[product] - float(last_marks[product]))
+
+        peak_inventory_mtm = max(peak_inventory_mtm, inventory_mtm)
+        drawdown = peak_inventory_mtm - inventory_mtm
+        option_delta = 0.0
+        if spot_for_options is not None:
+            option_delta = self.portfolio_delta(state.position, spot_for_options, tte)
+        option_gross = self.option_gross_position(state.position)
+
+        reduce_options = bool(risk.get("reduce_options", False))
+        reduce_all = bool(risk.get("reduce_all", False))
+        if (
+            abs(option_delta) >= self.OPTION_DELTA_HARD_LIMIT
+            or option_gross >= self.OPTION_GROSS_POSITION_LIMIT
+            or drawdown >= self.INVENTORY_DRAWDOWN_LIMIT
+        ):
+            reduce_options = True
+        elif (
+            reduce_options
+            and abs(option_delta) <= self.OPTION_REENTRY_DELTA
+            and drawdown <= self.RISK_REENTRY_DRAWDOWN
+        ):
+            reduce_options = False
+
+        if drawdown >= self.GLOBAL_DRAWDOWN_LIMIT:
+            reduce_all = True
+        elif reduce_all and drawdown <= self.RISK_REENTRY_DRAWDOWN:
+            reduce_all = False
+
+        risk["inventory_mtm"] = inventory_mtm
+        risk["peak_inventory_mtm"] = peak_inventory_mtm
+        risk["drawdown"] = drawdown
+        risk["option_delta"] = option_delta
+        risk["option_gross"] = option_gross
+        risk["reduce_options"] = reduce_options
+        risk["reduce_all"] = reduce_all
+        risk["last_marks"] = mark_prices
+        risk["last_positions"] = {product: int(state.position.get(product, 0)) for product in mark_prices}
+
+        return {
+            "inventory_mtm": inventory_mtm,
+            "drawdown": drawdown,
+            "option_delta": option_delta,
+            "reduce_options": reduce_options,
+            "reduce_all": reduce_all,
+        }
 
     def time_to_expiry(self, state: TradingState) -> float:
         observations = getattr(state, "observations", None)
@@ -249,16 +350,18 @@ class Trader:
         fair: float,
         position: int,
         timestamp: int,
+        risk_reduce_only: bool,
     ) -> List[Order]:
         orders: List[Order] = []
         position_after = position
-        reduce_only = timestamp >= self.UNDERLYING_REDUCTION_START
+        reduce_only = risk_reduce_only or timestamp >= self.UNDERLYING_REDUCTION_START
+        exit_edge = self.UNDERLYING_RISK_EXIT_EDGE if risk_reduce_only else self.HYDROGEL_TAKE_EDGE
 
         if not reduce_only or position_after < 0:
             position_after = self.take_asks_with_budget(
                 "HYDROGEL_PACK",
                 order_depth,
-                fair - self.HYDROGEL_TAKE_EDGE,
+                fair + exit_edge if reduce_only else fair - self.HYDROGEL_TAKE_EDGE,
                 self.HYDROGEL_MAX_TAKE,
                 position_after,
                 orders,
@@ -268,7 +371,7 @@ class Trader:
             position_after = self.hit_bids_with_budget(
                 "HYDROGEL_PACK",
                 order_depth,
-                fair + self.HYDROGEL_TAKE_EDGE,
+                fair - exit_edge if reduce_only else fair + self.HYDROGEL_TAKE_EDGE,
                 self.HYDROGEL_MAX_TAKE,
                 position_after,
                 orders,
@@ -295,16 +398,18 @@ class Trader:
         position: int,
         timestamp: int,
         target_position: int,
+        risk_reduce_only: bool,
     ) -> List[Order]:
         orders: List[Order] = []
         position_after = position
-        reduce_only = timestamp >= self.UNDERLYING_REDUCTION_START
+        reduce_only = risk_reduce_only or timestamp >= self.UNDERLYING_REDUCTION_START
+        exit_edge = self.UNDERLYING_RISK_EXIT_EDGE if risk_reduce_only else self.VELVET_TAKE_EDGE
 
         if not reduce_only or position_after < target_position:
             position_after = self.take_asks_with_budget(
                 "VELVETFRUIT_EXTRACT",
                 order_depth,
-                fair - self.VELVET_TAKE_EDGE,
+                fair + exit_edge if reduce_only else fair - self.VELVET_TAKE_EDGE,
                 self.VELVET_MAX_TAKE,
                 position_after,
                 orders,
@@ -314,7 +419,7 @@ class Trader:
             position_after = self.hit_bids_with_budget(
                 "VELVETFRUIT_EXTRACT",
                 order_depth,
-                fair + self.VELVET_TAKE_EDGE,
+                fair - exit_edge if reduce_only else fair + self.VELVET_TAKE_EDGE,
                 self.VELVET_MAX_TAKE,
                 position_after,
                 orders,
@@ -334,14 +439,19 @@ class Trader:
             )
         return orders
 
-    def trade_options(self, state: TradingState, spot: float) -> Dict[str, List[Order]]:
-        tte = self.time_to_expiry(state)
+    def trade_options(
+        self,
+        state: TradingState,
+        spot: float,
+        tte: float,
+        risk_reduce_only: bool,
+    ) -> Dict[str, List[Order]]:
         shadow_positions = {
             symbol: int(state.position.get(symbol, 0))
             for symbol in self.OPTION_STRIKES
         }
         shadow_delta = self.portfolio_delta(shadow_positions, spot, tte)
-        reduce_only = state.timestamp >= self.OPTION_REDUCTION_START
+        reduce_only = risk_reduce_only or state.timestamp >= self.OPTION_REDUCTION_START
         orders_by_product: Dict[str, List[Order]] = {symbol: [] for symbol in self.OPTION_STRIKES}
 
         for symbol in self.OPTION_PRIORITY:
@@ -356,7 +466,35 @@ class Trader:
             internal_limit = self.position_limit(symbol)
             orders = orders_by_product[symbol]
 
-            if not reduce_only or position < 0:
+            if reduce_only:
+                if position < 0:
+                    position, delta_change = self.take_option_asks(
+                        symbol,
+                        order_depth,
+                        fair + self.OPTION_RISK_EXIT_EDGE,
+                        self.OPTION_MAX_TAKE[symbol],
+                        position,
+                        min(internal_limit - position, abs(position)),
+                        delta,
+                        orders,
+                    )
+                    shadow_delta += delta_change
+                elif position > 0:
+                    position, delta_change = self.hit_option_bids(
+                        symbol,
+                        order_depth,
+                        fair - self.OPTION_RISK_EXIT_EDGE,
+                        self.OPTION_MAX_TAKE[symbol],
+                        position,
+                        min(internal_limit + position, abs(position)),
+                        delta,
+                        orders,
+                    )
+                    shadow_delta += delta_change
+                shadow_positions[symbol] = position
+                continue
+
+            if position < internal_limit:
                 buy_capacity = internal_limit - position
                 if delta > 0:
                     buy_capacity = min(
@@ -376,7 +514,7 @@ class Trader:
                     )
                     shadow_delta += delta_change
 
-            if not reduce_only or position > 0:
+            if position > -internal_limit:
                 sell_capacity = internal_limit + position
                 if delta > 0:
                     sell_capacity = min(
@@ -398,18 +536,17 @@ class Trader:
 
             shadow_positions[symbol] = position
 
-            if not reduce_only:
-                self.place_mean_reversion_quotes(
-                    symbol,
-                    order_depth,
-                    fair,
-                    position,
-                    0,
-                    self.OPTION_MAKE_EDGES[symbol],
-                    self.OPTION_MAX_MAKE[symbol],
-                    6.0,
-                    orders,
-                )
+            self.place_mean_reversion_quotes(
+                symbol,
+                order_depth,
+                fair,
+                position,
+                0,
+                self.OPTION_MAKE_EDGES[symbol],
+                self.OPTION_MAX_MAKE[symbol],
+                6.0,
+                orders,
+            )
 
         return orders_by_product
 
@@ -423,6 +560,12 @@ class Trader:
         total = 0.0
         for symbol, strike in self.OPTION_STRIKES.items():
             total += positions.get(symbol, 0) * self.bs_delta(spot, strike, tte, self.option_vol(strike))
+        return total
+
+    def option_gross_position(self, positions: Dict[str, int]) -> int:
+        total = 0
+        for symbol in self.OPTION_STRIKES:
+            total += abs(int(positions.get(symbol, 0)))
         return total
 
     def take_option_asks(
