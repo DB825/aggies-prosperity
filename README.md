@@ -1,11 +1,15 @@
 # Aggies Prosperity
 
-Use `trader.py` for the active Prosperity simulator submission. Round 1 is
-archived in `trader_round1.py`. The local `datamodel.py` mirrors the competition
-interface closely enough for syntax checks and lightweight local tests.
+Use `trader.py` for the active Prosperity simulator submission. Round 2 is
+archived in `trader_round2.py`, and Round 1 is archived in `trader_round1.py`.
+The local `datamodel.py` mirrors the competition interface closely enough for
+syntax checks and lightweight local tests.
 
 Research notebooks:
 
+- `round3_algorithmic_options_strategy.ipynb`: Round 3 Solvenar workflow,
+  Hydrogel/Velvetfruit microstructure diagnostics, voucher volatility
+  calibration, external Prosperity references, and replay summary.
 - `round2_algorithmic_trading_strategy.ipynb`: round 2 data regime,
   contingent-claims framing, ridge/KNN signal screens, risk controls, and
   strategy replay.
@@ -15,6 +19,28 @@ Research notebooks:
   backtests, overfit controls, and profitability thesis.
 - `round1_manual_auction_strategy.ipynb`: manual auction mechanism, exact
   optimum, and auction backtest.
+
+## Round 3 Strategy
+
+- Active submission file: `trader.py`.
+- Trades `HYDROGEL_PACK`, `VELVETFRUIT_EXTRACT`, and the 10
+  `VELVETFRUIT_EXTRACT_VOUCHER` contracts with their posted position limits.
+- Treats Hydrogel as a stationary market around the 10,000 anchor, using a slow
+  EMA, L1 imbalance adjustment, and wide crossing thresholds to avoid getting
+  chopped by noise.
+- Treats Velvetfruit Extract as a slower mean-reversion product and only crosses
+  when dislocations are meaningfully larger than the typical spread.
+- Prices the liquid vouchers with Black-Scholes fair values using strike-specific
+  volatility anchors calibrated from the historical TTE 8/7/6-day chain, then
+  rolls that calibration forward to live TTE 5 days.
+- Keeps the deep ITM vouchers (`VEV_4000`, `VEV_4500`) on an intrinsic-value
+  style leash because their extrinsic value is tiny relative to spread noise.
+- Controls voucher inventory with internal position caps and a portfolio delta
+  budget rather than expensive full delta hedging through the underlying.
+- Deterministic crossing replay over historical days 0, 1, and 2: +228,940.0
+  XIRECS, with +131,402.0 from Hydrogel, +44,777.5 from Velvetfruit Extract,
+  and +52,760.5 from the voucher sleeve.
+- Metrics snapshot: `logs/round3_diagnostics.json`.
 
 ## Round 2 Manual Challenge
 
@@ -99,7 +125,9 @@ Run the dependency-free diagnostics harness with:
 ```powershell
 python scripts\round1_diagnostics.py
 python scripts\round2_diagnostics.py --mc-chains 1 --mc-draws 40
+python scripts\round3_diagnostics.py
 python scripts\manual_auction_backtest.py
+python scripts\build_round3_notebook.py
 ```
 
 The latest run is saved to `logs/round1_diagnostics.json` and includes:

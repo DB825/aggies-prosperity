@@ -7,383 +7,471 @@ from datamodel import Order, OrderDepth, TradingState
 
 class Trader:
     POSITION_LIMITS = {
-        "ASH_COATED_OSMIUM": 80,
-        "INTARIAN_PEPPER_ROOT": 80,
+        "HYDROGEL_PACK": 200,
+        "VELVETFRUIT_EXTRACT": 200,
+        "VEV_4000": 300,
+        "VEV_4500": 300,
+        "VEV_5000": 300,
+        "VEV_5100": 300,
+        "VEV_5200": 300,
+        "VEV_5300": 300,
+        "VEV_5400": 300,
+        "VEV_5500": 300,
+        "VEV_6000": 300,
+        "VEV_6500": 300,
     }
 
-    ASH_ANCHOR = 10000.0
-    PEPPER_SLOPE = 0.001
-    PEPPER_TARGET = 80
-    PEPPER_EXIT_TIMESTAMP = 10_000_000
-    PEPPER_FORCE_EXIT_TIMESTAMP = 10_000_000
-    PEPPER_FORCE_EXIT_EDGE = 8.0
-    PEPPER_TREND_STOP_LOSS = 35.0
-    PEPPER_STOP_LOSS_EXIT_EDGE = 60.0
-    RISK_COOLDOWN = 50_000
-    ASH_STOP_LOSS_DEVIATION = 35.0
-    ASH_STOP_LOSS_EXIT_EDGE = 10.0
-
-    PARAMS = {
-        "ASH_COATED_OSMIUM": {
-            "fair_alpha": 0.10,
-            "imbalance_weight": 0.5,
-            "anchor_pull": 0.06,
-            "take_edge": 0.0,
-            "make_edge": 3.0,
-            "max_take": 32,
-            "max_make": 22,
-            "inventory_skew": 2.0,
-            "cross_inventory_skew": 1.4,
-            "inventory_imbalance_threshold": 10_000,
-            "crowded_imbalance_scale": 0.0,
-            "cross_imbalance_kick": 0.0,
-        },
-        "INTARIAN_PEPPER_ROOT": {
-            "intercept_alpha": 0.18,
-            "trend_buy_edge": 8.0,
-            "rich_sell_edge": 14.0,
-            "exit_sell_edge": 5.0,
-            "make_edge": 2.0,
-            "max_take": 8,
-            "max_make": 30,
-            "inventory_skew": 0.08,
-        },
+    INTERNAL_LIMITS = {
+        "VEV_4000": 80,
+        "VEV_4500": 80,
+        "VEV_5000": 200,
+        "VEV_5100": 200,
+        "VEV_5200": 200,
+        "VEV_5300": 200,
+        "VEV_5400": 200,
+        "VEV_5500": 200,
+        "VEV_6000": 20,
+        "VEV_6500": 20,
     }
+
+    OPTION_STRIKES = {
+        "VEV_4000": 4000,
+        "VEV_4500": 4500,
+        "VEV_5000": 5000,
+        "VEV_5100": 5100,
+        "VEV_5200": 5200,
+        "VEV_5300": 5300,
+        "VEV_5400": 5400,
+        "VEV_5500": 5500,
+        "VEV_6000": 6000,
+        "VEV_6500": 6500,
+    }
+
+    OPTION_PRIORITY = [
+        "VEV_5500",
+        "VEV_5400",
+        "VEV_5300",
+        "VEV_5200",
+        "VEV_5100",
+        "VEV_5000",
+        "VEV_4500",
+        "VEV_4000",
+        "VEV_6000",
+        "VEV_6500",
+    ]
+
+    # Calibrated from the Round 3 historical chain (TTE 8/7/6 days) and then
+    # rolled forward to live TTE=5 days with time-to-expiry adjusted in pricing.
+    OPTION_VOLS = {
+        4000: 1e-6,
+        4500: 1e-6,
+        5000: 0.01220,
+        5100: 0.01210,
+        5200: 0.01225,
+        5300: 0.01238,
+        5400: 0.01155,
+        5500: 0.01255,
+        6000: 1e-6,
+        6500: 1e-6,
+    }
+
+    OPTION_TAKE_EDGES = {
+        "VEV_4000": 2.0,
+        "VEV_4500": 2.0,
+        "VEV_5000": 0.25,
+        "VEV_5100": 0.25,
+        "VEV_5200": 0.25,
+        "VEV_5300": 0.25,
+        "VEV_5400": 0.25,
+        "VEV_5500": 0.25,
+        "VEV_6000": 1.0,
+        "VEV_6500": 1.0,
+    }
+
+    OPTION_MAKE_EDGES = {
+        "VEV_4000": 3.0,
+        "VEV_4500": 3.0,
+        "VEV_5000": 1.0,
+        "VEV_5100": 1.0,
+        "VEV_5200": 1.0,
+        "VEV_5300": 1.0,
+        "VEV_5400": 1.0,
+        "VEV_5500": 1.0,
+        "VEV_6000": 1.0,
+        "VEV_6500": 1.0,
+    }
+
+    OPTION_MAX_TAKE = {
+        "VEV_4000": 10,
+        "VEV_4500": 10,
+        "VEV_5000": 20,
+        "VEV_5100": 20,
+        "VEV_5200": 25,
+        "VEV_5300": 25,
+        "VEV_5400": 25,
+        "VEV_5500": 25,
+        "VEV_6000": 8,
+        "VEV_6500": 8,
+    }
+
+    OPTION_MAX_MAKE = {
+        "VEV_4000": 6,
+        "VEV_4500": 6,
+        "VEV_5000": 10,
+        "VEV_5100": 10,
+        "VEV_5200": 12,
+        "VEV_5300": 12,
+        "VEV_5400": 12,
+        "VEV_5500": 12,
+        "VEV_6000": 6,
+        "VEV_6500": 6,
+    }
+
+    HYDROGEL_ANCHOR = 10000.0
+    HYDROGEL_ALPHA = 0.02
+    HYDROGEL_ANCHOR_PULL = 0.12
+    HYDROGEL_IMBALANCE_WEIGHT = 5.0
+    HYDROGEL_TAKE_EDGE = 7.5
+    HYDROGEL_MAKE_EDGE = 8.0
+    HYDROGEL_MAX_TAKE = 30
+    HYDROGEL_MAX_MAKE = 24
+    HYDROGEL_INVENTORY_SKEW = 18.0
+
+    VELVET_INITIAL_FAIR = 5250.0
+    VELVET_ALPHA = 0.02
+    VELVET_IMBALANCE_WEIGHT = 1.5
+    VELVET_TAKE_EDGE = 8.5
+    VELVET_MAKE_EDGE = 4.0
+    VELVET_MAX_TAKE = 25
+    VELVET_MAX_MAKE = 28
+    VELVET_INVENTORY_SKEW = 10.0
+
+    OPTION_DELTA_BUDGET = 550.0
+    OPTION_REDUCTION_START = 995_000
+    UNDERLYING_REDUCTION_START = 996_000
+    LIVE_TTE_DAYS = 5.0
 
     def bid(self):
-        return 825
+        return 0
 
     def run(self, state: TradingState):
         memory = self.load_memory(state.traderData)
-        result: Dict[str, List[Order]] = {}
+        result: Dict[str, List[Order]] = {product: [] for product in state.order_depths}
 
-        for product, order_depth in state.order_depths.items():
-            if product not in self.POSITION_LIMITS:
-                result[product] = []
-                continue
+        hydro_depth = state.order_depths.get("HYDROGEL_PACK")
+        velvet_depth = state.order_depths.get("VELVETFRUIT_EXTRACT")
 
-            fair = self.estimate_fair_value(product, order_depth, state, memory)
-            if fair <= 0:
-                result[product] = []
-                continue
+        hydro_fair = None
+        if hydro_depth is not None:
+            hydro_fair = self.estimate_hydrogel_fair(hydro_depth, memory)
+            result["HYDROGEL_PACK"] = self.trade_hydrogel(
+                hydro_depth,
+                hydro_fair,
+                state.position.get("HYDROGEL_PACK", 0),
+                state.timestamp,
+            )
 
-            position = state.position.get(product, 0)
-            risk_active = self.is_risk_active(product, state.timestamp, memory)
-            if product == "INTARIAN_PEPPER_ROOT":
-                orders = self.trade_pepper_root(product, order_depth, state.timestamp, fair, position, risk_active)
-            else:
-                orders = self.trade_osmium(product, order_depth, state.timestamp, fair, position, risk_active)
+        velvet_fair = None
+        spot_for_options = None
+        if velvet_depth is not None:
+            velvet_fair = self.estimate_velvet_fair(velvet_depth, memory)
+            book_spot = self.book_fair_value(velvet_depth)
+            spot_for_options = book_spot if book_spot is not None else velvet_fair
 
-            result[product] = orders
+        if spot_for_options is not None:
+            option_delta = self.portfolio_delta(state.position, spot_for_options, self.time_to_expiry(state))
+        else:
+            option_delta = 0.0
+
+        if velvet_depth is not None and velvet_fair is not None:
+            hedge_target = self.clamp_int(int(round(-0.25 * option_delta)), -80, 80)
+            result["VELVETFRUIT_EXTRACT"] = self.trade_velvet(
+                velvet_depth,
+                velvet_fair,
+                state.position.get("VELVETFRUIT_EXTRACT", 0),
+                state.timestamp,
+                hedge_target,
+            )
+
+        if spot_for_options is not None:
+            option_orders = self.trade_options(state, spot_for_options)
+            result.update(option_orders)
 
         memory["last_timestamp"] = state.timestamp
-        traderData = json.dumps(memory, separators=(",", ":"))
-        conversions = 0
-        return result, conversions, traderData
+        trader_data = json.dumps(memory, separators=(",", ":"))
+        return result, 0, trader_data
 
     def load_memory(self, trader_data: str) -> Dict:
-        baseline = {"fair": {}, "intercept": {}, "open_intercept": {}, "risk": {}, "last_timestamp": 0}
+        baseline = {"ema": {}, "last_timestamp": 0}
         if not trader_data:
             return baseline
         try:
             memory = json.loads(trader_data)
             if not isinstance(memory, dict):
                 return baseline
-            memory.setdefault("fair", {})
-            memory.setdefault("intercept", {})
-            memory.setdefault("open_intercept", {})
-            memory.setdefault("risk", {})
+            memory.setdefault("ema", {})
             memory.setdefault("last_timestamp", 0)
             return memory
         except Exception:
             return baseline
 
-    def estimate_fair_value(
-        self,
-        product: str,
-        order_depth: OrderDepth,
-        state: TradingState,
-        memory: Dict,
-    ) -> float:
-        if product == "INTARIAN_PEPPER_ROOT":
-            return self.estimate_pepper_fair(order_depth, state, memory)
-        return self.estimate_osmium_fair(product, order_depth, state, memory)
+    def time_to_expiry(self, state: TradingState) -> float:
+        observations = getattr(state, "observations", None)
+        plain = getattr(observations, "plainValueObservations", {}) if observations else {}
+        for key in ("VELVETFRUIT_TTE", "ROUND3_TTE", "TTE"):
+            if key in plain:
+                try:
+                    return max(0.05, float(plain[key]))
+                except Exception:
+                    pass
+        return self.LIVE_TTE_DAYS
 
-    def estimate_osmium_fair(
-        self,
-        product: str,
-        order_depth: OrderDepth,
-        state: TradingState,
-        memory: Dict,
-    ) -> float:
-        params = self.PARAMS[product]
-        book_estimate = self.book_fair_value(order_depth)
-        trade_estimate = self.recent_trade_fair_value(product, state)
-        previous = float(memory["fair"].get(product, self.ASH_ANCHOR))
+    def estimate_hydrogel_fair(self, order_depth: OrderDepth, memory: Dict) -> float:
+        book_fair = self.book_fair_value(order_depth)
+        previous = float(memory["ema"].get("HYDROGEL_PACK", self.HYDROGEL_ANCHOR))
+        observed = previous if book_fair is None else float(book_fair)
+        ema = (1 - self.HYDROGEL_ALPHA) * previous + self.HYDROGEL_ALPHA * observed
+        ema = (1 - self.HYDROGEL_ANCHOR_PULL) * ema + self.HYDROGEL_ANCHOR_PULL * self.HYDROGEL_ANCHOR
+        memory["ema"]["HYDROGEL_PACK"] = ema
+        return ema + self.HYDROGEL_IMBALANCE_WEIGHT * self.book_imbalance(order_depth)
 
-        if book_estimate is None and trade_estimate is None:
-            base_fair = previous
-        elif book_estimate is None:
-            base_fair = 0.85 * previous + 0.15 * float(trade_estimate)
-        elif trade_estimate is None:
-            base_fair = float(book_estimate)
-        else:
-            base_fair = 0.85 * float(book_estimate) + 0.15 * float(trade_estimate)
+    def estimate_velvet_fair(self, order_depth: OrderDepth, memory: Dict) -> float:
+        book_fair = self.book_fair_value(order_depth)
+        previous = float(memory["ema"].get("VELVETFRUIT_EXTRACT", self.VELVET_INITIAL_FAIR))
+        observed = previous if book_fair is None else float(book_fair)
+        ema = (1 - self.VELVET_ALPHA) * previous + self.VELVET_ALPHA * observed
+        memory["ema"]["VELVETFRUIT_EXTRACT"] = ema
+        return ema + self.VELVET_IMBALANCE_WEIGHT * self.book_imbalance(order_depth)
 
-        fair_alpha = params["fair_alpha"]
-        anchor_pull = params.get("anchor_pull", 0.0)
-        # EMA update then bleed toward stationary anchor. The empirical Ornstein-Uhlenbeck
-        # half-life is 5-10 ticks, and mean mid per day is within 1 XIREC of 10,000; so a small
-        # anchor pull prevents EMA drift without destroying the book signal.
-        smoothed = (1 - fair_alpha) * previous + fair_alpha * base_fair
-        if anchor_pull > 0:
-            smoothed = (1 - anchor_pull) * smoothed + anchor_pull * self.ASH_ANCHOR
-        memory["fair"][product] = smoothed
-        if abs(base_fair - self.ASH_ANCHOR) > self.ASH_STOP_LOSS_DEVIATION:
-            self.activate_risk_mode(product, state.timestamp, memory, "anchor_break")
-
-        imbalance = self.book_imbalance(order_depth)
-        position = state.position.get(product, 0)
-        threshold = params.get("inventory_imbalance_threshold")
-        if threshold is not None and abs(position) > threshold and position * imbalance > 0:
-            imbalance *= params.get("crowded_imbalance_scale", 0.0)
-        return smoothed + params["imbalance_weight"] * imbalance
-
-    def estimate_pepper_fair(
+    def trade_hydrogel(
         self,
         order_depth: OrderDepth,
-        state: TradingState,
-        memory: Dict,
-    ) -> float:
-        product = "INTARIAN_PEPPER_ROOT"
-        params = self.PARAMS[product]
-        book_estimate = self.book_fair_value(order_depth)
-        previous_fair = memory["fair"].get(product)
-        previous_intercept = memory["intercept"].get(product)
-
-        if book_estimate is not None:
-            observed_intercept = float(book_estimate) - self.PEPPER_SLOPE * state.timestamp
-            memory["open_intercept"].setdefault(product, observed_intercept)
-            if observed_intercept < float(memory["open_intercept"][product]) - self.PEPPER_TREND_STOP_LOSS:
-                self.activate_risk_mode(product, state.timestamp, memory, "trend_break")
-            if previous_intercept is None:
-                intercept = observed_intercept
-            else:
-                alpha = params["intercept_alpha"]
-                intercept = (1 - alpha) * float(previous_intercept) + alpha * observed_intercept
-        elif previous_intercept is not None:
-            intercept = float(previous_intercept)
-        elif previous_fair is not None:
-            intercept = float(previous_fair) - self.PEPPER_SLOPE * state.timestamp
-        else:
-            return 0.0
-
-        fair = intercept + self.PEPPER_SLOPE * state.timestamp
-        memory["intercept"][product] = intercept
-        memory["fair"][product] = fair
-        return fair
-
-    def activate_risk_mode(self, product: str, timestamp: int, memory: Dict, reason: str) -> None:
-        risk = memory.setdefault("risk", {}).setdefault(product, {})
-        risk["active_until"] = max(int(risk.get("active_until", 0)), timestamp + self.RISK_COOLDOWN)
-        risk["reason"] = reason
-
-    def is_risk_active(self, product: str, timestamp: int, memory: Dict) -> bool:
-        risk = memory.get("risk", {}).get(product, {})
-        return timestamp <= int(risk.get("active_until", -1))
-
-    def trade_osmium(
-        self,
-        product: str,
-        order_depth: OrderDepth,
-        timestamp: int,
         fair: float,
         position: int,
-        risk_active: bool,
+        timestamp: int,
     ) -> List[Order]:
-        params = self.PARAMS[product]
         orders: List[Order] = []
         position_after = position
-        exit_window = timestamp >= self.PEPPER_EXIT_TIMESTAMP
+        reduce_only = timestamp >= self.UNDERLYING_REDUCTION_START
 
-        if risk_active:
-            self.flatten_inventory(
-                product,
+        if not reduce_only or position_after < 0:
+            position_after = self.take_asks_with_budget(
+                "HYDROGEL_PACK",
+                order_depth,
+                fair - self.HYDROGEL_TAKE_EDGE,
+                self.HYDROGEL_MAX_TAKE,
+                position_after,
+                orders,
+            )
+
+        if not reduce_only or position_after > 0:
+            position_after = self.hit_bids_with_budget(
+                "HYDROGEL_PACK",
+                order_depth,
+                fair + self.HYDROGEL_TAKE_EDGE,
+                self.HYDROGEL_MAX_TAKE,
+                position_after,
+                orders,
+            )
+
+        if not reduce_only:
+            self.place_mean_reversion_quotes(
+                "HYDROGEL_PACK",
                 order_depth,
                 fair,
                 position_after,
-                params["max_take"],
-                self.ASH_STOP_LOSS_EXIT_EDGE,
+                0,
+                self.HYDROGEL_MAKE_EDGE,
+                self.HYDROGEL_MAX_MAKE,
+                self.HYDROGEL_INVENTORY_SKEW,
                 orders,
             )
-            return orders
-
-        cross_skew = params["cross_inventory_skew"] * position_after / self.POSITION_LIMITS[product]
-        position_after = self.take_cheap_asks(
-            product,
-            order_depth,
-            fair - params["take_edge"] - cross_skew,
-            params["max_take"],
-            position_after,
-            orders,
-        )
-        cross_skew = params["cross_inventory_skew"] * position_after / self.POSITION_LIMITS[product]
-        position_after = self.hit_expensive_bids(
-            product,
-            order_depth,
-            fair + params["take_edge"] - cross_skew,
-            params["max_take"],
-            position_after,
-            orders,
-            max_inventory_to_sell=None,
-        )
-
-        if exit_window:
-            if position_after > 0:
-                position_after = self.hit_expensive_bids(
-                    product,
-                    order_depth,
-                    fair - 8.0,
-                    params["max_take"],
-                    position_after,
-                    orders,
-                    max_inventory_to_sell=position_after,
-                )
-            elif position_after < 0:
-                position_after = self.buy_inventory_to_cover(
-                    product,
-                    order_depth,
-                    fair + 8.0,
-                    params["max_take"],
-                    position_after,
-                    orders,
-                )
-            return orders
-
-        self.place_mean_reversion_quotes(
-            product,
-            order_depth,
-            fair,
-            position_after,
-            target_position=0,
-            edge=params["make_edge"],
-            max_clip=params["max_make"],
-            inventory_skew=params["inventory_skew"],
-            orders=orders,
-        )
         return orders
 
-    def trade_pepper_root(
+    def trade_velvet(
         self,
-        product: str,
         order_depth: OrderDepth,
-        timestamp: int,
         fair: float,
         position: int,
-        risk_active: bool,
+        timestamp: int,
+        target_position: int,
     ) -> List[Order]:
-        params = self.PARAMS[product]
         orders: List[Order] = []
         position_after = position
-        exit_window = timestamp >= self.PEPPER_EXIT_TIMESTAMP
+        reduce_only = timestamp >= self.UNDERLYING_REDUCTION_START
 
-        if risk_active:
-            self.flatten_inventory(
-                product,
+        if not reduce_only or position_after < target_position:
+            position_after = self.take_asks_with_budget(
+                "VELVETFRUIT_EXTRACT",
+                order_depth,
+                fair - self.VELVET_TAKE_EDGE,
+                self.VELVET_MAX_TAKE,
+                position_after,
+                orders,
+            )
+
+        if not reduce_only or position_after > target_position:
+            position_after = self.hit_bids_with_budget(
+                "VELVETFRUIT_EXTRACT",
+                order_depth,
+                fair + self.VELVET_TAKE_EDGE,
+                self.VELVET_MAX_TAKE,
+                position_after,
+                orders,
+            )
+
+        if not reduce_only:
+            self.place_mean_reversion_quotes(
+                "VELVETFRUIT_EXTRACT",
                 order_depth,
                 fair,
                 position_after,
-                max(params["max_take"], 20),
-                self.PEPPER_STOP_LOSS_EXIT_EDGE,
+                target_position,
+                self.VELVET_MAKE_EDGE,
+                self.VELVET_MAX_MAKE,
+                self.VELVET_INVENTORY_SKEW,
                 orders,
             )
-            return orders
-
-        if not exit_window:
-            position_after = self.take_cheap_asks(
-                product,
-                order_depth,
-                fair + params["trend_buy_edge"],
-                params["max_take"],
-                position_after,
-                orders,
-            )
-
-            if position_after > self.PEPPER_TARGET:
-                sellable = position_after - self.PEPPER_TARGET
-                position_after = self.hit_expensive_bids(
-                    product,
-                    order_depth,
-                    fair + params["rich_sell_edge"],
-                    params["max_take"],
-                    position_after,
-                    orders,
-                    max_inventory_to_sell=sellable,
-                )
-        else:
-            sellable = max(0, position_after)
-            exit_edge = params["exit_sell_edge"]
-            if timestamp >= self.PEPPER_FORCE_EXIT_TIMESTAMP:
-                exit_edge = self.PEPPER_FORCE_EXIT_EDGE
-            position_after = self.hit_expensive_bids(
-                product,
-                order_depth,
-                fair - exit_edge,
-                params["max_take"],
-                position_after,
-                orders,
-                max_inventory_to_sell=sellable,
-            )
-
-        if not exit_window:
-            self.place_pepper_quotes(product, order_depth, fair, position_after, orders)
-
         return orders
 
-    def book_fair_value(self, order_depth: OrderDepth) -> Optional[float]:
-        best_bid, best_ask = self.best_bid_ask(order_depth)
-        if best_bid is None or best_ask is None:
-            return None
+    def trade_options(self, state: TradingState, spot: float) -> Dict[str, List[Order]]:
+        tte = self.time_to_expiry(state)
+        shadow_positions = {
+            symbol: int(state.position.get(symbol, 0))
+            for symbol in self.OPTION_STRIKES
+        }
+        shadow_delta = self.portfolio_delta(shadow_positions, spot, tte)
+        reduce_only = state.timestamp >= self.OPTION_REDUCTION_START
+        orders_by_product: Dict[str, List[Order]] = {symbol: [] for symbol in self.OPTION_STRIKES}
 
-        bid_volume = abs(order_depth.buy_orders[best_bid])
-        ask_volume = abs(order_depth.sell_orders[best_ask])
-        if bid_volume + ask_volume == 0:
-            return (best_bid + best_ask) / 2
+        for symbol in self.OPTION_PRIORITY:
+            order_depth = state.order_depths.get(symbol)
+            if order_depth is None:
+                continue
 
-        return (best_bid * ask_volume + best_ask * bid_volume) / (bid_volume + ask_volume)
+            strike = self.OPTION_STRIKES[symbol]
+            delta = self.bs_delta(spot, strike, tte, self.option_vol(strike))
+            fair = self.option_fair_value(spot, strike, tte)
+            position = shadow_positions[symbol]
+            internal_limit = self.position_limit(symbol)
+            orders = orders_by_product[symbol]
 
-    def recent_trade_fair_value(self, product: str, state: TradingState) -> Optional[float]:
-        trades = state.market_trades.get(product, []) + state.own_trades.get(product, [])
-        if not trades:
-            return None
+            if not reduce_only or position < 0:
+                buy_capacity = internal_limit - position
+                if delta > 0:
+                    buy_capacity = min(
+                        buy_capacity,
+                        int(max(0.0, (self.OPTION_DELTA_BUDGET - shadow_delta) / max(delta, 1e-6))),
+                    )
+                if buy_capacity > 0:
+                    position, delta_change = self.take_option_asks(
+                        symbol,
+                        order_depth,
+                        fair - self.OPTION_TAKE_EDGES[symbol],
+                        self.OPTION_MAX_TAKE[symbol],
+                        position,
+                        buy_capacity,
+                        delta,
+                        orders,
+                    )
+                    shadow_delta += delta_change
 
-        total_volume = 0
-        total_notional = 0
-        for trade in trades[-8:]:
-            volume = abs(trade.quantity)
-            total_volume += volume
-            total_notional += trade.price * volume
+            if not reduce_only or position > 0:
+                sell_capacity = internal_limit + position
+                if delta > 0:
+                    sell_capacity = min(
+                        sell_capacity,
+                        int(max(0.0, (self.OPTION_DELTA_BUDGET + shadow_delta) / max(delta, 1e-6))),
+                    )
+                if sell_capacity > 0:
+                    position, delta_change = self.hit_option_bids(
+                        symbol,
+                        order_depth,
+                        fair + self.OPTION_TAKE_EDGES[symbol],
+                        self.OPTION_MAX_TAKE[symbol],
+                        position,
+                        sell_capacity,
+                        delta,
+                        orders,
+                    )
+                    shadow_delta += delta_change
 
-        if total_volume == 0:
-            return None
-        return total_notional / total_volume
+            shadow_positions[symbol] = position
 
-    def book_imbalance(self, order_depth: OrderDepth) -> float:
-        # L1-only imbalance: deep-level volume has R^2 < 0.01 against next-tick return while L1
-        # carries beta~4.7 and R^2~0.34 across the Round 2 sample, so aggregating L1+L2 dilutes
-        # the real microstructure signal.
-        if not order_depth.buy_orders or not order_depth.sell_orders:
-            return 0.0
-        best_bid = max(order_depth.buy_orders)
-        best_ask = min(order_depth.sell_orders)
-        bid_volume = abs(order_depth.buy_orders[best_bid])
-        ask_volume = abs(order_depth.sell_orders[best_ask])
-        total = bid_volume + ask_volume
-        if total == 0:
-            return 0.0
-        return (bid_volume - ask_volume) / total
+            if not reduce_only:
+                self.place_mean_reversion_quotes(
+                    symbol,
+                    order_depth,
+                    fair,
+                    position,
+                    0,
+                    self.OPTION_MAKE_EDGES[symbol],
+                    self.OPTION_MAX_MAKE[symbol],
+                    6.0,
+                    orders,
+                )
 
-    def take_cheap_asks(
+        return orders_by_product
+
+    def option_fair_value(self, spot: float, strike: int, tte: float) -> float:
+        return self.bs_call(spot, strike, tte, self.option_vol(strike))
+
+    def option_vol(self, strike: int) -> float:
+        return self.OPTION_VOLS[strike]
+
+    def portfolio_delta(self, positions: Dict[str, int], spot: float, tte: float) -> float:
+        total = 0.0
+        for symbol, strike in self.OPTION_STRIKES.items():
+            total += positions.get(symbol, 0) * self.bs_delta(spot, strike, tte, self.option_vol(strike))
+        return total
+
+    def take_option_asks(
+        self,
+        symbol: str,
+        order_depth: OrderDepth,
+        limit_price: float,
+        max_clip: int,
+        position: int,
+        buy_capacity: int,
+        delta: float,
+        orders: List[Order],
+    ) -> Tuple[int, float]:
+        delta_change = 0.0
+        for price, volume in sorted(order_depth.sell_orders.items()):
+            if price > limit_price or buy_capacity <= 0:
+                break
+            quantity = min(abs(volume), buy_capacity, max_clip)
+            if quantity > 0:
+                orders.append(Order(symbol, price, quantity))
+                position += quantity
+                buy_capacity -= quantity
+                delta_change += delta * quantity
+        return position, delta_change
+
+    def hit_option_bids(
+        self,
+        symbol: str,
+        order_depth: OrderDepth,
+        limit_price: float,
+        max_clip: int,
+        position: int,
+        sell_capacity: int,
+        delta: float,
+        orders: List[Order],
+    ) -> Tuple[int, float]:
+        delta_change = 0.0
+        for price, volume in sorted(order_depth.buy_orders.items(), reverse=True):
+            if price < limit_price or sell_capacity <= 0:
+                break
+            quantity = min(abs(volume), sell_capacity, max_clip)
+            if quantity > 0:
+                orders.append(Order(symbol, price, -quantity))
+                position -= quantity
+                sell_capacity -= quantity
+                delta_change -= delta * quantity
+        return position, delta_change
+
+    def take_asks_with_budget(
         self,
         product: str,
         order_depth: OrderDepth,
@@ -392,7 +480,7 @@ class Trader:
         position: int,
         orders: List[Order],
     ) -> int:
-        buy_capacity = self.POSITION_LIMITS[product] - position
+        buy_capacity = self.position_limit(product) - position
         if buy_capacity <= 0:
             return position
 
@@ -402,42 +490,11 @@ class Trader:
             quantity = min(abs(volume), buy_capacity, max_clip)
             if quantity > 0:
                 orders.append(Order(product, price, quantity))
-                buy_capacity -= quantity
                 position += quantity
+                buy_capacity -= quantity
         return position
 
-    def flatten_inventory(
-        self,
-        product: str,
-        order_depth: OrderDepth,
-        fair: float,
-        position: int,
-        max_clip: int,
-        exit_edge: float,
-        orders: List[Order],
-    ) -> int:
-        if position > 0:
-            return self.hit_expensive_bids(
-                product,
-                order_depth,
-                fair - exit_edge,
-                max_clip,
-                position,
-                orders,
-                max_inventory_to_sell=position,
-            )
-        if position < 0:
-            return self.buy_inventory_to_cover(
-                product,
-                order_depth,
-                fair + exit_edge,
-                max_clip,
-                position,
-                orders,
-            )
-        return position
-
-    def hit_expensive_bids(
+    def hit_bids_with_budget(
         self,
         product: str,
         order_depth: OrderDepth,
@@ -445,11 +502,8 @@ class Trader:
         max_clip: int,
         position: int,
         orders: List[Order],
-        max_inventory_to_sell: Optional[int],
     ) -> int:
-        sell_capacity = self.POSITION_LIMITS[product] + position
-        if max_inventory_to_sell is not None:
-            sell_capacity = min(sell_capacity, max_inventory_to_sell)
+        sell_capacity = self.position_limit(product) + position
         if sell_capacity <= 0:
             return position
 
@@ -459,31 +513,8 @@ class Trader:
             quantity = min(abs(volume), sell_capacity, max_clip)
             if quantity > 0:
                 orders.append(Order(product, price, -quantity))
-                sell_capacity -= quantity
                 position -= quantity
-        return position
-
-    def buy_inventory_to_cover(
-        self,
-        product: str,
-        order_depth: OrderDepth,
-        limit_price: float,
-        max_clip: int,
-        position: int,
-        orders: List[Order],
-    ) -> int:
-        buy_capacity = min(-position, self.POSITION_LIMITS[product] - position)
-        if buy_capacity <= 0:
-            return position
-
-        for price, volume in sorted(order_depth.sell_orders.items()):
-            if price > limit_price or buy_capacity <= 0:
-                break
-            quantity = min(abs(volume), buy_capacity, max_clip)
-            if quantity > 0:
-                orders.append(Order(product, price, quantity))
-                buy_capacity -= quantity
-                position += quantity
+                sell_capacity -= quantity
         return position
 
     def place_mean_reversion_quotes(
@@ -499,10 +530,10 @@ class Trader:
         orders: List[Order],
     ) -> None:
         best_bid, best_ask = self.best_bid_ask(order_depth)
-        limit = self.POSITION_LIMITS[product]
+        limit = self.position_limit(product)
         buy_capacity = limit - position
         sell_capacity = limit + position
-        skew = inventory_skew * (position - target_position) / limit
+        skew = inventory_skew * (position - target_position) / max(1, limit)
         fair_with_skew = fair - skew
 
         bid_price = math.floor(fair_with_skew - edge)
@@ -523,30 +554,55 @@ class Trader:
         if sell_capacity > 0 and (best_bid is None or ask_price > best_bid):
             orders.append(Order(product, int(ask_price), -min(max_clip, sell_capacity)))
 
-    def place_pepper_quotes(
-        self,
-        product: str,
-        order_depth: OrderDepth,
-        fair: float,
-        position: int,
-        orders: List[Order],
-    ) -> None:
-        params = self.PARAMS[product]
+    def position_limit(self, product: str) -> int:
+        return min(self.POSITION_LIMITS[product], self.INTERNAL_LIMITS.get(product, self.POSITION_LIMITS[product]))
+
+    def book_fair_value(self, order_depth: OrderDepth) -> Optional[float]:
         best_bid, best_ask = self.best_bid_ask(order_depth)
-        buy_capacity = self.POSITION_LIMITS[product] - position
-        if buy_capacity <= 0:
-            return
+        if best_bid is None or best_ask is None:
+            return None
 
-        missing_inventory = self.PEPPER_TARGET - position
-        fair_with_skew = fair + params["inventory_skew"] * max(0, missing_inventory)
-        bid_price = math.floor(fair_with_skew - params["make_edge"])
-        if best_bid is not None:
-            bid_price = min(bid_price, best_bid + 1)
+        bid_volume = abs(order_depth.buy_orders[best_bid])
+        ask_volume = abs(order_depth.sell_orders[best_ask])
+        if bid_volume + ask_volume == 0:
+            return (best_bid + best_ask) / 2.0
 
-        if best_ask is None or bid_price < best_ask:
-            orders.append(Order(product, int(bid_price), min(params["max_make"], buy_capacity)))
+        return (best_bid * ask_volume + best_ask * bid_volume) / (bid_volume + ask_volume)
+
+    def book_imbalance(self, order_depth: OrderDepth) -> float:
+        best_bid, best_ask = self.best_bid_ask(order_depth)
+        if best_bid is None or best_ask is None:
+            return 0.0
+
+        bid_volume = abs(order_depth.buy_orders[best_bid])
+        ask_volume = abs(order_depth.sell_orders[best_ask])
+        total = bid_volume + ask_volume
+        if total == 0:
+            return 0.0
+        return (bid_volume - ask_volume) / total
 
     def best_bid_ask(self, order_depth: OrderDepth) -> Tuple[Optional[int], Optional[int]]:
         best_bid = max(order_depth.buy_orders) if order_depth.buy_orders else None
         best_ask = min(order_depth.sell_orders) if order_depth.sell_orders else None
         return best_bid, best_ask
+
+    def bs_call(self, spot: float, strike: int, tte: float, sigma: float) -> float:
+        if sigma <= 1e-9 or tte <= 0:
+            return max(0.0, spot - strike)
+        vol_term = sigma * math.sqrt(tte)
+        d1 = (math.log(spot / strike) + 0.5 * sigma * sigma * tte) / vol_term
+        d2 = d1 - vol_term
+        return spot * self.norm_cdf(d1) - strike * self.norm_cdf(d2)
+
+    def bs_delta(self, spot: float, strike: int, tte: float, sigma: float) -> float:
+        if sigma <= 1e-9 or tte <= 0:
+            return 1.0 if spot > strike else 0.0
+        vol_term = sigma * math.sqrt(tte)
+        d1 = (math.log(spot / strike) + 0.5 * sigma * sigma * tte) / vol_term
+        return self.norm_cdf(d1)
+
+    def norm_cdf(self, value: float) -> float:
+        return 0.5 * (1.0 + math.erf(value / math.sqrt(2.0)))
+
+    def clamp_int(self, value: int, low: int, high: int) -> int:
+        return max(low, min(high, value))
