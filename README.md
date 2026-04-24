@@ -8,8 +8,9 @@ syntax checks and lightweight local tests.
 Research notebooks:
 
 - `round3_algorithmic_options_strategy.ipynb`: Round 3 Solvenar workflow,
-  Hydrogel/Velvetfruit microstructure diagnostics, voucher volatility
-  calibration, external Prosperity references, and replay summary.
+  Hydrogel/Velvetfruit microstructure diagnostics, foundational options-theory
+  citations, Black-Scholes applicability notes, voucher residual / spread
+  analysis, and replay summary.
 - `round2_algorithmic_trading_strategy.ipynb`: round 2 data regime,
   contingent-claims framing, ridge/KNN signal screens, risk controls, and
   strategy replay.
@@ -30,17 +31,42 @@ Research notebooks:
   chopped by noise.
 - Treats Velvetfruit Extract as a slower mean-reversion product and only crosses
   when dislocations are meaningfully larger than the typical spread.
-- Prices the liquid vouchers with Black-Scholes fair values using strike-specific
-  volatility anchors calibrated from the historical TTE 8/7/6-day chain, then
-  rolls that calibration forward to live TTE 5 days.
+- Uses Black-Scholes-Merton as the first-order no-arbitrage benchmark, then
+  overlays a shrunk live smile on the liquid voucher strikes rather than relying
+  on a single constant volatility.
 - Keeps the deep ITM vouchers (`VEV_4000`, `VEV_4500`) on an intrinsic-value
   style leash because their extrinsic value is tiny relative to spread noise.
-- Controls voucher inventory with internal position caps and a portfolio delta
-  budget rather than expensive full delta hedging through the underlying.
-- Deterministic crossing replay over historical days 0, 1, and 2: +228,940.0
-  XIRECS, with +131,402.0 from Hydrogel, +44,777.5 from Velvetfruit Extract,
-  and +52,760.5 from the voucher sleeve.
+- Trades the liquid voucher sleeve on residual z-scores and adjacent-strike
+  relative-value spreads, with `VEV_5000` given the strongest single-name
+  priority.
+- Controls voucher inventory with internal position caps, same-side option
+  concentration limits, a portfolio delta budget, and persistent drawdown /
+  reduce-only risk gates.
+- Deterministic crossing replay over historical days 0, 1, and 2: +184,710.5
+  XIRECS, with +131,402.0 from Hydrogel, +36,690.0 from Velvetfruit Extract,
+  and +16,618.5 from the voucher sleeve.
 - Metrics snapshot: `logs/round3_diagnostics.json`.
+
+## Round 3 Theory Notes
+
+- Black, Fischer, and Myron Scholes (1973), *The Pricing of Options and
+  Corporate Liabilities*: classic closed-form European option benchmark.
+  Citation context: [Stanford GSB](https://www.gsb100.stanford.edu/stories/professor-myron-scholes-shares-1997-nobel-prize-in-economic-science/)
+- Merton, Robert C. (1973), *Theory of Rational Option Pricing*: extends the
+  no-arbitrage continuous-time foundation.
+  Citation page: [Harvard Business School](https://www.hbs.edu/faculty/Pages/item.aspx?num=8804)
+- Cox, Ross, and Rubinstein (1979), *Option Pricing: A Simplified Approach*:
+  discrete-time replication intuition, which is especially useful in
+  spread-constrained simulated markets.
+  Citation / metadata: [IDEAS RePEc](https://ideas.repec.org/a/eee/jfinec/v7y1979i3p229-263.html)
+- Dumas, Fleming, and Whaley (1996/1998), *Implied Volatility Functions:
+  Empirical Tests*: practical reminder that constant-vol Black-Scholes is a
+  benchmark, not a literal description of live option markets.
+  Working paper: [NBER](https://www.nber.org/papers/w5500)
+- Practical conclusion for Solvenar: Black-Scholes is applicable as the anchor
+  model for voucher fair value and delta, but the observed cross-strike smile and
+  discrete trading frictions make a shrunk live smile plus residual trading more
+  robust than a one-vol implementation.
 
 ## Round 2 Manual Challenge
 

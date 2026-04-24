@@ -127,6 +127,28 @@ class Trader:
         "VEV_6500": 6,
     }
 
+    CORE_OPTION_SYMBOLS = [
+        "VEV_5000",
+        "VEV_5100",
+        "VEV_5200",
+        "VEV_5300",
+        "VEV_5400",
+        "VEV_5500",
+    ]
+    OPTION_LIVE_IV_ALPHA = 0.20
+    OPTION_LIVE_SMILE_WEIGHT = 0.15
+    OPTION_RESIDUAL_ALPHA = 0.04
+    OPTION_RESIDUAL_SD_FLOOR = 0.75
+    OPTION_RESIDUAL_ENTRY_Z = 1.25
+    OPTION_RESIDUAL_QUOTE_Z = 0.60
+    OPTION_V5000_ENTRY_Z = 0.90
+    OPTION_PAIR_GAP_Z = 2.25
+    OPTION_PAIR_TARGET_DELTA = 6.0
+    OPTION_PAIR_MAX_LEG_CLIP = 12
+    OPTION_STRONG_SINGLE_CLIP = 10
+    OPTION_PASSIVE_CLIP = 6
+    OPTION_SAME_SIDE_CORE_LIMIT = 360
+
     HYDROGEL_ANCHOR = 10000.0
     HYDROGEL_ALPHA = 0.02
     HYDROGEL_ANCHOR_PULL = 0.12
@@ -184,8 +206,12 @@ class Trader:
             book_spot = self.book_fair_value(velvet_depth)
             spot_for_options = book_spot if book_spot is not None else velvet_fair
 
-        mark_prices = self.build_mark_prices(state, hydro_fair, velvet_fair, spot_for_options, tte)
-        risk_state = self.update_risk_state(state, memory, mark_prices, spot_for_options, tte)
+        option_context: Dict[str, Dict] = {}
+        if spot_for_options is not None:
+            option_context = self.build_option_context(state, memory, spot_for_options, tte)
+
+        mark_prices = self.build_mark_prices(state, hydro_fair, velvet_fair, spot_for_options, tte, option_context)
+        risk_state = self.update_risk_state(state, memory, mark_prices, spot_for_options, tte, option_context)
         option_delta = risk_state["option_delta"]
 
         if hydro_depth is not None and hydro_fair is not None:
@@ -211,7 +237,13 @@ class Trader:
             )
 
         if spot_for_options is not None:
-            option_orders = self.trade_options(state, spot_for_options, tte, risk_state["reduce_options"])
+            option_orders = self.trade_options(
+                state,
+                spot_for_options,
+                tte,
+                risk_state,
+                option_context,
+            )
             result.update(option_orders)
 
         memory["last_timestamp"] = state.timestamp
@@ -219,7 +251,7 @@ class Trader:
         return result, 0, trader_data
 
     def load_memory(self, trader_data: str) -> Dict:
-        baseline = {"ema": {}, "risk": {}, "last_timestamp": 0}
+        baseline = {"ema": {}, "risk": {}, "options": {"live_vols": {}, "residuals": {}}, "last_timestamp": 0}
         if not trader_data:
             return baseline
         try:
@@ -228,6 +260,9 @@ class Trader:
                 return baseline
             memory.setdefault("ema", {})
             memory.setdefault("risk", {})
+            memory.setdefault("options", {})
+            memory["options"].setdefault("live_vols", {})
+            memory["options"].setdefault("residuals", {})
             memory.setdefault("last_timestamp", 0)
             return memory
         except Exception:
@@ -240,6 +275,7 @@ class Trader:
         velvet_fair: Optional[float],
         spot_for_options: Optional[float],
         tte: float,
+        option_context: Dict[str, Dict],
     ) -> Dict[str, float]:
         marks: Dict[str, float] = {}
         if hydro_fair is not None:
@@ -249,7 +285,10 @@ class Trader:
         if spot_for_options is not None:
             for symbol, strike in self.OPTION_STRIKES.items():
                 if symbol in state.order_depths:
-                    marks[symbol] = self.option_fair_value(spot_for_options, strike, tte)
+                    if symbol in option_context:
+                        marks[symbol] = option_context[symbol]["fair"]
+                    else:
+                        marks[symbol] = self.option_fair_value(spot_for_options, strike, tte)
         return marks
 
     def update_risk_state(
@@ -259,6 +298,7 @@ class Trader:
         mark_prices: Dict[str, float],
         spot_for_options: Optional[float],
         tte: float,
+        option_context: Dict[str, Dict],
     ) -> Dict[str, float]:
         risk = memory.setdefault("risk", {})
         inventory_mtm = float(risk.get("inventory_mtm", 0.0))
@@ -275,14 +315,18 @@ class Trader:
         drawdown = peak_inventory_mtm - inventory_mtm
         option_delta = 0.0
         if spot_for_options is not None:
-            option_delta = self.portfolio_delta(state.position, spot_for_options, tte)
+            option_delta = self.portfolio_delta_from_context(state.position, option_context, spot_for_options, tte)
         option_gross = self.option_gross_position(state.position)
+        core_long = self.core_side_position(state.position, 1)
+        core_short = self.core_side_position(state.position, -1)
 
         reduce_options = bool(risk.get("reduce_options", False))
         reduce_all = bool(risk.get("reduce_all", False))
         if (
             abs(option_delta) >= self.OPTION_DELTA_HARD_LIMIT
             or option_gross >= self.OPTION_GROSS_POSITION_LIMIT
+            or core_long >= self.OPTION_SAME_SIDE_CORE_LIMIT
+            or core_short >= self.OPTION_SAME_SIDE_CORE_LIMIT
             or drawdown >= self.INVENTORY_DRAWDOWN_LIMIT
         ):
             reduce_options = True
@@ -303,6 +347,8 @@ class Trader:
         risk["drawdown"] = drawdown
         risk["option_delta"] = option_delta
         risk["option_gross"] = option_gross
+        risk["core_long"] = core_long
+        risk["core_short"] = core_short
         risk["reduce_options"] = reduce_options
         risk["reduce_all"] = reduce_all
         risk["last_marks"] = mark_prices
@@ -312,9 +358,79 @@ class Trader:
             "inventory_mtm": inventory_mtm,
             "drawdown": drawdown,
             "option_delta": option_delta,
+            "option_gross": option_gross,
+            "core_long": core_long,
+            "core_short": core_short,
             "reduce_options": reduce_options,
             "reduce_all": reduce_all,
         }
+
+    def build_option_context(
+        self,
+        state: TradingState,
+        memory: Dict,
+        spot: float,
+        tte: float,
+    ) -> Dict[str, Dict]:
+        option_memory = memory.setdefault("options", {})
+        live_vol_memory = option_memory.setdefault("live_vols", {})
+        residual_memory = option_memory.setdefault("residuals", {})
+        context: Dict[str, Dict] = {}
+
+        for symbol, strike in self.OPTION_STRIKES.items():
+            order_depth = state.order_depths.get(symbol)
+            if order_depth is None:
+                continue
+
+            mid = self.midpoint(order_depth)
+            prior_vol = self.option_vol(strike)
+            previous_live = float(live_vol_memory.get(symbol, prior_vol))
+            live_iv = None
+            if symbol in self.CORE_OPTION_SYMBOLS and mid is not None:
+                live_iv = self.implied_volatility(mid, spot, strike, tte, prior_vol)
+            smoothed_live = previous_live
+            if live_iv is not None:
+                smoothed_live = (1 - self.OPTION_LIVE_IV_ALPHA) * previous_live + self.OPTION_LIVE_IV_ALPHA * live_iv
+            live_vol_memory[symbol] = smoothed_live
+
+            blended_vol = prior_vol
+            if symbol in self.CORE_OPTION_SYMBOLS:
+                blended_vol = (
+                    (1 - self.OPTION_LIVE_SMILE_WEIGHT) * prior_vol
+                    + self.OPTION_LIVE_SMILE_WEIGHT * smoothed_live
+                )
+
+            fair = self.option_fair_value(spot, strike, tte, blended_vol)
+            delta = self.bs_delta(spot, strike, tte, blended_vol)
+            residual = (mid - fair) if mid is not None else 0.0
+
+            residual_state = residual_memory.get(symbol, {})
+            mean = float(residual_state.get("mean", 0.0))
+            var = float(residual_state.get("var", self.OPTION_RESIDUAL_SD_FLOOR ** 2))
+            sd = math.sqrt(max(var, self.OPTION_RESIDUAL_SD_FLOOR ** 2))
+            zscore = (residual - mean) / sd if sd > 0 else 0.0
+
+            centered = residual - mean
+            new_mean = (1 - self.OPTION_RESIDUAL_ALPHA) * mean + self.OPTION_RESIDUAL_ALPHA * residual
+            new_var = (1 - self.OPTION_RESIDUAL_ALPHA) * var + self.OPTION_RESIDUAL_ALPHA * centered * centered
+            residual_memory[symbol] = {"mean": new_mean, "var": new_var}
+
+            context[symbol] = {
+                "symbol": symbol,
+                "strike": strike,
+                "mid": mid,
+                "prior_vol": prior_vol,
+                "live_vol": smoothed_live,
+                "vol": blended_vol,
+                "fair": fair,
+                "delta": delta,
+                "residual": residual,
+                "residual_mean": mean,
+                "residual_sd": sd,
+                "zscore": zscore,
+            }
+
+        return context
 
     def time_to_expiry(self, state: TradingState) -> float:
         observations = getattr(state, "observations", None)
@@ -444,29 +560,26 @@ class Trader:
         state: TradingState,
         spot: float,
         tte: float,
-        risk_reduce_only: bool,
+        risk_state: Dict[str, float],
+        option_context: Dict[str, Dict],
     ) -> Dict[str, List[Order]]:
         shadow_positions = {
             symbol: int(state.position.get(symbol, 0))
             for symbol in self.OPTION_STRIKES
         }
-        shadow_delta = self.portfolio_delta(shadow_positions, spot, tte)
-        reduce_only = risk_reduce_only or state.timestamp >= self.OPTION_REDUCTION_START
+        shadow_delta = self.portfolio_delta_from_context(shadow_positions, option_context, spot, tte)
+        reduce_only = risk_state["reduce_options"] or state.timestamp >= self.OPTION_REDUCTION_START
         orders_by_product: Dict[str, List[Order]] = {symbol: [] for symbol in self.OPTION_STRIKES}
 
-        for symbol in self.OPTION_PRIORITY:
-            order_depth = state.order_depths.get(symbol)
-            if order_depth is None:
-                continue
-
-            strike = self.OPTION_STRIKES[symbol]
-            delta = self.bs_delta(spot, strike, tte, self.option_vol(strike))
-            fair = self.option_fair_value(spot, strike, tte)
-            position = shadow_positions[symbol]
-            internal_limit = self.position_limit(symbol)
-            orders = orders_by_product[symbol]
-
-            if reduce_only:
+        if reduce_only:
+            for symbol in self.OPTION_PRIORITY:
+                order_depth = state.order_depths.get(symbol)
+                if order_depth is None:
+                    continue
+                strike = self.OPTION_STRIKES[symbol]
+                fair = option_context.get(symbol, {}).get("fair", self.option_fair_value(spot, strike, tte))
+                delta = option_context.get(symbol, {}).get("delta", self.bs_delta(spot, strike, tte, self.option_vol(strike)))
+                position = shadow_positions[symbol]
                 if position < 0:
                     position, delta_change = self.take_option_asks(
                         symbol,
@@ -474,9 +587,9 @@ class Trader:
                         fair + self.OPTION_RISK_EXIT_EDGE,
                         self.OPTION_MAX_TAKE[symbol],
                         position,
-                        min(internal_limit - position, abs(position)),
+                        min(self.position_limit(symbol) - position, abs(position)),
                         delta,
-                        orders,
+                        orders_by_product[symbol],
                     )
                     shadow_delta += delta_change
                 elif position > 0:
@@ -486,81 +599,319 @@ class Trader:
                         fair - self.OPTION_RISK_EXIT_EDGE,
                         self.OPTION_MAX_TAKE[symbol],
                         position,
-                        min(internal_limit + position, abs(position)),
+                        min(self.position_limit(symbol) + position, abs(position)),
                         delta,
-                        orders,
+                        orders_by_product[symbol],
                     )
                     shadow_delta += delta_change
                 shadow_positions[symbol] = position
+            return orders_by_product
+
+        paired_symbols = set()
+        core_pairs = list(zip(self.CORE_OPTION_SYMBOLS, self.CORE_OPTION_SYMBOLS[1:]))
+        for left_symbol, right_symbol in core_pairs:
+            if left_symbol not in option_context or right_symbol not in option_context:
+                continue
+            left_ctx = option_context[left_symbol]
+            right_ctx = option_context[right_symbol]
+            left_entry = self.option_entry_threshold(left_symbol)
+            right_entry = self.option_entry_threshold(right_symbol)
+
+            if (
+                left_ctx["zscore"] <= -left_entry
+                and right_ctx["zscore"] >= right_entry
+                and right_ctx["zscore"] - left_ctx["zscore"] >= self.OPTION_PAIR_GAP_Z
+            ):
+                traded = self.execute_option_pair_trade(
+                    long_symbol=left_symbol,
+                    short_symbol=right_symbol,
+                    state=state,
+                    option_context=option_context,
+                    shadow_positions=shadow_positions,
+                    shadow_delta=shadow_delta,
+                    orders_by_product=orders_by_product,
+                )
+                if traded:
+                    paired_symbols.update((left_symbol, right_symbol))
+                    shadow_delta = self.portfolio_delta_from_context(shadow_positions, option_context, spot, tte)
+            elif (
+                right_ctx["zscore"] <= -right_entry
+                and left_ctx["zscore"] >= left_entry
+                and left_ctx["zscore"] - right_ctx["zscore"] >= self.OPTION_PAIR_GAP_Z
+            ):
+                traded = self.execute_option_pair_trade(
+                    long_symbol=right_symbol,
+                    short_symbol=left_symbol,
+                    state=state,
+                    option_context=option_context,
+                    shadow_positions=shadow_positions,
+                    shadow_delta=shadow_delta,
+                    orders_by_product=orders_by_product,
+                )
+                if traded:
+                    paired_symbols.update((left_symbol, right_symbol))
+                    shadow_delta = self.portfolio_delta_from_context(shadow_positions, option_context, spot, tte)
+
+        single_priority = ["VEV_5000"] + [symbol for symbol in self.CORE_OPTION_SYMBOLS if symbol != "VEV_5000"]
+        for symbol in single_priority:
+            if symbol not in option_context:
+                continue
+            if symbol != "VEV_5000" and symbol in paired_symbols:
                 continue
 
-            if position < internal_limit:
-                buy_capacity = internal_limit - position
-                if delta > 0:
-                    buy_capacity = min(
-                        buy_capacity,
-                        int(max(0.0, (self.OPTION_DELTA_BUDGET - shadow_delta) / max(delta, 1e-6))),
-                    )
-                if buy_capacity > 0:
-                    position, delta_change = self.take_option_asks(
+            context = option_context[symbol]
+            entry_z = self.option_entry_threshold(symbol)
+            if symbol != "VEV_5000":
+                entry_z += 0.35
+
+            position = shadow_positions[symbol]
+            order_depth = state.order_depths.get(symbol)
+            if order_depth is None:
+                continue
+
+            if context["zscore"] <= -entry_z:
+                buy_capacity = self.option_buy_capacity(symbol, shadow_positions, option_context, shadow_delta)
+                clip = min(self.OPTION_STRONG_SINGLE_CLIP if symbol == "VEV_5000" else self.OPTION_MAX_TAKE[symbol], buy_capacity)
+                if clip > 0:
+                    position, _ = self.take_option_asks(
                         symbol,
                         order_depth,
-                        fair - self.OPTION_TAKE_EDGES[symbol],
-                        self.OPTION_MAX_TAKE[symbol],
+                        context["fair"] - self.OPTION_TAKE_EDGES[symbol],
+                        clip,
                         position,
-                        buy_capacity,
-                        delta,
-                        orders,
+                        clip,
+                        context["delta"],
+                        orders_by_product[symbol],
                     )
-                    shadow_delta += delta_change
-
-            if position > -internal_limit:
-                sell_capacity = internal_limit + position
-                if delta > 0:
-                    sell_capacity = min(
-                        sell_capacity,
-                        int(max(0.0, (self.OPTION_DELTA_BUDGET + shadow_delta) / max(delta, 1e-6))),
-                    )
-                if sell_capacity > 0:
-                    position, delta_change = self.hit_option_bids(
+                    shadow_positions[symbol] = position
+                    shadow_delta = self.portfolio_delta_from_context(shadow_positions, option_context, spot, tte)
+            elif context["zscore"] >= entry_z:
+                sell_capacity = self.option_sell_capacity(symbol, shadow_positions, option_context, shadow_delta)
+                clip = min(self.OPTION_STRONG_SINGLE_CLIP if symbol == "VEV_5000" else self.OPTION_MAX_TAKE[symbol], sell_capacity)
+                if clip > 0:
+                    position, _ = self.hit_option_bids(
                         symbol,
                         order_depth,
-                        fair + self.OPTION_TAKE_EDGES[symbol],
-                        self.OPTION_MAX_TAKE[symbol],
+                        context["fair"] + self.OPTION_TAKE_EDGES[symbol],
+                        clip,
                         position,
-                        sell_capacity,
-                        delta,
-                        orders,
+                        clip,
+                        context["delta"],
+                        orders_by_product[symbol],
                     )
-                    shadow_delta += delta_change
+                    shadow_positions[symbol] = position
+                    shadow_delta = self.portfolio_delta_from_context(shadow_positions, option_context, spot, tte)
 
-            shadow_positions[symbol] = position
-
-            self.place_mean_reversion_quotes(
+        for symbol in self.CORE_OPTION_SYMBOLS:
+            if symbol not in option_context or symbol not in state.order_depths:
+                continue
+            self.place_residual_option_quote(
                 symbol,
-                order_depth,
-                fair,
-                position,
-                0,
-                self.OPTION_MAKE_EDGES[symbol],
-                self.OPTION_MAX_MAKE[symbol],
-                6.0,
-                orders,
+                state.order_depths[symbol],
+                option_context[symbol],
+                shadow_positions,
+                shadow_delta,
+                orders_by_product[symbol],
             )
 
         return orders_by_product
 
-    def option_fair_value(self, spot: float, strike: int, tte: float) -> float:
-        return self.bs_call(spot, strike, tte, self.option_vol(strike))
+    def option_fair_value(self, spot: float, strike: int, tte: float, sigma: Optional[float] = None) -> float:
+        return self.bs_call(spot, strike, tte, self.option_vol(strike) if sigma is None else sigma)
 
     def option_vol(self, strike: int) -> float:
         return self.OPTION_VOLS[strike]
+
+    def portfolio_delta_from_context(
+        self,
+        positions: Dict[str, int],
+        option_context: Dict[str, Dict],
+        spot: float,
+        tte: float,
+    ) -> float:
+        total = 0.0
+        for symbol in self.OPTION_PRIORITY:
+            strike = self.OPTION_STRIKES[symbol]
+            delta = option_context.get(symbol, {}).get("delta")
+            if delta is None:
+                delta = self.bs_delta(spot, strike, tte, self.option_vol(strike))
+            total += positions.get(symbol, 0) * delta
+        return total
 
     def portfolio_delta(self, positions: Dict[str, int], spot: float, tte: float) -> float:
         total = 0.0
         for symbol, strike in self.OPTION_STRIKES.items():
             total += positions.get(symbol, 0) * self.bs_delta(spot, strike, tte, self.option_vol(strike))
         return total
+
+    def option_entry_threshold(self, symbol: str) -> float:
+        if symbol == "VEV_5000":
+            return self.OPTION_V5000_ENTRY_Z
+        return self.OPTION_RESIDUAL_ENTRY_Z
+
+    def core_side_position(self, positions: Dict[str, int], side: int) -> int:
+        total = 0
+        for symbol in self.CORE_OPTION_SYMBOLS:
+            position = int(positions.get(symbol, 0))
+            if side > 0 and position > 0:
+                total += position
+            elif side < 0 and position < 0:
+                total += -position
+        return total
+
+    def option_buy_capacity(
+        self,
+        symbol: str,
+        positions: Dict[str, int],
+        option_context: Dict[str, Dict],
+        shadow_delta: float,
+    ) -> int:
+        position = int(positions.get(symbol, 0))
+        buy_capacity = self.position_limit(symbol) - position
+        if symbol in self.CORE_OPTION_SYMBOLS:
+            buy_capacity = min(
+                buy_capacity,
+                max(0, self.OPTION_SAME_SIDE_CORE_LIMIT - self.core_side_position(positions, 1)),
+            )
+        delta = option_context.get(symbol, {}).get("delta", 0.0)
+        if delta > 0:
+            buy_capacity = min(
+                buy_capacity,
+                int(max(0.0, (self.OPTION_DELTA_BUDGET - shadow_delta) / max(delta, 1e-6))),
+            )
+        return max(0, buy_capacity)
+
+    def option_sell_capacity(
+        self,
+        symbol: str,
+        positions: Dict[str, int],
+        option_context: Dict[str, Dict],
+        shadow_delta: float,
+    ) -> int:
+        position = int(positions.get(symbol, 0))
+        sell_capacity = self.position_limit(symbol) + position
+        if symbol in self.CORE_OPTION_SYMBOLS:
+            sell_capacity = min(
+                sell_capacity,
+                max(0, self.OPTION_SAME_SIDE_CORE_LIMIT - self.core_side_position(positions, -1)),
+            )
+        delta = option_context.get(symbol, {}).get("delta", 0.0)
+        if delta > 0:
+            sell_capacity = min(
+                sell_capacity,
+                int(max(0.0, (self.OPTION_DELTA_BUDGET + shadow_delta) / max(delta, 1e-6))),
+            )
+        return max(0, sell_capacity)
+
+    def execute_option_pair_trade(
+        self,
+        long_symbol: str,
+        short_symbol: str,
+        state: TradingState,
+        option_context: Dict[str, Dict],
+        shadow_positions: Dict[str, int],
+        shadow_delta: float,
+        orders_by_product: Dict[str, List[Order]],
+    ) -> bool:
+        long_depth = state.order_depths.get(long_symbol)
+        short_depth = state.order_depths.get(short_symbol)
+        if long_depth is None or short_depth is None:
+            return False
+
+        long_ctx = option_context[long_symbol]
+        short_ctx = option_context[short_symbol]
+        long_capacity = self.option_buy_capacity(long_symbol, shadow_positions, option_context, shadow_delta)
+        short_capacity = self.option_sell_capacity(short_symbol, shadow_positions, option_context, shadow_delta)
+        if long_capacity <= 0 or short_capacity <= 0:
+            return False
+
+        long_delta = max(long_ctx["delta"], 0.05)
+        short_delta = max(short_ctx["delta"], 0.05)
+        long_quantity = min(
+            self.OPTION_PAIR_MAX_LEG_CLIP,
+            self.OPTION_MAX_TAKE[long_symbol],
+            long_capacity,
+            max(1, int(round(self.OPTION_PAIR_TARGET_DELTA / long_delta))),
+        )
+        short_quantity = min(
+            self.OPTION_PAIR_MAX_LEG_CLIP,
+            self.OPTION_MAX_TAKE[short_symbol],
+            short_capacity,
+            max(1, int(round(self.OPTION_PAIR_TARGET_DELTA / short_delta))),
+        )
+        if long_quantity <= 0 or short_quantity <= 0:
+            return False
+
+        original_long = shadow_positions[long_symbol]
+        original_short = shadow_positions[short_symbol]
+
+        new_long, _ = self.take_option_asks(
+            long_symbol,
+            long_depth,
+            long_ctx["fair"] - 0.5 * self.OPTION_TAKE_EDGES[long_symbol],
+            long_quantity,
+            original_long,
+            long_quantity,
+            long_ctx["delta"],
+            orders_by_product[long_symbol],
+        )
+        new_short, _ = self.hit_option_bids(
+            short_symbol,
+            short_depth,
+            short_ctx["fair"] + 0.5 * self.OPTION_TAKE_EDGES[short_symbol],
+            short_quantity,
+            original_short,
+            short_quantity,
+            short_ctx["delta"],
+            orders_by_product[short_symbol],
+        )
+
+        shadow_positions[long_symbol] = new_long
+        shadow_positions[short_symbol] = new_short
+        return new_long != original_long or new_short != original_short
+
+    def place_residual_option_quote(
+        self,
+        symbol: str,
+        order_depth: OrderDepth,
+        context: Dict,
+        shadow_positions: Dict[str, int],
+        shadow_delta: float,
+        orders: List[Order],
+    ) -> None:
+        if abs(context["zscore"]) < self.OPTION_RESIDUAL_QUOTE_Z:
+            return
+        if abs(shadow_delta) > self.OPTION_DELTA_SOFT_LIMIT:
+            return
+
+        position = int(shadow_positions.get(symbol, 0))
+        best_bid, best_ask = self.best_bid_ask(order_depth)
+        make_edge = self.OPTION_MAKE_EDGES[symbol]
+
+        if context["zscore"] < 0:
+            buy_capacity = min(
+                self.OPTION_PASSIVE_CLIP,
+                self.option_buy_capacity(symbol, shadow_positions, {symbol: context}, shadow_delta),
+            )
+            if buy_capacity <= 0:
+                return
+            bid_price = math.floor(context["fair"] - make_edge)
+            if best_bid is not None:
+                bid_price = min(bid_price, best_bid + 1)
+            if best_ask is None or bid_price < best_ask:
+                orders.append(Order(symbol, int(bid_price), buy_capacity))
+        else:
+            sell_capacity = min(
+                self.OPTION_PASSIVE_CLIP,
+                self.option_sell_capacity(symbol, shadow_positions, {symbol: context}, shadow_delta),
+            )
+            if sell_capacity <= 0:
+                return
+            ask_price = math.ceil(context["fair"] + make_edge)
+            if best_ask is not None:
+                ask_price = max(ask_price, best_ask - 1)
+            if best_bid is None or ask_price > best_bid:
+                orders.append(Order(symbol, int(ask_price), -sell_capacity))
 
     def option_gross_position(self, positions: Dict[str, int]) -> int:
         total = 0
@@ -728,6 +1079,39 @@ class Trader:
         best_bid = max(order_depth.buy_orders) if order_depth.buy_orders else None
         best_ask = min(order_depth.sell_orders) if order_depth.sell_orders else None
         return best_bid, best_ask
+
+    def midpoint(self, order_depth: OrderDepth) -> Optional[float]:
+        best_bid, best_ask = self.best_bid_ask(order_depth)
+        if best_bid is None or best_ask is None:
+            return None
+        return (best_bid + best_ask) / 2.0
+
+    def implied_volatility(
+        self,
+        option_price: float,
+        spot: float,
+        strike: int,
+        tte: float,
+        fallback_sigma: float,
+    ) -> Optional[float]:
+        intrinsic = max(0.0, spot - strike)
+        extrinsic = option_price - intrinsic
+        if extrinsic <= 0.75:
+            return None
+
+        lower = 1e-6
+        upper = max(0.08, fallback_sigma * 4.0)
+        for _ in range(60):
+            middle = 0.5 * (lower + upper)
+            fair = self.bs_call(spot, strike, tte, middle)
+            if fair > option_price:
+                upper = middle
+            else:
+                lower = middle
+        sigma = 0.5 * (lower + upper)
+        if sigma <= 0 or sigma > 0.10:
+            return None
+        return sigma
 
     def bs_call(self, spot: float, strike: int, tte: float, sigma: float) -> float:
         if sigma <= 1e-9 or tte <= 0:
