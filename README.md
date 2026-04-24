@@ -36,15 +36,20 @@ Research notebooks:
   on a single constant volatility.
 - Keeps the deep ITM vouchers (`VEV_4000`, `VEV_4500`) on an intrinsic-value
   style leash because their extrinsic value is tiny relative to spread noise.
-- Trades the liquid voucher sleeve on residual z-scores and adjacent-strike
-  relative-value spreads, with `VEV_5000` given the strongest single-name
+- Concentrates the active voucher sleeve on `VEV_5000` and `VEV_5100`, where the
+  residual signal is strongest, and only keeps the wider strikes on a tight
+  leash for smile context rather than leaning on them for alpha.
+- Uses the `VEV_5000 / VEV_5100` adjacent-strike spread first, then selective
+  single-name residual trades with `VEV_5000` still given the strongest
   priority.
-- Controls voucher inventory with internal position caps, same-side option
+- Controls voucher inventory with tighter wing caps, same-side option
   concentration limits, a portfolio delta budget, and persistent drawdown /
   reduce-only risk gates.
-- Deterministic crossing replay over historical days 0, 1, and 2: +184,710.5
-  XIRECS, with +131,402.0 from Hydrogel, +36,690.0 from Velvetfruit Extract,
-  and +16,618.5 from the voucher sleeve.
+- Deterministic crossing replay over historical days 0, 1, and 2: +186,273.5
+  XIRECS, with +131,402.0 from Hydrogel, +36,544.5 from Velvetfruit Extract,
+  and +18,327.0 from the voucher sleeve.
+- Option-delta snapshot in the current replay: ending delta `24.9`, `255.5`,
+  and `261.6` by day, with worst absolute option delta about `262.6`.
 - Metrics snapshot: `logs/round3_diagnostics.json`.
 
 ## Round 3 Theory Notes
@@ -67,6 +72,23 @@ Research notebooks:
   model for voucher fair value and delta, but the observed cross-strike smile and
   discrete trading frictions make a shrunk live smile plus residual trading more
   robust than a one-vol implementation.
+
+## Round 3 Manual Challenge
+
+- Product: `ORNAMENTAL_BIO-POD`.
+- Fair exit value next round: `920`.
+- Counterparty reserve prices are uniformly distributed on the 5-XIREC grid from
+  `670` to `920`.
+- Exact discrete manual optimizer under the symmetric rational-field assumption
+  gives the Pareto-dominant equilibrium:
+  `Lowest Bid = 750`, `Highest Bid = 835`.
+- Game-theory note: the second-bid game has a continuum of symmetric fixed
+  points once the common second bid is high enough, but `835` is the
+  profit-maximizing equilibrium-selection choice because any higher common bid
+  preserves execution while reducing margin for everyone.
+- If the field is irrational and systematically overbids, the best response to
+  the observed average second bid moves upward; the notebook records that
+  distinction explicitly.
 
 ## Round 2 Manual Challenge
 

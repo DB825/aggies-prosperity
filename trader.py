@@ -26,10 +26,10 @@ class Trader:
         "VEV_4500": 60,
         "VEV_5000": 150,
         "VEV_5100": 150,
-        "VEV_5200": 150,
-        "VEV_5300": 150,
-        "VEV_5400": 150,
-        "VEV_5500": 150,
+        "VEV_5200": 60,
+        "VEV_5300": 20,
+        "VEV_5400": 10,
+        "VEV_5500": 5,
         "VEV_6000": 10,
         "VEV_6500": 10,
     }
@@ -130,10 +130,6 @@ class Trader:
     CORE_OPTION_SYMBOLS = [
         "VEV_5000",
         "VEV_5100",
-        "VEV_5200",
-        "VEV_5300",
-        "VEV_5400",
-        "VEV_5500",
     ]
     OPTION_LIVE_IV_ALPHA = 0.20
     OPTION_LIVE_SMILE_WEIGHT = 0.15

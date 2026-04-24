@@ -135,6 +135,7 @@ def run_backtest(by_day_ts: Dict[int, Dict[int, List[Dict]]]) -> Dict:
         last_mid: Dict[str, float] = {}
         listings = {product: Listing(product, product, "XIRECS") for product in PRODUCT_ORDER}
         last_option_delta = 0.0
+        max_abs_option_delta = 0.0
 
         for timestamp in sorted(by_day_ts[day]):
             depths, mids = build_depths(by_day_ts[day][timestamp])
@@ -167,6 +168,7 @@ def run_backtest(by_day_ts: Dict[int, Dict[int, List[Dict]]]) -> Dict:
                     last_mid["VELVETFRUIT_EXTRACT"],
                     TTE_BY_DAY[day],
                 )
+                max_abs_option_delta = max(max_abs_option_delta, abs(last_option_delta))
 
         pnl_by_product = {}
         for product in PRODUCT_ORDER:
@@ -181,6 +183,7 @@ def run_backtest(by_day_ts: Dict[int, Dict[int, List[Dict]]]) -> Dict:
                 "position": dict(position),
                 "max_abs_position": max_abs_position,
                 "ending_option_delta": last_option_delta,
+                "max_abs_option_delta": max_abs_option_delta,
                 "total_pnl": sum(pnl_by_product.values()),
             }
         )
@@ -215,7 +218,8 @@ def main() -> None:
         for day in diagnostics["day_results"]:
             print(
                 f"Day {day['day']}: total={day['total_pnl']:.1f}, "
-                f"ending_option_delta={day['ending_option_delta']:.1f}"
+                f"ending_option_delta={day['ending_option_delta']:.1f}, "
+                f"max_abs_option_delta={day['max_abs_option_delta']:.1f}"
             )
 
 

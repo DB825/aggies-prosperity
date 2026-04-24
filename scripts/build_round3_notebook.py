@@ -35,7 +35,8 @@ def build_notebook() -> dict:
     for day in diagnostics.get("day_results", []):
         day_lines.append(
             f"- Historical day {day['day']} (TTE={day['tte_days']}d): "
-            f"{day['total_pnl']:.1f} XIRECS, ending option delta {day['ending_option_delta']:.1f}"
+            f"{day['total_pnl']:.1f} XIRECS, ending option delta {day['ending_option_delta']:.1f}, "
+            f"max abs option delta {day.get('max_abs_option_delta', abs(day['ending_option_delta'])):.1f}"
         )
 
     product_totals = diagnostics.get("per_product_totals", {})
@@ -80,14 +81,19 @@ def build_notebook() -> dict:
               wide edges.
             - `VELVETFRUIT_EXTRACT`: conservative mean reversion plus partial hedge
               of the voucher sleeve.
-            - Core vouchers `VEV_5000` to `VEV_5500`: priced off a shrunk live smile,
-              then traded on residual z-scores rather than raw one-vol Black-Scholes
-              mispricing.
-            - Options execution: adjacent-strike spread trades first, then selective
-              single-name trades with `VEV_5000` treated as the strongest residual
-              signal.
-            - Risk: smaller internal voucher caps, option concentration limits,
-              option-delta budget, and persistent drawdown / reduce-only controls.
+            - Active vouchers: `VEV_5000` and `VEV_5100`, priced off a shrunk live
+              smile and then traded on residual z-scores rather than raw one-vol
+              Black-Scholes mispricing.
+            - Wider strikes are still observed for smile context, but their
+              inventory caps are deliberately tiny so the live book does not spend
+              much risk budget in the noisiest wings.
+            - Options execution: trade the `VEV_5000 / VEV_5100` spread first, then
+              allow selective single-name trades with `VEV_5000` treated as the
+              strongest residual signal.
+            - Risk: tighter wing caps, option concentration limits, option-delta
+              budget, and persistent drawdown / reduce-only controls; this keeps
+              realized option delta materially lower than the earlier broader-chain
+              deployment in local replay.
             """
         ),
         markdown_cell(
@@ -338,7 +344,7 @@ def build_notebook() -> dict:
         code_cell(
             """
             spread_stats = {}
-            for left_symbol, right_symbol in [("VEV_5100", "VEV_5200"), ("VEV_5200", "VEV_5300"), ("VEV_5300", "VEV_5400"), ("VEV_5400", "VEV_5500")]:
+            for left_symbol, right_symbol in [("VEV_5000", "VEV_5100"), ("VEV_5100", "VEV_5200"), ("VEV_5200", "VEV_5300"), ("VEV_5300", "VEV_5400"), ("VEV_5400", "VEV_5500")]:
                 spreads = []
                 for day in sorted(by_day_ts):
                     for timestamp in sorted(by_day_ts[day]):
@@ -359,16 +365,123 @@ def build_notebook() -> dict:
 
             The latest trader model follows directly from the diagnostics above:
 
-            - Residuals around a Black-Scholes anchor are persistent for the core
-              strikes, so the trader treats them as state variables instead of
-              ignoring them.
-            - Adjacent-strike spreads are also persistent, which makes paired
-              relative-value trades attractive when one strike looks cheap and the
-              neighboring strike looks rich.
+            - Residuals around a Black-Scholes anchor are strongest in
+              `VEV_5000` and `VEV_5100`, so the live trader now concentrates the
+              active sleeve there instead of trying to harvest every strike.
+            - The `VEV_5000 / VEV_5100` adjacent-strike spread is still persistent,
+              which makes paired relative-value trades attractive when one strike
+              looks cheap and the neighboring strike looks rich.
             - A fixed one-vol Black-Scholes model is still useful, but mainly as the
               first pass from which we build residual signals.
-            - The live trader therefore uses a shrunk live smile, not a fully free
-              smile fit and not a pure fixed-vol model.
+            - The live trader therefore uses a shrunk live smile, but deploys risk
+              narrowly to avoid turning a good pricing model into a noisy
+              directionally loaded book.
+            """
+        ),
+        markdown_cell(
+            """
+            ## Manual Challenge: Celestial Gardeners' Guild
+
+            The manual challenge has a separate structure from the algorithmic
+            trader:
+
+            - Each counterparty has a reserve price uniformly distributed on the 5-XIREC
+              grid from 670 to 920 inclusive.
+            - We can submit two bids, `b1 <= b2`.
+            - If reserve `r <= b1`, we trade at `b1`.
+            - If `b1 < r <= b2`, the second bid is accepted, but if `b2` is below the
+              field average second bid then the PnL on that tranche is penalized by
+              `((920 - avg_b2) / (920 - b2))^3`.
+
+            Under symmetric rational play, the second-bid game is a coordination game:
+
+            - There is a whole family of symmetric fixed points once the common second
+              bid is high enough.
+            - The **Pareto-dominant** equilibrium is the one with the *lowest* common
+              second bid that is still a best response, because every crew gets the
+              same trade probability at a strictly better purchase price.
+
+            On the exact discrete grid in this challenge, that Pareto-dominant
+            equilibrium is:
+
+            - `Lowest Bid = 750`
+            - `Highest Bid = 835`
+
+            Intuition:
+
+            - If everyone else is rational and profit-maximizing, any common second
+              bid above 835 can be an equilibrium, but it is strictly worse for all
+              players than coordinating on 835.
+            - The first bid then optimally sits about halfway between 670 and 835,
+              which rounds to 750 on the 5-XIREC grid.
+            """
+        ),
+        code_cell(
+            """
+            GRID = list(range(670, 925, 5))
+
+            def second_tranche_profit(b2, avg_b2):
+                raw = 920 - b2
+                if raw <= 0:
+                    return 0.0
+                if b2 > avg_b2:
+                    return raw
+                return raw * ((920 - avg_b2) / raw) ** 3
+
+            def expected_manual_profit(b1, b2, avg_b2):
+                total = 0.0
+                for reserve in GRID:
+                    if reserve <= b1:
+                        total += 920 - b1
+                    elif reserve <= b2:
+                        total += second_tranche_profit(b2, avg_b2)
+                return total / len(GRID)
+
+            best_by_avg = {}
+            for avg_b2 in GRID:
+                best = None
+                for b1 in GRID:
+                    for b2 in GRID:
+                        if b1 > b2:
+                            continue
+                        value = expected_manual_profit(b1, b2, avg_b2)
+                        if best is None or value > best[0]:
+                            best = (value, b1, b2)
+                best_by_avg[avg_b2] = best
+
+            symmetric_fixed_points = [
+                (avg_b2, value, b1, b2)
+                for avg_b2, (value, b1, b2) in best_by_avg.items()
+                if b2 == avg_b2
+            ]
+            best_symmetric = max(symmetric_fixed_points, key=lambda row: row[1])
+            {
+                "best_symmetric_equilibrium": {
+                    "avg_b2": best_symmetric[0],
+                    "expected_profit_per_counterparty": round(best_symmetric[1], 6),
+                    "lowest_bid": best_symmetric[2],
+                    "highest_bid": best_symmetric[3],
+                },
+                "all_symmetric_fixed_points": symmetric_fixed_points,
+            }
+            """
+        ),
+        markdown_cell(
+            """
+            ## Manual Challenge Conclusion
+
+            Recommended manual submission under the rational symmetric /
+            Pareto-dominant assumption:
+
+            - `Lowest Bid: 750`
+            - `Highest Bid: 835`
+
+            Caveat:
+
+            - If the field is not coordinating rationally and instead overbids, then
+              the best response to the *observed* average second bid moves upward.
+            - But if the user wants the ideal game-theoretic solution under a
+              rational-field assumption, `750 / 835` is the clean answer.
             """
         ),
         code_cell(
@@ -386,7 +499,11 @@ def build_notebook() -> dict:
                 "pair_target_delta": Trader.OPTION_PAIR_TARGET_DELTA,
                 "delta_budget": Trader.OPTION_DELTA_BUDGET,
                 "same_side_core_limit": Trader.OPTION_SAME_SIDE_CORE_LIMIT,
-                "inventory_limits": {symbol: Trader.INTERNAL_LIMITS[symbol] for symbol in Trader.CORE_OPTION_SYMBOLS},
+                "core_inventory_limits": {symbol: Trader.INTERNAL_LIMITS[symbol] for symbol in Trader.CORE_OPTION_SYMBOLS},
+                "wing_inventory_limits": {
+                    symbol: Trader.INTERNAL_LIMITS[symbol]
+                    for symbol in ["VEV_5200", "VEV_5300", "VEV_5400", "VEV_5500"]
+                },
             }
             latest_model
             """
@@ -400,20 +517,17 @@ def build_notebook() -> dict:
         ),
         markdown_cell(
             """
-            ## Manual Bio-Pod Challenge
-
-            The local capsule still does **not** include the Celestial Gardeners'
-            Guild reserve-price table or the Bio-Pod conversion schedule needed for
-            a numeric manual submission.
+            ## Wrap-Up
 
             Practical conclusion:
 
-            - The notebook now fully reflects the latest algorithmic trader and its
-              theory references.
-            - The manual section still needs the actual Guild page data before we can
-              lock in final offer prices.
-            - The Magritte clue remains a good reminder not to trust labels more than
-              settlement mechanics.
+            - The latest trader still uses Black-Scholes as the anchor, but the
+              shipped live deployment is intentionally narrower than the full chain.
+            - The active option risk is now concentrated in the `VEV_5000 / VEV_5100`
+              pocket because that was the strongest combination of residual alpha
+              and lower realized option delta in local replay.
+            - The manual challenge and the algorithmic challenge are now both fully
+              documented in one place.
             """
         ),
     ]
