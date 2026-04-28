@@ -79,6 +79,8 @@ def build_notebook() -> dict:
             ## Final replay summary
 
             - Combined deterministic replay: {combined_text}
+            - Replay horizon: official-style timestamps `0..99,900`, matching the
+              1,000-tick log bundle rather than the exploratory full-day files.
             - Fill model: book-crossing plus public-repo-style passive fills from
               bot trades that would have interacted with our improved quote.
             - Fill count: {fill_text}
@@ -125,20 +127,19 @@ def build_notebook() -> dict:
             Main discoveries:
 
             - The strongest repeatable edge is passive inside-spread market making
-              on selected products. The replay only enables a product when it is
-              profitable on all three provided days under a conservative bot-trade
-              fill model.
-            - `ROBOT_DISHES`, `OXYGEN_SHAKE_CHOCOLATE`, and
+              on selected products, but the official fill log showed that some
+              sleeves with good simulated spread capture had poor queue quality.
+              The current build prunes those products rather than fitting to a
+              single path.
+            - `OXYGEN_SHAKE_CHOCOLATE` and
               `OXYGEN_SHAKE_EVENING_BREATH` have jump-reversion events large
               enough to justify crossing the spread. These are deliberately gated
               by a 30-XIREC one-tick move threshold.
-            - Snack packs have a useful group-level sum reversion. The algorithm
-              trades an 8-lot group target only when the five-product sum is more
-              than 150 XIRECS away from its historical anchor.
-            - Pebbles have a near-exact five-product sum around 50,000, but the
-              multi-leg edge is too thin after spread cost. The final bot keeps the
-              strong individual `PEBBLES_S` and `PEBBLES_XL` makers and skips the
-              group overlay.
+            - The earlier `ROBOT_DISHES` jump trigger, snack-pack group overlay,
+              and individual pebble makers were removed after the official
+              1,000-tick log exposed weak realized execution quality.
+            - Pebbles still have a near-exact five-product sum around 50,000, but
+              the tradable edge is too thin after spread and queue cost.
             - Products without robust replay contribution are left idle. Unused
               symbols are better than forced variance.
             """
@@ -173,10 +174,10 @@ def build_notebook() -> dict:
               displayed bid/ask only when the quote still has positive edge to the
               current book mid after inventory skew.
             - **Jump-reversion takers:** cross only after very large one-tick
-              moves in the three products where this paid across replay.
-            - **Snackpack sum overlay:** hold a small common target across the five
-              snack packs when their aggregate level is materially too high or too
-              low.
+              moves in the two oxygen products where this paid across replay.
+            - **No anonymous-flow follower:** buyer/seller IDs in the official log
+              are blank except for `SUBMISSION`, and cost-aware flow following was
+              negative after spread.
             - **Risk controls:** all logic respects the hard 10-unit position
               limit per product, and products without robust evidence are idle.
             """

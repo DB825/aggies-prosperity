@@ -62,56 +62,32 @@ class Trader:
     ]
 
     # Passive-maker parameters selected only when they were profitable on all
-    # three provided days under a bot-trade fill model.
+    # three provided days under a bot-trade fill model, then pruned against the
+    # official 1,000-tick log to avoid queue-quality overfit.
     MAKE_PARAMS: Dict[str, Tuple[float, float]] = {
-        "PEBBLES_S": (5.0, 0.0),
-        "PEBBLES_XL": (2.0, 2.0),
-        "PANEL_1X4": (4.0, 0.0),
         "PANEL_2X4": (1.0, 1.0),
-        "PANEL_2X2": (4.0, 0.5),
         "OXYGEN_SHAKE_CHOCOLATE": (1.0, 0.5),
-        "OXYGEN_SHAKE_MORNING_BREATH": (6.0, 0.0),
         "OXYGEN_SHAKE_EVENING_BREATH": (1.0, 1.0),
         "OXYGEN_SHAKE_GARLIC": (2.0, 2.0),
-        "SNACKPACK_CHOCOLATE": (8.0, 0.0),
-        "SNACKPACK_RASPBERRY": (1.0, 1.0),
-        "SNACKPACK_PISTACHIO": (8.0, 0.0),
         "SNACKPACK_VANILLA": (4.0, 2.0),
         "SNACKPACK_STRAWBERRY": (4.0, 0.0),
         "SLEEP_POD_COTTON": (4.0, 0.5),
         "SLEEP_POD_POLYESTER": (5.0, 0.5),
         "SLEEP_POD_NYLON": (4.0, 0.0),
         "UV_VISOR_YELLOW": (4.0, 1.0),
-        "UV_VISOR_AMBER": (4.0, 0.5),
         "UV_VISOR_ORANGE": (3.0, 0.0),
         "TRANSLATOR_VOID_BLUE": (2.0, 0.5),
         "TRANSLATOR_ASTRO_BLACK": (1.0, 1.0),
         "MICROCHIP_SQUARE": (1.0, 1.0),
         "MICROCHIP_OVAL": (1.0, 0.5),
-        "ROBOT_LAUNDRY": (1.0, 1.0),
     }
 
     JUMP_REVERSION = {
-        "ROBOT_DISHES": 30.0,
         "OXYGEN_SHAKE_CHOCOLATE": 30.0,
         "OXYGEN_SHAKE_EVENING_BREATH": 30.0,
     }
 
-    SNACKPACKS = [
-        "SNACKPACK_CHOCOLATE",
-        "SNACKPACK_VANILLA",
-        "SNACKPACK_PISTACHIO",
-        "SNACKPACK_STRAWBERRY",
-        "SNACKPACK_RASPBERRY",
-    ]
-    GROUPS = {
-        "snackpack_sum": {
-            "products": SNACKPACKS,
-            "anchor": 50220.0,
-            "entry": 150.0,
-            "target": 8,
-        }
-    }
+    GROUPS: Dict[str, Dict] = {}
 
     def run(self, state: TradingState):
         memory = self.load_memory(state.traderData)

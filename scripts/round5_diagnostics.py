@@ -166,7 +166,7 @@ def apply_fills(
     return stats
 
 
-def run_backtest() -> Dict:
+def run_backtest(max_timestamp: int | None = 99_900) -> Dict:
     price_rows = load_price_rows()
     trades = load_trades()
     trader = Trader()
@@ -183,7 +183,11 @@ def run_backtest() -> Dict:
         last_mid: Dict[str, float] = {}
         listings = {product: Listing(product, product, "XIRECS") for product in products}
 
-        for timestamp in sorted(price_rows[day]):
+        timestamps = sorted(price_rows[day])
+        if max_timestamp is not None:
+            timestamps = [timestamp for timestamp in timestamps if timestamp <= max_timestamp]
+
+        for timestamp in timestamps:
             depths, mids = build_depths(price_rows[day][timestamp])
             last_mid.update(mids)
             timestamp_trades = trades.get(day, {}).get(timestamp, {})
@@ -228,6 +232,7 @@ def run_backtest() -> Dict:
             "fill_model": "book-crossing plus public-repo-style passive fills from bot trades",
             "products": products,
             "position_limit": Trader.POSITION_LIMIT,
+            "max_timestamp": max_timestamp,
             "maker_product_count": len(Trader.MAKE_PARAMS),
             "jump_reversion_products": Trader.JUMP_REVERSION,
             "groups": Trader.GROUPS,
@@ -242,10 +247,17 @@ def run_backtest() -> Dict:
 def main() -> None:
     parser = argparse.ArgumentParser(description="Round 5 deterministic replay diagnostics.")
     parser.add_argument("--output", type=Path, default=OUTPUT_PATH)
+    parser.add_argument(
+        "--max-timestamp",
+        type=int,
+        default=99_900,
+        help="Last timestamp to replay. Defaults to the official 1,000-tick log window.",
+    )
+    parser.add_argument("--full-day", action="store_true", help="Replay every timestamp in the historical files.")
     parser.add_argument("--quiet", action="store_true")
     args = parser.parse_args()
 
-    diagnostics = run_backtest()
+    diagnostics = run_backtest(None if args.full_day else args.max_timestamp)
     args.output.write_text(json.dumps(diagnostics, indent=2))
 
     if not args.quiet:
