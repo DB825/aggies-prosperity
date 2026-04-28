@@ -6,6 +6,9 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 NOTEBOOK_PATH = ROOT / "round5_final_strategy.ipynb"
 DIAGNOSTICS_PATH = ROOT / "logs" / "round5_diagnostics.json"
+ML_RESEARCH_PATH = ROOT / "logs" / "round5_ml_research.json"
+PRODUCT_ALPHA_PATH = ROOT / "logs" / "round5_product_alpha.json"
+LOG_REPLAY_PATH = ROOT / "logs" / "round5_log_replay.json"
 
 
 def markdown_cell(source: str) -> dict:
@@ -32,6 +35,24 @@ def load_diagnostics() -> dict:
     return {}
 
 
+def load_ml_research() -> dict:
+    if ML_RESEARCH_PATH.exists():
+        return json.loads(ML_RESEARCH_PATH.read_text())
+    return {}
+
+
+def load_product_alpha() -> dict:
+    if PRODUCT_ALPHA_PATH.exists():
+        return json.loads(PRODUCT_ALPHA_PATH.read_text())
+    return {}
+
+
+def load_log_replay() -> dict:
+    if LOG_REPLAY_PATH.exists():
+        return json.loads(LOG_REPLAY_PATH.read_text())
+    return {}
+
+
 def top_products_table(diagnostics: dict, n: int = 16) -> str:
     totals = diagnostics.get("per_product_totals", {})
     if not totals:
@@ -52,8 +73,69 @@ def day_table(diagnostics: dict) -> str:
     return "\n".join(lines)
 
 
+def ml_results_table(ml_research: dict) -> str:
+    if not ml_research:
+        return "ML research not generated yet."
+
+    lines = [
+        "| Model | Tested use | Holdout PnL | Delta vs baseline | Mean target corr | Standalone taker PnL |",
+        "|---|---|---:|---:|---:|---:|",
+    ]
+    for name, result in ml_research.get("tabular_models", {}).items():
+        lines.append(
+            "| "
+            f"`{name}` | passive quote filter | "
+            f"{result.get('passive_sum', 0):,.1f} | "
+            f"{result.get('passive_delta', 0):,.1f} | "
+            f"{result.get('mean_target_corr', 0):.4f} | "
+            f"{result.get('taker_sum', 0):,.1f} |"
+        )
+
+    transformer = ml_research.get("transformer", {})
+    if transformer and not transformer.get("skipped"):
+        lines.append(
+            "| `tiny_transformer` | passive quote filter | "
+            f"{transformer.get('passive_sum', 0):,.1f} | "
+            f"{transformer.get('passive_delta', 0):,.1f} | "
+            f"{transformer.get('mean_target_corr', 0):.4f} | n/a |"
+        )
+    return "\n".join(lines)
+
+
+def product_alpha_table(product_alpha: dict, n: int = 14) -> str:
+    robust = product_alpha.get("robust_products", [])
+    if not robust:
+        return "Product-alpha report not generated yet."
+    lines = ["| Product | Family | LOO PnL | Worst fold | Full-sample config |", "|---|---|---:|---:|---|"]
+    for item in robust[:n]:
+        full_best = item.get("full_best") or {}
+        params = full_best.get("params", {})
+        strategy = full_best.get("strategy", item["family"])
+        lines.append(
+            "| "
+            f"`{item['product']}` | {item['family']} | "
+            f"{item['loo_total']:,.1f} | {item['loo_min']:,.1f} | "
+            f"`{strategy} {params}` |"
+        )
+    return "\n".join(lines)
+
+
+def log_replay_text(log_replay: dict) -> str:
+    if not log_replay:
+        return "Official-log replay not generated yet."
+    return (
+        f"Original submitted bot reported {log_replay.get('reported_profit_for_original_submission', 0):,.1f} "
+        f"XIRECS. Replaying the current bot on the same 1,000-tick log gives an estimated "
+        f"{log_replay.get('replay_estimated_pnl', 0):,.1f} XIRECS under the anonymous-trade "
+        "passive-fill model."
+    )
+
+
 def build_notebook() -> dict:
     diagnostics = load_diagnostics()
+    ml_research = load_ml_research()
+    product_alpha = load_product_alpha()
+    log_replay = load_log_replay()
     combined = diagnostics.get("combined_pnl")
     combined_text = "Diagnostics not generated yet."
     if combined is not None:
@@ -126,22 +208,67 @@ def build_notebook() -> dict:
 
             Main discoveries:
 
-            - The strongest repeatable edge is passive inside-spread market making
-              on selected products, but the official fill log showed that some
-              sleeves with good simulated spread capture had poor queue quality.
-              The current build prunes those products rather than fitting to a
-              single path.
+            - A full product-by-product isolation pass found that the strongest
+              deployable edge is a mix of passive inside-spread market making
+              and simple one-tick regime signals.
+            - `ROBOT_IRONING`, `MICROCHIP_OVAL`, `PANEL_1X2`, and
+              `SLEEP_POD_NYLON` show robust large-move reversion. `OXYGEN_SHAKE_GARLIC`
+              shows large-move momentum.
             - `OXYGEN_SHAKE_CHOCOLATE` and
               `OXYGEN_SHAKE_EVENING_BREATH` have jump-reversion events large
               enough to justify crossing the spread. These are deliberately gated
               by a 30-XIREC one-tick move threshold.
-            - The earlier `ROBOT_DISHES` jump trigger, snack-pack group overlay,
-              and individual pebble makers were removed after the official
-              1,000-tick log exposed weak realized execution quality.
-            - Pebbles still have a near-exact five-product sum around 50,000, but
-              the tradable edge is too thin after spread and queue cost.
+            - Cross-sectional group residual/stat-arb tests were mostly flat or
+              negative after paying spread. The script keeps those diagnostics,
+              but `trader.py` does not deploy a group residual sleeve.
             - Products without robust replay contribution are left idle. Unused
               symbols are better than forced variance.
+            """
+        ),
+        markdown_cell(
+            f"""
+            ## Product-by-product alpha isolation
+
+            `scripts/round5_product_alpha.py` evaluates every product separately
+            across passive maker grids, one-tick return regimes, rolling
+            z-score regimes, book imbalance/microprice takers, and per-product
+            ridge ML takers. Parameters are selected on two days and scored on
+            the held-out day.
+
+            {product_alpha_table(product_alpha)}
+
+            Category-level residual/stat-arb tests were also evaluated. They did
+            not clear the robustness bar, so the final bot keeps the simpler
+            per-product signals instead.
+
+            {log_replay_text(log_replay)}
+            """
+        ),
+        markdown_cell(
+            f"""
+            ## ML, neural net, and transformer research
+
+            I tested ML as a **gate** around the existing strategy, not as an
+            unrestricted replacement. The validation is leave-one-day-out:
+            train on two historical days, choose thresholds/quote gates only on
+            those training days, then score the untouched held-out day.
+
+            Tested families:
+
+            - Ridge regression with product one-hot features.
+            - Histogram gradient boosted trees.
+            - Multi-layer perceptron neural network.
+            - LightGBM boosted trees.
+            - Tiny PyTorch transformer over 16-tick order-book sequences.
+
+            {ml_results_table(ml_research)}
+
+            Conclusion: the best advanced model still failed to beat the
+            current 64,300 XIRECS baseline on leave-one-day-out replay. The
+            predictors show tiny next-tick correlations, but the signal is not
+            strong enough to pay spread/queue costs. I therefore did **not**
+            add ML logic to `trader.py`; the research harness is saved as
+            `scripts/round5_ml_research.py` for further experiments.
             """
         ),
         code_cell(
@@ -161,6 +288,22 @@ def build_notebook() -> dict:
             pd.Series(totals).sort_values(ascending=False).head(20).to_frame("replay_pnl")
             """
         ),
+        code_cell(
+            """
+            ml_research = json.loads(Path("logs/round5_ml_research.json").read_text())
+            {
+                "baseline_sum": ml_research["baseline_sum"],
+                "best_tabular_passive": max(
+                    (
+                        (name, result["passive_sum"], result["passive_delta"])
+                        for name, result in ml_research["tabular_models"].items()
+                    ),
+                    key=lambda item: item[1],
+                ),
+                "transformer_delta": ml_research["transformer"].get("passive_delta"),
+            }
+            """
+        ),
         markdown_cell(
             """
             ## Trader implementation
@@ -173,6 +316,10 @@ def build_notebook() -> dict:
             - **Passive selected makers:** quote one tick better than the best
               displayed bid/ask only when the quote still has positive edge to the
               current book mid after inventory skew.
+            - **Per-product learned signal takers:** six simple one-tick
+              return regimes are stored as constants in `SIGNAL_PARAMS`. These
+              are distilled from the product-alpha scan instead of running a
+              heavyweight model live.
             - **Jump-reversion takers:** cross only after very large one-tick
               moves in the two oxygen products where this paid across replay.
             - **No anonymous-flow follower:** buyer/seller IDs in the official log

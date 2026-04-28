@@ -1,0 +1,7653 @@
+{
+  "config": {
+    "max_timestamp": 99900,
+    "days": [
+      2,
+      3,
+      4
+    ],
+    "validation": "leave-one-day-out; candidate parameters are selected on two training days and scored on the held-out day",
+    "position_limit": 10
+  },
+  "product_results": {
+    "GALAXY_SOUNDS_DARK_MATTER": {
+      "maker": {
+        "loo_total": -601.0,
+        "loo_min": -601.0,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 10.0,
+              "skew": 0.0
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 10.0,
+              "skew": 0.0
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 46.0,
+            "test_pnl": -601.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 7.0,
+              "skew": 0.5
+            }
+          }
+        ],
+        "full_best": {
+          "total": 0.0,
+          "day_pnl": {
+            "2": 0.0,
+            "3": 0.0,
+            "4": 0.0
+          },
+          "strategy": "maker",
+          "params": {
+            "edge": 10.0,
+            "skew": 0.0
+          }
+        }
+      },
+      "signals": {
+        "loo_total": -16624.0,
+        "loo_min": -9096.0,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 4490.0,
+            "test_pnl": -6045.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 25.0,
+              "mode": "momentum",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 3421.0,
+            "test_pnl": -1483.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 30.0,
+              "mode": "reversion",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 4223.0,
+            "test_pnl": -9096.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 25.0,
+              "mode": "reversion",
+              "sticky": true
+            }
+          }
+        ],
+        "full_best": {
+          "total": 1938.0,
+          "day_pnl": {
+            "2": 4193.0,
+            "3": -1483.0,
+            "4": -772.0
+          },
+          "strategy": "return_1",
+          "params": {
+            "threshold": 30.0,
+            "mode": "reversion",
+            "sticky": true
+          }
+        }
+      },
+      "ml_ridge_taker": {
+        "loo_total": 0.0,
+        "loo_min": 0.0,
+        "mean_corr": 0.005459684767369975,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 5.0,
+            "corr": -0.016058524777077362
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 5.0,
+            "corr": 0.008573344361896931
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 5.0,
+            "corr": 0.023864234717290357
+          }
+        ]
+      },
+      "best_family": "ml_ridge_taker"
+    },
+    "GALAXY_SOUNDS_BLACK_HOLES": {
+      "maker": {
+        "loo_total": 677.0,
+        "loo_min": -272.0,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 2391.0,
+            "test_pnl": 0.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 7.0,
+              "skew": 0.0
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 2663.0,
+            "test_pnl": -272.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 7.0,
+              "skew": 0.0
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 1313.0,
+            "test_pnl": 949.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 7.0,
+              "skew": 1.0
+            }
+          }
+        ],
+        "full_best": {
+          "total": 2391.0,
+          "day_pnl": {
+            "2": 0.0,
+            "3": -272.0,
+            "4": 2663.0
+          },
+          "strategy": "maker",
+          "params": {
+            "edge": 7.0,
+            "skew": 0.0
+          }
+        }
+      },
+      "signals": {
+        "loo_total": -14913.0,
+        "loo_min": -13013.0,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 40.0,
+              "mode": "reversion",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 2121.0,
+            "test_pnl": -1900.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 30.0,
+              "mode": "momentum",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 3843.0,
+            "test_pnl": -13013.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 20.0,
+              "mode": "reversion",
+              "sticky": true
+            }
+          }
+        ],
+        "full_best": {
+          "total": 221.0,
+          "day_pnl": {
+            "2": 1889.0,
+            "3": -1900.0,
+            "4": 232.0
+          },
+          "strategy": "return_1",
+          "params": {
+            "threshold": 30.0,
+            "mode": "momentum",
+            "sticky": true
+          }
+        }
+      },
+      "ml_ridge_taker": {
+        "loo_total": -328.0,
+        "loo_min": -380.0,
+        "mean_corr": 0.06468139935690038,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 52.0,
+            "test_pnl": 0.0,
+            "threshold": 10.0,
+            "corr": 0.06624035651855141
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 0.0,
+            "test_pnl": 52.0,
+            "threshold": 10.0,
+            "corr": 0.0486850917815203
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 18.0,
+            "test_pnl": -380.0,
+            "threshold": 7.0,
+            "corr": 0.07911874977062944
+          }
+        ]
+      },
+      "best_family": "maker"
+    },
+    "GALAXY_SOUNDS_PLANETARY_RINGS": {
+      "maker": {
+        "loo_total": -3281.0,
+        "loo_min": -3281.0,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 10.0,
+              "skew": 0.0
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 10.0,
+              "skew": 0.0
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 1140.0,
+            "test_pnl": -3281.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 0.5,
+              "skew": 2.0
+            }
+          }
+        ],
+        "full_best": {
+          "total": 0.0,
+          "day_pnl": {
+            "2": 0.0,
+            "3": 0.0,
+            "4": 0.0
+          },
+          "strategy": "maker",
+          "params": {
+            "edge": 10.0,
+            "skew": 0.0
+          }
+        }
+      },
+      "signals": {
+        "loo_total": 3505.0,
+        "loo_min": -602.0,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 1515.0,
+            "test_pnl": 1990.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 30.0,
+              "mode": "momentum",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 4107.0,
+            "test_pnl": -602.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 30.0,
+              "mode": "momentum",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 1388.0,
+            "test_pnl": 2117.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 30.0,
+              "mode": "momentum",
+              "sticky": true
+            }
+          }
+        ],
+        "full_best": {
+          "total": 3505.0,
+          "day_pnl": {
+            "2": 1990.0,
+            "3": -602.0,
+            "4": 2117.0
+          },
+          "strategy": "return_1",
+          "params": {
+            "threshold": 30.0,
+            "mode": "momentum",
+            "sticky": true
+          }
+        }
+      },
+      "ml_ridge_taker": {
+        "loo_total": 0.0,
+        "loo_min": 0.0,
+        "mean_corr": 0.06252382422250212,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 10.0,
+            "corr": 0.05059313195172748
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 10.0,
+            "corr": 0.07120019165799743
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 10.0,
+            "corr": 0.06577814905778145
+          }
+        ]
+      },
+      "best_family": "signals"
+    },
+    "GALAXY_SOUNDS_SOLAR_WINDS": {
+      "maker": {
+        "loo_total": -941.5,
+        "loo_min": -1286.5,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 715.0,
+            "test_pnl": -1286.5,
+            "strategy": "maker",
+            "params": {
+              "edge": 5.0,
+              "skew": 0.5
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 345.0,
+            "test_pnl": 0.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 7.0,
+              "skew": 0.0
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 0.0,
+            "test_pnl": 345.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 7.0,
+              "skew": 0.0
+            }
+          }
+        ],
+        "full_best": {
+          "total": 345.0,
+          "day_pnl": {
+            "2": 0.0,
+            "3": 0.0,
+            "4": 345.0
+          },
+          "strategy": "maker",
+          "params": {
+            "edge": 7.0,
+            "skew": 0.0
+          }
+        }
+      },
+      "signals": {
+        "loo_total": 3779.0,
+        "loo_min": -331.0,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 144.0,
+            "test_pnl": 3635.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 30.0,
+              "mode": "reversion",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 3304.0,
+            "test_pnl": 475.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 30.0,
+              "mode": "reversion",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 4110.0,
+            "test_pnl": -331.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 30.0,
+              "mode": "reversion",
+              "sticky": true
+            }
+          }
+        ],
+        "full_best": {
+          "total": 3779.0,
+          "day_pnl": {
+            "2": 3635.0,
+            "3": 475.0,
+            "4": -331.0
+          },
+          "strategy": "return_1",
+          "params": {
+            "threshold": 30.0,
+            "mode": "reversion",
+            "sticky": true
+          }
+        }
+      },
+      "ml_ridge_taker": {
+        "loo_total": 0.0,
+        "loo_min": 0.0,
+        "mean_corr": -0.002712695548081252,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 5.0,
+            "corr": 0.03440088554143922
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 126.0,
+            "test_pnl": 0.0,
+            "threshold": 7.0,
+            "corr": -0.03237057034841516
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 7.0,
+            "corr": -0.010168401837267816
+          }
+        ]
+      },
+      "best_family": "signals"
+    },
+    "GALAXY_SOUNDS_SOLAR_FLAMES": {
+      "maker": {
+        "loo_total": 1421.0,
+        "loo_min": -1374.5,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 3274.0,
+            "test_pnl": -1374.5,
+            "strategy": "maker",
+            "params": {
+              "edge": 0.5,
+              "skew": 0.5
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 2706.5,
+            "test_pnl": 546.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 7.0,
+              "skew": 0.0
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 1003.0,
+            "test_pnl": 2249.5,
+            "strategy": "maker",
+            "params": {
+              "edge": 7.0,
+              "skew": 0.0
+            }
+          }
+        ],
+        "full_best": {
+          "total": 3252.5,
+          "day_pnl": {
+            "2": 457.0,
+            "3": 546.0,
+            "4": 2249.5
+          },
+          "strategy": "maker",
+          "params": {
+            "edge": 7.0,
+            "skew": 0.0
+          }
+        }
+      },
+      "signals": {
+        "loo_total": -747.0,
+        "loo_min": -753.0,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 4040.0,
+            "test_pnl": -345.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 25.0,
+              "mode": "reversion",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 5520.0,
+            "test_pnl": -753.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 30.0,
+              "mode": "momentum",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 3344.0,
+            "test_pnl": 351.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 25.0,
+              "mode": "reversion",
+              "sticky": true
+            }
+          }
+        ],
+        "full_best": {
+          "total": 4767.0,
+          "day_pnl": {
+            "2": 2515.0,
+            "3": -753.0,
+            "4": 3005.0
+          },
+          "strategy": "return_1",
+          "params": {
+            "threshold": 30.0,
+            "mode": "momentum",
+            "sticky": true
+          }
+        }
+      },
+      "ml_ridge_taker": {
+        "loo_total": -148.0,
+        "loo_min": -148.0,
+        "mean_corr": 0.05274845385917116,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 7.0,
+            "corr": 0.06475739496318848
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 5.0,
+            "corr": 0.09161971009557564
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 0.0,
+            "test_pnl": -148.0,
+            "threshold": 10.0,
+            "corr": 0.0018682565187493631
+          }
+        ]
+      },
+      "best_family": "maker"
+    },
+    "SLEEP_POD_SUEDE": {
+      "maker": {
+        "loo_total": 4508.0,
+        "loo_min": 562.5,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 5070.5,
+            "test_pnl": 562.5,
+            "strategy": "maker",
+            "params": {
+              "edge": 1.5,
+              "skew": 0.0
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 1837.5,
+            "test_pnl": 2705.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 4.0,
+              "skew": 0.0
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 4393.5,
+            "test_pnl": 1240.5,
+            "strategy": "maker",
+            "params": {
+              "edge": 2.0,
+              "skew": 0.0
+            }
+          }
+        ],
+        "full_best": {
+          "total": 5634.0,
+          "day_pnl": {
+            "2": 563.5,
+            "3": 3830.0,
+            "4": 1240.5
+          },
+          "strategy": "maker",
+          "params": {
+            "edge": 2.0,
+            "skew": 0.0
+          }
+        }
+      },
+      "signals": {
+        "loo_total": -10144.0,
+        "loo_min": -7306.0,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 1005.0,
+            "test_pnl": -1062.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 30.0,
+              "mode": "reversion",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 1719.0,
+            "test_pnl": -1776.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 30.0,
+              "mode": "reversion",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 2488.0,
+            "test_pnl": -7306.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 25.0,
+              "mode": "momentum",
+              "sticky": true
+            }
+          }
+        ],
+        "full_best": {
+          "total": 118.0,
+          "day_pnl": {
+            "2": 0.0,
+            "3": 0.0,
+            "4": 118.0
+          },
+          "strategy": "z_10",
+          "params": {
+            "threshold": 75.0,
+            "mode": "reversion",
+            "sticky": false
+          }
+        }
+      },
+      "ml_ridge_taker": {
+        "loo_total": -149.0,
+        "loo_min": -149.0,
+        "mean_corr": 0.008693283851486764,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 5.0,
+            "corr": 0.014099561188845174
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 127.0,
+            "test_pnl": -149.0,
+            "threshold": 7.0,
+            "corr": -0.011078190367867233
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 4.0,
+            "corr": 0.02305848073348235
+          }
+        ]
+      },
+      "best_family": "maker"
+    },
+    "SLEEP_POD_LAMB_WOOL": {
+      "maker": {
+        "loo_total": -2552.0,
+        "loo_min": -1668.0,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 333.5,
+            "test_pnl": -1668.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 4.0,
+              "skew": 2.0
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 7.0,
+              "skew": 0.0
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 102.5,
+            "test_pnl": -884.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 0.5,
+              "skew": 4.0
+            }
+          }
+        ],
+        "full_best": {
+          "total": 0.0,
+          "day_pnl": {
+            "2": 0.0,
+            "3": 0.0,
+            "4": 0.0
+          },
+          "strategy": "maker",
+          "params": {
+            "edge": 7.0,
+            "skew": 0.0
+          }
+        }
+      },
+      "signals": {
+        "loo_total": -11590.0,
+        "loo_min": -6187.0,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 2459.0,
+            "test_pnl": -6187.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 20.0,
+              "mode": "momentum",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 4385.0,
+            "test_pnl": -3267.0,
+            "strategy": "return_100",
+            "params": {
+              "threshold": 50.0,
+              "mode": "momentum",
+              "sticky": false
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 5946.0,
+            "test_pnl": -2136.0,
+            "strategy": "return_50",
+            "params": {
+              "threshold": 15.0,
+              "mode": "momentum",
+              "sticky": false
+            }
+          }
+        ],
+        "full_best": {
+          "total": 5002.0,
+          "day_pnl": {
+            "2": 4079.0,
+            "3": 1655.0,
+            "4": -732.0
+          },
+          "strategy": "return_50",
+          "params": {
+            "threshold": 10.0,
+            "mode": "momentum",
+            "sticky": false
+          }
+        }
+      },
+      "ml_ridge_taker": {
+        "loo_total": -382.0,
+        "loo_min": -382.0,
+        "mean_corr": 0.023708839481344484,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 5.0,
+            "corr": 0.049773558743562415
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 3.0,
+            "corr": 0.01719680301533808
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 20.0,
+            "test_pnl": -382.0,
+            "threshold": 5.0,
+            "corr": 0.004156156685132948
+          }
+        ]
+      },
+      "best_family": "ml_ridge_taker"
+    },
+    "SLEEP_POD_POLYESTER": {
+      "maker": {
+        "loo_total": 1126.0,
+        "loo_min": -611.0,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 2638.0,
+            "test_pnl": 0.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 5.0,
+              "skew": 1.0
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 2739.5,
+            "test_pnl": -611.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 5.0,
+              "skew": 0.0
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 901.0,
+            "test_pnl": 1737.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 5.0,
+              "skew": 1.0
+            }
+          }
+        ],
+        "full_best": {
+          "total": 2638.0,
+          "day_pnl": {
+            "2": 0.0,
+            "3": 901.0,
+            "4": 1737.0
+          },
+          "strategy": "maker",
+          "params": {
+            "edge": 5.0,
+            "skew": 1.0
+          }
+        }
+      },
+      "signals": {
+        "loo_total": -3287.0,
+        "loo_min": -1675.0,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 3907.0,
+            "test_pnl": 0.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 30.0,
+              "mode": "momentum",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 5519.0,
+            "test_pnl": -1612.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 30.0,
+              "mode": "momentum",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 1648.0,
+            "test_pnl": -1675.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 40.0,
+              "mode": "reversion",
+              "sticky": true
+            }
+          }
+        ],
+        "full_best": {
+          "total": 3907.0,
+          "day_pnl": {
+            "2": 0.0,
+            "3": -1612.0,
+            "4": 5519.0
+          },
+          "strategy": "return_1",
+          "params": {
+            "threshold": 30.0,
+            "mode": "momentum",
+            "sticky": true
+          }
+        }
+      },
+      "ml_ridge_taker": {
+        "loo_total": -2174.0,
+        "loo_min": -2006.0,
+        "mean_corr": -0.0024372057664970755,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 0.0,
+            "test_pnl": -2006.0,
+            "threshold": 10.0,
+            "corr": -0.040253973951782436
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 203.0,
+            "test_pnl": -168.0,
+            "threshold": 7.0,
+            "corr": 0.023390546443358293
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 5.0,
+            "corr": 0.009551810208932917
+          }
+        ]
+      },
+      "best_family": "maker"
+    },
+    "SLEEP_POD_NYLON": {
+      "maker": {
+        "loo_total": 3112.0,
+        "loo_min": 583.0,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 3206.5,
+            "test_pnl": 618.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 0.5,
+              "skew": 0.5
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 3334.5,
+            "test_pnl": 583.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 4.0,
+              "skew": 0.0
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 1373.5,
+            "test_pnl": 1911.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 3.0,
+              "skew": 0.5
+            }
+          }
+        ],
+        "full_best": {
+          "total": 3917.5,
+          "day_pnl": {
+            "2": 714.0,
+            "3": 583.0,
+            "4": 2620.5
+          },
+          "strategy": "maker",
+          "params": {
+            "edge": 4.0,
+            "skew": 0.0
+          }
+        }
+      },
+      "signals": {
+        "loo_total": 6994.0,
+        "loo_min": 1965.0,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 5029.0,
+            "test_pnl": 1965.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 25.0,
+              "mode": "reversion",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 4544.0,
+            "test_pnl": 2450.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 25.0,
+              "mode": "reversion",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 4415.0,
+            "test_pnl": 2579.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 25.0,
+              "mode": "reversion",
+              "sticky": true
+            }
+          }
+        ],
+        "full_best": {
+          "total": 6994.0,
+          "day_pnl": {
+            "2": 1965.0,
+            "3": 2450.0,
+            "4": 2579.0
+          },
+          "strategy": "return_1",
+          "params": {
+            "threshold": 25.0,
+            "mode": "reversion",
+            "sticky": true
+          }
+        }
+      },
+      "ml_ridge_taker": {
+        "loo_total": -72.0,
+        "loo_min": -72.0,
+        "mean_corr": 0.03758208412928921,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 5.0,
+            "corr": 0.06197949335478874
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 0.0,
+            "test_pnl": -72.0,
+            "threshold": 7.0,
+            "corr": 0.00011597249337298592
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 5.0,
+            "corr": 0.05065078653970591
+          }
+        ]
+      },
+      "best_family": "signals"
+    },
+    "SLEEP_POD_COTTON": {
+      "maker": {
+        "loo_total": -3127.5,
+        "loo_min": -3041.0,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 4585.0,
+            "test_pnl": -1982.5,
+            "strategy": "maker",
+            "params": {
+              "edge": 1.5,
+              "skew": 0.5
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 6533.0,
+            "test_pnl": -3041.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 5.0,
+              "skew": 0.0
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 520.0,
+            "test_pnl": 1896.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 5.0,
+              "skew": 0.5
+            }
+          }
+        ],
+        "full_best": {
+          "total": 3492.0,
+          "day_pnl": {
+            "2": 0.0,
+            "3": -3041.0,
+            "4": 6533.0
+          },
+          "strategy": "maker",
+          "params": {
+            "edge": 5.0,
+            "skew": 0.0
+          }
+        }
+      },
+      "signals": {
+        "loo_total": -5750.0,
+        "loo_min": -4139.0,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 1620.0,
+            "test_pnl": -3442.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 25.0,
+              "mode": "momentum",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 859.0,
+            "test_pnl": 1831.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 30.0,
+              "mode": "momentum",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 6829.0,
+            "test_pnl": -4139.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 30.0,
+              "mode": "momentum",
+              "sticky": true
+            }
+          }
+        ],
+        "full_best": {
+          "total": 2690.0,
+          "day_pnl": {
+            "2": 4998.0,
+            "3": 1831.0,
+            "4": -4139.0
+          },
+          "strategy": "return_1",
+          "params": {
+            "threshold": 30.0,
+            "mode": "momentum",
+            "sticky": true
+          }
+        }
+      },
+      "ml_ridge_taker": {
+        "loo_total": -172.0,
+        "loo_min": -172.0,
+        "mean_corr": 0.02801928476725064,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 7.0,
+            "corr": 0.050912496652249103
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 137.0,
+            "test_pnl": -172.0,
+            "threshold": 7.0,
+            "corr": -0.0068915890691062485
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 7.0,
+            "corr": 0.04003694671860906
+          }
+        ]
+      },
+      "best_family": "ml_ridge_taker"
+    },
+    "MICROCHIP_CIRCLE": {
+      "maker": {
+        "loo_total": -923.0,
+        "loo_min": -729.0,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 737.0,
+            "test_pnl": -729.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 4.0,
+              "skew": 0.5
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 243.5,
+            "test_pnl": -194.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 4.0,
+              "skew": 1.0
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 5.0,
+              "skew": 0.0
+            }
+          }
+        ],
+        "full_best": {
+          "total": 49.5,
+          "day_pnl": {
+            "2": -239.5,
+            "3": -194.0,
+            "4": 483.0
+          },
+          "strategy": "maker",
+          "params": {
+            "edge": 4.0,
+            "skew": 1.0
+          }
+        }
+      },
+      "signals": {
+        "loo_total": -808.0,
+        "loo_min": -620.0,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 989.0,
+            "test_pnl": 0.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 30.0,
+              "mode": "momentum",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 1694.0,
+            "test_pnl": -620.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 25.0,
+              "mode": "momentum",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 1262.0,
+            "test_pnl": -188.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 25.0,
+              "mode": "momentum",
+              "sticky": true
+            }
+          }
+        ],
+        "full_best": {
+          "total": 1074.0,
+          "day_pnl": {
+            "2": 1882.0,
+            "3": -620.0,
+            "4": -188.0
+          },
+          "strategy": "return_1",
+          "params": {
+            "threshold": 25.0,
+            "mode": "momentum",
+            "sticky": true
+          }
+        }
+      },
+      "ml_ridge_taker": {
+        "loo_total": 0.0,
+        "loo_min": 0.0,
+        "mean_corr": 0.0282194146938905,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 7.0,
+            "corr": -0.008027628627514313
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 4.0,
+            "corr": 0.05069504960188945
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 7.0,
+            "corr": 0.041990823107296356
+          }
+        ]
+      },
+      "best_family": "ml_ridge_taker"
+    },
+    "MICROCHIP_OVAL": {
+      "maker": {
+        "loo_total": 1433.0,
+        "loo_min": 0.0,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 3094.0,
+            "test_pnl": 1006.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 3.0,
+              "skew": 0.0
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 3673.0,
+            "test_pnl": 427.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 3.0,
+              "skew": 0.0
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 1492.0,
+            "test_pnl": 0.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 4.0,
+              "skew": 0.0
+            }
+          }
+        ],
+        "full_best": {
+          "total": 4100.0,
+          "day_pnl": {
+            "2": 1006.0,
+            "3": 427.0,
+            "4": 2667.0
+          },
+          "strategy": "maker",
+          "params": {
+            "edge": 3.0,
+            "skew": 0.0
+          }
+        }
+      },
+      "signals": {
+        "loo_total": 13219.0,
+        "loo_min": 2843.0,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 10376.0,
+            "test_pnl": 2843.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 30.0,
+              "mode": "reversion",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 8415.0,
+            "test_pnl": 4804.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 30.0,
+              "mode": "reversion",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 7647.0,
+            "test_pnl": 5572.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 30.0,
+              "mode": "reversion",
+              "sticky": true
+            }
+          }
+        ],
+        "full_best": {
+          "total": 13219.0,
+          "day_pnl": {
+            "2": 2843.0,
+            "3": 4804.0,
+            "4": 5572.0
+          },
+          "strategy": "return_1",
+          "params": {
+            "threshold": 30.0,
+            "mode": "reversion",
+            "sticky": true
+          }
+        }
+      },
+      "ml_ridge_taker": {
+        "loo_total": -268.0,
+        "loo_min": -203.0,
+        "mean_corr": 0.01677167344689209,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 10.0,
+            "corr": 0.03682183773078323
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 0.0,
+            "test_pnl": -65.0,
+            "threshold": 7.0,
+            "corr": 0.030589329276641278
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 0.0,
+            "test_pnl": -203.0,
+            "threshold": 7.0,
+            "corr": -0.017096146666748236
+          }
+        ]
+      },
+      "best_family": "signals"
+    },
+    "MICROCHIP_SQUARE": {
+      "maker": {
+        "loo_total": 369.5,
+        "loo_min": 0.0,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 3949.0,
+            "test_pnl": 0.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 7.0,
+              "skew": 0.0
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 3949.0,
+            "test_pnl": 0.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 7.0,
+              "skew": 0.0
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 1441.0,
+            "test_pnl": 369.5,
+            "strategy": "maker",
+            "params": {
+              "edge": 4.0,
+              "skew": 2.0
+            }
+          }
+        ],
+        "full_best": {
+          "total": 3949.0,
+          "day_pnl": {
+            "2": 0.0,
+            "3": 0.0,
+            "4": 3949.0
+          },
+          "strategy": "maker",
+          "params": {
+            "edge": 7.0,
+            "skew": 0.0
+          }
+        }
+      },
+      "signals": {
+        "loo_total": -15154.0,
+        "loo_min": -8463.0,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 561.0,
+            "test_pnl": 0.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 75.0,
+              "mode": "reversion",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 893.0,
+            "test_pnl": -6691.0,
+            "strategy": "z_200",
+            "params": {
+              "threshold": 100.0,
+              "mode": "reversion",
+              "sticky": false
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 5739.0,
+            "test_pnl": -8463.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 50.0,
+              "mode": "reversion",
+              "sticky": true
+            }
+          }
+        ],
+        "full_best": {
+          "total": 561.0,
+          "day_pnl": {
+            "2": 0.0,
+            "3": 0.0,
+            "4": 561.0
+          },
+          "strategy": "return_1",
+          "params": {
+            "threshold": 75.0,
+            "mode": "reversion",
+            "sticky": true
+          }
+        }
+      },
+      "ml_ridge_taker": {
+        "loo_total": -1720.0,
+        "loo_min": -1503.0,
+        "mean_corr": 0.04442546235591943,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 1177.0,
+            "test_pnl": -1503.0,
+            "threshold": 14.0,
+            "corr": 0.012949973241397513
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 113.0,
+            "test_pnl": 23.0,
+            "threshold": 14.0,
+            "corr": 0.03577317982596779
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 166.0,
+            "test_pnl": -240.0,
+            "threshold": 7.0,
+            "corr": 0.08455323400039298
+          }
+        ]
+      },
+      "best_family": "maker"
+    },
+    "MICROCHIP_RECTANGLE": {
+      "maker": {
+        "loo_total": -1187.5,
+        "loo_min": -1341.0,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 2371.5,
+            "test_pnl": -1341.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 4.0,
+              "skew": 0.0
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 606.0,
+            "test_pnl": 153.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 3.0,
+              "skew": 2.0
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 1009.0,
+            "test_pnl": 0.5,
+            "strategy": "maker",
+            "params": {
+              "edge": 2.0,
+              "skew": 0.5
+            }
+          }
+        ],
+        "full_best": {
+          "total": 1165.0,
+          "day_pnl": {
+            "2": -64.0,
+            "3": 734.5,
+            "4": 494.5
+          },
+          "strategy": "maker",
+          "params": {
+            "edge": 3.0,
+            "skew": 1.0
+          }
+        }
+      },
+      "signals": {
+        "loo_total": -20659.0,
+        "loo_min": -15211.0,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 2061.0,
+            "test_pnl": -15211.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 30.0,
+              "mode": "momentum",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 11840.0,
+            "test_pnl": -6661.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 30.0,
+              "mode": "reversion",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 3966.0,
+            "test_pnl": 1213.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 30.0,
+              "mode": "reversion",
+              "sticky": true
+            }
+          }
+        ],
+        "full_best": {
+          "total": 5179.0,
+          "day_pnl": {
+            "2": 10627.0,
+            "3": -6661.0,
+            "4": 1213.0
+          },
+          "strategy": "return_1",
+          "params": {
+            "threshold": 30.0,
+            "mode": "reversion",
+            "sticky": true
+          }
+        }
+      },
+      "ml_ridge_taker": {
+        "loo_total": -925.0,
+        "loo_min": -846.0,
+        "mean_corr": -0.026926206925512165,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 4.0,
+            "corr": -0.039101208804783544
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 450.0,
+            "test_pnl": -846.0,
+            "threshold": 3.0,
+            "corr": -0.0018906308475509805
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 0.0,
+            "test_pnl": -79.0,
+            "threshold": 4.0,
+            "corr": -0.039786781124201975
+          }
+        ]
+      },
+      "best_family": "ml_ridge_taker"
+    },
+    "MICROCHIP_TRIANGLE": {
+      "maker": {
+        "loo_total": 4755.0,
+        "loo_min": -1093.0,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 6412.0,
+            "test_pnl": -1093.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 4.0,
+              "skew": 0.0
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 2067.0,
+            "test_pnl": 2766.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 2.0,
+              "skew": 0.5
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 2237.0,
+            "test_pnl": 3082.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 4.0,
+              "skew": 0.0
+            }
+          }
+        ],
+        "full_best": {
+          "total": 5319.0,
+          "day_pnl": {
+            "2": -1093.0,
+            "3": 3330.0,
+            "4": 3082.0
+          },
+          "strategy": "maker",
+          "params": {
+            "edge": 4.0,
+            "skew": 0.0
+          }
+        }
+      },
+      "signals": {
+        "loo_total": 8139.0,
+        "loo_min": -2555.0,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 12100.0,
+            "test_pnl": -2555.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 40.0,
+              "mode": "reversion",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 11412.0,
+            "test_pnl": 1889.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 30.0,
+              "mode": "reversion",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 4496.0,
+            "test_pnl": 8805.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 30.0,
+              "mode": "reversion",
+              "sticky": true
+            }
+          }
+        ],
+        "full_best": {
+          "total": 13301.0,
+          "day_pnl": {
+            "2": 2607.0,
+            "3": 1889.0,
+            "4": 8805.0
+          },
+          "strategy": "return_1",
+          "params": {
+            "threshold": 30.0,
+            "mode": "reversion",
+            "sticky": true
+          }
+        }
+      },
+      "ml_ridge_taker": {
+        "loo_total": -354.0,
+        "loo_min": -206.0,
+        "mean_corr": 0.051245423195252104,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 181.0,
+            "test_pnl": -206.0,
+            "threshold": 10.0,
+            "corr": 0.05216046876431691
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 10.0,
+            "corr": 0.08295765112565649
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 1.0,
+            "test_pnl": -148.0,
+            "threshold": 10.0,
+            "corr": 0.018618149695782894
+          }
+        ]
+      },
+      "best_family": "signals"
+    },
+    "PEBBLES_XS": {
+      "maker": {
+        "loo_total": 4227.5,
+        "loo_min": 1253.0,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 2938.5,
+            "test_pnl": 1289.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 5.0,
+              "skew": 1.0
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 2974.5,
+            "test_pnl": 1253.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 5.0,
+              "skew": 1.0
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 2542.0,
+            "test_pnl": 1685.5,
+            "strategy": "maker",
+            "params": {
+              "edge": 5.0,
+              "skew": 1.0
+            }
+          }
+        ],
+        "full_best": {
+          "total": 4227.5,
+          "day_pnl": {
+            "2": 1289.0,
+            "3": 1253.0,
+            "4": 1685.5
+          },
+          "strategy": "maker",
+          "params": {
+            "edge": 5.0,
+            "skew": 1.0
+          }
+        }
+      },
+      "signals": {
+        "loo_total": -19419.0,
+        "loo_min": -13079.0,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 2435.0,
+            "test_pnl": -500.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 50.0,
+              "mode": "reversion",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 7474.0,
+            "test_pnl": -13079.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 25.0,
+              "mode": "momentum",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 3360.0,
+            "test_pnl": -5840.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 40.0,
+              "mode": "reversion",
+              "sticky": true
+            }
+          }
+        ],
+        "full_best": {
+          "total": 1935.0,
+          "day_pnl": {
+            "2": -500.0,
+            "3": 2435.0,
+            "4": 0.0
+          },
+          "strategy": "return_1",
+          "params": {
+            "threshold": 50.0,
+            "mode": "reversion",
+            "sticky": true
+          }
+        }
+      },
+      "ml_ridge_taker": {
+        "loo_total": -1749.0,
+        "loo_min": -1100.0,
+        "mean_corr": -0.036361144024622684,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 0.0,
+            "test_pnl": -1100.0,
+            "threshold": 7.0,
+            "corr": -0.011370752552485357
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 5.0,
+            "corr": -0.030848214960851803
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 114.0,
+            "test_pnl": -649.0,
+            "threshold": 7.0,
+            "corr": -0.06686446456053088
+          }
+        ]
+      },
+      "best_family": "maker"
+    },
+    "PEBBLES_S": {
+      "maker": {
+        "loo_total": 974.0,
+        "loo_min": -681.0,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 1499.0,
+            "test_pnl": 885.5,
+            "strategy": "maker",
+            "params": {
+              "edge": 4.0,
+              "skew": 0.5
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 3631.0,
+            "test_pnl": -681.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 5.0,
+              "skew": 2.0
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 1874.5,
+            "test_pnl": 769.5,
+            "strategy": "maker",
+            "params": {
+              "edge": 0.5,
+              "skew": 5.0
+            }
+          }
+        ],
+        "full_best": {
+          "total": 3069.0,
+          "day_pnl": {
+            "2": 2424.5,
+            "3": -550.0,
+            "4": 1194.5
+          },
+          "strategy": "maker",
+          "params": {
+            "edge": 1.0,
+            "skew": 5.0
+          }
+        }
+      },
+      "signals": {
+        "loo_total": -7804.0,
+        "loo_min": -4459.0,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 4364.0,
+            "test_pnl": -3345.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 40.0,
+              "mode": "reversion",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 1623.0,
+            "test_pnl": -4459.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 40.0,
+              "mode": "momentum",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 600.0,
+            "test_pnl": 0.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 50.0,
+              "mode": "reversion",
+              "sticky": true
+            }
+          }
+        ],
+        "full_best": {
+          "total": 1019.0,
+          "day_pnl": {
+            "2": -3345.0,
+            "3": 3069.0,
+            "4": 1295.0
+          },
+          "strategy": "return_1",
+          "params": {
+            "threshold": 40.0,
+            "mode": "reversion",
+            "sticky": true
+          }
+        }
+      },
+      "ml_ridge_taker": {
+        "loo_total": -1797.0,
+        "loo_min": -1797.0,
+        "mean_corr": -0.030030012045332243,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 164.0,
+            "test_pnl": -1797.0,
+            "threshold": 3.0,
+            "corr": -0.029543251982504952
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 273.0,
+            "test_pnl": 0.0,
+            "threshold": 4.0,
+            "corr": -0.030457692390520347
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 10.0,
+            "corr": -0.030089091762971427
+          }
+        ]
+      },
+      "best_family": "maker"
+    },
+    "PEBBLES_M": {
+      "maker": {
+        "loo_total": -1359.5,
+        "loo_min": -1559.5,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 1684.0,
+            "test_pnl": -1559.5,
+            "strategy": "maker",
+            "params": {
+              "edge": 4.0,
+              "skew": 0.5
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 200.0,
+            "test_pnl": 0.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 7.0,
+              "skew": 0.0
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 0.0,
+            "test_pnl": 200.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 7.0,
+              "skew": 0.0
+            }
+          }
+        ],
+        "full_best": {
+          "total": 200.0,
+          "day_pnl": {
+            "2": 0.0,
+            "3": 0.0,
+            "4": 200.0
+          },
+          "strategy": "maker",
+          "params": {
+            "edge": 7.0,
+            "skew": 0.0
+          }
+        }
+      },
+      "signals": {
+        "loo_total": -14220.0,
+        "loo_min": -6678.0,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 3773.0,
+            "test_pnl": -6678.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 30.0,
+              "mode": "momentum",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 2481.0,
+            "test_pnl": -5386.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 30.0,
+              "mode": "momentum",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 4393.0,
+            "test_pnl": -2156.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 40.0,
+              "mode": "momentum",
+              "sticky": true
+            }
+          }
+        ],
+        "full_best": {
+          "total": 2237.0,
+          "day_pnl": {
+            "2": 2319.0,
+            "3": 2074.0,
+            "4": -2156.0
+          },
+          "strategy": "return_1",
+          "params": {
+            "threshold": 40.0,
+            "mode": "momentum",
+            "sticky": true
+          }
+        }
+      },
+      "ml_ridge_taker": {
+        "loo_total": -1384.0,
+        "loo_min": -793.0,
+        "mean_corr": -0.00026581119066577144,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 234.0,
+            "test_pnl": -793.0,
+            "threshold": 10.0,
+            "corr": -0.0057029692223097
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 239.0,
+            "test_pnl": -297.0,
+            "threshold": 10.0,
+            "corr": -0.018127606836091374
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 119.0,
+            "test_pnl": -294.0,
+            "threshold": 10.0,
+            "corr": 0.02303314248640376
+          }
+        ]
+      },
+      "best_family": "maker"
+    },
+    "PEBBLES_L": {
+      "maker": {
+        "loo_total": 93.5,
+        "loo_min": -996.5,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 3511.0,
+            "test_pnl": -996.5,
+            "strategy": "maker",
+            "params": {
+              "edge": 0.5,
+              "skew": 1.0
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 909.5,
+            "test_pnl": 701.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 7.0,
+              "skew": 0.5
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 2125.5,
+            "test_pnl": 389.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 0.5,
+              "skew": 1.0
+            }
+          }
+        ],
+        "full_best": {
+          "total": 2525.0,
+          "day_pnl": {
+            "2": -965.0,
+            "3": 2743.0,
+            "4": 747.0
+          },
+          "strategy": "maker",
+          "params": {
+            "edge": 2.0,
+            "skew": 0.5
+          }
+        }
+      },
+      "signals": {
+        "loo_total": -6649.0,
+        "loo_min": -3996.0,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 3721.0,
+            "test_pnl": -3996.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 30.0,
+              "mode": "reversion",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 4217.0,
+            "test_pnl": -2983.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 40.0,
+              "mode": "momentum",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 1565.0,
+            "test_pnl": 330.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 50.0,
+              "mode": "reversion",
+              "sticky": true
+            }
+          }
+        ],
+        "full_best": {
+          "total": 1895.0,
+          "day_pnl": {
+            "2": 0.0,
+            "3": 1565.0,
+            "4": 330.0
+          },
+          "strategy": "return_1",
+          "params": {
+            "threshold": 50.0,
+            "mode": "reversion",
+            "sticky": true
+          }
+        }
+      },
+      "ml_ridge_taker": {
+        "loo_total": 0.0,
+        "loo_min": 0.0,
+        "mean_corr": -0.013074497285231903,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 7.0,
+            "corr": -0.01754480276868534
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 91.0,
+            "test_pnl": 0.0,
+            "threshold": 7.0,
+            "corr": -0.041671678276223006
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 5.0,
+            "corr": 0.01999298918921263
+          }
+        ]
+      },
+      "best_family": "maker"
+    },
+    "PEBBLES_XL": {
+      "maker": {
+        "loo_total": 1408.5,
+        "loo_min": -1628.0,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 921.0,
+            "test_pnl": 1789.5,
+            "strategy": "maker",
+            "params": {
+              "edge": 5.0,
+              "skew": 1.0
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 3753.0,
+            "test_pnl": 1247.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 0.5,
+              "skew": 2.0
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 6990.5,
+            "test_pnl": -1628.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 4.0,
+              "skew": 0.5
+            }
+          }
+        ],
+        "full_best": {
+          "total": 5362.5,
+          "day_pnl": {
+            "2": 5070.5,
+            "3": 1920.0,
+            "4": -1628.0
+          },
+          "strategy": "maker",
+          "params": {
+            "edge": 4.0,
+            "skew": 0.5
+          }
+        }
+      },
+      "signals": {
+        "loo_total": -7479.0,
+        "loo_min": -12359.0,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 12320.0,
+            "test_pnl": 0.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 100.0,
+              "mode": "reversion",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 7440.0,
+            "test_pnl": 4880.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 100.0,
+              "mode": "reversion",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 14901.0,
+            "test_pnl": -12359.0,
+            "strategy": "return_100",
+            "params": {
+              "threshold": 15.0,
+              "mode": "reversion",
+              "sticky": false
+            }
+          }
+        ],
+        "full_best": {
+          "total": 12320.0,
+          "day_pnl": {
+            "2": 0.0,
+            "3": 4880.0,
+            "4": 7440.0
+          },
+          "strategy": "return_1",
+          "params": {
+            "threshold": 100.0,
+            "mode": "reversion",
+            "sticky": true
+          }
+        }
+      },
+      "ml_ridge_taker": {
+        "loo_total": -958.0,
+        "loo_min": -958.0,
+        "mean_corr": 0.015496525368708053,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 541.0,
+            "test_pnl": -958.0,
+            "threshold": 10.0,
+            "corr": 0.0021836414955895473
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 14.0,
+            "corr": 0.03168872593948197
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 20.0,
+            "corr": 0.012617208671052638
+          }
+        ]
+      },
+      "best_family": "maker"
+    },
+    "ROBOT_VACUUMING": {
+      "maker": {
+        "loo_total": 973.0,
+        "loo_min": -280.0,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 1016.5,
+            "test_pnl": 124.5,
+            "strategy": "maker",
+            "params": {
+              "edge": 3.0,
+              "skew": 2.0
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 3052.5,
+            "test_pnl": -280.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 3.0,
+              "skew": 0.0
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 1644.0,
+            "test_pnl": 1128.5,
+            "strategy": "maker",
+            "params": {
+              "edge": 3.0,
+              "skew": 0.0
+            }
+          }
+        ],
+        "full_best": {
+          "total": 2772.5,
+          "day_pnl": {
+            "2": 1924.0,
+            "3": -280.0,
+            "4": 1128.5
+          },
+          "strategy": "maker",
+          "params": {
+            "edge": 3.0,
+            "skew": 0.0
+          }
+        }
+      },
+      "signals": {
+        "loo_total": -7641.0,
+        "loo_min": -4318.0,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 2494.0,
+            "test_pnl": -4318.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 30.0,
+              "mode": "reversion",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 8204.0,
+            "test_pnl": -4176.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 25.0,
+              "mode": "momentum",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 3175.0,
+            "test_pnl": 853.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 25.0,
+              "mode": "momentum",
+              "sticky": true
+            }
+          }
+        ],
+        "full_best": {
+          "total": 4028.0,
+          "day_pnl": {
+            "2": 7351.0,
+            "3": -4176.0,
+            "4": 853.0
+          },
+          "strategy": "return_1",
+          "params": {
+            "threshold": 25.0,
+            "mode": "momentum",
+            "sticky": true
+          }
+        }
+      },
+      "ml_ridge_taker": {
+        "loo_total": 0.0,
+        "loo_min": 0.0,
+        "mean_corr": 0.03414673106836494,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 5.0,
+            "corr": 0.021084370015493483
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 67.0,
+            "test_pnl": 0.0,
+            "threshold": 5.0,
+            "corr": 0.03324257227754878
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 7.0,
+            "corr": 0.04811325091205256
+          }
+        ]
+      },
+      "best_family": "maker"
+    },
+    "ROBOT_MOPPING": {
+      "maker": {
+        "loo_total": 1543.5,
+        "loo_min": 71.0,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 1489.0,
+            "test_pnl": 407.5,
+            "strategy": "maker",
+            "params": {
+              "edge": 1.0,
+              "skew": 0.0
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 1973.5,
+            "test_pnl": 71.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 2.0,
+              "skew": 1.0
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 832.5,
+            "test_pnl": 1065.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 1.5,
+              "skew": 0.0
+            }
+          }
+        ],
+        "full_best": {
+          "total": 2044.5,
+          "day_pnl": {
+            "2": 674.5,
+            "3": 71.0,
+            "4": 1299.0
+          },
+          "strategy": "maker",
+          "params": {
+            "edge": 2.0,
+            "skew": 1.0
+          }
+        }
+      },
+      "signals": {
+        "loo_total": -6082.0,
+        "loo_min": -5391.0,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 2406.0,
+            "test_pnl": -691.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 30.0,
+              "mode": "momentum",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 1817.0,
+            "test_pnl": 0.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 40.0,
+              "mode": "reversion",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 1693.0,
+            "test_pnl": -5391.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 25.0,
+              "mode": "reversion",
+              "sticky": true
+            }
+          }
+        ],
+        "full_best": {
+          "total": 1817.0,
+          "day_pnl": {
+            "2": -57.0,
+            "3": 0.0,
+            "4": 1874.0
+          },
+          "strategy": "return_1",
+          "params": {
+            "threshold": 40.0,
+            "mode": "reversion",
+            "sticky": true
+          }
+        }
+      },
+      "ml_ridge_taker": {
+        "loo_total": 0.0,
+        "loo_min": 0.0,
+        "mean_corr": -0.016092897056980294,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 4.0,
+            "corr": -0.022531757097828117
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 4.0,
+            "corr": 0.01620053547411825
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 193.0,
+            "test_pnl": 0.0,
+            "threshold": 3.0,
+            "corr": -0.04194746954723101
+          }
+        ]
+      },
+      "best_family": "maker"
+    },
+    "ROBOT_DISHES": {
+      "maker": {
+        "loo_total": -4500.5,
+        "loo_min": -4500.5,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 5.0,
+              "skew": 0.0
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 5.0,
+              "skew": 0.0
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 4695.5,
+            "test_pnl": -4500.5,
+            "strategy": "maker",
+            "params": {
+              "edge": 1.5,
+              "skew": 0.0
+            }
+          }
+        ],
+        "full_best": {
+          "total": 256.5,
+          "day_pnl": {
+            "2": 635.5,
+            "3": 2119.0,
+            "4": -2498.0
+          },
+          "strategy": "maker",
+          "params": {
+            "edge": 2.0,
+            "skew": 0.5
+          }
+        }
+      },
+      "signals": {
+        "loo_total": -9302.0,
+        "loo_min": -5187.0,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 4416.0,
+            "test_pnl": -2014.0,
+            "strategy": "return_100",
+            "params": {
+              "threshold": 75.0,
+              "mode": "momentum",
+              "sticky": false
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 6391.0,
+            "test_pnl": -2101.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 25.0,
+              "mode": "reversion",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 7385.0,
+            "test_pnl": -5187.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 20.0,
+              "mode": "momentum",
+              "sticky": true
+            }
+          }
+        ],
+        "full_best": {
+          "total": 4290.0,
+          "day_pnl": {
+            "2": 4558.0,
+            "3": -2101.0,
+            "4": 1833.0
+          },
+          "strategy": "return_1",
+          "params": {
+            "threshold": 25.0,
+            "mode": "reversion",
+            "sticky": true
+          }
+        }
+      },
+      "ml_ridge_taker": {
+        "loo_total": 34.0,
+        "loo_min": 0.0,
+        "mean_corr": 0.0636786918302958,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 7.0,
+            "corr": 0.030988872481299574
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 7.0,
+            "corr": 0.08064871028589393
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 0.0,
+            "test_pnl": 34.0,
+            "threshold": 5.0,
+            "corr": 0.07939849272369391
+          }
+        ]
+      },
+      "best_family": "ml_ridge_taker"
+    },
+    "ROBOT_LAUNDRY": {
+      "maker": {
+        "loo_total": -711.0,
+        "loo_min": -2396.5,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 3866.0,
+            "test_pnl": 153.5,
+            "strategy": "maker",
+            "params": {
+              "edge": 4.0,
+              "skew": 0.0
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 2487.5,
+            "test_pnl": 1532.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 4.0,
+              "skew": 0.0
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 2848.0,
+            "test_pnl": -2396.5,
+            "strategy": "maker",
+            "params": {
+              "edge": 1.5,
+              "skew": 0.0
+            }
+          }
+        ],
+        "full_best": {
+          "total": 4019.5,
+          "day_pnl": {
+            "2": 153.5,
+            "3": 1532.0,
+            "4": 2334.0
+          },
+          "strategy": "maker",
+          "params": {
+            "edge": 4.0,
+            "skew": 0.0
+          }
+        }
+      },
+      "signals": {
+        "loo_total": -1846.0,
+        "loo_min": -2581.0,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 6877.0,
+            "test_pnl": -2581.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 20.0,
+              "mode": "momentum",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 5269.0,
+            "test_pnl": 735.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 25.0,
+              "mode": "momentum",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 1987.0,
+            "test_pnl": 0.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 30.0,
+              "mode": "reversion",
+              "sticky": true
+            }
+          }
+        ],
+        "full_best": {
+          "total": 6004.0,
+          "day_pnl": {
+            "2": 607.0,
+            "3": 735.0,
+            "4": 4662.0
+          },
+          "strategy": "return_1",
+          "params": {
+            "threshold": 25.0,
+            "mode": "momentum",
+            "sticky": true
+          }
+        }
+      },
+      "ml_ridge_taker": {
+        "loo_total": -1204.0,
+        "loo_min": -1204.0,
+        "mean_corr": 0.03748263108090643,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 105.0,
+            "test_pnl": 0.0,
+            "threshold": 4.0,
+            "corr": 0.016689343376314156
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 48.0,
+            "test_pnl": -1204.0,
+            "threshold": 4.0,
+            "corr": 0.015131756550111775
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 7.0,
+            "corr": 0.08062679331629337
+          }
+        ]
+      },
+      "best_family": "maker"
+    },
+    "ROBOT_IRONING": {
+      "maker": {
+        "loo_total": 953.0,
+        "loo_min": -540.0,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 2431.0,
+            "test_pnl": 432.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 3.0,
+              "skew": 0.0
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 3403.0,
+            "test_pnl": -540.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 3.0,
+              "skew": 0.0
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 277.0,
+            "test_pnl": 1061.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 0.5,
+              "skew": 1.0
+            }
+          }
+        ],
+        "full_best": {
+          "total": 2863.0,
+          "day_pnl": {
+            "2": 432.0,
+            "3": -540.0,
+            "4": 2971.0
+          },
+          "strategy": "maker",
+          "params": {
+            "edge": 3.0,
+            "skew": 0.0
+          }
+        }
+      },
+      "signals": {
+        "loo_total": 27986.0,
+        "loo_min": 0.0,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 7103.0,
+            "test_pnl": 27198.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 25.0,
+              "mode": "reversion",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 33275.0,
+            "test_pnl": 788.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 30.0,
+              "mode": "reversion",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 34063.0,
+            "test_pnl": 0.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 30.0,
+              "mode": "reversion",
+              "sticky": true
+            }
+          }
+        ],
+        "full_best": {
+          "total": 34301.0,
+          "day_pnl": {
+            "2": 27198.0,
+            "3": 5338.0,
+            "4": 1765.0
+          },
+          "strategy": "return_1",
+          "params": {
+            "threshold": 25.0,
+            "mode": "reversion",
+            "sticky": true
+          }
+        }
+      },
+      "ml_ridge_taker": {
+        "loo_total": 3399.0,
+        "loo_min": -2287.0,
+        "mean_corr": 0.13356730801360264,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 28.0,
+            "test_pnl": 7724.0,
+            "threshold": 5.0,
+            "corr": 0.25242607735344663
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 10788.0,
+            "test_pnl": -2287.0,
+            "threshold": 7.0,
+            "corr": 0.06310537429719383
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 9971.0,
+            "test_pnl": -2038.0,
+            "threshold": 7.0,
+            "corr": 0.08517047239016744
+          }
+        ]
+      },
+      "best_family": "signals"
+    },
+    "UV_VISOR_YELLOW": {
+      "maker": {
+        "loo_total": 2055.5,
+        "loo_min": 408.0,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 1491.5,
+            "test_pnl": 1225.5,
+            "strategy": "maker",
+            "params": {
+              "edge": 1.5,
+              "skew": 3.0
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 1903.5,
+            "test_pnl": 408.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 4.0,
+              "skew": 5.0
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 2295.0,
+            "test_pnl": 422.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 1.5,
+              "skew": 3.0
+            }
+          }
+        ],
+        "full_best": {
+          "total": 2717.0,
+          "day_pnl": {
+            "2": 1225.5,
+            "3": 1069.5,
+            "4": 422.0
+          },
+          "strategy": "maker",
+          "params": {
+            "edge": 1.5,
+            "skew": 3.0
+          }
+        }
+      },
+      "signals": {
+        "loo_total": 560.0,
+        "loo_min": -1215.0,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 3646.0,
+            "test_pnl": -1215.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 30.0,
+              "mode": "momentum",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 656.0,
+            "test_pnl": 1775.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 30.0,
+              "mode": "momentum",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 1285.0,
+            "test_pnl": 0.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 40.0,
+              "mode": "reversion",
+              "sticky": true
+            }
+          }
+        ],
+        "full_best": {
+          "total": 2431.0,
+          "day_pnl": {
+            "2": -1215.0,
+            "3": 1775.0,
+            "4": 1871.0
+          },
+          "strategy": "return_1",
+          "params": {
+            "threshold": 30.0,
+            "mode": "momentum",
+            "sticky": true
+          }
+        }
+      },
+      "ml_ridge_taker": {
+        "loo_total": 0.0,
+        "loo_min": 0.0,
+        "mean_corr": 0.028454971003908314,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 5.0,
+            "corr": 0.036069520440860536
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 5.0,
+            "corr": 0.014121989944777003
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 7.0,
+            "corr": 0.03517340262608741
+          }
+        ]
+      },
+      "best_family": "maker"
+    },
+    "UV_VISOR_AMBER": {
+      "maker": {
+        "loo_total": -544.0,
+        "loo_min": -314.5,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 1007.5,
+            "test_pnl": -229.5,
+            "strategy": "maker",
+            "params": {
+              "edge": 4.0,
+              "skew": 0.5
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 7.0,
+              "skew": 0.0
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 1202.5,
+            "test_pnl": -314.5,
+            "strategy": "maker",
+            "params": {
+              "edge": 1.0,
+              "skew": 2.0
+            }
+          }
+        ],
+        "full_best": {
+          "total": 888.0,
+          "day_pnl": {
+            "2": -109.5,
+            "3": 1312.0,
+            "4": -314.5
+          },
+          "strategy": "maker",
+          "params": {
+            "edge": 1.0,
+            "skew": 2.0
+          }
+        }
+      },
+      "signals": {
+        "loo_total": -9928.0,
+        "loo_min": -9108.0,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 4080.0,
+            "test_pnl": -9108.0,
+            "strategy": "return_100",
+            "params": {
+              "threshold": 50.0,
+              "mode": "momentum",
+              "sticky": false
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 2711.0,
+            "test_pnl": -820.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 30.0,
+              "mode": "reversion",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 1891.0,
+            "test_pnl": 0.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 30.0,
+              "mode": "reversion",
+              "sticky": true
+            }
+          }
+        ],
+        "full_best": {
+          "total": 1891.0,
+          "day_pnl": {
+            "2": 2711.0,
+            "3": -820.0,
+            "4": 0.0
+          },
+          "strategy": "return_1",
+          "params": {
+            "threshold": 30.0,
+            "mode": "reversion",
+            "sticky": true
+          }
+        }
+      },
+      "ml_ridge_taker": {
+        "loo_total": 0.0,
+        "loo_min": 0.0,
+        "mean_corr": 0.06406899909307281,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 7.0,
+            "corr": 0.045742351920974804
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 5.0,
+            "corr": 0.11465525106125284
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 7.0,
+            "corr": 0.03180939429699081
+          }
+        ]
+      },
+      "best_family": "ml_ridge_taker"
+    },
+    "UV_VISOR_ORANGE": {
+      "maker": {
+        "loo_total": 6729.5,
+        "loo_min": 609.0,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 5007.0,
+            "test_pnl": 1995.5,
+            "strategy": "maker",
+            "params": {
+              "edge": 0.5,
+              "skew": 0.5
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 6163.0,
+            "test_pnl": 609.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 4.0,
+              "skew": 0.0
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 2878.5,
+            "test_pnl": 4125.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 3.0,
+              "skew": 0.0
+            }
+          }
+        ],
+        "full_best": {
+          "total": 7003.5,
+          "day_pnl": {
+            "2": 1996.5,
+            "3": 882.0,
+            "4": 4125.0
+          },
+          "strategy": "maker",
+          "params": {
+            "edge": 3.0,
+            "skew": 0.0
+          }
+        }
+      },
+      "signals": {
+        "loo_total": 1661.0,
+        "loo_min": -1589.0,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 4172.0,
+            "test_pnl": 0.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 30.0,
+              "mode": "reversion",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 5021.0,
+            "test_pnl": -1589.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 25.0,
+              "mode": "reversion",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 182.0,
+            "test_pnl": 3250.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 25.0,
+              "mode": "reversion",
+              "sticky": true
+            }
+          }
+        ],
+        "full_best": {
+          "total": 4172.0,
+          "day_pnl": {
+            "2": 0.0,
+            "3": 0.0,
+            "4": 4172.0
+          },
+          "strategy": "return_1",
+          "params": {
+            "threshold": 30.0,
+            "mode": "reversion",
+            "sticky": true
+          }
+        }
+      },
+      "ml_ridge_taker": {
+        "loo_total": 0.0,
+        "loo_min": 0.0,
+        "mean_corr": 0.10176348322466884,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 10.0,
+            "corr": 0.08203819228015517
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 14.0,
+            "corr": 0.08884084445704517
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 10.0,
+            "corr": 0.13441141293680617
+          }
+        ]
+      },
+      "best_family": "maker"
+    },
+    "UV_VISOR_RED": {
+      "maker": {
+        "loo_total": -534.5,
+        "loo_min": -1767.0,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 4301.5,
+            "test_pnl": -1767.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 3.0,
+              "skew": 0.5
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 2624.5,
+            "test_pnl": -402.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 7.0,
+              "skew": 0.0
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 144.5,
+            "test_pnl": 1634.5,
+            "strategy": "maker",
+            "params": {
+              "edge": 5.0,
+              "skew": 1.0
+            }
+          }
+        ],
+        "full_best": {
+          "total": 2534.5,
+          "day_pnl": {
+            "2": -1767.0,
+            "3": 475.0,
+            "4": 3826.5
+          },
+          "strategy": "maker",
+          "params": {
+            "edge": 3.0,
+            "skew": 0.5
+          }
+        }
+      },
+      "signals": {
+        "loo_total": 5949.0,
+        "loo_min": -1680.0,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 2430.0,
+            "test_pnl": 5509.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 25.0,
+              "mode": "momentum",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 8373.0,
+            "test_pnl": -1680.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 30.0,
+              "mode": "momentum",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 5819.0,
+            "test_pnl": 2120.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 25.0,
+              "mode": "momentum",
+              "sticky": true
+            }
+          }
+        ],
+        "full_best": {
+          "total": 7939.0,
+          "day_pnl": {
+            "2": 5509.0,
+            "3": 310.0,
+            "4": 2120.0
+          },
+          "strategy": "return_1",
+          "params": {
+            "threshold": 25.0,
+            "mode": "momentum",
+            "sticky": true
+          }
+        }
+      },
+      "ml_ridge_taker": {
+        "loo_total": -724.0,
+        "loo_min": -724.0,
+        "mean_corr": 0.003493957483816864,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 7.0,
+            "corr": 0.029741178138090445
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 0.0,
+            "test_pnl": -724.0,
+            "threshold": 10.0,
+            "corr": -0.01319354585083996
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 10.0,
+            "corr": -0.006065759835799895
+          }
+        ]
+      },
+      "best_family": "signals"
+    },
+    "UV_VISOR_MAGENTA": {
+      "maker": {
+        "loo_total": 1421.0,
+        "loo_min": -407.0,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 1995.0,
+            "test_pnl": -407.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 7.0,
+              "skew": 1.0
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 1344.0,
+            "test_pnl": 890.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 5.0,
+              "skew": 1.0
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 1379.0,
+            "test_pnl": 938.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 3.0,
+              "skew": 5.0
+            }
+          }
+        ],
+        "full_best": {
+          "total": 2317.0,
+          "day_pnl": {
+            "2": 346.0,
+            "3": 1033.0,
+            "4": 938.0
+          },
+          "strategy": "maker",
+          "params": {
+            "edge": 3.0,
+            "skew": 5.0
+          }
+        }
+      },
+      "signals": {
+        "loo_total": -14509.0,
+        "loo_min": -7613.0,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 3206.0,
+            "test_pnl": -920.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 30.0,
+              "mode": "reversion",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 1183.0,
+            "test_pnl": -5976.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 30.0,
+              "mode": "momentum",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 7882.0,
+            "test_pnl": -7613.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 25.0,
+              "mode": "reversion",
+              "sticky": true
+            }
+          }
+        ],
+        "full_best": {
+          "total": 2286.0,
+          "day_pnl": {
+            "2": -920.0,
+            "3": 4654.0,
+            "4": -1448.0
+          },
+          "strategy": "return_1",
+          "params": {
+            "threshold": 30.0,
+            "mode": "reversion",
+            "sticky": true
+          }
+        }
+      },
+      "ml_ridge_taker": {
+        "loo_total": 0.0,
+        "loo_min": 0.0,
+        "mean_corr": 0.018761927225372486,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 10.0,
+            "corr": 0.022324333577045854
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 7.0,
+            "corr": 0.03502766060905887
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 10.0,
+            "corr": -0.0010662125099872599
+          }
+        ]
+      },
+      "best_family": "maker"
+    },
+    "TRANSLATOR_SPACE_GRAY": {
+      "maker": {
+        "loo_total": -1578.0,
+        "loo_min": -1578.0,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 616.5,
+            "test_pnl": 0.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 5.0,
+              "skew": 0.0
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 616.5,
+            "test_pnl": 0.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 5.0,
+              "skew": 0.0
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 607.0,
+            "test_pnl": -1578.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 4.0,
+              "skew": 0.5
+            }
+          }
+        ],
+        "full_best": {
+          "total": 616.5,
+          "day_pnl": {
+            "2": 0.0,
+            "3": 0.0,
+            "4": 616.5
+          },
+          "strategy": "maker",
+          "params": {
+            "edge": 5.0,
+            "skew": 0.0
+          }
+        }
+      },
+      "signals": {
+        "loo_total": 705.0,
+        "loo_min": -157.0,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 5541.0,
+            "test_pnl": 862.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 25.0,
+              "mode": "momentum",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 6560.0,
+            "test_pnl": -157.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 25.0,
+              "mode": "momentum",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 2048.0,
+            "test_pnl": 0.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 30.0,
+              "mode": "reversion",
+              "sticky": true
+            }
+          }
+        ],
+        "full_best": {
+          "total": 6403.0,
+          "day_pnl": {
+            "2": 862.0,
+            "3": -157.0,
+            "4": 5698.0
+          },
+          "strategy": "return_1",
+          "params": {
+            "threshold": 25.0,
+            "mode": "momentum",
+            "sticky": true
+          }
+        }
+      },
+      "ml_ridge_taker": {
+        "loo_total": -61.0,
+        "loo_min": -61.0,
+        "mean_corr": 0.03231105200542533,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 7.0,
+            "corr": 0.0007576545287361828
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 7.0,
+            "corr": 0.03606332805456497
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 0.0,
+            "test_pnl": -61.0,
+            "threshold": 3.0,
+            "corr": 0.060112173432974834
+          }
+        ]
+      },
+      "best_family": "signals"
+    },
+    "TRANSLATOR_ASTRO_BLACK": {
+      "maker": {
+        "loo_total": 2037.0,
+        "loo_min": -222.0,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 3704.0,
+            "test_pnl": -222.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 4.0,
+              "skew": 0.0
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 2704.0,
+            "test_pnl": 778.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 4.0,
+              "skew": 0.0
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 1134.5,
+            "test_pnl": 1481.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 0.5,
+              "skew": 2.0
+            }
+          }
+        ],
+        "full_best": {
+          "total": 3482.0,
+          "day_pnl": {
+            "2": -222.0,
+            "3": 778.0,
+            "4": 2926.0
+          },
+          "strategy": "maker",
+          "params": {
+            "edge": 4.0,
+            "skew": 0.0
+          }
+        }
+      },
+      "signals": {
+        "loo_total": -560.0,
+        "loo_min": -1635.0,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 6828.0,
+            "test_pnl": 475.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 30.0,
+              "mode": "reversion",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 3453.0,
+            "test_pnl": -1635.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 25.0,
+              "mode": "reversion",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 6703.0,
+            "test_pnl": 600.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 30.0,
+              "mode": "reversion",
+              "sticky": true
+            }
+          }
+        ],
+        "full_best": {
+          "total": 7303.0,
+          "day_pnl": {
+            "2": 475.0,
+            "3": 6228.0,
+            "4": 600.0
+          },
+          "strategy": "return_1",
+          "params": {
+            "threshold": 30.0,
+            "mode": "reversion",
+            "sticky": true
+          }
+        }
+      },
+      "ml_ridge_taker": {
+        "loo_total": 0.0,
+        "loo_min": 0.0,
+        "mean_corr": 0.012435324697888347,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 3.0,
+            "corr": -0.009802576283056787
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 4.0,
+            "corr": 0.01912784479090904
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 3.0,
+            "corr": 0.027980705585812785
+          }
+        ]
+      },
+      "best_family": "maker"
+    },
+    "TRANSLATOR_ECLIPSE_CHARCOAL": {
+      "maker": {
+        "loo_total": 4661.0,
+        "loo_min": 255.5,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 4735.0,
+            "test_pnl": 255.5,
+            "strategy": "maker",
+            "params": {
+              "edge": 1.5,
+              "skew": 0.0
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 4330.5,
+            "test_pnl": 440.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 4.0,
+              "skew": 0.0
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 1026.0,
+            "test_pnl": 3965.5,
+            "strategy": "maker",
+            "params": {
+              "edge": 2.0,
+              "skew": 0.0
+            }
+          }
+        ],
+        "full_best": {
+          "total": 4991.5,
+          "day_pnl": {
+            "2": 256.5,
+            "3": 769.5,
+            "4": 3965.5
+          },
+          "strategy": "maker",
+          "params": {
+            "edge": 2.0,
+            "skew": 0.0
+          }
+        }
+      },
+      "signals": {
+        "loo_total": -8528.0,
+        "loo_min": -4278.0,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 1902.0,
+            "test_pnl": -4278.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 20.0,
+              "mode": "reversion",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 2739.0,
+            "test_pnl": -4250.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 25.0,
+              "mode": "momentum",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 1185.0,
+            "test_pnl": 0.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 30.0,
+              "mode": "momentum",
+              "sticky": true
+            }
+          }
+        ],
+        "full_best": {
+          "total": 1185.0,
+          "day_pnl": {
+            "2": 933.0,
+            "3": 252.0,
+            "4": 0.0
+          },
+          "strategy": "return_1",
+          "params": {
+            "threshold": 30.0,
+            "mode": "momentum",
+            "sticky": true
+          }
+        }
+      },
+      "ml_ridge_taker": {
+        "loo_total": 0.0,
+        "loo_min": 0.0,
+        "mean_corr": 0.002916875430880119,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 4.0,
+            "corr": -0.01079517343778182
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 4.0,
+            "corr": 0.015250234314476942
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 4.0,
+            "corr": 0.0042955654159452334
+          }
+        ]
+      },
+      "best_family": "maker"
+    },
+    "TRANSLATOR_GRAPHITE_MIST": {
+      "maker": {
+        "loo_total": 1936.5,
+        "loo_min": -2295.5,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 5409.5,
+            "test_pnl": -2295.5,
+            "strategy": "maker",
+            "params": {
+              "edge": 1.5,
+              "skew": 0.0
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 4232.0,
+            "test_pnl": 0.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 5.0,
+              "skew": 0.0
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 0.0,
+            "test_pnl": 4232.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 5.0,
+              "skew": 0.0
+            }
+          }
+        ],
+        "full_best": {
+          "total": 4232.0,
+          "day_pnl": {
+            "2": 0.0,
+            "3": 0.0,
+            "4": 4232.0
+          },
+          "strategy": "maker",
+          "params": {
+            "edge": 5.0,
+            "skew": 0.0
+          }
+        }
+      },
+      "signals": {
+        "loo_total": -101.0,
+        "loo_min": -2336.0,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 4643.0,
+            "test_pnl": 1089.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 25.0,
+              "mode": "momentum",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 2676.0,
+            "test_pnl": -2336.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 20.0,
+              "mode": "momentum",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 4586.0,
+            "test_pnl": 1146.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 25.0,
+              "mode": "momentum",
+              "sticky": true
+            }
+          }
+        ],
+        "full_best": {
+          "total": 5732.0,
+          "day_pnl": {
+            "2": 1089.0,
+            "3": 3497.0,
+            "4": 1146.0
+          },
+          "strategy": "return_1",
+          "params": {
+            "threshold": 25.0,
+            "mode": "momentum",
+            "sticky": true
+          }
+        }
+      },
+      "ml_ridge_taker": {
+        "loo_total": -150.0,
+        "loo_min": -150.0,
+        "mean_corr": 0.0028657250849869267,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 7.0,
+            "corr": -0.016384989264925435
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 0.0,
+            "test_pnl": -150.0,
+            "threshold": 7.0,
+            "corr": 0.025876819799430552
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 7.0,
+            "corr": -0.0008946552795443363
+          }
+        ]
+      },
+      "best_family": "maker"
+    },
+    "TRANSLATOR_VOID_BLUE": {
+      "maker": {
+        "loo_total": 1768.5,
+        "loo_min": -80.5,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 2605.0,
+            "test_pnl": -80.5,
+            "strategy": "maker",
+            "params": {
+              "edge": 1.5,
+              "skew": 0.0
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 1653.0,
+            "test_pnl": 465.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 4.0,
+              "skew": 0.0
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 1125.0,
+            "test_pnl": 1384.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 5.0,
+              "skew": 0.0
+            }
+          }
+        ],
+        "full_best": {
+          "total": 2525.5,
+          "day_pnl": {
+            "2": -79.5,
+            "3": 1044.0,
+            "4": 1561.0
+          },
+          "strategy": "maker",
+          "params": {
+            "edge": 2.0,
+            "skew": 0.0
+          }
+        }
+      },
+      "signals": {
+        "loo_total": -13268.0,
+        "loo_min": -7585.0,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 6841.0,
+            "test_pnl": -3598.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 25.0,
+              "mode": "momentum",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 1324.0,
+            "test_pnl": -7585.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 30.0,
+              "mode": "reversion",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 6826.0,
+            "test_pnl": -2085.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 30.0,
+              "mode": "momentum",
+              "sticky": true
+            }
+          }
+        ],
+        "full_best": {
+          "total": 4741.0,
+          "day_pnl": {
+            "2": 0.0,
+            "3": 6826.0,
+            "4": -2085.0
+          },
+          "strategy": "return_1",
+          "params": {
+            "threshold": 30.0,
+            "mode": "momentum",
+            "sticky": true
+          }
+        }
+      },
+      "ml_ridge_taker": {
+        "loo_total": -146.0,
+        "loo_min": -146.0,
+        "mean_corr": 0.010787130458192446,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 108.0,
+            "test_pnl": -146.0,
+            "threshold": 3.0,
+            "corr": 0.017173394400366346
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 7.0,
+            "corr": -0.004334817542593133
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 7.0,
+            "corr": 0.019522814516804127
+          }
+        ]
+      },
+      "best_family": "maker"
+    },
+    "PANEL_1X2": {
+      "maker": {
+        "loo_total": 838.0,
+        "loo_min": 0.5,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 919.5,
+            "test_pnl": 673.5,
+            "strategy": "maker",
+            "params": {
+              "edge": 5.0,
+              "skew": 1.0
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 1247.5,
+            "test_pnl": 164.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 5.0,
+              "skew": 0.5
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 2017.5,
+            "test_pnl": 0.5,
+            "strategy": "maker",
+            "params": {
+              "edge": 5.0,
+              "skew": 2.0
+            }
+          }
+        ],
+        "full_best": {
+          "total": 2018.0,
+          "day_pnl": {
+            "2": 1098.5,
+            "3": 919.0,
+            "4": 0.5
+          },
+          "strategy": "maker",
+          "params": {
+            "edge": 5.0,
+            "skew": 2.0
+          }
+        }
+      },
+      "signals": {
+        "loo_total": 10290.0,
+        "loo_min": 1382.0,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 4692.0,
+            "test_pnl": 5598.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 25.0,
+              "mode": "reversion",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 6980.0,
+            "test_pnl": 3310.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 25.0,
+              "mode": "reversion",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 8908.0,
+            "test_pnl": 1382.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 25.0,
+              "mode": "reversion",
+              "sticky": true
+            }
+          }
+        ],
+        "full_best": {
+          "total": 10290.0,
+          "day_pnl": {
+            "2": 5598.0,
+            "3": 3310.0,
+            "4": 1382.0
+          },
+          "strategy": "return_1",
+          "params": {
+            "threshold": 25.0,
+            "mode": "reversion",
+            "sticky": true
+          }
+        }
+      },
+      "ml_ridge_taker": {
+        "loo_total": 0.0,
+        "loo_min": 0.0,
+        "mean_corr": 0.040525037573961475,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 7.0,
+            "corr": -0.006208300154443905
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 4.0,
+            "corr": 0.07848424783648197
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 4.0,
+            "corr": 0.049299165039846354
+          }
+        ]
+      },
+      "best_family": "signals"
+    },
+    "PANEL_2X2": {
+      "maker": {
+        "loo_total": 1183.5,
+        "loo_min": 0.0,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 1183.5,
+            "test_pnl": 0.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 5.0,
+              "skew": 0.0
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 0.0,
+            "test_pnl": 1183.5,
+            "strategy": "maker",
+            "params": {
+              "edge": 5.0,
+              "skew": 0.0
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 1183.5,
+            "test_pnl": 0.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 5.0,
+              "skew": 0.0
+            }
+          }
+        ],
+        "full_best": {
+          "total": 1183.5,
+          "day_pnl": {
+            "2": 0.0,
+            "3": 1183.5,
+            "4": 0.0
+          },
+          "strategy": "maker",
+          "params": {
+            "edge": 5.0,
+            "skew": 0.0
+          }
+        }
+      },
+      "signals": {
+        "loo_total": 2350.0,
+        "loo_min": -509.0,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 6753.0,
+            "test_pnl": 193.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 25.0,
+              "mode": "momentum",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 2335.0,
+            "test_pnl": 2666.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 20.0,
+              "mode": "momentum",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 5510.0,
+            "test_pnl": -509.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 20.0,
+              "mode": "momentum",
+              "sticky": true
+            }
+          }
+        ],
+        "full_best": {
+          "total": 6946.0,
+          "day_pnl": {
+            "2": 193.0,
+            "3": 4647.0,
+            "4": 2106.0
+          },
+          "strategy": "return_1",
+          "params": {
+            "threshold": 25.0,
+            "mode": "momentum",
+            "sticky": true
+          }
+        }
+      },
+      "ml_ridge_taker": {
+        "loo_total": -126.0,
+        "loo_min": -126.0,
+        "mean_corr": 0.01267519348836557,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 4.0,
+            "corr": 0.06885582000062207
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 5.0,
+            "corr": 0.028692648644021927
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 47.0,
+            "test_pnl": -126.0,
+            "threshold": 7.0,
+            "corr": -0.0595228881795473
+          }
+        ]
+      },
+      "best_family": "signals"
+    },
+    "PANEL_1X4": {
+      "maker": {
+        "loo_total": 388.5,
+        "loo_min": 40.5,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 621.5,
+            "test_pnl": 294.5,
+            "strategy": "maker",
+            "params": {
+              "edge": 4.0,
+              "skew": 2.0
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 1085.0,
+            "test_pnl": 53.5,
+            "strategy": "maker",
+            "params": {
+              "edge": 0.5,
+              "skew": 4.0
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 1098.0,
+            "test_pnl": 40.5,
+            "strategy": "maker",
+            "params": {
+              "edge": 0.5,
+              "skew": 4.0
+            }
+          }
+        ],
+        "full_best": {
+          "total": 1138.5,
+          "day_pnl": {
+            "2": 1044.5,
+            "3": 53.5,
+            "4": 40.5
+          },
+          "strategy": "maker",
+          "params": {
+            "edge": 0.5,
+            "skew": 4.0
+          }
+        }
+      },
+      "signals": {
+        "loo_total": -16748.0,
+        "loo_min": -8603.0,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 6768.0,
+            "test_pnl": -2780.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 25.0,
+              "mode": "reversion",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 8190.0,
+            "test_pnl": -8603.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 30.0,
+              "mode": "reversion",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 5510.0,
+            "test_pnl": -5365.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 30.0,
+              "mode": "momentum",
+              "sticky": true
+            }
+          }
+        ],
+        "full_best": {
+          "total": 3988.0,
+          "day_pnl": {
+            "2": -2780.0,
+            "3": 1493.0,
+            "4": 5275.0
+          },
+          "strategy": "return_1",
+          "params": {
+            "threshold": 25.0,
+            "mode": "reversion",
+            "sticky": true
+          }
+        }
+      },
+      "ml_ridge_taker": {
+        "loo_total": 0.0,
+        "loo_min": 0.0,
+        "mean_corr": 0.025134080426528847,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 4.0,
+            "corr": 0.029425986875961388
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 4.0,
+            "corr": 0.023769584993768106
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 7.0,
+            "corr": 0.02220666940985705
+          }
+        ]
+      },
+      "best_family": "maker"
+    },
+    "PANEL_2X4": {
+      "maker": {
+        "loo_total": 3008.5,
+        "loo_min": 215.0,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 2378.5,
+            "test_pnl": 742.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 5.0,
+              "skew": 0.0
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 4909.5,
+            "test_pnl": 215.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 4.0,
+              "skew": 0.0
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 3073.0,
+            "test_pnl": 2051.5,
+            "strategy": "maker",
+            "params": {
+              "edge": 4.0,
+              "skew": 0.0
+            }
+          }
+        ],
+        "full_best": {
+          "total": 5124.5,
+          "day_pnl": {
+            "2": 2858.0,
+            "3": 215.0,
+            "4": 2051.5
+          },
+          "strategy": "maker",
+          "params": {
+            "edge": 4.0,
+            "skew": 0.0
+          }
+        }
+      },
+      "signals": {
+        "loo_total": -5285.0,
+        "loo_min": -2655.0,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 1140.0,
+            "test_pnl": -2655.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 30.0,
+              "mode": "momentum",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 1440.0,
+            "test_pnl": -1505.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 30.0,
+              "mode": "reversion",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 1060.0,
+            "test_pnl": -1125.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 30.0,
+              "mode": "reversion",
+              "sticky": true
+            }
+          }
+        ],
+        "full_best": {
+          "total": 895.0,
+          "day_pnl": {
+            "2": 0.0,
+            "3": 0.0,
+            "4": 895.0
+          },
+          "strategy": "return_1",
+          "params": {
+            "threshold": 40.0,
+            "mode": "momentum",
+            "sticky": true
+          }
+        }
+      },
+      "ml_ridge_taker": {
+        "loo_total": -37.0,
+        "loo_min": -37.0,
+        "mean_corr": 0.08771250625374927,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 10.0,
+            "corr": 0.09203564987454427
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 10.0,
+            "corr": 0.08233828837210795
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 0.0,
+            "test_pnl": -37.0,
+            "threshold": 10.0,
+            "corr": 0.08876358051459561
+          }
+        ]
+      },
+      "best_family": "maker"
+    },
+    "PANEL_4X4": {
+      "maker": {
+        "loo_total": 1012.5,
+        "loo_min": -1124.5,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 6151.5,
+            "test_pnl": -1124.5,
+            "strategy": "maker",
+            "params": {
+              "edge": 1.5,
+              "skew": 0.0
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 4834.0,
+            "test_pnl": -50.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 0.5,
+              "skew": 0.5
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 341.5,
+            "test_pnl": 2187.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 4.0,
+              "skew": 1.0
+            }
+          }
+        ],
+        "full_best": {
+          "total": 5028.0,
+          "day_pnl": {
+            "2": -1123.5,
+            "3": 346.5,
+            "4": 5805.0
+          },
+          "strategy": "maker",
+          "params": {
+            "edge": 2.0,
+            "skew": 0.0
+          }
+        }
+      },
+      "signals": {
+        "loo_total": -10469.0,
+        "loo_min": -6078.0,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 3718.0,
+            "test_pnl": -6078.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 30.0,
+              "mode": "momentum",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 331.0,
+            "test_pnl": 718.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 20.0,
+              "mode": "momentum",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 5828.0,
+            "test_pnl": -5109.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 30.0,
+              "mode": "reversion",
+              "sticky": true
+            }
+          }
+        ],
+        "full_best": {
+          "total": 1049.0,
+          "day_pnl": {
+            "2": 2429.0,
+            "3": 718.0,
+            "4": -2098.0
+          },
+          "strategy": "return_1",
+          "params": {
+            "threshold": 20.0,
+            "mode": "momentum",
+            "sticky": true
+          }
+        }
+      },
+      "ml_ridge_taker": {
+        "loo_total": -4720.0,
+        "loo_min": -4574.0,
+        "mean_corr": -0.003101542498786247,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 75.0,
+            "test_pnl": -146.0,
+            "threshold": 5.0,
+            "corr": -0.030347516207142464
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 90.0,
+            "test_pnl": -4574.0,
+            "threshold": 3.0,
+            "corr": -0.0014323844750029715
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 158.0,
+            "test_pnl": 0.0,
+            "threshold": 3.0,
+            "corr": 0.022475273185786696
+          }
+        ]
+      },
+      "best_family": "maker"
+    },
+    "OXYGEN_SHAKE_MORNING_BREATH": {
+      "maker": {
+        "loo_total": -5325.0,
+        "loo_min": -3369.0,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 2840.0,
+            "test_pnl": -3150.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 7.0,
+              "skew": 0.0
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 379.0,
+            "test_pnl": 1194.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 7.0,
+              "skew": 2.0
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 2686.0,
+            "test_pnl": -3369.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 3.0,
+              "skew": 0.0
+            }
+          }
+        ],
+        "full_best": {
+          "total": 1573.0,
+          "day_pnl": {
+            "2": 379.0,
+            "3": 1194.0,
+            "4": 0.0
+          },
+          "strategy": "maker",
+          "params": {
+            "edge": 7.0,
+            "skew": 2.0
+          }
+        }
+      },
+      "signals": {
+        "loo_total": -11616.0,
+        "loo_min": -5206.0,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 1204.0,
+            "test_pnl": -3440.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 30.0,
+              "mode": "reversion",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 5320.0,
+            "test_pnl": -5206.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 30.0,
+              "mode": "momentum",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 734.0,
+            "test_pnl": -2970.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 30.0,
+              "mode": "reversion",
+              "sticky": true
+            }
+          }
+        ],
+        "full_best": {
+          "total": 114.0,
+          "day_pnl": {
+            "2": 2470.0,
+            "3": -5206.0,
+            "4": 2850.0
+          },
+          "strategy": "return_1",
+          "params": {
+            "threshold": 30.0,
+            "mode": "momentum",
+            "sticky": true
+          }
+        }
+      },
+      "ml_ridge_taker": {
+        "loo_total": -670.0,
+        "loo_min": -670.0,
+        "mean_corr": 0.01735323857136041,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 0.0,
+            "test_pnl": -670.0,
+            "threshold": 5.0,
+            "corr": -0.020628632223107485
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 5.0,
+            "corr": 0.02788188988275409
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 7.0,
+            "corr": 0.044806458054434624
+          }
+        ]
+      },
+      "best_family": "ml_ridge_taker"
+    },
+    "OXYGEN_SHAKE_EVENING_BREATH": {
+      "maker": {
+        "loo_total": -79.0,
+        "loo_min": -335.0,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 2794.0,
+            "test_pnl": 256.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 0.5,
+              "skew": 0.5
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 452.0,
+            "test_pnl": 0.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 7.0,
+              "skew": 0.0
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 3386.0,
+            "test_pnl": -335.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 3.0,
+              "skew": 0.0
+            }
+          }
+        ],
+        "full_best": {
+          "total": 3051.0,
+          "day_pnl": {
+            "2": 257.0,
+            "3": 3129.0,
+            "4": -335.0
+          },
+          "strategy": "maker",
+          "params": {
+            "edge": 3.0,
+            "skew": 0.0
+          }
+        }
+      },
+      "signals": {
+        "loo_total": 9266.0,
+        "loo_min": 0.0,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 80.0,
+            "test_pnl": 9266.0,
+            "strategy": "return_5",
+            "params": {
+              "threshold": 75.0,
+              "mode": "reversion",
+              "sticky": false
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 24111.0,
+            "test_pnl": 0.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 30.0,
+              "mode": "reversion",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 24111.0,
+            "test_pnl": 0.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 30.0,
+              "mode": "reversion",
+              "sticky": true
+            }
+          }
+        ],
+        "full_best": {
+          "total": 24111.0,
+          "day_pnl": {
+            "2": 24111.0,
+            "3": 0.0,
+            "4": 0.0
+          },
+          "strategy": "return_1",
+          "params": {
+            "threshold": 30.0,
+            "mode": "reversion",
+            "sticky": true
+          }
+        }
+      },
+      "ml_ridge_taker": {
+        "loo_total": 4767.0,
+        "loo_min": -208.0,
+        "mean_corr": 0.17971888602327776,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 0.0,
+            "test_pnl": 5167.0,
+            "threshold": 7.0,
+            "corr": 0.26818227415011997
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 8592.0,
+            "test_pnl": -208.0,
+            "threshold": 10.0,
+            "corr": 0.13468552087699656
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 8956.0,
+            "test_pnl": -192.0,
+            "threshold": 10.0,
+            "corr": 0.13628886304271673
+          }
+        ]
+      },
+      "best_family": "signals"
+    },
+    "OXYGEN_SHAKE_MINT": {
+      "maker": {
+        "loo_total": 2060.0,
+        "loo_min": 0.0,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 1150.0,
+            "test_pnl": 910.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 7.0,
+              "skew": 0.0
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 910.0,
+            "test_pnl": 1150.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 7.0,
+              "skew": 0.0
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 2060.0,
+            "test_pnl": 0.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 7.0,
+              "skew": 0.0
+            }
+          }
+        ],
+        "full_best": {
+          "total": 2060.0,
+          "day_pnl": {
+            "2": 910.0,
+            "3": 1150.0,
+            "4": 0.0
+          },
+          "strategy": "maker",
+          "params": {
+            "edge": 7.0,
+            "skew": 0.0
+          }
+        }
+      },
+      "signals": {
+        "loo_total": -1400.0,
+        "loo_min": -2607.0,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 2290.0,
+            "test_pnl": 1150.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 25.0,
+              "mode": "reversion",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 3383.0,
+            "test_pnl": 57.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 25.0,
+              "mode": "reversion",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 3254.0,
+            "test_pnl": -2607.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 30.0,
+              "mode": "reversion",
+              "sticky": true
+            }
+          }
+        ],
+        "full_best": {
+          "total": 3440.0,
+          "day_pnl": {
+            "2": 1150.0,
+            "3": 57.0,
+            "4": 2233.0
+          },
+          "strategy": "return_1",
+          "params": {
+            "threshold": 25.0,
+            "mode": "reversion",
+            "sticky": true
+          }
+        }
+      },
+      "ml_ridge_taker": {
+        "loo_total": 0.0,
+        "loo_min": 0.0,
+        "mean_corr": 0.014206753450304541,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 7.0,
+            "corr": -0.021593663268845955
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 7.0,
+            "corr": 0.020728109901076076
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 5.0,
+            "corr": 0.0434858137186835
+          }
+        ]
+      },
+      "best_family": "maker"
+    },
+    "OXYGEN_SHAKE_CHOCOLATE": {
+      "maker": {
+        "loo_total": -2906.0,
+        "loo_min": -2906.0,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 1409.0,
+            "test_pnl": -2906.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 5.0,
+              "skew": 0.0
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 10.0,
+              "skew": 0.0
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 10.0,
+              "skew": 0.0
+            }
+          }
+        ],
+        "full_best": {
+          "total": 0.0,
+          "day_pnl": {
+            "2": 0.0,
+            "3": 0.0,
+            "4": 0.0
+          },
+          "strategy": "maker",
+          "params": {
+            "edge": 10.0,
+            "skew": 0.0
+          }
+        }
+      },
+      "signals": {
+        "loo_total": 2007.0,
+        "loo_min": -56.0,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 6505.0,
+            "test_pnl": -56.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 20.0,
+              "mode": "momentum",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 2773.0,
+            "test_pnl": 1620.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 25.0,
+              "mode": "reversion",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 6006.0,
+            "test_pnl": 443.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 20.0,
+              "mode": "momentum",
+              "sticky": true
+            }
+          }
+        ],
+        "full_best": {
+          "total": 6449.0,
+          "day_pnl": {
+            "2": -56.0,
+            "3": 6062.0,
+            "4": 443.0
+          },
+          "strategy": "return_1",
+          "params": {
+            "threshold": 20.0,
+            "mode": "momentum",
+            "sticky": true
+          }
+        }
+      },
+      "ml_ridge_taker": {
+        "loo_total": 0.0,
+        "loo_min": 0.0,
+        "mean_corr": 0.01774850774963765,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 4.0,
+            "corr": 0.027270506407076206
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 10.0,
+            "corr": -0.024818951362499887
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 7.0,
+            "corr": 0.050793968204336626
+          }
+        ]
+      },
+      "best_family": "signals"
+    },
+    "OXYGEN_SHAKE_GARLIC": {
+      "maker": {
+        "loo_total": -1956.0,
+        "loo_min": -2140.0,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 1491.0,
+            "test_pnl": 0.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 7.0,
+              "skew": 0.0
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 3735.5,
+            "test_pnl": -2140.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 4.0,
+              "skew": 0.5
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 950.5,
+            "test_pnl": 184.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 4.0,
+              "skew": 5.0
+            }
+          }
+        ],
+        "full_best": {
+          "total": 1595.5,
+          "day_pnl": {
+            "2": 446.5,
+            "3": -2140.0,
+            "4": 3289.0
+          },
+          "strategy": "maker",
+          "params": {
+            "edge": 4.0,
+            "skew": 0.5
+          }
+        }
+      },
+      "signals": {
+        "loo_total": 10489.0,
+        "loo_min": 449.0,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 10040.0,
+            "test_pnl": 449.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 25.0,
+              "mode": "momentum",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 5624.0,
+            "test_pnl": 4865.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 25.0,
+              "mode": "momentum",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 5314.0,
+            "test_pnl": 5175.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 25.0,
+              "mode": "momentum",
+              "sticky": true
+            }
+          }
+        ],
+        "full_best": {
+          "total": 10489.0,
+          "day_pnl": {
+            "2": 449.0,
+            "3": 4865.0,
+            "4": 5175.0
+          },
+          "strategy": "return_1",
+          "params": {
+            "threshold": 25.0,
+            "mode": "momentum",
+            "sticky": true
+          }
+        }
+      },
+      "ml_ridge_taker": {
+        "loo_total": 0.0,
+        "loo_min": 0.0,
+        "mean_corr": 0.0363958958320325,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 10.0,
+            "corr": 0.009908794572029584
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 7.0,
+            "corr": 0.04582097544392974
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 10.0,
+            "corr": 0.05345791748013818
+          }
+        ]
+      },
+      "best_family": "signals"
+    },
+    "SNACKPACK_CHOCOLATE": {
+      "maker": {
+        "loo_total": 1253.0,
+        "loo_min": 258.0,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 1019.5,
+            "test_pnl": 649.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 4.0,
+              "skew": 0.5
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 1459.5,
+            "test_pnl": 346.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 0.5,
+              "skew": 2.0
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 1329.0,
+            "test_pnl": 258.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 7.0,
+              "skew": 0.5
+            }
+          }
+        ],
+        "full_best": {
+          "total": 1805.5,
+          "day_pnl": {
+            "2": 978.0,
+            "3": 346.0,
+            "4": 481.5
+          },
+          "strategy": "maker",
+          "params": {
+            "edge": 0.5,
+            "skew": 2.0
+          }
+        }
+      },
+      "signals": {
+        "loo_total": -3565.0,
+        "loo_min": -1795.0,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 1470.0,
+            "test_pnl": -1770.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 20.0,
+              "mode": "momentum",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 290.0,
+            "test_pnl": 0.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 25.0,
+              "mode": "momentum",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 905.0,
+            "test_pnl": -1795.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 20.0,
+              "mode": "reversion",
+              "sticky": true
+            }
+          }
+        ],
+        "full_best": {
+          "total": 290.0,
+          "day_pnl": {
+            "2": 290.0,
+            "3": 0.0,
+            "4": 0.0
+          },
+          "strategy": "return_1",
+          "params": {
+            "threshold": 25.0,
+            "mode": "momentum",
+            "sticky": true
+          }
+        }
+      },
+      "ml_ridge_taker": {
+        "loo_total": -82.0,
+        "loo_min": -82.0,
+        "mean_corr": 0.12895491430059142,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 7.0,
+            "corr": 0.11162547386684585
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 0.0,
+            "test_pnl": -82.0,
+            "threshold": 7.0,
+            "corr": 0.13876592078627856
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 10.0,
+            "corr": 0.13647334824864982
+          }
+        ]
+      },
+      "best_family": "maker"
+    },
+    "SNACKPACK_VANILLA": {
+      "maker": {
+        "loo_total": 1474.5,
+        "loo_min": -15.5,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 2054.0,
+            "test_pnl": -15.5,
+            "strategy": "maker",
+            "params": {
+              "edge": 0.5,
+              "skew": 4.0
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 913.0,
+            "test_pnl": 1125.5,
+            "strategy": "maker",
+            "params": {
+              "edge": 0.5,
+              "skew": 4.0
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 1128.0,
+            "test_pnl": 364.5,
+            "strategy": "maker",
+            "params": {
+              "edge": 1.0,
+              "skew": 0.5
+            }
+          }
+        ],
+        "full_best": {
+          "total": 2038.5,
+          "day_pnl": {
+            "2": -15.5,
+            "3": 1125.5,
+            "4": 928.5
+          },
+          "strategy": "maker",
+          "params": {
+            "edge": 0.5,
+            "skew": 4.0
+          }
+        }
+      },
+      "signals": {
+        "loo_total": -2350.0,
+        "loo_min": -1855.0,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 325.0,
+            "test_pnl": -1855.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 20.0,
+              "mode": "momentum",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 1345.0,
+            "test_pnl": -495.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 20.0,
+              "mode": "reversion",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 850.0,
+            "test_pnl": 0.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 20.0,
+              "mode": "reversion",
+              "sticky": true
+            }
+          }
+        ],
+        "full_best": {
+          "total": 850.0,
+          "day_pnl": {
+            "2": 1345.0,
+            "3": -495.0,
+            "4": 0.0
+          },
+          "strategy": "return_1",
+          "params": {
+            "threshold": 20.0,
+            "mode": "reversion",
+            "sticky": true
+          }
+        }
+      },
+      "ml_ridge_taker": {
+        "loo_total": 0.0,
+        "loo_min": 0.0,
+        "mean_corr": 0.09355881831887897,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 5.0,
+            "corr": 0.117413719010153
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 7.0,
+            "corr": 0.08635957732972133
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 7.0,
+            "corr": 0.07690315861676257
+          }
+        ]
+      },
+      "best_family": "maker"
+    },
+    "SNACKPACK_PISTACHIO": {
+      "maker": {
+        "loo_total": 3503.5,
+        "loo_min": 480.0,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 1677.0,
+            "test_pnl": 2271.5,
+            "strategy": "maker",
+            "params": {
+              "edge": 0.5,
+              "skew": 0.5
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 3103.0,
+            "test_pnl": 480.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 7.0,
+              "skew": 0.0
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 3196.5,
+            "test_pnl": 752.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 0.5,
+              "skew": 0.5
+            }
+          }
+        ],
+        "full_best": {
+          "total": 3948.5,
+          "day_pnl": {
+            "2": 2271.5,
+            "3": 925.0,
+            "4": 752.0
+          },
+          "strategy": "maker",
+          "params": {
+            "edge": 0.5,
+            "skew": 0.5
+          }
+        }
+      },
+      "signals": {
+        "loo_total": -1568.0,
+        "loo_min": -1568.0,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 20.0,
+              "mode": "reversion",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 3265.0,
+            "test_pnl": -1568.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 15.0,
+              "mode": "reversion",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 1697.0,
+            "test_pnl": 0.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 15.0,
+              "mode": "reversion",
+              "sticky": true
+            }
+          }
+        ],
+        "full_best": {
+          "total": 1697.0,
+          "day_pnl": {
+            "2": 3265.0,
+            "3": -1568.0,
+            "4": 0.0
+          },
+          "strategy": "return_1",
+          "params": {
+            "threshold": 15.0,
+            "mode": "reversion",
+            "sticky": true
+          }
+        }
+      },
+      "ml_ridge_taker": {
+        "loo_total": 0.0,
+        "loo_min": 0.0,
+        "mean_corr": 0.08463385673137136,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 4.0,
+            "corr": 0.07976327240683476
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 7.0,
+            "corr": 0.06980438641955489
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 5.0,
+            "corr": 0.10433391136772441
+          }
+        ]
+      },
+      "best_family": "maker"
+    },
+    "SNACKPACK_STRAWBERRY": {
+      "maker": {
+        "loo_total": 4615.5,
+        "loo_min": 472.0,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 2718.0,
+            "test_pnl": 2898.5,
+            "strategy": "maker",
+            "params": {
+              "edge": 1.0,
+              "skew": 0.5
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 4222.0,
+            "test_pnl": 472.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 5.0,
+              "skew": 0.0
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 4372.5,
+            "test_pnl": 1245.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 4.0,
+              "skew": 0.0
+            }
+          }
+        ],
+        "full_best": {
+          "total": 5617.5,
+          "day_pnl": {
+            "2": 2899.5,
+            "3": 1473.0,
+            "4": 1245.0
+          },
+          "strategy": "maker",
+          "params": {
+            "edge": 4.0,
+            "skew": 0.0
+          }
+        }
+      },
+      "signals": {
+        "loo_total": 420.0,
+        "loo_min": 0.0,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 3760.0,
+            "test_pnl": 0.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 30.0,
+              "mode": "reversion",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 1300.0,
+            "test_pnl": 420.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 25.0,
+              "mode": "reversion",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 3760.0,
+            "test_pnl": 0.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 30.0,
+              "mode": "reversion",
+              "sticky": true
+            }
+          }
+        ],
+        "full_best": {
+          "total": 3760.0,
+          "day_pnl": {
+            "2": 0.0,
+            "3": 3760.0,
+            "4": 0.0
+          },
+          "strategy": "return_1",
+          "params": {
+            "threshold": 30.0,
+            "mode": "reversion",
+            "sticky": true
+          }
+        }
+      },
+      "ml_ridge_taker": {
+        "loo_total": 0.0,
+        "loo_min": 0.0,
+        "mean_corr": 0.02215686418554161,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 4.0,
+            "corr": 0.017073422467039284
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 10.0,
+            "corr": 0.007164648772113633
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 7.0,
+            "corr": 0.042232521317471926
+          }
+        ]
+      },
+      "best_family": "maker"
+    },
+    "SNACKPACK_RASPBERRY": {
+      "maker": {
+        "loo_total": -2294.0,
+        "loo_min": -1664.5,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 771.0,
+            "test_pnl": -1664.5,
+            "strategy": "maker",
+            "params": {
+              "edge": 2.0,
+              "skew": 2.0
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "strategy": "maker",
+            "params": {
+              "edge": 10.0,
+              "skew": 0.0
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 536.0,
+            "test_pnl": -629.5,
+            "strategy": "maker",
+            "params": {
+              "edge": 7.0,
+              "skew": 1.0
+            }
+          }
+        ],
+        "full_best": {
+          "total": 224.0,
+          "day_pnl": {
+            "2": -374.5,
+            "3": 909.5,
+            "4": -311.0
+          },
+          "strategy": "maker",
+          "params": {
+            "edge": 3.0,
+            "skew": 5.0
+          }
+        }
+      },
+      "signals": {
+        "loo_total": 2290.0,
+        "loo_min": 0.0,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 3280.0,
+            "test_pnl": 0.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 25.0,
+              "mode": "reversion",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 2550.0,
+            "test_pnl": 1195.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 20.0,
+              "mode": "reversion",
+              "sticky": true
+            }
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 2185.0,
+            "test_pnl": 1095.0,
+            "strategy": "return_1",
+            "params": {
+              "threshold": 25.0,
+              "mode": "reversion",
+              "sticky": true
+            }
+          }
+        ],
+        "full_best": {
+          "total": 3745.0,
+          "day_pnl": {
+            "2": 505.0,
+            "3": 1195.0,
+            "4": 2045.0
+          },
+          "strategy": "return_1",
+          "params": {
+            "threshold": 20.0,
+            "mode": "reversion",
+            "sticky": true
+          }
+        }
+      },
+      "ml_ridge_taker": {
+        "loo_total": 0.0,
+        "loo_min": 0.0,
+        "mean_corr": 0.08952882656051071,
+        "folds": [
+          {
+            "test_day": 2,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 10.0,
+            "corr": 0.021072181490209688
+          },
+          {
+            "test_day": 3,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 10.0,
+            "corr": 0.12431443909370049
+          },
+          {
+            "test_day": 4,
+            "train_pnl": 0.0,
+            "test_pnl": 0.0,
+            "threshold": 10.0,
+            "corr": 0.12319985909762202
+          }
+        ]
+      },
+      "best_family": "signals"
+    }
+  },
+  "group_results": {
+    "galaxy_sounds": {
+      "loo_total": 0.0,
+      "loo_min": 0.0,
+      "folds": [
+        {
+          "test_day": 2,
+          "train_pnl": 0.0,
+          "test_pnl": 0.0,
+          "strategy": "group_residual_reversion",
+          "params": {
+            "window": 20,
+            "threshold": 100.0
+          }
+        },
+        {
+          "test_day": 3,
+          "train_pnl": 0.0,
+          "test_pnl": 0.0,
+          "strategy": "group_residual_reversion",
+          "params": {
+            "window": 20,
+            "threshold": 100.0
+          }
+        },
+        {
+          "test_day": 4,
+          "train_pnl": 0.0,
+          "test_pnl": 0.0,
+          "strategy": "group_residual_reversion",
+          "params": {
+            "window": 20,
+            "threshold": 100.0
+          }
+        }
+      ],
+      "full_best": {
+        "total": 0.0,
+        "day_pnl": {
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0
+        },
+        "strategy": "group_residual_reversion",
+        "params": {
+          "window": 20,
+          "threshold": 100.0
+        }
+      }
+    },
+    "sleep_pods": {
+      "loo_total": 0.0,
+      "loo_min": 0.0,
+      "folds": [
+        {
+          "test_day": 2,
+          "train_pnl": 0.0,
+          "test_pnl": 0.0,
+          "strategy": "group_residual_reversion",
+          "params": {
+            "window": 20,
+            "threshold": 100.0
+          }
+        },
+        {
+          "test_day": 3,
+          "train_pnl": 0.0,
+          "test_pnl": 0.0,
+          "strategy": "group_residual_reversion",
+          "params": {
+            "window": 20,
+            "threshold": 100.0
+          }
+        },
+        {
+          "test_day": 4,
+          "train_pnl": 0.0,
+          "test_pnl": 0.0,
+          "strategy": "group_residual_reversion",
+          "params": {
+            "window": 20,
+            "threshold": 100.0
+          }
+        }
+      ],
+      "full_best": {
+        "total": 0.0,
+        "day_pnl": {
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0
+        },
+        "strategy": "group_residual_reversion",
+        "params": {
+          "window": 20,
+          "threshold": 100.0
+        }
+      }
+    },
+    "microchips": {
+      "loo_total": 516.0,
+      "loo_min": -342.0,
+      "folds": [
+        {
+          "test_day": 2,
+          "train_pnl": 858.0,
+          "test_pnl": -342.0,
+          "strategy": "group_residual_reversion",
+          "params": {
+            "window": 20,
+            "threshold": 100.0
+          }
+        },
+        {
+          "test_day": 3,
+          "train_pnl": 378.0,
+          "test_pnl": 138.0,
+          "strategy": "group_residual_reversion",
+          "params": {
+            "window": 20,
+            "threshold": 100.0
+          }
+        },
+        {
+          "test_day": 4,
+          "train_pnl": -204.0,
+          "test_pnl": 720.0,
+          "strategy": "group_residual_reversion",
+          "params": {
+            "window": 20,
+            "threshold": 100.0
+          }
+        }
+      ],
+      "full_best": {
+        "total": 516.0,
+        "day_pnl": {
+          "2": -342.0,
+          "3": 138.0,
+          "4": 720.0
+        },
+        "strategy": "group_residual_reversion",
+        "params": {
+          "window": 20,
+          "threshold": 100.0
+        }
+      }
+    },
+    "pebbles": {
+      "loo_total": -29155.0,
+      "loo_min": -14416.0,
+      "folds": [
+        {
+          "test_day": 2,
+          "train_pnl": -13311.0,
+          "test_pnl": -14416.0,
+          "strategy": "group_residual_reversion",
+          "params": {
+            "window": 200,
+            "threshold": 100.0
+          }
+        },
+        {
+          "test_day": 3,
+          "train_pnl": -11151.0,
+          "test_pnl": -9679.0,
+          "strategy": "group_residual_reversion",
+          "params": {
+            "window": 20,
+            "threshold": 100.0
+          }
+        },
+        {
+          "test_day": 4,
+          "train_pnl": -15770.0,
+          "test_pnl": -5060.0,
+          "strategy": "group_residual_reversion",
+          "params": {
+            "window": 20,
+            "threshold": 100.0
+          }
+        }
+      ],
+      "full_best": {
+        "total": -20830.0,
+        "day_pnl": {
+          "2": -6091.0,
+          "3": -9679.0,
+          "4": -5060.0
+        },
+        "strategy": "group_residual_reversion",
+        "params": {
+          "window": 20,
+          "threshold": 100.0
+        }
+      }
+    },
+    "robots": {
+      "loo_total": -5664.0,
+      "loo_min": -3367.0,
+      "folds": [
+        {
+          "test_day": 2,
+          "train_pnl": 0.0,
+          "test_pnl": 917.0,
+          "strategy": "group_residual_reversion",
+          "params": {
+            "window": 20,
+            "threshold": 100.0
+          }
+        },
+        {
+          "test_day": 3,
+          "train_pnl": 3982.0,
+          "test_pnl": -3214.0,
+          "strategy": "group_residual_reversion",
+          "params": {
+            "window": 20,
+            "threshold": 50.0
+          }
+        },
+        {
+          "test_day": 4,
+          "train_pnl": 4135.0,
+          "test_pnl": -3367.0,
+          "strategy": "group_residual_reversion",
+          "params": {
+            "window": 20,
+            "threshold": 50.0
+          }
+        }
+      ],
+      "full_best": {
+        "total": 917.0,
+        "day_pnl": {
+          "2": 917.0,
+          "3": 0.0,
+          "4": 0.0
+        },
+        "strategy": "group_residual_reversion",
+        "params": {
+          "window": 20,
+          "threshold": 100.0
+        }
+      }
+    },
+    "uv_visors": {
+      "loo_total": 0.0,
+      "loo_min": 0.0,
+      "folds": [
+        {
+          "test_day": 2,
+          "train_pnl": 0.0,
+          "test_pnl": 0.0,
+          "strategy": "group_residual_reversion",
+          "params": {
+            "window": 20,
+            "threshold": 100.0
+          }
+        },
+        {
+          "test_day": 3,
+          "train_pnl": 0.0,
+          "test_pnl": 0.0,
+          "strategy": "group_residual_reversion",
+          "params": {
+            "window": 20,
+            "threshold": 100.0
+          }
+        },
+        {
+          "test_day": 4,
+          "train_pnl": 0.0,
+          "test_pnl": 0.0,
+          "strategy": "group_residual_reversion",
+          "params": {
+            "window": 20,
+            "threshold": 100.0
+          }
+        }
+      ],
+      "full_best": {
+        "total": 0.0,
+        "day_pnl": {
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0
+        },
+        "strategy": "group_residual_reversion",
+        "params": {
+          "window": 20,
+          "threshold": 100.0
+        }
+      }
+    },
+    "translators": {
+      "loo_total": 0.0,
+      "loo_min": 0.0,
+      "folds": [
+        {
+          "test_day": 2,
+          "train_pnl": 0.0,
+          "test_pnl": 0.0,
+          "strategy": "group_residual_reversion",
+          "params": {
+            "window": 20,
+            "threshold": 100.0
+          }
+        },
+        {
+          "test_day": 3,
+          "train_pnl": 0.0,
+          "test_pnl": 0.0,
+          "strategy": "group_residual_reversion",
+          "params": {
+            "window": 20,
+            "threshold": 100.0
+          }
+        },
+        {
+          "test_day": 4,
+          "train_pnl": 0.0,
+          "test_pnl": 0.0,
+          "strategy": "group_residual_reversion",
+          "params": {
+            "window": 20,
+            "threshold": 100.0
+          }
+        }
+      ],
+      "full_best": {
+        "total": 0.0,
+        "day_pnl": {
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0
+        },
+        "strategy": "group_residual_reversion",
+        "params": {
+          "window": 20,
+          "threshold": 100.0
+        }
+      }
+    },
+    "panels": {
+      "loo_total": 0.0,
+      "loo_min": 0.0,
+      "folds": [
+        {
+          "test_day": 2,
+          "train_pnl": 0.0,
+          "test_pnl": 0.0,
+          "strategy": "group_residual_reversion",
+          "params": {
+            "window": 20,
+            "threshold": 100.0
+          }
+        },
+        {
+          "test_day": 3,
+          "train_pnl": 0.0,
+          "test_pnl": 0.0,
+          "strategy": "group_residual_reversion",
+          "params": {
+            "window": 20,
+            "threshold": 100.0
+          }
+        },
+        {
+          "test_day": 4,
+          "train_pnl": 0.0,
+          "test_pnl": 0.0,
+          "strategy": "group_residual_reversion",
+          "params": {
+            "window": 20,
+            "threshold": 100.0
+          }
+        }
+      ],
+      "full_best": {
+        "total": 0.0,
+        "day_pnl": {
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0
+        },
+        "strategy": "group_residual_reversion",
+        "params": {
+          "window": 20,
+          "threshold": 100.0
+        }
+      }
+    },
+    "oxygen": {
+      "loo_total": -9005.0,
+      "loo_min": -9875.0,
+      "folds": [
+        {
+          "test_day": 2,
+          "train_pnl": 0.0,
+          "test_pnl": 870.0,
+          "strategy": "group_residual_reversion",
+          "params": {
+            "window": 20,
+            "threshold": 100.0
+          }
+        },
+        {
+          "test_day": 3,
+          "train_pnl": 1388.0,
+          "test_pnl": -9875.0,
+          "strategy": "group_residual_reversion",
+          "params": {
+            "window": 20,
+            "threshold": 50.0
+          }
+        },
+        {
+          "test_day": 4,
+          "train_pnl": 870.0,
+          "test_pnl": 0.0,
+          "strategy": "group_residual_reversion",
+          "params": {
+            "window": 20,
+            "threshold": 100.0
+          }
+        }
+      ],
+      "full_best": {
+        "total": 870.0,
+        "day_pnl": {
+          "2": 870.0,
+          "3": 0.0,
+          "4": 0.0
+        },
+        "strategy": "group_residual_reversion",
+        "params": {
+          "window": 20,
+          "threshold": 100.0
+        }
+      }
+    },
+    "snackpacks": {
+      "loo_total": 0.0,
+      "loo_min": 0.0,
+      "folds": [
+        {
+          "test_day": 2,
+          "train_pnl": 0.0,
+          "test_pnl": 0.0,
+          "strategy": "group_residual_reversion",
+          "params": {
+            "window": 20,
+            "threshold": 100.0
+          }
+        },
+        {
+          "test_day": 3,
+          "train_pnl": 0.0,
+          "test_pnl": 0.0,
+          "strategy": "group_residual_reversion",
+          "params": {
+            "window": 20,
+            "threshold": 100.0
+          }
+        },
+        {
+          "test_day": 4,
+          "train_pnl": 0.0,
+          "test_pnl": 0.0,
+          "strategy": "group_residual_reversion",
+          "params": {
+            "window": 20,
+            "threshold": 100.0
+          }
+        }
+      ],
+      "full_best": {
+        "total": 0.0,
+        "day_pnl": {
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0
+        },
+        "strategy": "group_residual_reversion",
+        "params": {
+          "window": 20,
+          "threshold": 100.0
+        }
+      }
+    }
+  },
+  "robust_products": [
+    {
+      "product": "ROBOT_IRONING",
+      "family": "signals",
+      "loo_total": 27986.0,
+      "loo_min": 0.0,
+      "full_best": {
+        "total": 34301.0,
+        "day_pnl": {
+          "2": 27198.0,
+          "3": 5338.0,
+          "4": 1765.0
+        },
+        "strategy": "return_1",
+        "params": {
+          "threshold": 25.0,
+          "mode": "reversion",
+          "sticky": true
+        }
+      }
+    },
+    {
+      "product": "MICROCHIP_OVAL",
+      "family": "signals",
+      "loo_total": 13219.0,
+      "loo_min": 2843.0,
+      "full_best": {
+        "total": 13219.0,
+        "day_pnl": {
+          "2": 2843.0,
+          "3": 4804.0,
+          "4": 5572.0
+        },
+        "strategy": "return_1",
+        "params": {
+          "threshold": 30.0,
+          "mode": "reversion",
+          "sticky": true
+        }
+      }
+    },
+    {
+      "product": "OXYGEN_SHAKE_GARLIC",
+      "family": "signals",
+      "loo_total": 10489.0,
+      "loo_min": 449.0,
+      "full_best": {
+        "total": 10489.0,
+        "day_pnl": {
+          "2": 449.0,
+          "3": 4865.0,
+          "4": 5175.0
+        },
+        "strategy": "return_1",
+        "params": {
+          "threshold": 25.0,
+          "mode": "momentum",
+          "sticky": true
+        }
+      }
+    },
+    {
+      "product": "PANEL_1X2",
+      "family": "signals",
+      "loo_total": 10290.0,
+      "loo_min": 1382.0,
+      "full_best": {
+        "total": 10290.0,
+        "day_pnl": {
+          "2": 5598.0,
+          "3": 3310.0,
+          "4": 1382.0
+        },
+        "strategy": "return_1",
+        "params": {
+          "threshold": 25.0,
+          "mode": "reversion",
+          "sticky": true
+        }
+      }
+    },
+    {
+      "product": "OXYGEN_SHAKE_EVENING_BREATH",
+      "family": "signals",
+      "loo_total": 9266.0,
+      "loo_min": 0.0,
+      "full_best": {
+        "total": 24111.0,
+        "day_pnl": {
+          "2": 24111.0,
+          "3": 0.0,
+          "4": 0.0
+        },
+        "strategy": "return_1",
+        "params": {
+          "threshold": 30.0,
+          "mode": "reversion",
+          "sticky": true
+        }
+      }
+    },
+    {
+      "product": "SLEEP_POD_NYLON",
+      "family": "signals",
+      "loo_total": 6994.0,
+      "loo_min": 1965.0,
+      "full_best": {
+        "total": 6994.0,
+        "day_pnl": {
+          "2": 1965.0,
+          "3": 2450.0,
+          "4": 2579.0
+        },
+        "strategy": "return_1",
+        "params": {
+          "threshold": 25.0,
+          "mode": "reversion",
+          "sticky": true
+        }
+      }
+    },
+    {
+      "product": "UV_VISOR_ORANGE",
+      "family": "maker",
+      "loo_total": 6729.5,
+      "loo_min": 609.0,
+      "full_best": {
+        "total": 7003.5,
+        "day_pnl": {
+          "2": 1996.5,
+          "3": 882.0,
+          "4": 4125.0
+        },
+        "strategy": "maker",
+        "params": {
+          "edge": 3.0,
+          "skew": 0.0
+        }
+      }
+    },
+    {
+      "product": "TRANSLATOR_ECLIPSE_CHARCOAL",
+      "family": "maker",
+      "loo_total": 4661.0,
+      "loo_min": 255.5,
+      "full_best": {
+        "total": 4991.5,
+        "day_pnl": {
+          "2": 256.5,
+          "3": 769.5,
+          "4": 3965.5
+        },
+        "strategy": "maker",
+        "params": {
+          "edge": 2.0,
+          "skew": 0.0
+        }
+      }
+    },
+    {
+      "product": "SNACKPACK_STRAWBERRY",
+      "family": "maker",
+      "loo_total": 4615.5,
+      "loo_min": 472.0,
+      "full_best": {
+        "total": 5617.5,
+        "day_pnl": {
+          "2": 2899.5,
+          "3": 1473.0,
+          "4": 1245.0
+        },
+        "strategy": "maker",
+        "params": {
+          "edge": 4.0,
+          "skew": 0.0
+        }
+      }
+    },
+    {
+      "product": "SLEEP_POD_SUEDE",
+      "family": "maker",
+      "loo_total": 4508.0,
+      "loo_min": 562.5,
+      "full_best": {
+        "total": 5634.0,
+        "day_pnl": {
+          "2": 563.5,
+          "3": 3830.0,
+          "4": 1240.5
+        },
+        "strategy": "maker",
+        "params": {
+          "edge": 2.0,
+          "skew": 0.0
+        }
+      }
+    },
+    {
+      "product": "PEBBLES_XS",
+      "family": "maker",
+      "loo_total": 4227.5,
+      "loo_min": 1253.0,
+      "full_best": {
+        "total": 4227.5,
+        "day_pnl": {
+          "2": 1289.0,
+          "3": 1253.0,
+          "4": 1685.5
+        },
+        "strategy": "maker",
+        "params": {
+          "edge": 5.0,
+          "skew": 1.0
+        }
+      }
+    },
+    {
+      "product": "SNACKPACK_PISTACHIO",
+      "family": "maker",
+      "loo_total": 3503.5,
+      "loo_min": 480.0,
+      "full_best": {
+        "total": 3948.5,
+        "day_pnl": {
+          "2": 2271.5,
+          "3": 925.0,
+          "4": 752.0
+        },
+        "strategy": "maker",
+        "params": {
+          "edge": 0.5,
+          "skew": 0.5
+        }
+      }
+    },
+    {
+      "product": "SLEEP_POD_NYLON",
+      "family": "maker",
+      "loo_total": 3112.0,
+      "loo_min": 583.0,
+      "full_best": {
+        "total": 3917.5,
+        "day_pnl": {
+          "2": 714.0,
+          "3": 583.0,
+          "4": 2620.5
+        },
+        "strategy": "maker",
+        "params": {
+          "edge": 4.0,
+          "skew": 0.0
+        }
+      }
+    },
+    {
+      "product": "PANEL_2X4",
+      "family": "maker",
+      "loo_total": 3008.5,
+      "loo_min": 215.0,
+      "full_best": {
+        "total": 5124.5,
+        "day_pnl": {
+          "2": 2858.0,
+          "3": 215.0,
+          "4": 2051.5
+        },
+        "strategy": "maker",
+        "params": {
+          "edge": 4.0,
+          "skew": 0.0
+        }
+      }
+    },
+    {
+      "product": "SNACKPACK_RASPBERRY",
+      "family": "signals",
+      "loo_total": 2290.0,
+      "loo_min": 0.0,
+      "full_best": {
+        "total": 3745.0,
+        "day_pnl": {
+          "2": 505.0,
+          "3": 1195.0,
+          "4": 2045.0
+        },
+        "strategy": "return_1",
+        "params": {
+          "threshold": 20.0,
+          "mode": "reversion",
+          "sticky": true
+        }
+      }
+    },
+    {
+      "product": "OXYGEN_SHAKE_MINT",
+      "family": "maker",
+      "loo_total": 2060.0,
+      "loo_min": 0.0,
+      "full_best": {
+        "total": 2060.0,
+        "day_pnl": {
+          "2": 910.0,
+          "3": 1150.0,
+          "4": 0.0
+        },
+        "strategy": "maker",
+        "params": {
+          "edge": 7.0,
+          "skew": 0.0
+        }
+      }
+    },
+    {
+      "product": "UV_VISOR_YELLOW",
+      "family": "maker",
+      "loo_total": 2055.5,
+      "loo_min": 408.0,
+      "full_best": {
+        "total": 2717.0,
+        "day_pnl": {
+          "2": 1225.5,
+          "3": 1069.5,
+          "4": 422.0
+        },
+        "strategy": "maker",
+        "params": {
+          "edge": 1.5,
+          "skew": 3.0
+        }
+      }
+    },
+    {
+      "product": "ROBOT_MOPPING",
+      "family": "maker",
+      "loo_total": 1543.5,
+      "loo_min": 71.0,
+      "full_best": {
+        "total": 2044.5,
+        "day_pnl": {
+          "2": 674.5,
+          "3": 71.0,
+          "4": 1299.0
+        },
+        "strategy": "maker",
+        "params": {
+          "edge": 2.0,
+          "skew": 1.0
+        }
+      }
+    },
+    {
+      "product": "MICROCHIP_OVAL",
+      "family": "maker",
+      "loo_total": 1433.0,
+      "loo_min": 0.0,
+      "full_best": {
+        "total": 4100.0,
+        "day_pnl": {
+          "2": 1006.0,
+          "3": 427.0,
+          "4": 2667.0
+        },
+        "strategy": "maker",
+        "params": {
+          "edge": 3.0,
+          "skew": 0.0
+        }
+      }
+    },
+    {
+      "product": "SNACKPACK_CHOCOLATE",
+      "family": "maker",
+      "loo_total": 1253.0,
+      "loo_min": 258.0,
+      "full_best": {
+        "total": 1805.5,
+        "day_pnl": {
+          "2": 978.0,
+          "3": 346.0,
+          "4": 481.5
+        },
+        "strategy": "maker",
+        "params": {
+          "edge": 0.5,
+          "skew": 2.0
+        }
+      }
+    },
+    {
+      "product": "PANEL_2X2",
+      "family": "maker",
+      "loo_total": 1183.5,
+      "loo_min": 0.0,
+      "full_best": {
+        "total": 1183.5,
+        "day_pnl": {
+          "2": 0.0,
+          "3": 1183.5,
+          "4": 0.0
+        },
+        "strategy": "maker",
+        "params": {
+          "edge": 5.0,
+          "skew": 0.0
+        }
+      }
+    },
+    {
+      "product": "PANEL_1X2",
+      "family": "maker",
+      "loo_total": 838.0,
+      "loo_min": 0.5,
+      "full_best": {
+        "total": 2018.0,
+        "day_pnl": {
+          "2": 1098.5,
+          "3": 919.0,
+          "4": 0.5
+        },
+        "strategy": "maker",
+        "params": {
+          "edge": 5.0,
+          "skew": 2.0
+        }
+      }
+    },
+    {
+      "product": "SNACKPACK_STRAWBERRY",
+      "family": "signals",
+      "loo_total": 420.0,
+      "loo_min": 0.0,
+      "full_best": {
+        "total": 3760.0,
+        "day_pnl": {
+          "2": 0.0,
+          "3": 3760.0,
+          "4": 0.0
+        },
+        "strategy": "return_1",
+        "params": {
+          "threshold": 30.0,
+          "mode": "reversion",
+          "sticky": true
+        }
+      }
+    },
+    {
+      "product": "PANEL_1X4",
+      "family": "maker",
+      "loo_total": 388.5,
+      "loo_min": 40.5,
+      "full_best": {
+        "total": 1138.5,
+        "day_pnl": {
+          "2": 1044.5,
+          "3": 53.5,
+          "4": 40.5
+        },
+        "strategy": "maker",
+        "params": {
+          "edge": 0.5,
+          "skew": 4.0
+        }
+      }
+    },
+    {
+      "product": "MICROCHIP_SQUARE",
+      "family": "maker",
+      "loo_total": 369.5,
+      "loo_min": 0.0,
+      "full_best": {
+        "total": 3949.0,
+        "day_pnl": {
+          "2": 0.0,
+          "3": 0.0,
+          "4": 3949.0
+        },
+        "strategy": "maker",
+        "params": {
+          "edge": 7.0,
+          "skew": 0.0
+        }
+      }
+    },
+    {
+      "product": "ROBOT_DISHES",
+      "family": "ml_ridge_taker",
+      "loo_total": 34.0,
+      "loo_min": 0.0,
+      "full_best": null
+    }
+  ],
+  "notes": [
+    "Maker results use the same public-repo-style passive-fill assumption as round5_diagnostics.",
+    "Directional, residual, and ML taker tests pay the displayed spread by crossing the book.",
+    "A signal is considered robust only if the leave-one-day total is positive and every held-out fold is non-negative."
+  ]
+}

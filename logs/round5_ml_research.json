@@ -1,0 +1,266 @@
+{
+  "config": {
+    "max_timestamp": 99900,
+    "horizon": 1,
+    "train_sample": 60000,
+    "validation": "leave-one-day-out; thresholds and quote gates chosen on training days only",
+    "baseline": "current trader.py without ML filters"
+  },
+  "baseline_by_day": {
+    "2": 32862.0,
+    "3": 5310.0,
+    "4": 26128.0
+  },
+  "baseline_sum": 64300.0,
+  "tabular_models": {
+    "ridge": {
+      "folds": [
+        {
+          "test_day": 2,
+          "target_corr": 0.031817166475787716,
+          "target_mse": 147.11164654444184,
+          "taker_threshold": 7.0,
+          "train_taker_pnl": 0.0,
+          "test_taker_pnl": 0.0,
+          "passive_gate": 0.5,
+          "train_passive_pnl": 33040.5,
+          "test_passive_pnl": 35115.5,
+          "baseline_pnl": 32862.0,
+          "passive_delta": 2253.5
+        },
+        {
+          "test_day": 3,
+          "target_corr": 0.03126295301649212,
+          "target_mse": 137.7629237646595,
+          "taker_threshold": 7.0,
+          "train_taker_pnl": 0.0,
+          "test_taker_pnl": 0.0,
+          "passive_gate": 0.5,
+          "train_passive_pnl": 62814.0,
+          "test_passive_pnl": 2958.5,
+          "baseline_pnl": 5310.0,
+          "passive_delta": -2351.5
+        },
+        {
+          "test_day": 4,
+          "target_corr": 0.037590093802015334,
+          "target_mse": 139.27052910406923,
+          "taker_threshold": 7.0,
+          "train_taker_pnl": 0.0,
+          "test_taker_pnl": 0.0,
+          "passive_gate": 0.5,
+          "train_passive_pnl": 41067.5,
+          "test_passive_pnl": 22929.0,
+          "baseline_pnl": 26128.0,
+          "passive_delta": -3199.0
+        }
+      ],
+      "taker_sum": 0.0,
+      "passive_sum": 61003.0,
+      "baseline_sum": 64300.0,
+      "passive_delta": -3297.0,
+      "mean_target_corr": 0.03355673776476506
+    },
+    "hist_gradient_boosting": {
+      "folds": [
+        {
+          "test_day": 2,
+          "target_corr": 0.015550851099546955,
+          "target_mse": 147.19727817639514,
+          "taker_threshold": 2.0,
+          "train_taker_pnl": 8565.0,
+          "test_taker_pnl": -17210.0,
+          "passive_gate": 3.0,
+          "train_passive_pnl": 31438.0,
+          "test_passive_pnl": 32862.0,
+          "baseline_pnl": 32862.0,
+          "passive_delta": 0.0
+        },
+        {
+          "test_day": 3,
+          "target_corr": 0.030243480415219556,
+          "target_mse": 137.94933482855055,
+          "taker_threshold": 4.0,
+          "train_taker_pnl": 56100.0,
+          "test_taker_pnl": -38325.0,
+          "passive_gate": 0.5,
+          "train_passive_pnl": 61155.5,
+          "test_passive_pnl": 4680.5,
+          "baseline_pnl": 5310.0,
+          "passive_delta": -629.5
+        },
+        {
+          "test_day": 4,
+          "target_corr": 0.0247775443994562,
+          "target_mse": 139.62153916795828,
+          "taker_threshold": 3.0,
+          "train_taker_pnl": 49565.0,
+          "test_taker_pnl": -29630.0,
+          "passive_gate": 5.0,
+          "train_passive_pnl": 38172.0,
+          "test_passive_pnl": 25788.5,
+          "baseline_pnl": 26128.0,
+          "passive_delta": -339.5
+        }
+      ],
+      "taker_sum": -85165.0,
+      "passive_sum": 63331.0,
+      "baseline_sum": 64300.0,
+      "passive_delta": -969.0,
+      "mean_target_corr": 0.02352395863807424
+    },
+    "mlp": {
+      "folds": [
+        {
+          "test_day": 2,
+          "target_corr": 0.03159084377598106,
+          "target_mse": 147.12876611124858,
+          "taker_threshold": 7.0,
+          "train_taker_pnl": 70.0,
+          "test_taker_pnl": 0.0,
+          "passive_gate": 3.0,
+          "train_passive_pnl": 31438.0,
+          "test_passive_pnl": 32862.0,
+          "baseline_pnl": 32862.0,
+          "passive_delta": 0.0
+        },
+        {
+          "test_day": 3,
+          "target_corr": 0.033760874240209134,
+          "target_mse": 137.65880666681633,
+          "taker_threshold": 5.0,
+          "train_taker_pnl": 0.0,
+          "test_taker_pnl": -70.0,
+          "passive_gate": 2.0,
+          "train_passive_pnl": 59116.5,
+          "test_passive_pnl": 5310.0,
+          "baseline_pnl": 5310.0,
+          "passive_delta": 0.0
+        },
+        {
+          "test_day": 4,
+          "target_corr": 0.03487774454589843,
+          "target_mse": 139.30573554081658,
+          "taker_threshold": 7.0,
+          "train_taker_pnl": 6990.0,
+          "test_taker_pnl": -630.0,
+          "passive_gate": 2.0,
+          "train_passive_pnl": 38172.0,
+          "test_passive_pnl": 25484.5,
+          "baseline_pnl": 26128.0,
+          "passive_delta": -643.5
+        }
+      ],
+      "taker_sum": -700.0,
+      "passive_sum": 63656.5,
+      "baseline_sum": 64300.0,
+      "passive_delta": -643.5,
+      "mean_target_corr": 0.03340982085402954
+    },
+    "lightgbm": {
+      "folds": [
+        {
+          "test_day": 2,
+          "target_corr": 0.02206743005751195,
+          "target_mse": 147.51391462087415,
+          "taker_threshold": 4.0,
+          "train_taker_pnl": 66945.0,
+          "test_taker_pnl": -26610.0,
+          "passive_gate": 0.5,
+          "train_passive_pnl": 36010.5,
+          "test_passive_pnl": 35317.5,
+          "baseline_pnl": 32862.0,
+          "passive_delta": 2455.5
+        },
+        {
+          "test_day": 3,
+          "target_corr": 0.0446915075703327,
+          "target_mse": 137.66331316500532,
+          "taker_threshold": 4.0,
+          "train_taker_pnl": 87690.0,
+          "test_taker_pnl": -37625.0,
+          "passive_gate": 0.5,
+          "train_passive_pnl": 62927.0,
+          "test_passive_pnl": 4466.5,
+          "baseline_pnl": 5310.0,
+          "passive_delta": -843.5
+        },
+        {
+          "test_day": 4,
+          "target_corr": 0.03326273243444428,
+          "target_mse": 139.74404577301053,
+          "taker_threshold": 4.0,
+          "train_taker_pnl": 96550.0,
+          "test_taker_pnl": -51290.0,
+          "passive_gate": 0.5,
+          "train_passive_pnl": 40687.5,
+          "test_passive_pnl": 22090.5,
+          "baseline_pnl": 26128.0,
+          "passive_delta": -4037.5
+        }
+      ],
+      "taker_sum": -115525.0,
+      "passive_sum": 61874.5,
+      "baseline_sum": 64300.0,
+      "passive_delta": -2425.5,
+      "mean_target_corr": 0.03334055668742964
+    }
+  },
+  "transformer": {
+    "folds": [
+      {
+        "test_day": 2,
+        "target_corr": 0.025862977328659654,
+        "epoch_losses": [
+          1.019318644273079,
+          0.997780003790128,
+          0.996279369976561,
+          0.9949364268173606,
+          0.9930628224954767
+        ],
+        "passive_gate": 1.0,
+        "train_passive_pnl": 33512.5,
+        "test_passive_pnl": 33719.0,
+        "baseline_pnl": 32862.0,
+        "passive_delta": 857.0
+      },
+      {
+        "test_day": 3,
+        "target_corr": 0.026622013787368812,
+        "epoch_losses": [
+          1.039052697561555,
+          1.0031895819356886,
+          1.0032969410136594,
+          1.000313559831199,
+          1.0013880921622453
+        ],
+        "passive_gate": 1.5,
+        "train_passive_pnl": 61694.0,
+        "test_passive_pnl": 4907.0,
+        "baseline_pnl": 5310.0,
+        "passive_delta": -403.0
+      },
+      {
+        "test_day": 4,
+        "target_corr": 0.029637600007694685,
+        "epoch_losses": [
+          1.0369602189225666,
+          1.0064034078080775,
+          1.0063961350311668,
+          1.0038220346984217,
+          1.0028558615910805
+        ],
+        "passive_gate": 0.5,
+        "train_passive_pnl": 46910.5,
+        "test_passive_pnl": 7468.0,
+        "baseline_pnl": 26128.0,
+        "passive_delta": -18660.0
+      }
+    ],
+    "passive_sum": 46094.0,
+    "baseline_sum": 64300.0,
+    "passive_delta": -18206.0,
+    "mean_target_corr": 0.02737419704124105
+  },
+  "recommendation": "Do not add ML to trader.py unless a model improves leave-one-day-out passive_sum versus baseline_sum. These models are useful as a research check, but the submitted exchange bot should remain the simpler robust strategy when validation is negative."
+}

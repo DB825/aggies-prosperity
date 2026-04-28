@@ -61,23 +61,32 @@ class Trader:
         "SNACKPACK_RASPBERRY",
     ]
 
-    # Passive-maker parameters selected only when they were profitable on all
-    # three provided days under a bot-trade fill model, then pruned against the
-    # official 1,000-tick log to avoid queue-quality overfit.
+    # Passive-maker parameters selected from per-product isolation, then
+    # sanity-checked against leave-one-day replay and the official 1,000-tick
+    # log. Products without enough isolated edge are intentionally idle.
     MAKE_PARAMS: Dict[str, Tuple[float, float]] = {
-        "PANEL_2X4": (1.0, 1.0),
+        "PANEL_1X4": (0.5, 4.0),
+        "PANEL_2X2": (5.0, 0.0),
+        "PANEL_2X4": (4.0, 0.0),
         "OXYGEN_SHAKE_CHOCOLATE": (1.0, 0.5),
         "OXYGEN_SHAKE_EVENING_BREATH": (1.0, 1.0),
         "OXYGEN_SHAKE_GARLIC": (2.0, 2.0),
+        "OXYGEN_SHAKE_MINT": (7.0, 0.0),
+        "SNACKPACK_CHOCOLATE": (0.5, 2.0),
+        "SNACKPACK_PISTACHIO": (0.5, 0.5),
         "SNACKPACK_VANILLA": (4.0, 2.0),
         "SNACKPACK_STRAWBERRY": (4.0, 0.0),
+        "SLEEP_POD_SUEDE": (2.0, 0.0),
         "SLEEP_POD_COTTON": (4.0, 0.5),
-        "SLEEP_POD_POLYESTER": (5.0, 0.5),
+        "SLEEP_POD_POLYESTER": (5.0, 1.0),
         "SLEEP_POD_NYLON": (4.0, 0.0),
-        "UV_VISOR_YELLOW": (4.0, 1.0),
+        "UV_VISOR_YELLOW": (1.5, 3.0),
         "UV_VISOR_ORANGE": (3.0, 0.0),
-        "TRANSLATOR_VOID_BLUE": (2.0, 0.5),
-        "TRANSLATOR_ASTRO_BLACK": (1.0, 1.0),
+        "TRANSLATOR_ECLIPSE_CHARCOAL": (2.0, 0.0),
+        "TRANSLATOR_VOID_BLUE": (2.0, 0.0),
+        "TRANSLATOR_ASTRO_BLACK": (4.0, 0.0),
+        "PEBBLES_XS": (5.0, 1.0),
+        "ROBOT_MOPPING": (2.0, 1.0),
         "MICROCHIP_SQUARE": (1.0, 1.0),
         "MICROCHIP_OVAL": (1.0, 0.5),
     }
@@ -85,6 +94,17 @@ class Trader:
     JUMP_REVERSION = {
         "OXYGEN_SHAKE_CHOCOLATE": 30.0,
         "OXYGEN_SHAKE_EVENING_BREATH": 30.0,
+    }
+
+    # Learned from isolated one-product leave-one-day tests. These are deliberately
+    # simple one-tick regimes so the live bot has no heavy model dependency.
+    SIGNAL_PARAMS: Dict[str, Tuple[float, str, bool]] = {
+        "ROBOT_IRONING": (25.0, "reversion", True),
+        "MICROCHIP_OVAL": (30.0, "reversion", True),
+        "OXYGEN_SHAKE_GARLIC": (25.0, "momentum", True),
+        "PANEL_1X2": (25.0, "reversion", True),
+        "SLEEP_POD_NYLON": (25.0, "reversion", True),
+        "SNACKPACK_RASPBERRY": (20.0, "reversion", True),
     }
 
     GROUPS: Dict[str, Dict] = {}
@@ -99,6 +119,7 @@ class Trader:
 
         desired_targets = self.compute_group_targets(memory, mids)
         desired_targets.update(self.compute_jump_targets(memory, mids))
+        desired_targets.update(self.compute_signal_targets(memory, mids))
 
         for product, depth in state.order_depths.items():
             orders: List[Order] = []
@@ -124,7 +145,7 @@ class Trader:
         return result, 0, trader_data
 
     def load_memory(self, trader_data: str) -> Dict:
-        baseline = {"last_mid": {}, "jump_target": {}, "group_target": {}}
+        baseline = {"last_mid": {}, "jump_target": {}, "group_target": {}, "signal_target": {}}
         if not trader_data:
             return baseline
         try:
@@ -136,6 +157,7 @@ class Trader:
         memory.setdefault("last_mid", {})
         memory.setdefault("jump_target", {})
         memory.setdefault("group_target", {})
+        memory.setdefault("signal_target", {})
         return memory
 
     def compute_group_targets(self, memory: Dict, mids: Dict[str, Optional[float]]) -> Dict[str, int]:
@@ -169,6 +191,26 @@ class Trader:
                 elif move < -threshold:
                     current = self.POSITION_LIMIT
             memory["jump_target"][product] = current
+            if current != 0:
+                targets[product] = current
+        return targets
+
+    def compute_signal_targets(self, memory: Dict, mids: Dict[str, Optional[float]]) -> Dict[str, int]:
+        targets: Dict[str, int] = {}
+        for product, (threshold, mode, sticky) in self.SIGNAL_PARAMS.items():
+            mid = mids.get(product)
+            last = memory["last_mid"].get(product)
+            current = int(memory["signal_target"].get(product, 0))
+            if mid is not None and last is not None:
+                move = mid - float(last)
+                if abs(move) > threshold:
+                    direction = 1 if move > 0 else -1
+                    if mode == "reversion":
+                        direction *= -1
+                    current = direction * self.POSITION_LIMIT
+                elif not sticky:
+                    current = 0
+            memory["signal_target"][product] = current
             if current != 0:
                 targets[product] = current
         return targets
