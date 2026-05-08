@@ -1,12 +1,31 @@
 # Aggies Prosperity
 
-Use `trader.py` for the active Prosperity simulator submission. Round 2 is
-archived in `trader_round2.py`, and Round 1 is archived in `trader_round1.py`.
-The local `datamodel.py` mirrors the competition interface closely enough for
-syntax checks and lightweight local tests.
+Use `trader.py` for the final Prosperity simulator submission. Earlier
+algorithmic submissions are archived in `trader_round1.py`, `trader_round2.py`,
+and `trader_round3.py`. The local `datamodel.py` mirrors the competition
+interface closely enough for syntax checks and lightweight local tests.
+
+## Final Results
+
+Final leaderboard snapshot for **Aggies**:
+
+- Overall placement: **#193**.
+- Total PnL: **487,287 XIRECs**.
+- Algorithmic placement: **#56**.
+- Manual placement: **#2838**.
+- Country placement: **#54**.
+
+See `logs/final_results.md` for the competition retrospective and
+`linkedin_post.md` for a short public post draft.
 
 Research notebooks:
 
+- `round5_final_strategy.ipynb`: final Round 5 simulator strategy, public
+  repository lessons, product-by-product alpha isolation, ML rejection tests,
+  passive selected makers, one-tick signal takers, jump-reversion takers, and
+  Ignith manual Ashflow Alpha allocation.
+- `round4_v14_detailed_findings.ipynb`: Round 4 algorithmic findings and the
+  filtered approach to encrypted trader identities / mark signals.
 - `round3_algorithmic_options_strategy.ipynb`: Round 3 Solvenar workflow,
   Hydrogel/Velvetfruit microstructure diagnostics, foundational options-theory
   citations, Black-Scholes applicability notes, voucher residual / spread
