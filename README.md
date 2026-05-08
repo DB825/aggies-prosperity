@@ -15,8 +15,7 @@ Final leaderboard snapshot:
 - Manual placement: **#2838**.
 - Country placement: **#54**.
 
-See `logs/final_results.md` for the competition retrospective and
-`linkedin_post.md` for a short public post draft.
+See `logs/final_results.md` for the competition retrospective.
 
 Research notebooks:
 
