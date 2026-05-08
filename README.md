@@ -7,7 +7,7 @@ interface closely enough for syntax checks and lightweight local tests.
 
 ## Final Results
 
-Final leaderboard snapshot for **Aggies**:
+Final leaderboard snapshot:
 
 - Overall placement: **#193**.
 - Total PnL: **487,287 XIRECs**.
